@@ -4,6 +4,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Exceptions\MyException as MyExceptionAlias;
+use App\Http\Controllers\Api\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,17 +32,24 @@ Route::get( '/v1/testUser', function ( Request $request ) {
     }
 );
 
-Route::post( '/v1/login', function ( Request $request ) {
-        auth()->attempt(
-            [
-                'email' => $request->username,
-                'password' => $request->password,
-            ]
-        );
-        return auth()->user();
+//Route::post( '/v1/login', function ( Request $request ) {
+//        auth()->attempt(
+//            [
+//                'email' => $request->username,
+//                'password' => $request->password,
+//            ]
+//        );
+//        return auth()->user();
+//
+//    }
+//);
 
-    }
-);
+Route::post('/userLogin', [AuthController::class, 'userLogin'])->name('userLogin');
+
+Route::group(['middleware' => ['auth:api']], function () {
+    Route::get('/userLogout', [AuthController::class, 'userLogout'])->name('userLogout');
+});
+
 
 
 Route::get('/v1/exception', function ( Request $request) {
@@ -64,7 +72,7 @@ Route::middleware(['auth:api', 'activeUser'])->get('/v1/user/{id}', function ( R
 //    $user = User::query()->findOrFail($id);
 
     return $user;
-});
+})->name('user by id');
 
 Route::get('/v1/current', function ( Request $request) {
     return auth()->guard('api')->user()->email;

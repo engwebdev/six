@@ -6,6 +6,18 @@ Host: 127.0.0.1:8001
 
 {"username": "admin@admin.com","password": "123456789","grant_type": "password","client_id": "93eb7dcd-a3d5-4a1f-9a15-2134874ba847","client_secret": "Ap0YpJWZCGQzjFXLoMKQjLrFfZ51CbMZEFVTUHYG","scopes": ["test"] }
 
+<> 2021-08-23T055300.401.json
+
+###
+
+POST http://127.0.0.1:8001/api/v1/token
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+Host: 127.0.0.1:8001
+
+{"username": "admin@admin.com","password": "123456789","grant_type": "password","client_id": "93eb7dcd-a3d5-4a1f-9a15-2134874ba847","client_secret": "Ap0YpJWZCGQzjFXLoMKQjLrFfZ51CbMZEFVTUHYG","scopes": ["test"] }
+
 <> 2021-07-26T035941.200.json
 
 ###

@@ -4,6 +4,13 @@ namespace Illuminate\Routing;
 
 use BadMethodCallException;
 
+/**
+ * @OA\Info(
+ *     title="title",
+ *     description="description",
+ *     version="1",
+ * )
+ */
 abstract class Controller
 {
     /**

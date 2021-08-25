@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
-use Laravel\Sanctum\HasApiTokens;
+use Laravel\Passport\HasApiTokens;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 
@@ -61,4 +61,39 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+
+
+
+
+    /****************************************************************/
+    /// implements PhoneVerificationCodeGrantUserInterface
+    /**
+     * Find or create a user by phone number
+     *
+     * @param $phoneNumber
+     * @return \Illuminate\Database\Eloquent\Model|null
+     */
+    public function findOrCreateForPassportVerifyCodeGrant($phoneNumber)
+    {
+        // If you need to automatically register the user.
+        return static::firstOrCreate(['mobile' => $phoneNumber]);
+
+        // If the phone number is not exists in users table, will be fail to authenticate.
+        // return static::where('mobile', '=', $phoneNumber)->first();
+    }
+
+    /**
+     * Check the verification code is valid.
+     *
+     * @param $verificationCode
+     * @return boolean
+     */
+    public function validateForPassportVerifyCodeGrant($verificationCode)
+    {
+        // Check verification code is valid.
+        // return \App\Code::where('mobile', $this->mobile)->where('code', '=', $verificationCode)->where('expired_at', '>', now()->toDatetimeString())->exists();
+        return true;
+    }
+
 }
