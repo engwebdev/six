@@ -61,6 +61,7 @@ class CustomGrant extends AbstractGrant
         $responseType->setAccessToken( $accessToken );
         $responseType->setRefreshToken( $refreshToken );
 
+
         return $responseType;
     }
 
@@ -73,13 +74,14 @@ class CustomGrant extends AbstractGrant
      */
     protected function validateUser( ServerRequestInterface $request, ClientEntityInterface $client )
     {
-        $CustomGrant = $this->getRequestParameter( 'CustomGrant', $request );
+        $CustomGrant = $this->getRequestParameter( 'grant_type', $request );
+
         if (is_null( $CustomGrant ))
         {
             throw OAuthServerException::invalidRequest( 'CustomGrant' );
         }
 
-        $CustomGrantVerifierParam = $this->getRequestParameter( 'CustomGrant_verifier', $request );
+        $CustomGrantVerifierParam = $this->getRequestParameter( 'CustomGrant', $request );
 
         $CustomGrantVerifier = CustomGrantFactory::getCustomGrantVerifier(
             $this->getRequestParameter( 'CustomGrant_verifier', $request, 'BL_INTERNAL' )
@@ -98,18 +100,18 @@ class CustomGrant extends AbstractGrant
 //            throw CustomGrantException::invalidCustomGrant();
 //        }
 
-        $username = $this->getRequestParameter( 'username', $request );
-        if (is_null( $username ))
+        $phone = $this->getRequestParameter( 'CustomGrant', $request );
+        if (is_null( $phone ))
         {
-            throw OAuthServerException::invalidRequest( 'username' );
+            throw OAuthServerException::invalidRequest( 'CustomGrant' );
         }
 
         $user = $this->getUserEntityByUserCustomGrant(
-            $username,
+            $phone,  // +989360001234
             $this->getIdentifier(),
-            $client
+            $client  // "client_id": "3", "client_secret": null
         );
-
+//        dd($user);
         if ($user instanceof UserEntityInterface === false)
         {
             $RequestEvent = new RequestEvent( RequestEvent::USER_AUTHENTICATION_FAILED, $request );
@@ -120,7 +122,13 @@ class CustomGrant extends AbstractGrant
         return $user;
     }
 
-    protected function validateMobile( ServerRequestInterface $request, ClientEntityInterface $client )
+    /**
+     * @param ServerRequestInterface $request
+     * @param ClientEntityInterface  $client
+     * @return User|void
+     * @throws OAuthServerException
+     */
+    protected function validateMobile(ServerRequestInterface $request, ClientEntityInterface $client )
     {
         $CustomGrant = $this->getRequestParameter( 'CustomGrant', $request );
         if (is_null( $CustomGrant ))
@@ -170,12 +178,12 @@ class CustomGrant extends AbstractGrant
     }
 
     /**
-     * @param                       $username
+     * @param                       $mobile
      * @param                       $grantType
      * @param ClientEntityInterface $clientEntity
      * @return User|void
      */
-    private function getUserEntityByUserCustomGrant( $username, $grantType, ClientEntityInterface $clientEntity )
+    private function getUserEntityByUserCustomGrant( $mobile, $grantType, ClientEntityInterface $clientEntity )
     {
         $provider = config( 'auth.guards.api.provider' );
 
@@ -191,20 +199,26 @@ class CustomGrant extends AbstractGrant
 // $user = \App\Models\User->where( 'email', $username )->first();dd($user);
 // $user = UserMain->where( 'email', $username )->first();dd($user);
 
-        $user = (new $model)->where('email', $username)->first();
+        $user = (new $model)->where('mobile', $mobile)->first();
 //        $user = (new $model)->where('mobile', $username)->first();
 
 
         if (is_null( $user ))
         {
-            return;
+            return ;
         }
 
         return new User( $user->getAuthIdentifier() );
     }
 
 
-    private function getUserEntityByUserCustomGrantMobile( $mobile, $getIdentifier, ClientEntityInterface $client )
+    /**
+     * @param                       $mobile
+     * @param                       $getIdentifier
+     * @param ClientEntityInterface $client
+     * @return User|void
+     */
+    private function getUserEntityByUserCustomGrantMobile($mobile, $getIdentifier, ClientEntityInterface $client )
     {
         $provider = config( 'auth.guards.api.provider' );
 

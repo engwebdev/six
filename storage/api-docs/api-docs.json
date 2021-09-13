@@ -19,102 +19,71 @@
         }
     ],
     "paths": {
-        "/api/register": {
+        "/api/userRegister": {
             "post": {
                 "tags": [
                     "Register"
                 ],
-                "summary": "User Register",
+                "summary": "Register the user to receive the SMS verification code.",
                 "description": "User Register here",
-                "operationId": "Register",
+                "operationId": "userRegister",
                 "requestBody": {
                     "content": {
                         "multipart/form-data": {
                             "schema": {
                                 "required": [
-                                    "name",
-                                    "email",
-                                    "password",
-                                    "password_confirmation"
+                                    "country_name",
+                                    "country_code",
+                                    "mobile_phone_number"
                                 ],
                                 "properties": {
-                                    "name": {
-                                        "type": "text"
+                                    "country_name": {
+                                        "description": "2 uppercase characters. sample => IR or EN",
+                                        "type": "string",
+                                        "format": "",
+                                        "example": "IR"
                                     },
-                                    "email": {
-                                        "type": "text"
+                                    "country_code": {
+                                        "description": "Character '+' with 1 to 3 digits. sample => +1 to +999",
+                                        "type": "string",
+                                        "format": "int64",
+                                        "example": "+98"
                                     },
-                                    "password": {
-                                        "type": "password"
-                                    },
-                                    "password_confirmation": {
-                                        "type": "password"
+                                    "mobile_phone_number": {
+                                        "description": "digit 10 characters. sample => 9361230099",
+                                        "type": "integer",
+                                        "format": "number",
+                                        "example": "9361230099"
                                     }
                                 },
                                 "type": "object"
                             }
                         },
                         "application/json": {
-                            "schema": {}
-                        }
-                    }
-                },
-                "responses": {
-                    "201": {
-                        "description": "Register Successfully",
-                        "content": {
-                            "application/json": {
-                                "schema": {}
-                            }
-                        }
-                    },
-                    "200": {
-                        "description": "Register Successfully",
-                        "content": {
-                            "application/json": {
-                                "schema": {}
-                            }
-                        }
-                    },
-                    "422": {
-                        "description": "Unprocessable Entity",
-                        "content": {
-                            "application/json": {
-                                "schema": {}
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad request"
-                    },
-                    "404": {
-                        "description": "Resource Not Found"
-                    }
-                }
-            }
-        },
-        "/api/userLogin": {
-            "post": {
-                "tags": [
-                    "userLogin"
-                ],
-                "summary": "User Login",
-                "description": "Login User Here",
-                "operationId": "authLogin",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
                             "schema": {
+                                "required": [
+                                    "country_name",
+                                    "country_code",
+                                    "mobile_phone_number"
+                                ],
                                 "properties": {
-                                    "email": {
+                                    "country_name": {
+                                        "description": "2 uppercase characters. sample => IR or EN",
                                         "type": "string",
-                                        "format": "email",
-                                        "example": "admin@admin.com"
+                                        "format": "",
+                                        "example": "IR"
                                     },
-                                    "password": {
+                                    "country_code": {
+                                        "description": "Character '+' with 1 to 3 digits. sample => +1 to +999",
                                         "type": "string",
-                                        "format": "password",
-                                        "example": "123456789"
+                                        "format": "int64",
+                                        "example": "+98"
+                                    },
+                                    "mobile_phone_number": {
+                                        "description": "digit 10 characters. sample => 9361230099",
+                                        "type": "integer",
+                                        "format": "number",
+                                        "example": "9361230099"
                                     }
                                 },
                                 "type": "object"
@@ -123,23 +92,30 @@
                     }
                 },
                 "responses": {
-                    "201": {
-                        "description": "userLogin Successfully",
-                        "content": {
-                            "application/json": {
-                                "schema": {}
-                            }
-                        }
-                    },
                     "200": {
-                        "description": "userLogin Successfully",
+                        "description": "user Login Successfully",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "properties": {
-                                        "token": {
+                                        "message": {
                                             "type": "string",
-                                            "example": "value of token"
+                                            "example": "user Login Successfully"
+                                        },
+                                        "success": {
+                                            "properties": {
+                                                "mobile": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "example": "+989360001234"
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "NotificationsEnServer": {
+                                            "type": "string",
+                                            "example": "The verification code was sent to the mobile number via SMS"
                                         }
                                     },
                                     "type": "object"
@@ -147,11 +123,34 @@
                             }
                         }
                     },
-                    "422": {
-                        "description": "Unprocessable Entity",
+                    "201": {
+                        "description": "user Register Successfully",
                         "content": {
                             "application/json": {
-                                "schema": {}
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "user Register Successfully"
+                                        },
+                                        "success": {
+                                            "properties": {
+                                                "mobile": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "example": "+989360001234"
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "NotificationsEnServer": {
+                                            "type": "string",
+                                            "example": "The verification code was sent to the mobile number via SMS"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
                             }
                         }
                     },
@@ -160,6 +159,172 @@
                     },
                     "404": {
                         "description": "Resource Not Found"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Integrity constraint violation"
+                                        },
+                                        "errors": {
+                                            "properties": {
+                                                "mobile_phone_number": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "example": "The mobile phone number field is unique."
+                                                    }
+                                                },
+                                                "problem": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "example": "Duplicate entry mobile number"
+                                                    }
+                                                },
+                                                "exception": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "example": "Sql exception"
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "503": {
+                        "description": "Servr error"
+                    }
+                }
+            }
+        },
+        "/api/userLogin": {
+            "post": {
+                "tags": [
+                    "User Authorization"
+                ],
+                "summary": "Send unique confirmation code and receive tokens.",
+                "description": "Login User Here",
+                "operationId": "authLogin",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "verify_code"
+                                ],
+                                "properties": {
+                                    "verify_code": {
+                                        "description": "unique code for verify phone number",
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "rg05sszlqbvz"
+                                    },
+                                    "country_code": {
+                                        "description": "Character '+' with 1 to 3 digits. sample => +1 to +999",
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "+98"
+                                    },
+                                    "mobile_phone_number": {
+                                        "description": "digit 10 characters. sample => 9361230099",
+                                        "type": "integer",
+                                        "format": "number",
+                                        "example": "9361230099"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "verify_code"
+                                ],
+                                "properties": {
+                                    "verify_code": {
+                                        "description": "unique code for verify phone number",
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "rg05sszlqbvz"
+                                    },
+                                    "country_code": {
+                                        "description": "Character '+' with 1 to 3 digits. sample => +1 to +999",
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "+98"
+                                    },
+                                    "mobile_phone_number": {
+                                        "description": "digit 10 characters. sample => 9361230099",
+                                        "type": "integer",
+                                        "format": "number",
+                                        "example": "9361230099"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "user Login Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "token_type": {
+                                            "type": "string",
+                                            "example": "Bearer"
+                                        },
+                                        "expires_in": {
+                                            "type": "integer",
+                                            "example": "31536000"
+                                        },
+                                        "access_token": {
+                                            "type": "string",
+                                            "example": "string of token"
+                                        },
+                                        "refresh_token": {
+                                            "type": "string",
+                                            "example": "string of refresh token"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "201": {
+                        "description": "User creation and login completed successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "token_type": {
+                                            "type": "string",
+                                            "example": "Bearer"
+                                        },
+                                        "expires_in": {
+                                            "type": "integer",
+                                            "example": "31536000"
+                                        },
+                                        "access_token": {
+                                            "type": "string",
+                                            "example": "string of token"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -167,10 +332,10 @@
         "/api/userLogout": {
             "get": {
                 "tags": [
-                    "userLogout"
+                    "User Authorization"
                 ],
-                "summary": "Get the details of an authenticated userLogout",
-                "description": "",
+                "summary": "User Logging Out",
+                "description": "user log",
                 "operationId": "getUserLogout",
                 "responses": {
                     "200": {
@@ -211,9 +376,310 @@
                 },
                 "security": [
                     {
-                        "bearerAuth": []
+                        "bearer": []
                     }
                 ]
+            }
+        },
+        "/api/userLoginByCode": {
+            "post": {
+                "tags": [
+                    "userAuth"
+                ],
+                "summary": "list of all errors for api",
+                "description": "User Login here",
+                "operationId": "userLoginByCode",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "admin@admin.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "123456789"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "user Login Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "token_type": {
+                                            "type": "string",
+                                            "example": "Bearer"
+                                        },
+                                        "expires_in": {
+                                            "type": "integer",
+                                            "example": "31536000"
+                                        },
+                                        "access_token": {
+                                            "type": "string",
+                                            "example": "string of token"
+                                        },
+                                        "refresh_token": {
+                                            "type": "string",
+                                            "example": "string of refresh token"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "201": {
+                        "description": "User creation and login completed successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "token_type": {
+                                            "type": "string",
+                                            "example": "Bearer"
+                                        },
+                                        "expires_in": {
+                                            "type": "integer",
+                                            "example": "31536000"
+                                        },
+                                        "access_token": {
+                                            "type": "string",
+                                            "example": "string of token"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    },
+                    "405": {
+                        "description": "Method Not Allowed"
+                    },
+                    "406": {
+                        "description": "Not Acceptable"
+                    },
+                    "407": {
+                        "description": "Proxy Authentication Required"
+                    },
+                    "410": {
+                        "description": "Resource Gone"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "423": {
+                        "description": "Resource Locked"
+                    },
+                    "429": {
+                        "description": "Too Many Requests"
+                    },
+                    "451": {
+                        "description": "Unavailable For Legal Reasons"
+                    },
+                    "500": {
+                        "description": "Internal Server"
+                    },
+                    "502": {
+                        "description": "Bad Gateway"
+                    },
+                    "503": {
+                        "description": "Service Unavailable"
+                    },
+                    "504": {
+                        "description": "Gateway Timeout"
+                    },
+                    "505": {
+                        "description": "HTTP Version Not Supported"
+                    },
+                    "511": {
+                        "description": "Network Authentication Required"
+                    }
+                }
+            }
+        },
+        "/api/newTokenByRefreshToken": {
+            "post": {
+                "tags": [
+                    "Authorization By Token"
+                ],
+                "summary": "helper method for getting tokens",
+                "description": "helper method for getting tokens by 'Refresh Token'",
+                "operationId": "newTokenByRefreshToken",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "refresh_token"
+                                ],
+                                "properties": {
+                                    "refresh_token": {
+                                        "description": "very long string : jwt token",
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "very long string : jwt token"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "refresh_token"
+                                ],
+                                "properties": {
+                                    "refresh_token": {
+                                        "description": "very long string : jwt token",
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "very long string : jwt token"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "user Login Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "token_type": {
+                                            "type": "string",
+                                            "example": "Bearer"
+                                        },
+                                        "expires_in": {
+                                            "type": "integer",
+                                            "example": "31536000"
+                                        },
+                                        "access_token": {
+                                            "type": "string",
+                                            "example": "string of token"
+                                        },
+                                        "refresh_token": {
+                                            "type": "string",
+                                            "example": "string of refresh token"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/newTokenByOldToken": {
+            "post": {
+                "tags": [
+                    "Authorization By Token"
+                ],
+                "summary": "helper method for getting tokens",
+                "description": "helper method for getting tokens by 'Old Token'",
+                "operationId": "newTokenByOldToken",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "old_access_token"
+                                ],
+                                "properties": {
+                                    "old_access_token": {
+                                        "description": "very long string : jwt token",
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "very long string : jwt token"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "old_access_token"
+                                ],
+                                "properties": {
+                                    "old_access_token": {
+                                        "description": "very long string : jwt token",
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "very long string : jwt token"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "user Login Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "token_type": {
+                                            "type": "string",
+                                            "example": "Bearer"
+                                        },
+                                        "expires_in": {
+                                            "type": "integer",
+                                            "example": "31536000"
+                                        },
+                                        "access_token": {
+                                            "type": "string",
+                                            "example": "string of token"
+                                        },
+                                        "refresh_token": {
+                                            "type": "string",
+                                            "example": "string of refresh token"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     },

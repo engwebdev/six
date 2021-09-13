@@ -10,8 +10,12 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Traits\PassportToken;
+use Illuminate\Database\Eloquent\Builder;
 
-
+/**
+ * @mixin Builder
+ */
 class User extends Authenticatable
 {
     use SoftDeletes;
@@ -29,7 +33,11 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
-        'password',
+        'mobile',
+        'mobile_verified_code',
+        'mobile_verified_code_expire_time',
+//        'password',
+//        'password',
     ];
 
     /**
@@ -63,6 +71,36 @@ class User extends Authenticatable
     ];
 
 
+    /****************************************************************/
+
+//    /**
+//     * @param $mobile
+//     * @return array
+//     */
+//    private function createVerificationCode( $mobile)
+//    {
+//        $data = (object) [
+//            'mobile_verified_code' => null,
+//            "mobile_verified_code_expire_time" => null,
+//        ];
+//
+//        $data->mobile_verified_code = base_convert( intval( strval( substr( $mobile, 4 ) ) ) . time(), 10, 36 );
+//        $data->mobile_verified_code_expire_time = date( 'Y-m-d H:i:s', 360 + time() );
+//
+//        return [ "code" => $data->mobile_verified_code, "expire" => $data->mobile_verified_code_expire_time ];
+//    }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -74,10 +112,10 @@ class User extends Authenticatable
      * @param $phoneNumber
      * @return \Illuminate\Database\Eloquent\Model|null
      */
-    public function findOrCreateForPassportVerifyCodeGrant($phoneNumber)
+    public function findOrCreateForPassportVerifyCodeGrant( $phoneNumber )
     {
         // If you need to automatically register the user.
-        return static::firstOrCreate(['mobile' => $phoneNumber]);
+        return static::firstOrCreate( [ 'mobile' => $phoneNumber ] );
 
         // If the phone number is not exists in users table, will be fail to authenticate.
         // return static::where('mobile', '=', $phoneNumber)->first();
@@ -89,7 +127,7 @@ class User extends Authenticatable
      * @param $verificationCode
      * @return boolean
      */
-    public function validateForPassportVerifyCodeGrant($verificationCode)
+    public function validateForPassportVerifyCodeGrant( $verificationCode )
     {
         // Check verification code is valid.
         // return \App\Code::where('mobile', $this->mobile)->where('code', '=', $verificationCode)->where('expired_at', '>', now()->toDatetimeString())->exists();
