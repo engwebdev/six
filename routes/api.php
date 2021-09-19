@@ -24,7 +24,6 @@ Route::middleware( 'auth:sanctum' )->get( '/v1/user', function ( Request $reques
     return $request->user();
 }
 );
-
 Route::get( '/v1/testUser', function ( Request $request ) {
 //        return 11;
 //        return User::all();
@@ -34,17 +33,6 @@ Route::get( '/v1/testUser', function ( Request $request ) {
     }
 );
 
-//Route::post( '/v1/login', function ( Request $request ) {
-//        auth()->attempt(
-//            [
-//                'email' => $request->username,
-//                'password' => $request->password,
-//            ]
-//        );
-//        return auth()->user();
-//
-//    }
-//);
 
 Route::post('/userRegister', [AuthController::class, 'userRegister'])->name('userRegister');
 Route::post('/userLogin', [AuthController::class, 'userLogin'])->name('userLogin');
@@ -55,7 +43,7 @@ Route::group(['middleware' => ['auth:api']], function () {
 });
 
 Route::post('/customGrantToken', [CustomGrantController::class, 'customGrantToken'])->name('customGrantToken');
-Route::middleware(['SwaggerRequest'])->post('/newTokenByRefreshToken', [CustomGrantController::class, 'newTokenByRefreshToken'])->name('newTokenByRefreshToken');
+Route::middleware(['auth:api', 'SwaggerRequest'])->post('/newTokenByRefreshToken', [CustomGrantController::class, 'newTokenByRefreshToken'])->name('newTokenByRefreshToken');
 //Route::post('/newTokenByRefreshToken', [CustomGrantController::class, 'newTokenByRefreshToken'])->name('newTokenByRefreshToken');
 //Route::middleware(['SwaggerRequest'])->post('/newTokenByRefreshToken',
 //        function (Request $request) {
@@ -66,6 +54,35 @@ Route::post('/newTokenByOldToken', [CustomGrantController::class, 'newTokenByOld
 //Route::middleware(['middleware' => 'throttle'])->post('/customGrantToken', [CustomGrantController::class, 'customGrantToken'])->name('customGrantToken');
 Route::post('/customIssueToken', [CustomAccessTokenController::class, 'customIssueToken'])->name('customIssueToken');
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//////////////////////////////////////////////////////////////
+Route::get('/v1/current', function ( Request $request) {
+    return auth()->guard('api')->user()->email;
+});
 
 Route::get('/v1/exception', function ( Request $request) {
     try
@@ -89,6 +106,4 @@ Route::middleware(['auth:api', 'activeUser'])->get('/v1/user/{id}', function ( R
     return $user;
 })->name('user by id');
 
-Route::get('/v1/current', function ( Request $request) {
-    return auth()->guard('api')->user()->email;
-});
+

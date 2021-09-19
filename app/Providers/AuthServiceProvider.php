@@ -52,6 +52,7 @@ class AuthServiceProvider extends ServiceProvider
             Passport::routes(null, ['prefix' => 'api/v1']);
 //            Passport::tokensExpireIn(now()->addMinutes(1));
         }
+
     }
 
     protected function makeCustomGrant()

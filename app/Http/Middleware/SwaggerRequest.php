@@ -18,7 +18,6 @@ class SwaggerRequest
     {
         if (strpos($request->headers->get("Authorization"),"Bearer ") === false) {
             $request->headers->set("Authorization","Bearer ".$request->headers->get("Authorization"));
-            $request->attributes->set("test", 5555);
         }
 
         return $next($request);

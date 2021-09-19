@@ -44,7 +44,7 @@ class CustomGrantController extends Controller {
     public function issueToken(Request $request)
     {
 
-        $tokenResponse = acl::issueToken($request);
+        $tokenResponse = acl::issueToken( $request );
 //        try
 //        {
 //            $tokenResponse = acl::issueToken($request);
@@ -119,17 +119,30 @@ class CustomGrantController extends Controller {
      */
     public function newTokenByRefreshToken(Request $request)
     {
-        $refresh_token = $request->get('refresh_token');
-        $app_key = env('APP_KEY');
-        $enc_key = base64_decode(substr($app_key, 7));
-        $crypto = Crypto::decryptWithPassword($refresh_token, $enc_key);
-        return json_decode($crypto, true);
+        $refresh_token = $request->get( 'refresh_token' );
+        $app_key = env( 'APP_KEY' );
+        $enc_key = base64_decode( substr( $app_key, 7 ) );
+//        dd($refresh_token);
+        if ($refresh_token == "null" or $refresh_token == null)
+        {
+            return response(
+                [
+                    "message" => [
+                        "error : Refresh Token should not be empty."
+                    ],
+                ] );
+//            $crypto =
+        }
+        else
+        {
+            $crypto = Crypto::decryptWithPassword( $refresh_token, $enc_key );
+        }
+        return json_decode( $crypto, true );
         //////////////////////////////////////////////////////////////
 //        $bearerToken = $request !== null ? $request->bearerToken() : RequestFacade::bearerToken();
-        $bearerToken = $request->request->get('refresh_token');
+        $bearerToken = $request->request->get( 'refresh_token' );
 //        dd($bearerToken);
-        $TokenId = (new Parser(new JoseEncoder()))->parse($bearerToken)->claims()
-            ->all();
+        $TokenId = (new Parser( new JoseEncoder() ))->parse( $bearerToken )->claims()->all();
         return $TokenId;
 //        $parsedJwt = (new Parser())->parse($bearerToken);
 //
@@ -154,7 +167,7 @@ class CustomGrantController extends Controller {
         );
 
         $tokenRequest = $request->create( '/api/v1/token', 'POST', $request->all() );
-        $response = app()->handle($tokenRequest);
+        $response = app()->handle( $tokenRequest );
 
         return response( ["message" => [$tokenRequest, $request->request->all()]] );
 
@@ -213,9 +226,10 @@ class CustomGrantController extends Controller {
      *
      */
     /**
-     * @param Request $request
+     * @param ServerRequestInterface $request
      *
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     * @throws OAuthServerException
      */
     public function newTokenByOldToken(ServerRequestInterface $request)
     {

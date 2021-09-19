@@ -173,15 +173,8 @@ class AuthController extends Controller {
                     'country_code' => ['required', 'string', 'min:2', 'max:4'],
                     // for performance unique time called from db, todo #db_optimizer
                     'mobile_phone_number' => ['required', 'numeric', 'digits:10'],
-//                    'mobile' => ['string', 'size:13',
-//                        Rule::unique( 'users', 'mobile' )->where( function ($query) use ($request) {
-//                            return $query->where( 'mobile', '!=', $request->input( 'country_code' ) . $request->input( 'mobile_phone_number' ) );
-//                        } ),
-//                    ],
-                ],
-//                [
-//                    'mobile_phone_number.unique:users,mobile' => 'phone number must be unique',
-//                ]
+                ]
+
             );
 
             if (!$validated)
@@ -201,16 +194,16 @@ class AuthController extends Controller {
             ];
 
             $validator = Validator::make( $data, [
-                'mobile' => ['string', 'unique:users,mobile', 'size:13']
-//                'mobile' => Rule::unique('users')->where(function ($query) use ($data) {
-//                    return $query->where('mobile', $data->mobile);
-//                })
-            ] );
+                    'mobile' => ['string', 'unique:users,mobile', 'size:13'],
+                ]
+            );
 
 //            dd($validator);
             if ($validator->fails())
             {
+                /** @var exception $exception */
                 $exception = $validator->messages();
+//                throw $exception;
             }
 
 //            dd($request->all(),$data,$valid);
@@ -400,7 +393,6 @@ class AuthController extends Controller {
 //                ],
             ] );
 
-
             $data = [
                 'mobile' => $validated['country_code'] . $validated['mobile_phone_number'],
             ];
@@ -446,11 +438,7 @@ class AuthController extends Controller {
 
 
                     // get token by
-                    $data = [
-                        "grant_type" => "custom_grant",
-                        "CustomGrant" => $user->mobile,
-                        "client_id" => "3",
-                    ];
+
                     // call issueToken and get token
 
 
@@ -458,34 +446,48 @@ class AuthController extends Controller {
                         [
                             "grant_type" => "custom_grant",
                             "CustomGrant" => $user->mobile,
-                            "client_id" => "3"
+                            "client_id" => "3",
                         ]
                     );
-//                    $request->request->remove('verify_code');
-//                    $request->request->remove('country_code');
-//                    $request->request->remove('mobile_phone_number');
-//                    $obj = new CustomServerRequest($request);
-//                    $obj->request = $request;
-//                    dd($obj->request);
-//                    $result = $obj->withParsedBody($data);
 
-//                    $data->getParsedBody();
-//                    $result = app( \Laravel\Passport\Http\Controllers\AccessTokenController::class )->issueToken( $request );
-
-//                    $rawBody = (string) $request->getBody();
-
-//                    dd( $result );
+                    $tokenRequest = $request->create( '/api/v1/token', 'POST', $request->all() );
+                    $response = app()->handle($tokenRequest);
+/*
+                    return response()->json(
+                        [
+                            "message" => [
+                                "token" => $tokenRequest,
+                                "auth" => auth()->guard( 'api' ),
+                                "server" => $request->server->all(),
+                                "cookies" => $request->cookies->all(),
+                                "headers" => $request->headers->all(),
+                                "user" => $request->user(),
+//                                "token" => $request->user()->token(),
+                                "ReHeaders" => $response->headers->all(),
+                                "ReOriginal" => $response->original,
+                                "ReException" => $response->exception,
+                                "ReResponseContent" => json_decode($response->getContent()),
+//                                "response1" => $response->toArray(),
+//                                "response2" => $response->get('content'),
+//                                "response" => $response->statusCode,
+                            ],
+                        ], 403 );
+*/
                     $token = $user->createToken( 'CustomGrant' )->accessToken;
                     $user->mobile_verified_at = Carbon::now();
                     $user->save();
                     return response()->json(
+                        json_decode($response->getContent())
+                        , 201 );
+/*
+                    return response()->json(
                         [
                             "token_type" => "Bearer",
                             "expires_in" => "31536000",
-                            'access_token' => $token,
-                            'refresh_token' => null,
+                            'access_token' => $response->access_token,
+                            'refresh_token' => $response->refresh_token,
                         ], 201 );
-
+                    */
                 }
                 else
                 {
@@ -544,7 +546,6 @@ class AuthController extends Controller {
      * @OA\Response(response=403, description="forbidden"),
      * @OA\Response(response=404, description="Resource Not Found"),
      *
-
      * )
      */
     /**
@@ -552,17 +553,37 @@ class AuthController extends Controller {
      * @return string
      */
     //  * @return \Illuminate\Http\JsonResponse
+    // todo edit logout mehdi
     public function userLogout(Request $request)
     {
-        return response(["e" => $request, "f" => auth()->guard('api')]);
-//        if ($request->user()->token()->revoke())
-//        {
-//            return response( ["message" => "logout Successfully"], 200 );
-//        }
-//        else
-//        {
-//            return response( ["message" => "Bad request"], 400 );
-//        }
+        $response = response( [
+            "result" => "data",
+            "metaData" => [
+                "auth" => auth()->guard( 'api' ),
+                "server" => $request->server->all(),
+                "cookies" => $request->cookies->all(),
+                "headers" => $request->headers->all(),
+                "user" => $request->user(),
+                "token" => $request->user()->token(),
+            ],
+        ] );
+
+        if ($request->user()->token()->revoke())
+        {
+            return response( [
+                "message" => "logout Successfully",
+                "extraResponse" => $response,
+
+            ], 200 );
+        }
+        else
+        {
+            return response( [
+                "message" => "Bad request",
+                "extraResponse" => $response,
+            ], 400 );
+        }
+
     }
 
 

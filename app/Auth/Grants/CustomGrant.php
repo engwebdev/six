@@ -107,7 +107,7 @@ class CustomGrant extends AbstractGrant
         }
 
         $user = $this->getUserEntityByUserCustomGrant(
-            $phone,  // +989360001234
+            $phone,  // +989361230090
             $this->getIdentifier(),
             $client  // "client_id": "3", "client_secret": null
         );
@@ -202,7 +202,7 @@ class CustomGrant extends AbstractGrant
         $user = (new $model)->where('mobile', $mobile)->first();
 //        $user = (new $model)->where('mobile', $username)->first();
 
-
+//dd($mobile);
         if (is_null( $user ))
         {
             return ;
