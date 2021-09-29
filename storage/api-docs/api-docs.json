@@ -1,0 +1,1844 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Documentation",
+        "description": "API Documentation",
+        "contact": {
+            "email": "admin@admin.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://127.0.0.1:8001",
+            "description": "Documentation API Server"
+        }
+    ],
+    "paths": {
+        "/api/userRegister": {
+            "post": {
+                "tags": [
+                    "Register"
+                ],
+                "summary": "Register the user to receive the SMS verification code.",
+                "description": "User Register here",
+                "operationId": "userRegister",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "country_name",
+                                    "country_code",
+                                    "mobile_phone_number"
+                                ],
+                                "properties": {
+                                    "country_name": {
+                                        "description": "2 uppercase characters. sample => IR or EN",
+                                        "type": "string",
+                                        "format": "",
+                                        "example": "IR"
+                                    },
+                                    "country_code": {
+                                        "description": "Character '+' with 1 to 3 digits. sample => +1 to +999",
+                                        "type": "string",
+                                        "format": "int64",
+                                        "example": "+98"
+                                    },
+                                    "mobile_phone_number": {
+                                        "description": "digit 10 characters. sample => 9361230099",
+                                        "type": "integer",
+                                        "format": "number",
+                                        "example": "9361230099"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "country_name",
+                                    "country_code",
+                                    "mobile_phone_number"
+                                ],
+                                "properties": {
+                                    "country_name": {
+                                        "description": "2 uppercase characters. sample => IR or EN",
+                                        "type": "string",
+                                        "format": "",
+                                        "example": "IR"
+                                    },
+                                    "country_code": {
+                                        "description": "Character '+' with 1 to 3 digits. sample => +1 to +999",
+                                        "type": "string",
+                                        "format": "int64",
+                                        "example": "+98"
+                                    },
+                                    "mobile_phone_number": {
+                                        "description": "digit 10 characters. sample => 9361230099",
+                                        "type": "integer",
+                                        "format": "number",
+                                        "example": "9361230099"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "user Login Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "user Login Successfully"
+                                        },
+                                        "success": {
+                                            "properties": {
+                                                "mobile": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "example": "+989360001234"
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "NotificationsEnServer": {
+                                            "type": "string",
+                                            "example": "The verification code was sent to the mobile number via SMS"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "201": {
+                        "description": "user Register Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "user Register Successfully"
+                                        },
+                                        "success": {
+                                            "properties": {
+                                                "mobile": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "example": "+989360001234"
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "NotificationsEnServer": {
+                                            "type": "string",
+                                            "example": "The verification code was sent to the mobile number via SMS"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Integrity constraint violation"
+                                        },
+                                        "errors": {
+                                            "properties": {
+                                                "mobile_phone_number": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "example": "The mobile phone number field is unique."
+                                                    }
+                                                },
+                                                "problem": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "example": "Duplicate entry mobile number"
+                                                    }
+                                                },
+                                                "exception": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "example": "Sql exception"
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "503": {
+                        "description": "Servr error"
+                    }
+                }
+            }
+        },
+        "/api/userLogin": {
+            "post": {
+                "tags": [
+                    "User Authorization"
+                ],
+                "summary": "Send unique confirmation code and receive tokens.",
+                "description": "Login User Here",
+                "operationId": "authLogin",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "verify_code"
+                                ],
+                                "properties": {
+                                    "verify_code": {
+                                        "description": "unique code for verify phone number",
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "rg05sszlqbvz"
+                                    },
+                                    "country_code": {
+                                        "description": "Character '+' with 1 to 3 digits. sample => +1 to +999",
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "+98"
+                                    },
+                                    "mobile_phone_number": {
+                                        "description": "digit 10 characters. sample => 9361230099",
+                                        "type": "integer",
+                                        "format": "number",
+                                        "example": "9361230099"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "verify_code"
+                                ],
+                                "properties": {
+                                    "verify_code": {
+                                        "description": "unique code for verify phone number",
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "rg05sszlqbvz"
+                                    },
+                                    "country_code": {
+                                        "description": "Character '+' with 1 to 3 digits. sample => +1 to +999",
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "+98"
+                                    },
+                                    "mobile_phone_number": {
+                                        "description": "digit 10 characters. sample => 9361230099",
+                                        "type": "integer",
+                                        "format": "number",
+                                        "example": "9361230099"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "user Login Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "token_type": {
+                                            "type": "string",
+                                            "example": "Bearer"
+                                        },
+                                        "expires_in": {
+                                            "type": "integer",
+                                            "example": "31536000"
+                                        },
+                                        "access_token": {
+                                            "type": "string",
+                                            "example": "string of token"
+                                        },
+                                        "refresh_token": {
+                                            "type": "string",
+                                            "example": "string of refresh token"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "201": {
+                        "description": "User creation and login completed successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "token_type": {
+                                            "type": "string",
+                                            "example": "Bearer"
+                                        },
+                                        "expires_in": {
+                                            "type": "integer",
+                                            "example": "31536000"
+                                        },
+                                        "access_token": {
+                                            "type": "string",
+                                            "example": "string of token"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/userLogout": {
+            "get": {
+                "tags": [
+                    "User Authorization"
+                ],
+                "summary": "User Logging Out",
+                "description": "user log",
+                "operationId": "getUserLogout",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "logout Successfully"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unauthenticated"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/shop/categories": {
+            "get": {
+                "tags": [
+                    "Category for shops"
+                ],
+                "summary": "get all categories. => for shopkeeper and system admin",
+                "description": "get all categories",
+                "operationId": "get categories",
+                "parameters": [
+                    {
+                        "name": "sort",
+                        "in": "query",
+                        "description": "Tags to sort by",
+                        "required": false,
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "id"
+                    },
+                    {
+                        "name": "order",
+                        "in": "query",
+                        "description": "Tags to order by 'asc|desc'",
+                        "required": false,
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "asc"
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Tags to paginate for page number",
+                        "required": false,
+                        "style": "form",
+                        "schema": {
+                            "type": "number"
+                        },
+                        "example": "1"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Tags for number of limit item in paginate result",
+                        "required": false,
+                        "style": "form",
+                        "schema": {
+                            "type": "number"
+                        },
+                        "example": "10"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "data of result",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "current_page": {
+                                            "type": "number",
+                                            "example": "1"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "category_name": {
+                                                        "type": "string",
+                                                        "example": "category_name"
+                                                    },
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": "11"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "first_page_url": {
+                                            "type": "string",
+                                            "example": "http://127.0.0.1:8001/api/v1/shop/categories?page=1"
+                                        },
+                                        "last_page_url": {
+                                            "type": "string",
+                                            "example": "http://127.0.0.1:8001/api/v1/shop/categories?page=5"
+                                        },
+                                        "last_page": {
+                                            "type": "number",
+                                            "example": "5"
+                                        },
+                                        "from": {
+                                            "type": "number",
+                                            "example": "1"
+                                        },
+                                        "links": {
+                                            "example": "{'url': null,'label': '&laquo; Previous','active': false},{'url': 'http://127.0.0.1:8001/api/v1/shop/categories?page=1','label': '1','active': true},{'url': null,'label': 'Next &raquo;','active': false}"
+                                        },
+                                        "next_page_url": {
+                                            "type": "string",
+                                            "example": "http://127.0.0.1:8001/api/v1/shop/categories?page=2"
+                                        },
+                                        "prev_page_url": {
+                                            "type": "string",
+                                            "example": "null"
+                                        },
+                                        "path": {
+                                            "type": "string",
+                                            "example": "http://127.0.0.1:8001/api/v1/shop/categories"
+                                        },
+                                        "per_page": {
+                                            "type": "string",
+                                            "example": "'10'"
+                                        },
+                                        "to": {
+                                            "type": "number",
+                                            "example": "3"
+                                        },
+                                        "total": {
+                                            "type": "number",
+                                            "example": "13"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "201": {
+                        "description": "data of result",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "current_page": {
+                                            "type": "number",
+                                            "example": "1"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "category_name": {
+                                                        "type": "string",
+                                                        "example": "category_name"
+                                                    },
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": "11"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "first_page_url": {
+                                            "type": "string",
+                                            "example": "http://127.0.0.1:8001/api/v1/shop/categories?page=1"
+                                        },
+                                        "last_page_url": {
+                                            "type": "string",
+                                            "example": "http://127.0.0.1:8001/api/v1/shop/categories?page=5"
+                                        },
+                                        "last_page": {
+                                            "type": "number",
+                                            "example": "5"
+                                        },
+                                        "from": {
+                                            "type": "number",
+                                            "example": "1"
+                                        },
+                                        "links": {
+                                            "example": "{'url': null,'label': '&laquo; Previous','active': false},{'url': 'http://127.0.0.1:8001/api/v1/shop/categories?page=1','label': '1','active': true},{'url': null,'label': 'Next &raquo;','active': false}"
+                                        },
+                                        "next_page_url": {
+                                            "type": "string",
+                                            "example": "http://127.0.0.1:8001/api/v1/shop/categories?page=2"
+                                        },
+                                        "prev_page_url": {
+                                            "type": "string",
+                                            "example": "null"
+                                        },
+                                        "path": {
+                                            "type": "string",
+                                            "example": "http://127.0.0.1:8001/api/v1/shop/categories"
+                                        },
+                                        "per_page": {
+                                            "type": "string",
+                                            "example": "'10'"
+                                        },
+                                        "to": {
+                                            "type": "number",
+                                            "example": "3"
+                                        },
+                                        "total": {
+                                            "type": "number",
+                                            "example": "13"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    },
+                    "405": {
+                        "description": "Method Not Allowed"
+                    },
+                    "406": {
+                        "description": "Not Acceptable"
+                    },
+                    "407": {
+                        "description": "Proxy Authentication Required"
+                    },
+                    "410": {
+                        "description": "Resource Gone"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "423": {
+                        "description": "Resource Locked"
+                    },
+                    "429": {
+                        "description": "Too Many Requests"
+                    },
+                    "451": {
+                        "description": "Unavailable For Legal Reasons"
+                    },
+                    "500": {
+                        "description": "Internal Server"
+                    },
+                    "502": {
+                        "description": "Bad Gateway"
+                    },
+                    "503": {
+                        "description": "Service Unavailable"
+                    },
+                    "504": {
+                        "description": "Gateway Timeout"
+                    },
+                    "505": {
+                        "description": "HTTP Version Not Supported"
+                    },
+                    "511": {
+                        "description": "Network Authentication Required"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Category for shops"
+                ],
+                "summary": "create new category. => only for system admin",
+                "description": "create new category",
+                "operationId": "newCategory",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "category_name"
+                                ],
+                                "properties": {
+                                    "category_name": {
+                                        "description": "category name",
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "category name"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "category_name"
+                                ],
+                                "properties": {
+                                    "category_name": {
+                                        "description": "category name",
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "category name"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "New Category Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "category_id": {
+                                            "type": "integer",
+                                            "example": "12"
+                                        },
+                                        "category_name": {
+                                            "type": "string",
+                                            "example": "category_name"
+                                        },
+                                        "created_at": {
+                                            "type": "timestamp",
+                                            "example": "2021-08-05 01:19:35"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "201": {
+                        "description": "New Category Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "category_id": {
+                                            "type": "integer",
+                                            "example": "12"
+                                        },
+                                        "category_name": {
+                                            "type": "string",
+                                            "example": "category_name"
+                                        },
+                                        "created_at": {
+                                            "type": "timestamp",
+                                            "example": "2021-08-05 01:19:35"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unauthenticated."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    },
+                    "405": {
+                        "description": "Method Not Allowed"
+                    },
+                    "406": {
+                        "description": "Not Acceptable"
+                    },
+                    "407": {
+                        "description": "Proxy Authentication Required"
+                    },
+                    "410": {
+                        "description": "Resource Gone"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "423": {
+                        "description": "Resource Locked"
+                    },
+                    "429": {
+                        "description": "Too Many Requests"
+                    },
+                    "451": {
+                        "description": "Unavailable For Legal Reasons"
+                    },
+                    "500": {
+                        "description": "Internal Server"
+                    },
+                    "502": {
+                        "description": "Bad Gateway"
+                    },
+                    "503": {
+                        "description": "Service Unavailable"
+                    },
+                    "504": {
+                        "description": "Gateway Timeout"
+                    },
+                    "505": {
+                        "description": "HTTP Version Not Supported"
+                    },
+                    "511": {
+                        "description": "Network Authentication Required"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/shop/categories/{id}": {
+            "get": {
+                "tags": [
+                    "Category for shops"
+                ],
+                "summary": "get Category by id in url. => for shopkeeper and system admin",
+                "description": "get Category by id in patch 'url'",
+                "operationId": "get categories id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Category",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "data of result",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "current_page": {
+                                            "type": "number",
+                                            "example": "1"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "category_name": {
+                                                        "type": "string",
+                                                        "example": "category_name"
+                                                    },
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": "11"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "first_page_url": {
+                                            "type": "string",
+                                            "example": "http://127.0.0.1:8001/api/v1/shop/categories?page=1"
+                                        },
+                                        "last_page_url": {
+                                            "type": "string",
+                                            "example": "http://127.0.0.1:8001/api/v1/shop/categories?page=5"
+                                        },
+                                        "last_page": {
+                                            "type": "number",
+                                            "example": "5"
+                                        },
+                                        "from": {
+                                            "type": "number",
+                                            "example": "1"
+                                        },
+                                        "links": {
+                                            "example": "{'url': null,'label': '&laquo; Previous','active': false},{'url': 'http://127.0.0.1:8001/api/v1/shop/categories?page=1','label': '1','active': true},{'url': null,'label': 'Next &raquo;','active': false}"
+                                        },
+                                        "next_page_url": {
+                                            "type": "string",
+                                            "example": "http://127.0.0.1:8001/api/v1/shop/categories?page=2"
+                                        },
+                                        "prev_page_url": {
+                                            "type": "string",
+                                            "example": "null"
+                                        },
+                                        "path": {
+                                            "type": "string",
+                                            "example": "http://127.0.0.1:8001/api/v1/shop/categories"
+                                        },
+                                        "per_page": {
+                                            "type": "string",
+                                            "example": "'10'"
+                                        },
+                                        "to": {
+                                            "type": "number",
+                                            "example": "3"
+                                        },
+                                        "total": {
+                                            "type": "number",
+                                            "example": "13"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "201": {
+                        "description": "data of result",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "current_page": {
+                                            "type": "number",
+                                            "example": "1"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "category_name": {
+                                                        "type": "string",
+                                                        "example": "category_name"
+                                                    },
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": "11"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "first_page_url": {
+                                            "type": "string",
+                                            "example": "http://127.0.0.1:8001/api/v1/shop/categories?page=1"
+                                        },
+                                        "last_page_url": {
+                                            "type": "string",
+                                            "example": "http://127.0.0.1:8001/api/v1/shop/categories?page=5"
+                                        },
+                                        "last_page": {
+                                            "type": "number",
+                                            "example": "5"
+                                        },
+                                        "from": {
+                                            "type": "number",
+                                            "example": "1"
+                                        },
+                                        "links": {
+                                            "example": "{'url': null,'label': '&laquo; Previous','active': false},{'url': 'http://127.0.0.1:8001/api/v1/shop/categories?page=1','label': '1','active': true},{'url': null,'label': 'Next &raquo;','active': false}"
+                                        },
+                                        "next_page_url": {
+                                            "type": "string",
+                                            "example": "http://127.0.0.1:8001/api/v1/shop/categories?page=2"
+                                        },
+                                        "prev_page_url": {
+                                            "type": "string",
+                                            "example": "null"
+                                        },
+                                        "path": {
+                                            "type": "string",
+                                            "example": "http://127.0.0.1:8001/api/v1/shop/categories"
+                                        },
+                                        "per_page": {
+                                            "type": "string",
+                                            "example": "'10'"
+                                        },
+                                        "to": {
+                                            "type": "number",
+                                            "example": "3"
+                                        },
+                                        "total": {
+                                            "type": "number",
+                                            "example": "13"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    },
+                    "405": {
+                        "description": "Method Not Allowed"
+                    },
+                    "406": {
+                        "description": "Not Acceptable"
+                    },
+                    "407": {
+                        "description": "Proxy Authentication Required"
+                    },
+                    "410": {
+                        "description": "Resource Gone"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "423": {
+                        "description": "Resource Locked"
+                    },
+                    "429": {
+                        "description": "Too Many Requests"
+                    },
+                    "451": {
+                        "description": "Unavailable For Legal Reasons"
+                    },
+                    "500": {
+                        "description": "Internal Server"
+                    },
+                    "502": {
+                        "description": "Bad Gateway"
+                    },
+                    "503": {
+                        "description": "Service Unavailable"
+                    },
+                    "504": {
+                        "description": "Gateway Timeout"
+                    },
+                    "505": {
+                        "description": "HTTP Version Not Supported"
+                    },
+                    "511": {
+                        "description": "Network Authentication Required"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Category for shops"
+                ],
+                "summary": "update category. => only for system admin",
+                "description": "update category",
+                "operationId": "updateCategory",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Category",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "category_name"
+                                ],
+                                "properties": {
+                                    "category_name": {
+                                        "description": "category name",
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "category name"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "category_name"
+                                ],
+                                "properties": {
+                                    "category_name": {
+                                        "description": "category name",
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "category name"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "New Category Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "category_id": {
+                                            "type": "integer",
+                                            "example": "12"
+                                        },
+                                        "category_name": {
+                                            "type": "string",
+                                            "example": "category_name"
+                                        },
+                                        "created_at": {
+                                            "type": "timestamp",
+                                            "example": "2021-08-05 01:19:35"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "201": {
+                        "description": "New Category Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "category_id": {
+                                            "type": "integer",
+                                            "example": "12"
+                                        },
+                                        "category_name": {
+                                            "type": "string",
+                                            "example": "category_name"
+                                        },
+                                        "created_at": {
+                                            "type": "timestamp",
+                                            "example": "2021-08-05 01:19:35"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unauthenticated."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    },
+                    "405": {
+                        "description": "Method Not Allowed"
+                    },
+                    "406": {
+                        "description": "Not Acceptable"
+                    },
+                    "407": {
+                        "description": "Proxy Authentication Required"
+                    },
+                    "410": {
+                        "description": "Resource Gone"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "423": {
+                        "description": "Resource Locked"
+                    },
+                    "429": {
+                        "description": "Too Many Requests"
+                    },
+                    "451": {
+                        "description": "Unavailable For Legal Reasons"
+                    },
+                    "500": {
+                        "description": "Internal Server"
+                    },
+                    "502": {
+                        "description": "Bad Gateway"
+                    },
+                    "503": {
+                        "description": "Service Unavailable"
+                    },
+                    "504": {
+                        "description": "Gateway Timeout"
+                    },
+                    "505": {
+                        "description": "HTTP Version Not Supported"
+                    },
+                    "511": {
+                        "description": "Network Authentication Required"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Category for shops"
+                ],
+                "summary": "delete category. => only for system admin",
+                "description": "delete category",
+                "operationId": "deleteCategory",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Category",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "New Category Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "category_id": {
+                                            "type": "integer",
+                                            "example": "12"
+                                        },
+                                        "category_name": {
+                                            "type": "string",
+                                            "example": "category_name"
+                                        },
+                                        "created_at": {
+                                            "type": "timestamp",
+                                            "example": "2021-08-05 01:19:35"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "201": {
+                        "description": "New Category Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "category_id": {
+                                            "type": "integer",
+                                            "example": "12"
+                                        },
+                                        "category_name": {
+                                            "type": "string",
+                                            "example": "category_name"
+                                        },
+                                        "created_at": {
+                                            "type": "timestamp",
+                                            "example": "2021-08-05 01:19:35"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unauthenticated."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    },
+                    "405": {
+                        "description": "Method Not Allowed"
+                    },
+                    "406": {
+                        "description": "Not Acceptable"
+                    },
+                    "407": {
+                        "description": "Proxy Authentication Required"
+                    },
+                    "410": {
+                        "description": "Resource Gone"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "423": {
+                        "description": "Resource Locked"
+                    },
+                    "429": {
+                        "description": "Too Many Requests"
+                    },
+                    "451": {
+                        "description": "Unavailable For Legal Reasons"
+                    },
+                    "500": {
+                        "description": "Internal Server"
+                    },
+                    "502": {
+                        "description": "Bad Gateway"
+                    },
+                    "503": {
+                        "description": "Service Unavailable"
+                    },
+                    "504": {
+                        "description": "Gateway Timeout"
+                    },
+                    "505": {
+                        "description": "HTTP Version Not Supported"
+                    },
+                    "511": {
+                        "description": "Network Authentication Required"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/newTokenByRefreshToken": {
+            "post": {
+                "tags": [
+                    "Authorization By Token"
+                ],
+                "summary": "helper method for getting tokens AND list of all errors for api",
+                "description": "helper method for getting tokens by 'Refresh Token'",
+                "operationId": "newTokenByRefreshToken",
+                "parameters": [
+                    {
+                        "name": "category_name",
+                        "in": "query",
+                        "description": "Tags to filter by",
+                        "required": false,
+                        "style": "form",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "refresh_token"
+                                ],
+                                "properties": {
+                                    "refresh_token": {
+                                        "description": "very long string : jwt token",
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "very long string : jwt token"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "refresh_token"
+                                ],
+                                "properties": {
+                                    "refresh_token": {
+                                        "description": "very long string : jwt token",
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "very long string : jwt token"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "user Login Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "token_type": {
+                                            "type": "string",
+                                            "example": "Bearer"
+                                        },
+                                        "expires_in": {
+                                            "type": "integer",
+                                            "example": "31536000"
+                                        },
+                                        "access_token": {
+                                            "type": "string",
+                                            "example": "string of token"
+                                        },
+                                        "refresh_token": {
+                                            "type": "string",
+                                            "example": "string of refresh token"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "201": {
+                        "description": "User creation and login completed successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "token_type": {
+                                            "type": "string",
+                                            "example": "Bearer"
+                                        },
+                                        "expires_in": {
+                                            "type": "integer",
+                                            "example": "31536000"
+                                        },
+                                        "access_token": {
+                                            "type": "string",
+                                            "example": "string of token"
+                                        },
+                                        "refresh_token": {
+                                            "type": "string",
+                                            "example": "string of refresh token"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    },
+                    "405": {
+                        "description": "Method Not Allowed"
+                    },
+                    "406": {
+                        "description": "Not Acceptable"
+                    },
+                    "407": {
+                        "description": "Proxy Authentication Required"
+                    },
+                    "410": {
+                        "description": "Resource Gone"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "423": {
+                        "description": "Resource Locked"
+                    },
+                    "429": {
+                        "description": "Too Many Requests"
+                    },
+                    "451": {
+                        "description": "Unavailable For Legal Reasons"
+                    },
+                    "500": {
+                        "description": "Internal Server"
+                    },
+                    "502": {
+                        "description": "Bad Gateway"
+                    },
+                    "503": {
+                        "description": "Service Unavailable"
+                    },
+                    "504": {
+                        "description": "Gateway Timeout"
+                    },
+                    "505": {
+                        "description": "HTTP Version Not Supported"
+                    },
+                    "511": {
+                        "description": "Network Authentication Required"
+                    }
+                }
+            }
+        },
+        "/api/newTokenByOldToken": {
+            "post": {
+                "tags": [
+                    "Authorization By Token"
+                ],
+                "summary": "helper method for getting tokens. this method removed",
+                "description": "helper method for getting tokens by 'Old Token'",
+                "operationId": "newTokenByOldToken",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "old_access_token"
+                                ],
+                                "properties": {
+                                    "old_access_token": {
+                                        "description": "very long string : jwt token",
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "very long string : jwt token"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "old_access_token"
+                                ],
+                                "properties": {
+                                    "old_access_token": {
+                                        "description": "very long string : jwt token",
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "very long string : jwt token"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "user Login Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "token_type": {
+                                            "type": "string",
+                                            "example": "Bearer"
+                                        },
+                                        "expires_in": {
+                                            "type": "integer",
+                                            "example": "31536000"
+                                        },
+                                        "access_token": {
+                                            "type": "string",
+                                            "example": "string of token"
+                                        },
+                                        "refresh_token": {
+                                            "type": "string",
+                                            "example": "string of refresh token"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/shop/tags": {
+            "get": {
+                "tags": [
+                    "Tag for shops"
+                ],
+                "summary": "get all tags. => for shopkeeper and system admin",
+                "description": "get all tags",
+                "operationId": "get categories",
+                "responses": {
+                    "511": {
+                        "description": "Network Authentication Required"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Tag for shops"
+                ],
+                "summary": "create new tag. => only for system admin",
+                "description": "create new tag",
+                "operationId": "newTag",
+                "responses": {
+                    "511": {
+                        "description": "Network Authentication Required"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/shop/tags/{id}": {
+            "get": {
+                "tags": [
+                    "Tag for shops"
+                ],
+                "summary": "get Tag by id in url. => for shopkeeper and system admin",
+                "description": "get Tag by id in patch 'url'",
+                "operationId": "get tags id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Tag",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "511": {
+                        "description": "Network Authentication Required"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Tag for shops"
+                ],
+                "summary": "update tag. => only for system admin",
+                "description": "update tag",
+                "operationId": "updateTags",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Category",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "511": {
+                        "description": "Network Authentication Required"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Tag for shops"
+                ],
+                "summary": "delete tag. => only for system admin",
+                "description": "delete tag",
+                "operationId": "deleteTag",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Tag",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "511": {
+                        "description": "Network Authentication Required"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "responses": {
+            "403": {
+                "description": "forbidden"
+            },
+            "404": {
+                "description": "Resource Not Found"
+            }
+        },
+        "securitySchemes": {
+            "bearer": {
+                "type": "http",
+                "description": "Authorization token obtained from logging in. Just enter the amount of the token.",
+                "name": "Authorization",
+                "in": "header",
+                "scheme": "Bearer"
+            },
+            "passport": {
+                "type": "oauth2",
+                "description": "Laravel passport oauth2 security.",
+                "in": "header",
+                "scheme": "https",
+                "flows": {
+                    "password": {
+                        "authorizationUrl": "http://localhost/api/v1/authorize",
+                        "tokenUrl": "http://localhost/api/v1/token",
+                        "refreshUrl": "http://localhost/api/v1/token/refresh",
+                        "scopes": []
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Authorization By Token"
+        },
+        {
+            "name": "Register"
+        },
+        {
+            "name": "User Authorization"
+        },
+        {
+            "name": "Category for shops",
+            "description": "API Endpoints of Category"
+        },
+        {
+            "name": "Tag for shops",
+            "description": "API Endpoints of Tag"
+        },
+        {
+            "name": "Shops",
+            "description": "API Endpoints of shops"
+        }
+    ],
+    "security": [
+        []
+    ]
+}
