@@ -1,12 +1,14 @@
 <?php /** @noinspection PhpUndefinedClassInspection */
 
+use App\Exceptions\MyException as MyExceptionAlias;
+use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Grant\CustomAccessTokenController;
+use App\Http\Controllers\Grant\CustomGrantController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\TagController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Exceptions\MyException as MyExceptionAlias;
-use App\Http\Controllers\Api\AuthController;
-use App\Http\Controllers\Grant\CustomGrantController;
-use App\Http\Controllers\Grant\CustomAccessTokenController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,9 +56,28 @@ Route::post('/newTokenByOldToken', [CustomGrantController::class, 'newTokenByOld
 //Route::middleware(['middleware' => 'throttle'])->post('/customGrantToken', [CustomGrantController::class, 'customGrantToken'])->name('customGrantToken');
 Route::post('/customIssueToken', [CustomAccessTokenController::class, 'customIssueToken'])->name('customIssueToken');
 
+//////////////////////////////////////////////
+
+//Route::prefix('/category')->group(['middleware' => ['auth:api']], function () {
+//    Route::get('/save', [CategoryController::class, 'create'])->name('save');
+//});
+Route::prefix( 'v1' )->middleware( ['auth:api', 'SwaggerRequest'] )->group( function () {
+    Route::prefix( 'shop' )->group( function () {
+        Route::get( 'categories', [CategoryController::class, 'findAll'] )->name( 'categories' );
+        Route::post( 'categories', [CategoryController::class, 'create'] )->name( 'categories' );
+        Route::get( 'categories/{id}', [CategoryController::class, 'findById'] )->name( 'categories' );
+        Route::put( 'categories/{id}', [CategoryController::class, 'update'] )->name( 'categories' );
+        Route::delete( 'categories/{id}', [CategoryController::class, 'destroy'] )->name( 'categories' );
+
+    });
+
+    Route::prefix( 'shop' )->group( function () {
+        Route::get( 'tags', [tagController::class, 'index'] )->name( 'tags' );
+        Route::post( 'tags', [tagController::class, 'store'] )->name( 'tags' );
 
 
-
+    });
+});
 
 
 

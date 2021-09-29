@@ -1,5 +1,13 @@
 <?php
 
+use App\Http\Middleware\EncryptCookies;
+use App\Http\Middleware\VerifyCsrfToken;
+use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
+use Illuminate\Routing\Middleware\SubstituteBindings;
+use Illuminate\Session\Middleware\StartSession;
+use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Laravel\Passport\Http\Middleware\CreateFreshApiToken;
+
 return [
     'default' => 'default',
     'documentations' => [
@@ -63,13 +71,13 @@ return [
                     | Edit to set the api's title
                     |--------------------------------------------------------------------------
                     */
-                    \App\Http\Middleware\EncryptCookies::class,
-                    \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
-                    \Illuminate\Session\Middleware\StartSession::class,
-                    \Illuminate\View\Middleware\ShareErrorsFromSession::class,
-                    \App\Http\Middleware\VerifyCsrfToken::class,
-                    \Illuminate\Routing\Middleware\SubstituteBindings::class,
-                    \Laravel\Passport\Http\Middleware\CreateFreshApiToken::class,
+                    EncryptCookies::class,
+                    AddQueuedCookiesToResponse::class,
+                    StartSession::class,
+                    ShareErrorsFromSession::class,
+                    VerifyCsrfToken::class,
+                    SubstituteBindings::class,
+                    CreateFreshApiToken::class,
 //                    'auth',
 
                 ],

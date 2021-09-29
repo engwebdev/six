@@ -4,6 +4,7 @@
 namespace Sk\Tests;
 
 use Illuminate\Foundation\Auth\User;
+use League\OAuth2\Server\Exception\OAuthServerException;
 use Psr\Http\Message\ServerRequestInterface;
 use Sk\Passport\UserProvider;
 
@@ -12,9 +13,9 @@ class AcmeUserProvider extends UserProvider
     /**
      * Validate request parameters.
      *
-     * @param  \Psr\Http\Message\ServerRequestInterface  $request
+     * @param ServerRequestInterface $request
      * @return void
-     * @throws \League\OAuth2\Server\Exception\OAuthServerException
+     * @throws OAuthServerException
      */
     public function validate(ServerRequestInterface $request)
     {
@@ -27,7 +28,7 @@ class AcmeUserProvider extends UserProvider
     /**
      * Retrieve user entity instance from request.
      *
-     * @param  \Psr\Http\Message\ServerRequestInterface  $request
+     * @param ServerRequestInterface $request
      * @return mixed|null
      */
     public function retrieve(ServerRequestInterface $request)

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Grant;
 
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Route;
 use Laravel\Passport\Http\Controllers\AccessTokenController as AccessTokenController;
 use Illuminate\Http\Request;
@@ -13,8 +14,8 @@ class CustomAccessTokenController extends AccessTokenController
     /**
      * Authorize a client to access the user's account.
      *
-     * @param \Psr\Http\Message\ServerRequestInterface $request
-     * @return \Illuminate\Http\Response
+     * @param ServerRequestInterface $request
+     * @return Response
      */
     public function customIssueToken(ServerRequestInterface $request)
     {

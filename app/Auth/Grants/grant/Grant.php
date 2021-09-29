@@ -3,6 +3,7 @@
 namespace Sk\Passport;
 
 use DateInterval;
+use Exception;
 use Illuminate\Contracts\Auth\Authenticatable;
 use League\OAuth2\Server\Entities\UserEntityInterface;
 use League\OAuth2\Server\Exception\OAuthServerException;
@@ -21,17 +22,17 @@ class Grant extends AbstractGrant
     protected $grantType;
 
     /**
-     * @var \Sk\Passport\UserProviderInterface
+     * @var UserProviderInterface
      */
     protected $userProvider;
 
     /**
      * Create new grant type handler.
      *
-     * @param string                                                             $grantType
-     * @param \Sk\Passport\UserProviderInterface                                 $userProvider
-     * @param \League\OAuth2\Server\Repositories\RefreshTokenRepositoryInterface $refreshTokenRepository
-     * @throws \Exception
+     * @param string                          $grantType
+     * @param UserProviderInterface           $userProvider
+     * @param RefreshTokenRepositoryInterface $refreshTokenRepository
+     * @throws Exception
      */
     public function __construct(
         $grantType,
@@ -47,10 +48,10 @@ class Grant extends AbstractGrant
     /**
      * Ensures user instance is valid.
      *
-     * @param  \Psr\Http\Message\ServerRequestInterface  $request
-     * @param  mixed  $user
-     * @return \League\OAuth2\Server\Entities\UserEntityInterface
-     * @throws \League\OAuth2\Server\Exception\OAuthServerException
+     * @param ServerRequestInterface $request
+     * @param  mixed                 $user
+     * @return UserEntityInterface
+     * @throws OAuthServerException
      */
     protected function validateUserEntity(ServerRequestInterface $request, $user)
     {

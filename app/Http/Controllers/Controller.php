@@ -34,6 +34,32 @@ class Controller extends BaseController
      *         }
      *     }
      *
+     *
+     * @OA\Tag(
+     *   name="Authorization By Token",
+     * ),
+     * @OA\Tag(
+     *   name="Register",
+     * ),
+     * @OA\Tag(
+     *   name="User Authorization",
+     * ),
+     * @OA\Tag(
+     *   name="Category for shops",
+     *   description="API Endpoints of Category"
+     * ),
+     *
+     * @OA\Tag(
+     *   name="Tag for shops",
+     *   description="API Endpoints of Tag"
+     * ),
+     *
+     * @OA\Tag(
+     *   name="Shops",
+     *   description="API Endpoints of shops"
+     * ),
+     *
+     *
      */
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
     // *      title="Integration Swagger in Laravel with Passport Auth Documentation",

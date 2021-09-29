@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Grant;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CustomServerRequest;
 use Defuse\Crypto\Crypto;
+use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -70,8 +71,21 @@ class CustomGrantController extends Controller {
      * path="/api/newTokenByRefreshToken",
      * operationId="newTokenByRefreshToken",
      * tags={"Authorization By Token"},
-     * summary="helper method for getting tokens",
+     * summary="helper method for getting tokens AND list of all errors for api",
      * description="helper method for getting tokens by 'Refresh Token'",
+     *
+     *     @OA\Parameter(
+     *         name="category_name",
+     *         in="query",
+     *         description="Tags to filter by",
+     *         required=false,
+     *         @OA\Schema(
+     *           type="array",
+     *           @OA\Items(type="string"),
+     *         ),
+     *         style="form"
+     *     ),
+     *
      *
      *     @OA\RequestBody(
      *         @OA\JsonContent(
@@ -104,9 +118,49 @@ class CustomGrantController extends Controller {
      *          ),
      *      ),
      *
-     *     security={
-     *         {"bearer": {}}
-     *     }
+     *
+     *      @OA\Response(
+     *          response=201,
+     *          description="User creation and login completed successfully",
+     *
+     *          @OA\JsonContent(
+     *              type="object",
+     *
+     *              @OA\Property(property="token_type", type="string", example="Bearer"),
+     *              @OA\Property(property="expires_in", type="integer", example="31536000"),
+     *              @OA\Property(property="access_token", type="string", example="string of token"),
+     *              @OA\Property(property="refresh_token", type="string", example="string of refresh token"),
+     *          ),
+     *      ),
+     *
+     *      @OA\Response(response=400, description="Bad request"),
+     *      @OA\Response(response=401, description="Unauthorized"),
+     *      @OA\Response(response=403, description="Forbidden"),
+     *      @OA\Response(response=404, description="Resource Not Found"),
+     *      @OA\Response(response=405, description="Method Not Allowed"),
+     *      @OA\Response(response=406, description="Not Acceptable"),
+     *      @OA\Response(response=407, description="Proxy Authentication Required"),
+     *      @OA\Response(response=410, description="Resource Gone"),
+     *
+     *      @OA\Response(
+     *          response=422,
+     *          description="Unprocessable Entity",
+     *          @OA\JsonContent()
+     *       ),
+     *
+     *      @OA\Response(response=423, description="Resource Locked"),
+     *      @OA\Response(response=429, description="Too Many Requests"),
+     *      @OA\Response(response=451, description="Unavailable For Legal Reasons"),
+     *
+     *      @OA\Response(response=500, description="Internal Server"),
+     *      @OA\Response(response=502, description="Bad Gateway"),
+     *      @OA\Response(response=503, description="Service Unavailable"),
+     *      @OA\Response(response=504, description="Gateway Timeout"),
+     *      @OA\Response(response=505, description="HTTP Version Not Supported"),
+     *      @OA\Response(response=511, description="Network Authentication Required"),
+     *
+     *
+
      *
      * ),
      *
@@ -115,7 +169,7 @@ class CustomGrantController extends Controller {
      * @param ServerRequestInterface $request
      *
      * @param $
-     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     * @return ResponseFactory|Response
      */
     public function newTokenByRefreshToken(Request $request)
     {
@@ -187,7 +241,7 @@ class CustomGrantController extends Controller {
      * path="/api/newTokenByOldToken",
      * operationId="newTokenByOldToken",
      * tags={"Authorization By Token"},
-     * summary="helper method for getting tokens",
+     * summary="helper method for getting tokens. this method removed",
      * description="helper method for getting tokens by 'Old Token'",
      *
      *     @OA\RequestBody(
@@ -221,6 +275,9 @@ class CustomGrantController extends Controller {
      *          ),
      *      ),
      *
+     *     security={
+     *         {"bearer": {}}
+     *     },
      *
      * ),
      *
@@ -228,7 +285,7 @@ class CustomGrantController extends Controller {
     /**
      * @param ServerRequestInterface $request
      *
-     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     * @return ResponseFactory|Response
      * @throws OAuthServerException
      */
     public function newTokenByOldToken(ServerRequestInterface $request)

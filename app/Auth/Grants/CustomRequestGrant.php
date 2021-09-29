@@ -2,6 +2,8 @@
 
 namespace Vineyard\Passport;
 
+use DateInterval;
+use Exception;
 use Illuminate\Http\Request;
 use Laravel\Passport\Bridge\User;
 use League\OAuth2\Server\Entities\UserEntityInterface;
@@ -18,19 +20,19 @@ class CustomRequestGrant extends AbstractGrant
     /**
      * @param UserRepositoryInterface         $userRepository
      * @param RefreshTokenRepositoryInterface $refreshTokenRepository
-     * @throws \Exception
+     * @throws Exception
      */
     public function __construct(UserRepositoryInterface $userRepository, RefreshTokenRepositoryInterface $refreshTokenRepository)
     {
         $this->setUserRepository($userRepository);
         $this->setRefreshTokenRepository($refreshTokenRepository);
-        $this->refreshTokenTTL = new \DateInterval('P1M');
+        $this->refreshTokenTTL = new DateInterval('P1M');
     }
 
     /**
      * {@inheritdoc}
      */
-    public function respondToAccessTokenRequest(ServerRequestInterface $request, ResponseTypeInterface $responseType, \DateInterval $accessTokenTTL)
+    public function respondToAccessTokenRequest(ServerRequestInterface $request, ResponseTypeInterface $responseType, DateInterval $accessTokenTTL)
     {
         // Validate request
         $client = $this->validateClient($request);
@@ -83,10 +85,10 @@ class CustomRequestGrant extends AbstractGrant
     /**
      * Retrieve user by request.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param Request $request
      *
-     * @return \Laravel\Passport\Bridge\User|null
-     * @throws \League\OAuth2\Server\Exception\OAuthServerException
+     * @return User|null
+     * @throws OAuthServerException
      */
     protected function getUserEntityByRequest(Request $request)
     {

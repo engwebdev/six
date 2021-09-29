@@ -2,6 +2,7 @@
 
 namespace Sk\Passport;
 
+use League\OAuth2\Server\Exception\OAuthServerException;
 use Psr\Http\Message\ServerRequestInterface;
 
 interface UserProviderInterface
@@ -9,16 +10,16 @@ interface UserProviderInterface
     /**
      * Validate request parameters.
      *
-     * @param  \Psr\Http\Message\ServerRequestInterface  $request
+     * @param ServerRequestInterface $request
      * @return void
-     * @throws \League\OAuth2\Server\Exception\OAuthServerException
+     * @throws OAuthServerException
      */
     public function validate(ServerRequestInterface $request);
 
     /**
      * Retrieve user instance from request.
      *
-     * @param  \Psr\Http\Message\ServerRequestInterface  $request
+     * @param ServerRequestInterface $request
      * @return mixed|null
      */
     public function retrieve(ServerRequestInterface $request);

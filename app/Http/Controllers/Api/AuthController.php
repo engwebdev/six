@@ -10,6 +10,7 @@ use App\Http\Requests\UserRegisterRequest;
 use App\Traits\PassportToken;
 use Carbon\Carbon;
 use Illuminate\Database\QueryException;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 //use Hash;
 use Illuminate\Support\Facades\Hash;
@@ -160,7 +161,7 @@ class AuthController extends Controller {
      *      @OA\Response(response=503, description="Servr error"),
      * )
      * @param UserRegisterRequest $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function userRegister(UserRegisterRequest $request)
     {
@@ -370,7 +371,7 @@ class AuthController extends Controller {
      */
     /**
      * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     // * @param \Psr\Http\Message\ServerRequestInterface $request
     // * @param UserLoginRequest $request
@@ -595,181 +596,6 @@ class AuthController extends Controller {
     /********************************************************************************************************************/
     /********************************************************************************************************************/
     /********************************************************************************************************************/
-    /**
-     * @OA\Post(
-     * path="/api/userLoginByCode",
-     * operationId="userLoginByCode",
-     * tags={"userAuth"},
-     * summary="list of all errors for api",
-     * description="User Login here",
-     *     @OA\RequestBody(
-     *         @OA\JsonContent(
-     *              @OA\Property(property="email", type="string", format="email", example="admin@admin.com",),
-     *              @OA\Property(property="password", type="string", format="password", example="123456789"),
-     *         ),
-     *
-     *    ),
-     *
-     *
-     *
-     *      @OA\Response(
-     *          response=200,
-     *          description="user Login Successfully",
-     *
-     *          @OA\JsonContent(
-     *              type="object",
-     *
-     *              @OA\Property(property="token_type", type="string", example="Bearer"),
-     *              @OA\Property(property="expires_in", type="integer", example="31536000"),
-     *              @OA\Property(property="access_token", type="string", example="string of token"),
-     *              @OA\Property(property="refresh_token", type="string", example="string of refresh token"),
-     *          ),
-     *      ),
-     *
-     *
-     *      @OA\Response(
-     *          response=201,
-     *          description="User creation and login completed successfully",
-     *
-     *          @OA\JsonContent(
-     *              type="object",
-     *
-     *              @OA\Property(property="token_type", type="string", example="Bearer"),
-     *              @OA\Property(property="expires_in", type="integer", example="31536000"),
-     *              @OA\Property(property="access_token", type="string", example="string of token"),
-     *          ),
-     *      ),
-     *
-     *
-     *      @OA\Response(response=400, description="Bad request"),
-     *      @OA\Response(response=401, description="Unauthorized"),
-     *      @OA\Response(response=403, description="Forbidden"),
-     *      @OA\Response(response=404, description="Resource Not Found"),
-     *      @OA\Response(response=405, description="Method Not Allowed"),
-     *      @OA\Response(response=406, description="Not Acceptable"),
-     *      @OA\Response(response=407, description="Proxy Authentication Required"),
-     *      @OA\Response(response=410, description="Resource Gone"),
-     *
-     *      @OA\Response(
-     *          response=422,
-     *          description="Unprocessable Entity",
-     *          @OA\JsonContent()
-     *       ),
-     *
-     *      @OA\Response(response=423, description="Resource Locked"),
-     *      @OA\Response(response=429, description="Too Many Requests"),
-     *      @OA\Response(response=451, description="Unavailable For Legal Reasons"),
-     *
-     *      @OA\Response(response=500, description="Internal Server"),
-     *      @OA\Response(response=502, description="Bad Gateway"),
-     *      @OA\Response(response=503, description="Service Unavailable"),
-     *      @OA\Response(response=504, description="Gateway Timeout"),
-     *      @OA\Response(response=505, description="HTTP Version Not Supported"),
-     *      @OA\Response(response=511, description="Network Authentication Required"),
-     *
-     * )
-     * @param Request $request
-     * @return string
-     */
-    //  * @return \Illuminate\Http\JsonResponse
-    public function userLoginByCode(Request $request)
-    {
-//        return 'test 000';
 
-//        $validator = $request->validate([
-//            'email' => 'email|required',
-//            'password' => 'required'
-//        ]);
-//
-//        if (!auth()->attempt($validator)) {
-//            return response()->json(['error' => 'Unauthorised'], 401);
-//        } else {
-//            $success['token'] = auth()->user()->createToken('authToken')->accessToken;
-//            $success['user'] = auth()->user();
-//            return response()->json(['success' => $success])->setStatusCode(200);
-//        }
-////////////////////////////////////////////
-//        $test = new AccessTokenController;
-//        return $this->withErrorHandling(function () use ($request) {
-//            return $this->convertResponse(
-//                $this->server->respondToAccessTokenRequest($request, new Psr7Response)
-//            );
-//        });
-////////////////////////////////////////////
-        $validator = Validator::make( $request->all(), [
-                'email' => 'required|string|email|max:255',
-                'password' => 'required|string|min:6',
-//            'password' => 'required|string|min:6|confirmed',
-            ]
-        );
-
-        auth()->attempt( [
-                'email' => $request->username,
-                'password' => $request->password,
-            ]
-        );
-
-        $validator_2 = $request->validate( [
-                'email' => 'required|string|email|max:255',
-                'password' => 'required|string|min:6',
-            ]
-        );
-
-        if (!auth()->attempt( $validator_2 ))
-        {
-            return response( ['errors' => 'Incorrect Details. Please try again'], 422 );
-        }
-
-        if (!auth()->check())
-        {
-            return response( ['errors' => 'Incorrect Details. Please try again'], 422 );
-        }
-
-        if ($validator->fails())
-        {
-            return response( ['errors' => $validator->errors()->all()], 422 );
-        }
-        $user = User::where( 'email', $request->email )->first();
-
-//        dd(auth()->user()->createToken('token-test'));
-//        dd(auth()->user()->createToken('token-test'));
-        $testToken = auth()->user()->createToken( 'token-test' );
-//        return $testToken->accessToken;
-//        dd($testToken->accessToken);
-        if ($user)
-        {
-            if (Hash::check( $request->password, $user->password ))
-            {
-                $token = $user->createToken( 'Laravel Password Grant Client' )->accessToken;
-//                dd($token);
-                $response = ['token' => $token];
-                return response( $response, 200 );
-            }
-            else
-            {
-                $response = ["message" => "Password mismatch"];
-                return response( $response, 422 );
-            }
-        }
-        else
-        {
-            $response = ["message" => 'User does not exist'];
-            return response( $response, 422 );
-        }
-////////////////////////////////////////
-//        $data = $request->validate([
-//            'email' => 'email|required',
-//            'password' => 'required'
-//        ]);
-//
-//        if (!auth()->attempt($data)) {
-//            return response(['error_message' => 'Incorrect Details.
-//            Please try again']);
-//        }
-//
-//        $token = auth()->user()->createToken('API Token')->accessToken;
-//
-//        return response(['user' => auth()->user(), 'token' => $token]);
-    }
 
 }

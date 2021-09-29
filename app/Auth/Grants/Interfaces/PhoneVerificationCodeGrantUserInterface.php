@@ -2,13 +2,15 @@
 
 namespace QiuTuleng\PhoneVerificationCodeGrant\Interfaces;
 
+use Illuminate\Database\Eloquent\Model;
+
 interface PhoneVerificationCodeGrantUserInterface
 {
     /**
      * Find or create a user by phone number
      *
      * @param $phoneNumber
-     * @return \Illuminate\Database\Eloquent\Model|null
+     * @return Model|null
      */
     public function findOrCreateForPassportVerifyCodeGrant($phoneNumber);
 

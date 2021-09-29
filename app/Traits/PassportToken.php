@@ -4,6 +4,8 @@ namespace App\Traits;
 
 use App\Models\User;
 use DateTime;
+use Error;
+use Exception;
 use GuzzleHttp\Psr7\Response;
 use Illuminate\Events\Dispatcher;
 use Laravel\Passport\Bridge\AccessToken;
@@ -17,6 +19,7 @@ use League\OAuth2\Server\Entities\AccessTokenEntityInterface;
 use League\OAuth2\Server\Exception\OAuthServerException;
 use League\OAuth2\Server\Exception\UniqueTokenIdentifierConstraintViolationException;
 use League\OAuth2\Server\ResponseTypes\BearerTokenResponse;
+use TypeError;
 
 # https://github.com/laravel/passport/issues/71
 
@@ -41,11 +44,11 @@ trait PassportToken
         try {
             return bin2hex(random_bytes($length));
             // @codeCoverageIgnoreStart
-        } catch (\TypeError $e) {
+        } catch (TypeError $e) {
             throw OAuthServerException::serverError('An unexpected error has occurred');
-        } catch (\Error $e) {
+        } catch (Error $e) {
             throw OAuthServerException::serverError('An unexpected error has occurred');
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             // If you get this message, the CSPRNG failed hard.
             throw OAuthServerException::serverError('Could not generate a random string');
         }
@@ -58,7 +61,7 @@ trait PassportToken
         $refreshTokenRepository = app(RefreshTokenRepository::class);
 
         $refreshToken = $refreshTokenRepository->getNewRefreshToken();
-        $refreshToken->setExpiryDateTime((new \DateTime())->add(Passport::refreshTokensExpireIn()));
+        $refreshToken->setExpiryDateTime((new DateTime())->add(Passport::refreshTokensExpireIn()));
         $refreshToken->setAccessToken($accessToken);
 
         while ($maxGenerationAttempts-- > 0) {
@@ -110,7 +113,7 @@ trait PassportToken
      * @param \App\Entities\User $user
      * @param $clientId
      * @param bool $output default = true
-     * @return array | \League\OAuth2\Server\ResponseTypes\BearerTokenResponse
+     * @return array | BearerTokenResponse
      */
     protected function getBearerTokenByUser(User $user, $clientId, $output = true)
     {

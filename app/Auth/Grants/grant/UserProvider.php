@@ -12,7 +12,7 @@ abstract class UserProvider implements UserProviderInterface
     /**
      * Get all request inputs.
      *
-     * @param  \Psr\Http\Message\ServerRequestInterface  $request
+     * @param ServerRequestInterface $request
      * @return array
      */
     public function inputs(ServerRequestInterface $request)
@@ -23,8 +23,8 @@ abstract class UserProvider implements UserProviderInterface
     /**
      * Get a subset containing the provided keys with values from the request inputs.
      *
-     * @param  \Psr\Http\Message\ServerRequestInterface  $request
-     * @param  array  $keys
+     * @param ServerRequestInterface $request
+     * @param  array                 $keys
      * @return array
      */
     public function only(ServerRequestInterface $request, array $keys)
@@ -44,8 +44,8 @@ abstract class UserProvider implements UserProviderInterface
     /**
      * Create request validator.
      *
-     * @param  \Psr\Http\Message\ServerRequestInterface  $request
-     * @param  array  $rules
+     * @param ServerRequestInterface $request
+     * @param  array                 $rules
      * @return \Illuminate\Contracts\Validation\Validator
      */
     public function makeValidator(ServerRequestInterface $request, array $rules)
@@ -59,11 +59,11 @@ abstract class UserProvider implements UserProviderInterface
     /**
      * Trigger an invalid OAuth request parameter exception.
      *
-     * @param  string  $name
-     * @param  string  $hint
-     * @param  \Throwable  $error
+     * @param  string   $name
+     * @param  string   $hint
+     * @param Throwable $error
      * @return void
-     * @throws \League\OAuth2\Server\Exception\OAuthServerException
+     * @throws OAuthServerException
      */
     public function invalidRequestParameter($name, $hint = null, Throwable $error = null)
     {
@@ -73,10 +73,10 @@ abstract class UserProvider implements UserProviderInterface
     /**
      * Validate request parameters.
      *
-     * @param  \Psr\Http\Message\ServerRequestInterface  $request
-     * @param  array  $rules
+     * @param ServerRequestInterface $request
+     * @param  array                 $rules
      * @return void
-     * @throws \League\OAuth2\Server\Exception\OAuthServerException
+     * @throws OAuthServerException
      */
     public function validateRequest(ServerRequestInterface $request, array $rules)
     {

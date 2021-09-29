@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
@@ -110,7 +111,7 @@ class User extends Authenticatable
      * Find or create a user by phone number
      *
      * @param $phoneNumber
-     * @return \Illuminate\Database\Eloquent\Model|null
+     * @return Model|null
      */
     public function findOrCreateForPassportVerifyCodeGrant( $phoneNumber )
     {

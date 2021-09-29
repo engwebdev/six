@@ -3,6 +3,8 @@
 
 namespace App\Auth\Grants;
 
+use DateInterval;
+use Exception;
 use RuntimeException;
 use Illuminate\Http\Request;
 use App\Exceptions\CustomGrantException;
@@ -24,7 +26,7 @@ class CustomGrant extends AbstractGrant
 {
     /**
      * @param RefreshTokenRepositoryInterface $refreshTokenRepository
-     * @throws \Exception
+     * @throws Exception
      */
     public function __construct(
         RefreshTokenRepositoryInterface $refreshTokenRepository
@@ -32,17 +34,17 @@ class CustomGrant extends AbstractGrant
     {
         $this->setRefreshTokenRepository( $refreshTokenRepository );
 
-        $this->refreshTokenTTL = new \DateInterval( 'P1M' );
+        $this->refreshTokenTTL = new DateInterval( 'P1M' );
     }
 
     /**
      * {@inheritdoc}
-     * @throws \Exception
+     * @throws Exception
      */
     public function respondToAccessTokenRequest(
         ServerRequestInterface $request,
         ResponseTypeInterface $responseType,
-        \DateInterval $accessTokenTTL
+        DateInterval $accessTokenTTL
     )
     {
         // Validate request

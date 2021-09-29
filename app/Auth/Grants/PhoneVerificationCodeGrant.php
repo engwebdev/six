@@ -2,9 +2,12 @@
 
 namespace QiuTuleng\PhoneVerificationCodeGrant;
 
+use DateInterval;
+use Exception;
 use League\OAuth2\Server\Entities\ClientEntityInterface;
 use League\OAuth2\Server\Entities\UserEntityInterface;
 use League\OAuth2\Server\Exception\OAuthServerException;
+use League\OAuth2\Server\Exception\UniqueTokenIdentifierConstraintViolationException;
 use League\OAuth2\Server\Grant\AbstractGrant;
 use League\OAuth2\Server\Repositories\RefreshTokenRepositoryInterface;
 use League\OAuth2\Server\Repositories\UserRepositoryInterface;
@@ -17,7 +20,7 @@ class PhoneVerificationCodeGrant extends AbstractGrant
     /**
      * @param UserRepositoryInterface         $userRepository
      * @param RefreshTokenRepositoryInterface $refreshTokenRepository
-     * @throws \Exception
+     * @throws Exception
      */
     public function __construct(
         UserRepositoryInterface $userRepository,
@@ -27,7 +30,7 @@ class PhoneVerificationCodeGrant extends AbstractGrant
         $this->setUserRepository($userRepository);
         $this->setRefreshTokenRepository($refreshTokenRepository);
 
-        $this->refreshTokenTTL = new \DateInterval('P1M');
+        $this->refreshTokenTTL = new DateInterval('P1M');
     }
 
     /**
@@ -35,16 +38,16 @@ class PhoneVerificationCodeGrant extends AbstractGrant
      *
      * @param ServerRequestInterface $request
      * @param ResponseTypeInterface  $responseType
-     * @param \DateInterval          $accessTokenTTL
+     * @param DateInterval          $accessTokenTTL
      *
      * @return ResponseTypeInterface
      * @throws OAuthServerException
-     * @throws \League\OAuth2\Server\Exception\UniqueTokenIdentifierConstraintViolationException
+     * @throws UniqueTokenIdentifierConstraintViolationException
      */
     public function respondToAccessTokenRequest(
         ServerRequestInterface $request,
         ResponseTypeInterface $responseType,
-        \DateInterval $accessTokenTTL
+        DateInterval $accessTokenTTL
     )
     {
         // Validate request

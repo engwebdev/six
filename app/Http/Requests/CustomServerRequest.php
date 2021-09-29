@@ -8,6 +8,7 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\StreamInterface;
 use Psr\Http\Message\UriInterface;
 use Symfony\Component\HttpFoundation\InputBag;
+use function is_array;
 
 class CustomServerRequest implements ServerRequestInterface {
 
@@ -44,7 +45,7 @@ class CustomServerRequest implements ServerRequestInterface {
      */
     public function set(string $key, $value)
     {
-        if (null !== $value && !is_scalar($value) && !\is_array($value) && !method_exists($value, '__toString')) {
+        if (null !== $value && !is_scalar($value) && !is_array($value) && !method_exists($value, '__toString')) {
             trigger_deprecation('symfony/http-foundation', '5.1', 'Passing "%s" as a 2nd Argument to "%s()" is deprecated, pass a scalar, array, or null instead.', get_debug_type($value), __METHOD__);
         }
 

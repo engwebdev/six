@@ -2,6 +2,7 @@
 
 namespace Sk\Passport;
 
+use Exception;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Passport\Bridge\RefreshTokenRepository;
@@ -49,7 +50,7 @@ class GrantTypesServiceProvider extends ServiceProvider
             {
 
             }
-            catch (\Exception $e)
+            catch (Exception $e)
             {
 
             }
