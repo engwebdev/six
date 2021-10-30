@@ -26,6 +26,22 @@ class Shop extends Model
         'parent_id',
         'name',
         'category_id',
+        'description',
+        'shop_accept_status',
+        'shop_photo_url',
+        'type_location',
+        'lat_location',
+        'long_location',
+        'shopkeeper_id',
+        'shop_country',
+        'shop_province',
+        'shop_city',
+        'shop_local',
+        'shop_Street',
+        'shop_alley',
+        'shop_number',
+        'shop_postal_code',
+        'shop_main_phone_number',
     ];
 
 
@@ -63,7 +79,7 @@ class Shop extends Model
     public function tags()
     {
 //        return $this->belongsToMany(tag::class, 'shops_tags', 'shop_id', 'id', null, null, null);
-        return $this->belongsToMany(tag::class);
+        return $this->belongsToMany(tag::class)->withPivot('tag_accept_status');
     }
 
     /**
@@ -73,4 +89,7 @@ class Shop extends Model
     {
         return $this->belongsToMany(tag::class)->withPivot('tag_accept_status');
     }
+
+    /******************************/
+
 }

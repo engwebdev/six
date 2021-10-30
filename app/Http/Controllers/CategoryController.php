@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\MyException;
+use App\Http\Resources\CategoryCollection;
 use App\Http\Resources\CategoryResource;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -71,7 +72,6 @@ class CategoryController extends Controller {
      *     ),
      *
      *
-
      *
      *
      *
@@ -260,19 +260,36 @@ class CategoryController extends Controller {
         {
             $order = 'asc';
         }
-            $category = Category::orderBy($sort, $order)
-            ->paginate( $limit, '*', 'page', $page);
+        $category = Category::orderBy( $sort, $order )
+            ->paginate( $limit, '*', 'page', $page );
+
+        $CategoryCollection = (new CategoryCollection( $category ));
+        $CategoryCollection->toJson();
+
+        $Response = ($CategoryCollection)->toResponse( $request );
+        $Response->setStatusCode( 200 );
+//        $Resource = new CategoryResource($category);
+//        $collection = new CategoryCollection($category);
+//        $data = CategoryCollection::collection($category);
+//        $collection = new CategoryCollection($category);
+
+        return $Response;
+//        $category = Category::paginate();
+//        return CategoryResource::collection( $category );
 //        );
-        CategoryResource::collection($category);
-//        return $data;
-
-        return response()->json(
-            [
-                'data' => $category,
-            ],
-            200
-        );
-
+//        $ResourceCollection = CategoryResource::collection( $category );
+//
+        /*        return response($request)->json(
+                    [
+        //                'data' => $category,
+        //                'data' => $ResourceCollection,
+                        'data' => $CategoryCollection,
+        //                'data' => $collection,
+        //                'data' => $Resource,
+        //                'data' => $data,
+                    ],
+                    200
+                );*/
 
 
     }
@@ -470,7 +487,41 @@ class CategoryController extends Controller {
      */
     public function findById(Request $request, $id)
     {
-        dd($request, $id);
+        // todo mehdi category find by id
+//        dd($request, $id);
+        $category = Category::find( $id );
+//        CategoryResource::collection( $category );
+
+        if ($category)
+        {
+            $Resource = new CategoryResource( $category );
+            $Resource->toJson();
+            $Response = $Resource->toResponse( $request );
+            $Response->setStatusCode( 200 );
+
+            return $Response;
+        }
+        else
+        {
+//            new Response(['error' => "Category Not Found!"], [404], [null]);
+            return response()->json(
+                [
+                    'errors' => [
+                        'shop_category' => "Shop Category Not Found!",
+                    ],
+                ],
+                404
+            );
+        }
+
+        /*        return response()->json(
+                    [
+        //                'data' => $category,
+        //                'data' => $collection,
+                        'data' => $Resource,
+                    ],
+                    200
+                );*/
     }
 
     /**
@@ -498,15 +549,31 @@ class CategoryController extends Controller {
      *     @OA\RequestBody(
      *         @OA\JsonContent(
      *               required={"category_name"},
-     *               @OA\Property(property="category_name", type="string", example="category name", format="string", description="category name"),
-     *          ),
+     *               @OA\Property(
+     *                  property="category_name",
+     *                  type="string",
+     *                  example="category name",
+     *                  format="string",
+     *                  description="category name",
+     *                  default="null",
+     *                  nullable=true,
+     *               ),
+     *         ),
      *
      *         @OA\MediaType(
      *            mediaType="multipart/form-data",
      *            @OA\Schema(
      *               type="object",
      *               required={"category_name"},
-     *               @OA\Property(property="category_name", type="string", example="category name", format="string", description="category name"),
+     *               @OA\Property(
+     *                  property="category_name",
+     *                  type="string",
+     *                  example="category name",
+     *                  format="string",
+     *                  description="category name",
+     *               ),
+     *
+     *
      *
      *            ),
      *        ),
@@ -794,10 +861,14 @@ class CategoryController extends Controller {
      *
      * @param Request  $request
      * @param Category $category
-     * @return CategoryResource
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, $id)
     {
+//        try
+//        {
+//
+//        }
         $validated = $request->validate(
             [
                 'category_name' => ['required', 'string', 'min:8'],
@@ -809,10 +880,25 @@ class CategoryController extends Controller {
         if ($validator->fails())
         {
             $exception = $validator->messages();
-        }
-//        dd($validator);
 
-        return new CategoryResource( $category );
+            return response()->json( [
+                "message" => "Unknown server problem",
+                "errors" => $exception,
+            ], 503 );
+        }
+
+        $category = Category::find($id);
+        $category->category_name = $validated['category_name'];
+        $category->save();
+//        dd($category);
+
+        return response()->json(
+            [
+                'data' => (new CategoryResource($category))
+            ],
+            200
+        );
+//        return new CategoryResource( $category );
     }
 
 
@@ -916,11 +1002,38 @@ class CategoryController extends Controller {
      * Remove the specified resource from storage.
      *
      * @param Category $category
-     * @return Response
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function destroy(Category $category)
+    public function destroy(Category $category, $id)
     {
         //
-        return response()->json( null, 204 );
+        $category = Category::find($id);
+        if ($category) {
+            $category->delete();
+            $message = "Shop Category " . $id . " deleted.";
+            $success = $id;
+            $notifications_En_Server = "Shop Category " . $id . " deleted.";
+            $notifications_Fa_Server = "دسته بندی فروشگاه " . $id . " حذف شد";
+            return response()->json(
+                [
+                    'message' => $message,
+                    'success' => $success,
+                    'NotificationsEnServer' => $notifications_En_Server,
+                    'NotificationsFaServer' => $notifications_Fa_Server,
+                ],
+                200 // 204 (No Content) - 202 (Accepted)
+            );
+        }
+        else
+        {
+            return response()->json(
+                [
+                    "errors" => [
+                        "shop_category" => "Shop Category " . $id . " Not Found!"
+                    ]
+                ],
+                404
+            );
+        }
     }
 }

@@ -684,9 +684,11 @@
                                 ],
                                 "properties": {
                                     "category_name": {
+                                        "nullable": true,
                                         "description": "category name",
                                         "type": "string",
                                         "format": "string",
+                                        "default": "null",
                                         "example": "category name"
                                     }
                                 },
@@ -1642,6 +1644,136 @@
                                 }
                             }
                         }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/shops": {
+            "get": {
+                "tags": [
+                    "Shops"
+                ],
+                "summary": "get all shops. => for system admin and all customers",
+                "description": "get all shops",
+                "operationId": "get shops",
+                "responses": {
+                    "511": {
+                        "description": "Network Authentication Required"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Shops"
+                ],
+                "summary": "create new shop. => only for shopkeeper",
+                "description": "create new shop",
+                "operationId": "newShop",
+                "responses": {
+                    "511": {
+                        "description": "Network Authentication Required"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/shops/{id}": {
+            "get": {
+                "tags": [
+                    "Shops"
+                ],
+                "summary": "get Shop by id in url. => for shopkeeper and system admin",
+                "description": "get Shop by id in patch 'url'",
+                "operationId": "get shops id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Tag",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "511": {
+                        "description": "Network Authentication Required"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Shops"
+                ],
+                "summary": "update shops. => only for shopkeeper and system admin",
+                "description": "update shops",
+                "operationId": "updateShop",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Category",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "511": {
+                        "description": "Network Authentication Required"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Shops"
+                ],
+                "summary": "delete shop. => only for system admin",
+                "description": "delete shop",
+                "operationId": "deleteShop",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Tag",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "511": {
+                        "description": "Network Authentication Required"
                     }
                 },
                 "security": [

@@ -6,6 +6,7 @@ use App\Http\Controllers\Grant\CustomAccessTokenController;
 use App\Http\Controllers\Grant\CustomGrantController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TagController;
+use App\Http\Controllers\shopController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -63,20 +64,28 @@ Route::post('/customIssueToken', [CustomAccessTokenController::class, 'customIss
 //});
 Route::prefix( 'v1' )->middleware( ['auth:api', 'SwaggerRequest'] )->group( function () {
     Route::prefix( 'shop' )->group( function () {
-        Route::get( 'categories', [CategoryController::class, 'findAll'] )->name( 'categories' );
-        Route::post( 'categories', [CategoryController::class, 'create'] )->name( 'categories' );
-        Route::get( 'categories/{id}', [CategoryController::class, 'findById'] )->name( 'categories' );
-        Route::put( 'categories/{id}', [CategoryController::class, 'update'] )->name( 'categories' );
-        Route::delete( 'categories/{id}', [CategoryController::class, 'destroy'] )->name( 'categories' );
+        Route::get( 'categories', [CategoryController::class, 'findAll'] )->name( 'categories.index' );
+        Route::post( 'categories', [CategoryController::class, 'create'] )->name( 'categories.store' );
+        Route::get( 'categories/{id}', [CategoryController::class, 'findById'] )->name( 'categories.show' );
+        Route::put( 'categories/{id}', [CategoryController::class, 'update'] )->name( 'categories.update' );
+        Route::delete( 'categories/{id}', [CategoryController::class, 'destroy'] )->name( 'categories.destroy' );
 
     });
 
     Route::prefix( 'shop' )->group( function () {
-        Route::get( 'tags', [tagController::class, 'index'] )->name( 'tags' );
-        Route::post( 'tags', [tagController::class, 'store'] )->name( 'tags' );
-
-
+        Route::get( 'tags', [tagController::class, 'index'] )->name( 'tags.index' );
+        Route::post( 'tags', [tagController::class, 'store'] )->name( 'tags.store' );
+        Route::get( 'tags/{id}', [tagController::class, 'show'] )->name( 'tags.show' );
+        Route::put( 'tags/{id}', [tagController::class, 'update'] )->name( 'tags.update' );
+        Route::delete( 'tags/{id}', [tagController::class, 'destroy'] )->name( 'tags.destroy' );
     });
+
+    Route::get( 'shops', [shopController::class, 'index'] )->name( 'shops.index' );
+    Route::post( 'shops', [shopController::class, 'store'] )->name( 'shops.store' );
+    Route::get( 'shops/{id}', [shopController::class, 'show'] )->name( 'shops.show' );
+    Route::put( 'shops/{id}', [shopController::class, 'update'] )->name( 'shops.update' );
+    Route::delete( 'shops/{id}', [shopController::class, 'destroy'] )->name( 'shops.destroy' );
+
 });
 
 

@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
-class tagController extends Controller
-{
+class tagController extends Controller {
 
     /**
      * @OA\Get(
@@ -33,11 +34,37 @@ class tagController extends Controller
      * Get
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $page = $request->input( 'page' );
+        $limit = $request->input( 'limit' );
+        if ($request->input( 'sort' ))
+        {
+            $sort = $request->input( 'sort' );
+        }
+        else
+        {
+            $sort = 'id';
+        }
+        if ($request->input( 'order' ))
+        {
+            $order = $request->input( 'order' );
+        }
+        else
+        {
+            $order = 'asc';
+        }
+
+
+        return response()->json(
+            [
+                'data' => $tags,
+            ],
+            200
+        );
     }
 
     /**
@@ -75,7 +102,7 @@ class tagController extends Controller
      * post
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -120,12 +147,24 @@ class tagController extends Controller
      * get /tags/{tag}
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
         //
+        return new Response(
+            [
+                'errors' => [
+                    'shop_tag' => "Tag Not Found!",
+                ],
+            ], 404 );
+        $tag = Tag::findO( $id );
+        return $tag;
+        return response(
+            [
+                $tag,
+            ], 200 );
     }
 
     /**
@@ -133,7 +172,7 @@ class tagController extends Controller
      * get /tags/{tag}/edit
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -178,8 +217,8 @@ class tagController extends Controller
      * PUT/PATCH /tags/{tag}
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int                      $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -227,11 +266,25 @@ class tagController extends Controller
      * DELETE /tags/{tag}
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     *
+     * PUT/PATCH /tags/{tag}
+     * not need this method
+     * update status by id
+     *
+     *
+     * @param $id
+     */
+    public function status($id)
+    {
+
     }
 }
