@@ -13,6 +13,7 @@ use Laravel\Passport\HasApiTokens;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Traits\PassportToken;
 use Illuminate\Database\Eloquent\Builder;
+use Spatie\Permission\Traits\HasRoles;
 
 /**
  * @mixin Builder
@@ -25,6 +26,7 @@ class User extends Authenticatable
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
+    use HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -71,9 +73,22 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
+    public function RoleShopUser()
+    {
+        return $this->hasMany(RolesShopsUsers::class);
+    }
 
+    public function shop()
+    {
+        return $this->belongsToMany(Shop::class, 'roles_shops_users');
+    }
     /****************************************************************/
 
+
+    public function shop2()
+    {
+        return $this->ha(RolesShopsUsers::class, '');
+    }
 //    /**
 //     * @param $mobile
 //     * @return array

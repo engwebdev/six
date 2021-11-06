@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Permission\Models\Role;
 
 /**
  * Class Shop
@@ -65,10 +66,10 @@ class Shop extends Model
 
 
     /**
-     * Get the Category that owns the Shops.
-     * @return BelongsTo
-     */
-    public function category()
+ * Get the Category that owns the Shops.
+ * @return BelongsTo
+ */
+    public function categories()
     {
         return $this->belongsTo(Category::class, 'id', 'category_id');
     }
@@ -91,5 +92,57 @@ class Shop extends Model
     }
 
     /******************************/
+
+    /**
+     * Get the Shops for the Shop.
+     * @return HasMany
+     */
+    public function rolesShopsUsers()
+    {
+        return $this->hasMany(RolesShopsUsers::class, 'shop_id', 'id');
+    }
+
+
+//    public function ()
+//    {
+//        return $this->hasMany(::class, 'id', '_id');
+//    }
+//
+//
+//    public function ()
+//    {
+//        return $this->hasMany(::class, 'id', '_id');
+//    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     /******************************/
+    // todo role_shop_user
+
+    public function user()
+    {
+        return $this->belongsToMany(User::class, 'roles_shops_users');
+    }
+
+    public function role()
+    {
+        return $this->belongsToMany(role::class);
+    }
 
 }

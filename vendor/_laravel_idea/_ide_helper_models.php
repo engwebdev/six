@@ -15,6 +15,7 @@ namespace App\Models {
     use Illuminate\Database\Eloquent\Relations\BelongsTo;
     use Illuminate\Database\Eloquent\Relations\BelongsToMany;
     use Illuminate\Database\Eloquent\Relations\HasMany;
+    use Illuminate\Database\Eloquent\Relations\HasOneThrough;
     use Illuminate\Database\Eloquent\Relations\MorphTo;
     use Illuminate\Database\Eloquent\Relations\MorphToMany;
     use Illuminate\Database\Eloquent\Scope;
@@ -23,16 +24,19 @@ namespace App\Models {
     use Illuminate\Pagination\LengthAwarePaginator;
     use Illuminate\Pagination\Paginator;
     use Illuminate\Support\Carbon;
+    use Illuminate\Support\Collection;
     use LaravelIdea\Helper\App\Models\_IH_Category_C;
     use LaravelIdea\Helper\App\Models\_IH_Category_QB;
     use LaravelIdea\Helper\App\Models\_IH_Membership_C;
     use LaravelIdea\Helper\App\Models\_IH_Membership_QB;
+    use LaravelIdea\Helper\App\Models\_IH_NormalProduct_C;
+    use LaravelIdea\Helper\App\Models\_IH_NormalProduct_QB;
+    use LaravelIdea\Helper\App\Models\_IH_RolesShopsUsers_C;
+    use LaravelIdea\Helper\App\Models\_IH_RolesShopsUsers_QB;
     use LaravelIdea\Helper\App\Models\_IH_Shop_C;
     use LaravelIdea\Helper\App\Models\_IH_shop_C;
     use LaravelIdea\Helper\App\Models\_IH_Shop_QB;
     use LaravelIdea\Helper\App\Models\_IH_shop_QB;
-    use LaravelIdea\Helper\App\Models\_IH_Tag2_C;
-    use LaravelIdea\Helper\App\Models\_IH_Tag2_QB;
     use LaravelIdea\Helper\App\Models\_IH_tag_C;
     use LaravelIdea\Helper\App\Models\_IH_Tag_C;
     use LaravelIdea\Helper\App\Models\_IH_tag_QB;
@@ -45,7 +49,15 @@ namespace App\Models {
     use LaravelIdea\Helper\App\Models\_IH_User_QB;
     use LaravelIdea\Helper\Illuminate\Notifications\_IH_DatabaseNotification_C;
     use LaravelIdea\Helper\Illuminate\Notifications\_IH_DatabaseNotification_QB;
-    
+    use LaravelIdea\Helper\Spatie\Permission\Models\_IH_Permission_C;
+    use LaravelIdea\Helper\Spatie\Permission\Models\_IH_Permission_QB;
+    use LaravelIdea\Helper\Spatie\Permission\Models\_IH_Role_C;
+    use LaravelIdea\Helper\Spatie\Permission\Models\_IH_Role_QB;
+    use Spatie\Permission\Contracts\Permission as Permission1;
+    use Spatie\Permission\Contracts\Role as Role1;
+    use Spatie\Permission\Models\Permission;
+    use Spatie\Permission\Models\Role;
+
     /**
      * @property int $id
      * @property string|null $category_name
@@ -184,7 +196,7 @@ namespace App\Models {
      * @method static CategoryFactory factory(...$parameters)
      */
     class Category extends Model {}
-    
+
     /**
      * @method _IH_Membership_QB newModelQuery()
      * @method _IH_Membership_QB newQuery()
@@ -306,7 +318,338 @@ namespace App\Models {
      * @method static _IH_Membership_QB withoutGlobalScopes(array $scopes = null)
      */
     class Membership extends Model {}
-    
+
+    /**
+     * @property int $id
+     * @property string|null $product_name
+     * @property string|null $product_description
+     * @property string|null $product_info
+     * @property string|null $product_note
+     * @property bool|null $product_status_accept
+     * @property int|null $product_status_confirm_user_id
+     * @property string|null $product_status_confirm_user_comment
+     * @property bool|null $product_status_publish
+     * @property string|null $product_status_publish_date
+     * @property int|null $product_last_price
+     * @property string|null $product_last_price_date
+     * @property bool|null $product_status_price_discount
+     * @property float|null $product_last_price_discount_percentage
+     * @property string|null $product_last_price_discount_type
+     * @property string|null $product_index_image_url
+     * @property int|null $product_category_id
+     * @property int|null $product_shop_id
+     * @property int|null $product_registry_shopkeeper_id
+     * @property int|null $product_quantity_total
+     * @property int|null $product_quantity_sold
+     * @property int|null $product_quantity_selling
+     * @property int|null $product_quantity_returned
+     * @property int|null $product_number_comments
+     * @property float|null $product_total_points
+     * @property float|null $product_average_points
+     * @property float|null $product_last_point
+     * @property Carbon|null $deleted_at
+     * @property Carbon|null $created_at
+     * @property Carbon|null $updated_at
+     * @property User $NormalProductSystemConfirm
+     * @method BelongsTo|_IH_User_QB NormalProductSystemConfirm()
+     * @property Shop $shop
+     * @method BelongsTo|_IH_Shop_QB shop()
+     * @property User $shopkeeper
+     * @method BelongsTo|_IH_User_QB shopkeeper()
+     * @method _IH_NormalProduct_QB newModelQuery()
+     * @method _IH_NormalProduct_QB newQuery()
+     * @method static _IH_NormalProduct_QB query()
+     * @method static _IH_NormalProduct_C|NormalProduct[] all()
+     * @method static _IH_NormalProduct_QB whereId($value)
+     * @method static _IH_NormalProduct_QB whereProductName($value)
+     * @method static _IH_NormalProduct_QB whereProductDescription($value)
+     * @method static _IH_NormalProduct_QB whereProductInfo($value)
+     * @method static _IH_NormalProduct_QB whereProductNote($value)
+     * @method static _IH_NormalProduct_QB whereProductStatusAccept($value)
+     * @method static _IH_NormalProduct_QB whereProductStatusConfirmUserId($value)
+     * @method static _IH_NormalProduct_QB whereProductStatusConfirmUserComment($value)
+     * @method static _IH_NormalProduct_QB whereProductStatusPublish($value)
+     * @method static _IH_NormalProduct_QB whereProductStatusPublishDate($value)
+     * @method static _IH_NormalProduct_QB whereProductLastPrice($value)
+     * @method static _IH_NormalProduct_QB whereProductLastPriceDate($value)
+     * @method static _IH_NormalProduct_QB whereProductStatusPriceDiscount($value)
+     * @method static _IH_NormalProduct_QB whereProductLastPriceDiscountPercentage($value)
+     * @method static _IH_NormalProduct_QB whereProductLastPriceDiscountType($value)
+     * @method static _IH_NormalProduct_QB whereProductIndexImageUrl($value)
+     * @method static _IH_NormalProduct_QB whereProductCategoryId($value)
+     * @method static _IH_NormalProduct_QB whereProductShopId($value)
+     * @method static _IH_NormalProduct_QB whereProductRegistryShopkeeperId($value)
+     * @method static _IH_NormalProduct_QB whereProductQuantityTotal($value)
+     * @method static _IH_NormalProduct_QB whereProductQuantitySold($value)
+     * @method static _IH_NormalProduct_QB whereProductQuantitySelling($value)
+     * @method static _IH_NormalProduct_QB whereProductQuantityReturned($value)
+     * @method static _IH_NormalProduct_QB whereProductNumberComments($value)
+     * @method static _IH_NormalProduct_QB whereProductTotalPoints($value)
+     * @method static _IH_NormalProduct_QB whereProductAveragePoints($value)
+     * @method static _IH_NormalProduct_QB whereProductLastPoint($value)
+     * @method static _IH_NormalProduct_QB whereDeletedAt($value)
+     * @method static _IH_NormalProduct_QB whereCreatedAt($value)
+     * @method static _IH_NormalProduct_QB whereUpdatedAt($value)
+     * @method static NormalProduct baseSole(array|string $columns = ['*'])
+     * @method static bool chunk(int $count, callable $callback)
+     * @method static bool chunkById(int $count, callable $callback, null|string $column = null, null|string $alias = null)
+     * @method static int count(string $columns = '*')
+     * @method static NormalProduct create(array $attributes = [])
+     * @method static _IH_NormalProduct_QB crossJoin(string $table, \Closure|null|string $first = null, null|string $operator = null, null|string $second = null)
+     * @method static _IH_NormalProduct_C|NormalProduct[] cursor()
+     * @method static int decrement(Expression|string $column, float|int $amount = 1, array $extra = [])
+     * @method static _IH_NormalProduct_QB distinct()
+     * @method static bool doesntExist()
+     * @method static _IH_NormalProduct_QB each(callable $callback, int $count = 1000)
+     * @method static bool eachById(callable $callback, int $count = 1000, null|string $column = null, null|string $alias = null)
+     * @method static bool exists()
+     * @method static NormalProduct|null find($id, array $columns = ['*'])
+     * @method static _IH_NormalProduct_C|NormalProduct[] findMany(array|Arrayable $ids, array $columns = ['*'])
+     * @method static NormalProduct findOrFail($id, array $columns = ['*'])
+     * @method static NormalProduct findOrNew($id, array $columns = ['*'])
+     * @method static NormalProduct first(array|string $columns = ['*'])
+     * @method static NormalProduct firstOr(array|\Closure $columns = ['*'], \Closure $callback = null)
+     * @method static NormalProduct firstOrCreate(array $attributes = [], array $values = [])
+     * @method static NormalProduct firstOrFail(array $columns = ['*'])
+     * @method static NormalProduct firstOrNew(array $attributes = [], array $values = [])
+     * @method static NormalProduct firstWhere(array|\Closure|Expression|string $column, $operator = null, $value = null, string $boolean = 'and')
+     * @method static NormalProduct forceCreate(array $attributes)
+     * @method static _IH_NormalProduct_C|NormalProduct[] fromQuery(string $query, array $bindings = [])
+     * @method static _IH_NormalProduct_C|NormalProduct[] get(array|string $columns = ['*'])
+     * @method static int getCountForPagination(array $columns = ['*'])
+     * @method static NormalProduct getModel()
+     * @method static NormalProduct[] getModels(array|string $columns = ['*'])
+     * @method static _IH_NormalProduct_QB getQuery()
+     * @method static _IH_NormalProduct_QB groupBy(...$groups)
+     * @method static bool hasGlobalMacro(string $name)
+     * @method static bool hasMacro(string $name)
+     * @method static bool hasNamedScope(string $scope)
+     * @method static _IH_NormalProduct_C|NormalProduct[] hydrate(array $items)
+     * @method static _IH_NormalProduct_QB inRandomOrder(string $seed = '')
+     * @method static int increment(Expression|string $column, float|int $amount = 1, array $extra = [])
+     * @method static bool insert(array $values)
+     * @method static int insertGetId(array $values, null|string $sequence = null)
+     * @method static int insertOrIgnore(array $values)
+     * @method static int insertUsing(array $columns, \Closure|\Illuminate\Database\Query\Builder|string $query)
+     * @method static _IH_NormalProduct_QB join(string $table, \Closure|string $first, null|string $operator = null, null|string $second = null, string $type = 'inner', bool $where = false)
+     * @method static _IH_NormalProduct_QB latest(Expression|string $column = null)
+     * @method static _IH_NormalProduct_QB leftJoin(string $table, \Closure|string $first, null|string $operator = null, null|string $second = null)
+     * @method static _IH_NormalProduct_QB limit(int $value)
+     * @method static NormalProduct make(array $attributes = [])
+     * @method static NormalProduct newModelInstance(array $attributes = [])
+     * @method static int numericAggregate(string $function, array $columns = ['*'])
+     * @method static _IH_NormalProduct_QB offset(int $value)
+     * @method static _IH_NormalProduct_QB oldest(Expression|string $column = null)
+     * @method static _IH_NormalProduct_QB orderBy(\Closure|\Illuminate\Database\Query\Builder|Expression|string $column, string $direction = 'asc')
+     * @method static _IH_NormalProduct_QB orderByDesc(\Closure|\Illuminate\Database\Query\Builder|Expression|string $column)
+     * @method static _IH_NormalProduct_QB orderByRaw(string $sql, array $bindings = [])
+     * @method static LengthAwarePaginator|NormalProduct[]|_IH_NormalProduct_C paginate(int|null $perPage = null, array $columns = ['*'], string $pageName = 'page', int|null $page = null)
+     * @method static _IH_NormalProduct_QB rightJoin(string $table, \Closure|string $first, null|string $operator = null, null|string $second = null)
+     * @method static _IH_NormalProduct_QB select(array|mixed $columns = ['*'])
+     * @method static _IH_NormalProduct_QB setQuery(\Illuminate\Database\Query\Builder $query)
+     * @method static Paginator|NormalProduct[]|_IH_NormalProduct_C simplePaginate(int|null $perPage = null, array $columns = ['*'], string $pageName = 'page', int|null $page = null)
+     * @method static _IH_NormalProduct_QB skip(int $value)
+     * @method static NormalProduct sole(array|string $columns = ['*'])
+     * @method static _IH_NormalProduct_QB take(int $value)
+     * @method static _IH_NormalProduct_QB tap(callable $callback)
+     * @method static _IH_NormalProduct_QB truncate()
+     * @method static _IH_NormalProduct_QB unless($value, callable $callback, callable|null $default = null)
+     * @method static int update(array $values)
+     * @method static NormalProduct updateOrCreate(array $attributes, array $values = [])
+     * @method static bool updateOrInsert(array $attributes, array $values = [])
+     * @method static int upsert(array $values, array|string $uniqueBy, array|null $update = null)
+     * @method static _IH_NormalProduct_QB when($value, callable $callback, callable|null $default = null)
+     * @method static _IH_NormalProduct_QB where(array|\Closure|Expression|string $column, $operator = null, $value = null, string $boolean = 'and')
+     * @method static _IH_NormalProduct_QB whereBetween(Expression|string $column, array $values, string $boolean = 'and', bool $not = false)
+     * @method static _IH_NormalProduct_QB whereBetweenColumns(string $column, array $values, string $boolean = 'and', bool $not = false)
+     * @method static _IH_NormalProduct_QB whereColumn(array|string $first, null|string $operator = null, null|string $second = null, null|string $boolean = 'and')
+     * @method static _IH_NormalProduct_QB whereDate(string $column, string $operator, \DateTimeInterface|null|string $value = null, string $boolean = 'and')
+     * @method static _IH_NormalProduct_QB whereDay(string $column, string $operator, \DateTimeInterface|null|string $value = null, string $boolean = 'and')
+     * @method static _IH_NormalProduct_QB whereDoesntHave(string $relation, \Closure $callback = null)
+     * @method static _IH_NormalProduct_QB whereDoesntHaveMorph(MorphTo|string $relation, array|string $types, \Closure $callback = null)
+     * @method static _IH_NormalProduct_QB whereExists(\Closure $callback, string $boolean = 'and', bool $not = false)
+     * @method static _IH_NormalProduct_QB whereHas(string $relation, \Closure $callback = null, string $operator = '>=', int $count = 1)
+     * @method static _IH_NormalProduct_QB whereHasMorph(MorphTo|string $relation, array|string $types, \Closure $callback = null, string $operator = '>=', int $count = 1)
+     * @method static _IH_NormalProduct_QB whereIn(string $column, $values, string $boolean = 'and', bool $not = false)
+     * @method static _IH_NormalProduct_QB whereIntegerInRaw(string $column, array|Arrayable $values, string $boolean = 'and', bool $not = false)
+     * @method static _IH_NormalProduct_QB whereIntegerNotInRaw(string $column, array|Arrayable $values, string $boolean = 'and')
+     * @method static _IH_NormalProduct_QB whereJsonContains(string $column, $value, string $boolean = 'and', bool $not = false)
+     * @method static _IH_NormalProduct_QB whereJsonDoesntContain(string $column, $value, string $boolean = 'and')
+     * @method static _IH_NormalProduct_QB whereJsonLength(string $column, $operator, $value = null, string $boolean = 'and')
+     * @method static _IH_NormalProduct_QB whereKey($id)
+     * @method static _IH_NormalProduct_QB whereKeyNot($id)
+     * @method static _IH_NormalProduct_QB whereMonth(string $column, string $operator, \DateTimeInterface|null|string $value = null, string $boolean = 'and')
+     * @method static _IH_NormalProduct_QB whereNested(\Closure $callback, string $boolean = 'and')
+     * @method static _IH_NormalProduct_QB whereNotBetween(string $column, array $values, string $boolean = 'and')
+     * @method static _IH_NormalProduct_QB whereNotBetweenColumns(string $column, array $values, string $boolean = 'and')
+     * @method static _IH_NormalProduct_QB whereNotExists(\Closure $callback, string $boolean = 'and')
+     * @method static _IH_NormalProduct_QB whereNotIn(string $column, $values, string $boolean = 'and')
+     * @method static _IH_NormalProduct_QB whereNotNull(array|string $columns, string $boolean = 'and')
+     * @method static _IH_NormalProduct_QB whereNull(array|string $columns, string $boolean = 'and', bool $not = false)
+     * @method static _IH_NormalProduct_QB whereRaw(string $sql, $bindings = [], string $boolean = 'and')
+     * @method static _IH_NormalProduct_QB whereRowValues(array $columns, string $operator, array $values, string $boolean = 'and')
+     * @method static _IH_NormalProduct_QB whereTime(string $column, string $operator, \DateTimeInterface|null|string $value = null, string $boolean = 'and')
+     * @method static _IH_NormalProduct_QB whereYear(string $column, string $operator, \DateTimeInterface|int|null|string $value = null, string $boolean = 'and')
+     * @method static _IH_NormalProduct_QB with(array|string $relations, \Closure|null|string $callback = null)
+     * @method static _IH_NormalProduct_QB withAggregate($relations, string $column, string $function = null)
+     * @method static _IH_NormalProduct_QB withAvg(array|string $relation, string $column)
+     * @method static _IH_NormalProduct_QB withCasts(array $casts)
+     * @method static _IH_NormalProduct_QB withCount($relations)
+     * @method static _IH_NormalProduct_QB withExists(array|string $relation)
+     * @method static _IH_NormalProduct_QB withGlobalScope(string $identifier, \Closure|Scope $scope)
+     * @method static _IH_NormalProduct_QB withMax(array|string $relation, string $column)
+     * @method static _IH_NormalProduct_QB withMin(array|string $relation, string $column)
+     * @method static _IH_NormalProduct_QB withOnly($relations)
+     * @method static _IH_NormalProduct_QB withSum(array|string $relation, string $column)
+     * @method static _IH_NormalProduct_QB without($relations)
+     * @method static _IH_NormalProduct_QB withoutGlobalScope(Scope|string $scope)
+     * @method static _IH_NormalProduct_QB withoutGlobalScopes(array $scopes = null)
+     * @method static _IH_NormalProduct_QB withTrashed()
+     * @method static _IH_NormalProduct_QB onlyTrashed()
+     * @method static _IH_NormalProduct_QB withoutTrashed()
+     */
+    class NormalProduct extends Model {}
+
+    /**
+     * @property int|null $user_id
+     * @property int|null $role_id
+     * @property int|null $shop_id
+     * @property Carbon|null $deleted_at
+     * @property string|null $shop_type
+     * @property Role $role
+     * @method BelongsTo|_IH_Role_QB role()
+     * @property Shop $shop
+     * @method BelongsTo|_IH_Shop_QB shop()
+     * @property NormalProduct $shopNormalProducts
+     * @method HasOneThrough|_IH_NormalProduct_QB shopNormalProducts()
+     * @property User $user
+     * @method BelongsTo|_IH_User_QB user()
+     * @method _IH_RolesShopsUsers_QB newModelQuery()
+     * @method _IH_RolesShopsUsers_QB newQuery()
+     * @method static _IH_RolesShopsUsers_QB query()
+     * @method static _IH_RolesShopsUsers_C|RolesShopsUsers[] all()
+     * @method static _IH_RolesShopsUsers_QB whereUserId($value)
+     * @method static _IH_RolesShopsUsers_QB whereRoleId($value)
+     * @method static _IH_RolesShopsUsers_QB whereShopId($value)
+     * @method static _IH_RolesShopsUsers_QB whereDeletedAt($value)
+     * @method static _IH_RolesShopsUsers_QB whereShopType($value)
+     * @method static RolesShopsUsers baseSole(array|string $columns = ['*'])
+     * @method static bool chunk(int $count, callable $callback)
+     * @method static bool chunkById(int $count, callable $callback, null|string $column = null, null|string $alias = null)
+     * @method static int count(string $columns = '*')
+     * @method static RolesShopsUsers create(array $attributes = [])
+     * @method static _IH_RolesShopsUsers_QB crossJoin(string $table, \Closure|null|string $first = null, null|string $operator = null, null|string $second = null)
+     * @method static _IH_RolesShopsUsers_C|RolesShopsUsers[] cursor()
+     * @method static int decrement(Expression|string $column, float|int $amount = 1, array $extra = [])
+     * @method static _IH_RolesShopsUsers_QB distinct()
+     * @method static bool doesntExist()
+     * @method static _IH_RolesShopsUsers_QB each(callable $callback, int $count = 1000)
+     * @method static bool eachById(callable $callback, int $count = 1000, null|string $column = null, null|string $alias = null)
+     * @method static bool exists()
+     * @method static RolesShopsUsers|null find($id, array $columns = ['*'])
+     * @method static _IH_RolesShopsUsers_C|RolesShopsUsers[] findMany(array|Arrayable $ids, array $columns = ['*'])
+     * @method static RolesShopsUsers findOrFail($id, array $columns = ['*'])
+     * @method static RolesShopsUsers findOrNew($id, array $columns = ['*'])
+     * @method static RolesShopsUsers first(array|string $columns = ['*'])
+     * @method static RolesShopsUsers firstOr(array|\Closure $columns = ['*'], \Closure $callback = null)
+     * @method static RolesShopsUsers firstOrCreate(array $attributes = [], array $values = [])
+     * @method static RolesShopsUsers firstOrFail(array $columns = ['*'])
+     * @method static RolesShopsUsers firstOrNew(array $attributes = [], array $values = [])
+     * @method static RolesShopsUsers firstWhere(array|\Closure|Expression|string $column, $operator = null, $value = null, string $boolean = 'and')
+     * @method static RolesShopsUsers forceCreate(array $attributes)
+     * @method static _IH_RolesShopsUsers_C|RolesShopsUsers[] fromQuery(string $query, array $bindings = [])
+     * @method static _IH_RolesShopsUsers_C|RolesShopsUsers[] get(array|string $columns = ['*'])
+     * @method static int getCountForPagination(array $columns = ['*'])
+     * @method static RolesShopsUsers getModel()
+     * @method static RolesShopsUsers[] getModels(array|string $columns = ['*'])
+     * @method static _IH_RolesShopsUsers_QB getQuery()
+     * @method static _IH_RolesShopsUsers_QB groupBy(...$groups)
+     * @method static bool hasGlobalMacro(string $name)
+     * @method static bool hasMacro(string $name)
+     * @method static bool hasNamedScope(string $scope)
+     * @method static _IH_RolesShopsUsers_C|RolesShopsUsers[] hydrate(array $items)
+     * @method static _IH_RolesShopsUsers_QB inRandomOrder(string $seed = '')
+     * @method static int increment(Expression|string $column, float|int $amount = 1, array $extra = [])
+     * @method static bool insert(array $values)
+     * @method static int insertGetId(array $values, null|string $sequence = null)
+     * @method static int insertOrIgnore(array $values)
+     * @method static int insertUsing(array $columns, \Closure|\Illuminate\Database\Query\Builder|string $query)
+     * @method static _IH_RolesShopsUsers_QB join(string $table, \Closure|string $first, null|string $operator = null, null|string $second = null, string $type = 'inner', bool $where = false)
+     * @method static _IH_RolesShopsUsers_QB latest(Expression|string $column = null)
+     * @method static _IH_RolesShopsUsers_QB leftJoin(string $table, \Closure|string $first, null|string $operator = null, null|string $second = null)
+     * @method static _IH_RolesShopsUsers_QB limit(int $value)
+     * @method static RolesShopsUsers make(array $attributes = [])
+     * @method static RolesShopsUsers newModelInstance(array $attributes = [])
+     * @method static int numericAggregate(string $function, array $columns = ['*'])
+     * @method static _IH_RolesShopsUsers_QB offset(int $value)
+     * @method static _IH_RolesShopsUsers_QB oldest(Expression|string $column = null)
+     * @method static _IH_RolesShopsUsers_QB orderBy(\Closure|\Illuminate\Database\Query\Builder|Expression|string $column, string $direction = 'asc')
+     * @method static _IH_RolesShopsUsers_QB orderByDesc(\Closure|\Illuminate\Database\Query\Builder|Expression|string $column)
+     * @method static _IH_RolesShopsUsers_QB orderByRaw(string $sql, array $bindings = [])
+     * @method static LengthAwarePaginator|RolesShopsUsers[]|_IH_RolesShopsUsers_C paginate(int|null $perPage = null, array $columns = ['*'], string $pageName = 'page', int|null $page = null)
+     * @method static _IH_RolesShopsUsers_QB rightJoin(string $table, \Closure|string $first, null|string $operator = null, null|string $second = null)
+     * @method static _IH_RolesShopsUsers_QB select(array|mixed $columns = ['*'])
+     * @method static _IH_RolesShopsUsers_QB setQuery(\Illuminate\Database\Query\Builder $query)
+     * @method static Paginator|RolesShopsUsers[]|_IH_RolesShopsUsers_C simplePaginate(int|null $perPage = null, array $columns = ['*'], string $pageName = 'page', int|null $page = null)
+     * @method static _IH_RolesShopsUsers_QB skip(int $value)
+     * @method static RolesShopsUsers sole(array|string $columns = ['*'])
+     * @method static _IH_RolesShopsUsers_QB take(int $value)
+     * @method static _IH_RolesShopsUsers_QB tap(callable $callback)
+     * @method static _IH_RolesShopsUsers_QB truncate()
+     * @method static _IH_RolesShopsUsers_QB unless($value, callable $callback, callable|null $default = null)
+     * @method static int update(array $values)
+     * @method static RolesShopsUsers updateOrCreate(array $attributes, array $values = [])
+     * @method static bool updateOrInsert(array $attributes, array $values = [])
+     * @method static int upsert(array $values, array|string $uniqueBy, array|null $update = null)
+     * @method static _IH_RolesShopsUsers_QB when($value, callable $callback, callable|null $default = null)
+     * @method static _IH_RolesShopsUsers_QB where(array|\Closure|Expression|string $column, $operator = null, $value = null, string $boolean = 'and')
+     * @method static _IH_RolesShopsUsers_QB whereBetween(Expression|string $column, array $values, string $boolean = 'and', bool $not = false)
+     * @method static _IH_RolesShopsUsers_QB whereBetweenColumns(string $column, array $values, string $boolean = 'and', bool $not = false)
+     * @method static _IH_RolesShopsUsers_QB whereColumn(array|string $first, null|string $operator = null, null|string $second = null, null|string $boolean = 'and')
+     * @method static _IH_RolesShopsUsers_QB whereDate(string $column, string $operator, \DateTimeInterface|null|string $value = null, string $boolean = 'and')
+     * @method static _IH_RolesShopsUsers_QB whereDay(string $column, string $operator, \DateTimeInterface|null|string $value = null, string $boolean = 'and')
+     * @method static _IH_RolesShopsUsers_QB whereDoesntHave(string $relation, \Closure $callback = null)
+     * @method static _IH_RolesShopsUsers_QB whereDoesntHaveMorph(MorphTo|string $relation, array|string $types, \Closure $callback = null)
+     * @method static _IH_RolesShopsUsers_QB whereExists(\Closure $callback, string $boolean = 'and', bool $not = false)
+     * @method static _IH_RolesShopsUsers_QB whereHas(string $relation, \Closure $callback = null, string $operator = '>=', int $count = 1)
+     * @method static _IH_RolesShopsUsers_QB whereHasMorph(MorphTo|string $relation, array|string $types, \Closure $callback = null, string $operator = '>=', int $count = 1)
+     * @method static _IH_RolesShopsUsers_QB whereIn(string $column, $values, string $boolean = 'and', bool $not = false)
+     * @method static _IH_RolesShopsUsers_QB whereIntegerInRaw(string $column, array|Arrayable $values, string $boolean = 'and', bool $not = false)
+     * @method static _IH_RolesShopsUsers_QB whereIntegerNotInRaw(string $column, array|Arrayable $values, string $boolean = 'and')
+     * @method static _IH_RolesShopsUsers_QB whereJsonContains(string $column, $value, string $boolean = 'and', bool $not = false)
+     * @method static _IH_RolesShopsUsers_QB whereJsonDoesntContain(string $column, $value, string $boolean = 'and')
+     * @method static _IH_RolesShopsUsers_QB whereJsonLength(string $column, $operator, $value = null, string $boolean = 'and')
+     * @method static _IH_RolesShopsUsers_QB whereKey($id)
+     * @method static _IH_RolesShopsUsers_QB whereKeyNot($id)
+     * @method static _IH_RolesShopsUsers_QB whereMonth(string $column, string $operator, \DateTimeInterface|null|string $value = null, string $boolean = 'and')
+     * @method static _IH_RolesShopsUsers_QB whereNested(\Closure $callback, string $boolean = 'and')
+     * @method static _IH_RolesShopsUsers_QB whereNotBetween(string $column, array $values, string $boolean = 'and')
+     * @method static _IH_RolesShopsUsers_QB whereNotBetweenColumns(string $column, array $values, string $boolean = 'and')
+     * @method static _IH_RolesShopsUsers_QB whereNotExists(\Closure $callback, string $boolean = 'and')
+     * @method static _IH_RolesShopsUsers_QB whereNotIn(string $column, $values, string $boolean = 'and')
+     * @method static _IH_RolesShopsUsers_QB whereNotNull(array|string $columns, string $boolean = 'and')
+     * @method static _IH_RolesShopsUsers_QB whereNull(array|string $columns, string $boolean = 'and', bool $not = false)
+     * @method static _IH_RolesShopsUsers_QB whereRaw(string $sql, $bindings = [], string $boolean = 'and')
+     * @method static _IH_RolesShopsUsers_QB whereRowValues(array $columns, string $operator, array $values, string $boolean = 'and')
+     * @method static _IH_RolesShopsUsers_QB whereTime(string $column, string $operator, \DateTimeInterface|null|string $value = null, string $boolean = 'and')
+     * @method static _IH_RolesShopsUsers_QB whereYear(string $column, string $operator, \DateTimeInterface|int|null|string $value = null, string $boolean = 'and')
+     * @method static _IH_RolesShopsUsers_QB with(array|string $relations, \Closure|null|string $callback = null)
+     * @method static _IH_RolesShopsUsers_QB withAggregate($relations, string $column, string $function = null)
+     * @method static _IH_RolesShopsUsers_QB withAvg(array|string $relation, string $column)
+     * @method static _IH_RolesShopsUsers_QB withCasts(array $casts)
+     * @method static _IH_RolesShopsUsers_QB withCount($relations)
+     * @method static _IH_RolesShopsUsers_QB withExists(array|string $relation)
+     * @method static _IH_RolesShopsUsers_QB withGlobalScope(string $identifier, \Closure|Scope $scope)
+     * @method static _IH_RolesShopsUsers_QB withMax(array|string $relation, string $column)
+     * @method static _IH_RolesShopsUsers_QB withMin(array|string $relation, string $column)
+     * @method static _IH_RolesShopsUsers_QB withOnly($relations)
+     * @method static _IH_RolesShopsUsers_QB withSum(array|string $relation, string $column)
+     * @method static _IH_RolesShopsUsers_QB without($relations)
+     * @method static _IH_RolesShopsUsers_QB withoutGlobalScope(Scope|string $scope)
+     * @method static _IH_RolesShopsUsers_QB withoutGlobalScopes(array $scopes = null)
+     */
+    class RolesShopsUsers extends Model {}
+
     /**
      * @property int $id
      * @property int|null $parent_id
@@ -315,19 +658,44 @@ namespace App\Models {
      * @property Carbon|null $updated_at
      * @property Carbon|null $deleted_at
      * @property int|null $category_id
-     * @property Category $category
-     * @method BelongsTo|_IH_Category_QB category()
+     * @property string|null $description
+     * @property string|null $shop_photo_url
+     * @property bool|null $type_location
+     * @property string|null $lat_location
+     * @property string|null $long_location
+     * @property string|null $shop_country
+     * @property string|null $shop_province
+     * @property string|null $shop_city
+     * @property string|null $shop_local
+     * @property string|null $shop_Street
+     * @property string|null $shop_alley
+     * @property string|null $shop_number
+     * @property string|null $shop_postal_code
+     * @property string|null $shop_main_phone_number
+     * @property bool|null $shop_accept_status
+     * @property int|null $shop_Priority
+     * @property Category $categories
+     * @method BelongsTo|_IH_Category_QB categories()
      * @property _IH_Shop_C|Shop[] $child
      * @property-read int $child_count
      * @method HasMany|_IH_Shop_QB child()
      * @property Shop $parent
      * @method BelongsTo|_IH_Shop_QB parent()
+     * @property _IH_Role_C|Role[] $role
+     * @property-read int $role_count
+     * @method BelongsToMany|_IH_Role_QB role()
+     * @property _IH_RolesShopsUsers_C|RolesShopsUsers[] $rolesShopsUsers
+     * @property-read int $roles_shops_users_count
+     * @method HasMany|_IH_RolesShopsUsers_QB rolesShopsUsers()
      * @property _IH_tag_C|tag[] $tags
      * @property-read int $tags_count
      * @method BelongsToMany|_IH_tag_QB tags()
      * @property _IH_tag_C|tag[] $tagsByAccept
      * @property-read int $tags_by_accept_count
      * @method BelongsToMany|_IH_tag_QB tagsByAccept()
+     * @property _IH_User_C|User[] $user
+     * @property-read int $user_count
+     * @method BelongsToMany|_IH_User_QB user()
      * @method _IH_Shop_QB newModelQuery()
      * @method _IH_Shop_QB newQuery()
      * @method static _IH_Shop_QB query()
@@ -339,6 +707,22 @@ namespace App\Models {
      * @method static _IH_Shop_QB whereUpdatedAt($value)
      * @method static _IH_Shop_QB whereDeletedAt($value)
      * @method static _IH_Shop_QB whereCategoryId($value)
+     * @method static _IH_Shop_QB whereDescription($value)
+     * @method static _IH_Shop_QB whereShopPhotoUrl($value)
+     * @method static _IH_Shop_QB whereTypeLocation($value)
+     * @method static _IH_Shop_QB whereLatLocation($value)
+     * @method static _IH_Shop_QB whereLongLocation($value)
+     * @method static _IH_Shop_QB whereShopCountry($value)
+     * @method static _IH_Shop_QB whereShopProvince($value)
+     * @method static _IH_Shop_QB whereShopCity($value)
+     * @method static _IH_Shop_QB whereShopLocal($value)
+     * @method static _IH_Shop_QB whereShopStreet($value)
+     * @method static _IH_Shop_QB whereShopAlley($value)
+     * @method static _IH_Shop_QB whereShopNumber($value)
+     * @method static _IH_Shop_QB whereShopPostalCode($value)
+     * @method static _IH_Shop_QB whereShopMainPhoneNumber($value)
+     * @method static _IH_Shop_QB whereShopAcceptStatus($value)
+     * @method static _IH_Shop_QB whereShopPriority($value)
      * @method static Shop baseSole(array|string $columns = ['*'])
      * @method static bool chunk(int $count, callable $callback)
      * @method static bool chunkById(int $count, callable $callback, null|string $column = null, null|string $alias = null)
@@ -459,7 +843,7 @@ namespace App\Models {
      * @method static ShopFactory factory(...$parameters)
      */
     class Shop extends Model {}
-    
+
     /**
      * @property int $id
      * @property string|null $tag_name
@@ -603,129 +987,7 @@ namespace App\Models {
      * @method static TagFactory factory(...$parameters)
      */
     class Tag extends Model {}
-    
-    /**
-     * @method _IH_Tag2_QB newModelQuery()
-     * @method _IH_Tag2_QB newQuery()
-     * @method static _IH_Tag2_QB query()
-     * @method static _IH_Tag2_C|Tag2[] all()
-     * @method static Tag2 baseSole(array|string $columns = ['*'])
-     * @method static bool chunk(int $count, callable $callback)
-     * @method static bool chunkById(int $count, callable $callback, null|string $column = null, null|string $alias = null)
-     * @method static int count(string $columns = '*')
-     * @method static Tag2 create(array $attributes = [])
-     * @method static _IH_Tag2_QB crossJoin(string $table, \Closure|null|string $first = null, null|string $operator = null, null|string $second = null)
-     * @method static _IH_Tag2_C|Tag2[] cursor()
-     * @method static int decrement(Expression|string $column, float|int $amount = 1, array $extra = [])
-     * @method static _IH_Tag2_QB distinct()
-     * @method static bool doesntExist()
-     * @method static _IH_Tag2_QB each(callable $callback, int $count = 1000)
-     * @method static bool eachById(callable $callback, int $count = 1000, null|string $column = null, null|string $alias = null)
-     * @method static bool exists()
-     * @method static Tag2|null find($id, array $columns = ['*'])
-     * @method static _IH_Tag2_C|Tag2[] findMany(array|Arrayable $ids, array $columns = ['*'])
-     * @method static Tag2 findOrFail($id, array $columns = ['*'])
-     * @method static Tag2 findOrNew($id, array $columns = ['*'])
-     * @method static Tag2 first(array|string $columns = ['*'])
-     * @method static Tag2 firstOr(array|\Closure $columns = ['*'], \Closure $callback = null)
-     * @method static Tag2 firstOrCreate(array $attributes = [], array $values = [])
-     * @method static Tag2 firstOrFail(array $columns = ['*'])
-     * @method static Tag2 firstOrNew(array $attributes = [], array $values = [])
-     * @method static Tag2 firstWhere(array|\Closure|Expression|string $column, $operator = null, $value = null, string $boolean = 'and')
-     * @method static Tag2 forceCreate(array $attributes)
-     * @method static _IH_Tag2_C|Tag2[] fromQuery(string $query, array $bindings = [])
-     * @method static _IH_Tag2_C|Tag2[] get(array|string $columns = ['*'])
-     * @method static int getCountForPagination(array $columns = ['*'])
-     * @method static Tag2 getModel()
-     * @method static Tag2[] getModels(array|string $columns = ['*'])
-     * @method static _IH_Tag2_QB getQuery()
-     * @method static _IH_Tag2_QB groupBy(...$groups)
-     * @method static bool hasGlobalMacro(string $name)
-     * @method static bool hasMacro(string $name)
-     * @method static bool hasNamedScope(string $scope)
-     * @method static _IH_Tag2_C|Tag2[] hydrate(array $items)
-     * @method static _IH_Tag2_QB inRandomOrder(string $seed = '')
-     * @method static int increment(Expression|string $column, float|int $amount = 1, array $extra = [])
-     * @method static bool insert(array $values)
-     * @method static int insertGetId(array $values, null|string $sequence = null)
-     * @method static int insertOrIgnore(array $values)
-     * @method static int insertUsing(array $columns, \Closure|\Illuminate\Database\Query\Builder|string $query)
-     * @method static _IH_Tag2_QB join(string $table, \Closure|string $first, null|string $operator = null, null|string $second = null, string $type = 'inner', bool $where = false)
-     * @method static _IH_Tag2_QB latest(Expression|string $column = null)
-     * @method static _IH_Tag2_QB leftJoin(string $table, \Closure|string $first, null|string $operator = null, null|string $second = null)
-     * @method static _IH_Tag2_QB limit(int $value)
-     * @method static Tag2 make(array $attributes = [])
-     * @method static Tag2 newModelInstance(array $attributes = [])
-     * @method static int numericAggregate(string $function, array $columns = ['*'])
-     * @method static _IH_Tag2_QB offset(int $value)
-     * @method static _IH_Tag2_QB oldest(Expression|string $column = null)
-     * @method static _IH_Tag2_QB orderBy(\Closure|\Illuminate\Database\Query\Builder|Expression|string $column, string $direction = 'asc')
-     * @method static _IH_Tag2_QB orderByDesc(\Closure|\Illuminate\Database\Query\Builder|Expression|string $column)
-     * @method static _IH_Tag2_QB orderByRaw(string $sql, array $bindings = [])
-     * @method static LengthAwarePaginator|Tag2[]|_IH_Tag2_C paginate(int|null $perPage = null, array $columns = ['*'], string $pageName = 'page', int|null $page = null)
-     * @method static _IH_Tag2_QB rightJoin(string $table, \Closure|string $first, null|string $operator = null, null|string $second = null)
-     * @method static _IH_Tag2_QB select(array|mixed $columns = ['*'])
-     * @method static _IH_Tag2_QB setQuery(\Illuminate\Database\Query\Builder $query)
-     * @method static Paginator|Tag2[]|_IH_Tag2_C simplePaginate(int|null $perPage = null, array $columns = ['*'], string $pageName = 'page', int|null $page = null)
-     * @method static _IH_Tag2_QB skip(int $value)
-     * @method static Tag2 sole(array|string $columns = ['*'])
-     * @method static _IH_Tag2_QB take(int $value)
-     * @method static _IH_Tag2_QB tap(callable $callback)
-     * @method static _IH_Tag2_QB truncate()
-     * @method static _IH_Tag2_QB unless($value, callable $callback, callable|null $default = null)
-     * @method static int update(array $values)
-     * @method static Tag2 updateOrCreate(array $attributes, array $values = [])
-     * @method static bool updateOrInsert(array $attributes, array $values = [])
-     * @method static int upsert(array $values, array|string $uniqueBy, array|null $update = null)
-     * @method static _IH_Tag2_QB when($value, callable $callback, callable|null $default = null)
-     * @method static _IH_Tag2_QB where(array|\Closure|Expression|string $column, $operator = null, $value = null, string $boolean = 'and')
-     * @method static _IH_Tag2_QB whereBetween(Expression|string $column, array $values, string $boolean = 'and', bool $not = false)
-     * @method static _IH_Tag2_QB whereBetweenColumns(string $column, array $values, string $boolean = 'and', bool $not = false)
-     * @method static _IH_Tag2_QB whereColumn(array|string $first, null|string $operator = null, null|string $second = null, null|string $boolean = 'and')
-     * @method static _IH_Tag2_QB whereDate(string $column, string $operator, \DateTimeInterface|null|string $value = null, string $boolean = 'and')
-     * @method static _IH_Tag2_QB whereDay(string $column, string $operator, \DateTimeInterface|null|string $value = null, string $boolean = 'and')
-     * @method static _IH_Tag2_QB whereDoesntHave(string $relation, \Closure $callback = null)
-     * @method static _IH_Tag2_QB whereDoesntHaveMorph(MorphTo|string $relation, array|string $types, \Closure $callback = null)
-     * @method static _IH_Tag2_QB whereExists(\Closure $callback, string $boolean = 'and', bool $not = false)
-     * @method static _IH_Tag2_QB whereHas(string $relation, \Closure $callback = null, string $operator = '>=', int $count = 1)
-     * @method static _IH_Tag2_QB whereHasMorph(MorphTo|string $relation, array|string $types, \Closure $callback = null, string $operator = '>=', int $count = 1)
-     * @method static _IH_Tag2_QB whereIn(string $column, $values, string $boolean = 'and', bool $not = false)
-     * @method static _IH_Tag2_QB whereIntegerInRaw(string $column, array|Arrayable $values, string $boolean = 'and', bool $not = false)
-     * @method static _IH_Tag2_QB whereIntegerNotInRaw(string $column, array|Arrayable $values, string $boolean = 'and')
-     * @method static _IH_Tag2_QB whereJsonContains(string $column, $value, string $boolean = 'and', bool $not = false)
-     * @method static _IH_Tag2_QB whereJsonDoesntContain(string $column, $value, string $boolean = 'and')
-     * @method static _IH_Tag2_QB whereJsonLength(string $column, $operator, $value = null, string $boolean = 'and')
-     * @method static _IH_Tag2_QB whereKey($id)
-     * @method static _IH_Tag2_QB whereKeyNot($id)
-     * @method static _IH_Tag2_QB whereMonth(string $column, string $operator, \DateTimeInterface|null|string $value = null, string $boolean = 'and')
-     * @method static _IH_Tag2_QB whereNested(\Closure $callback, string $boolean = 'and')
-     * @method static _IH_Tag2_QB whereNotBetween(string $column, array $values, string $boolean = 'and')
-     * @method static _IH_Tag2_QB whereNotBetweenColumns(string $column, array $values, string $boolean = 'and')
-     * @method static _IH_Tag2_QB whereNotExists(\Closure $callback, string $boolean = 'and')
-     * @method static _IH_Tag2_QB whereNotIn(string $column, $values, string $boolean = 'and')
-     * @method static _IH_Tag2_QB whereNotNull(array|string $columns, string $boolean = 'and')
-     * @method static _IH_Tag2_QB whereNull(array|string $columns, string $boolean = 'and', bool $not = false)
-     * @method static _IH_Tag2_QB whereRaw(string $sql, $bindings = [], string $boolean = 'and')
-     * @method static _IH_Tag2_QB whereRowValues(array $columns, string $operator, array $values, string $boolean = 'and')
-     * @method static _IH_Tag2_QB whereTime(string $column, string $operator, \DateTimeInterface|null|string $value = null, string $boolean = 'and')
-     * @method static _IH_Tag2_QB whereYear(string $column, string $operator, \DateTimeInterface|int|null|string $value = null, string $boolean = 'and')
-     * @method static _IH_Tag2_QB with(array|string $relations, \Closure|null|string $callback = null)
-     * @method static _IH_Tag2_QB withAggregate($relations, string $column, string $function = null)
-     * @method static _IH_Tag2_QB withAvg(array|string $relation, string $column)
-     * @method static _IH_Tag2_QB withCasts(array $casts)
-     * @method static _IH_Tag2_QB withCount($relations)
-     * @method static _IH_Tag2_QB withExists(array|string $relation)
-     * @method static _IH_Tag2_QB withGlobalScope(string $identifier, \Closure|Scope $scope)
-     * @method static _IH_Tag2_QB withMax(array|string $relation, string $column)
-     * @method static _IH_Tag2_QB withMin(array|string $relation, string $column)
-     * @method static _IH_Tag2_QB withOnly($relations)
-     * @method static _IH_Tag2_QB withSum(array|string $relation, string $column)
-     * @method static _IH_Tag2_QB without($relations)
-     * @method static _IH_Tag2_QB withoutGlobalScope(Scope|string $scope)
-     * @method static _IH_Tag2_QB withoutGlobalScopes(array $scopes = null)
-     */
-    class Tag2 extends Model {}
-    
+
     /**
      * @method _IH_Team_QB newModelQuery()
      * @method _IH_Team_QB newQuery()
@@ -848,7 +1110,7 @@ namespace App\Models {
      * @method static TeamFactory factory(...$parameters)
      */
     class Team extends Model {}
-    
+
     /**
      * @method _IH_TeamInvitation_QB newModelQuery()
      * @method _IH_TeamInvitation_QB newQuery()
@@ -970,7 +1232,7 @@ namespace App\Models {
      * @method static _IH_TeamInvitation_QB withoutGlobalScopes(array $scopes = null)
      */
     class TeamInvitation extends Model {}
-    
+
     /**
      * @property int $id
      * @property string|null $name
@@ -993,9 +1255,21 @@ namespace App\Models {
      * @property string $mobile_verified_code
      * @property Carbon|null $mobile_verified_code_expire_time
      * @property-read string $profile_photo_url
+     * @property _IH_RolesShopsUsers_C|RolesShopsUsers[] $RoleShopUser
+     * @property-read int $role_shop_user_count
+     * @method HasMany|_IH_RolesShopsUsers_QB RoleShopUser()
      * @property _IH_DatabaseNotification_C|DatabaseNotification[] $notifications
      * @property-read int $notifications_count
      * @method MorphToMany|_IH_DatabaseNotification_QB notifications()
+     * @property _IH_Permission_C|Permission[] $permissions
+     * @property-read int $permissions_count
+     * @method MorphToMany|_IH_Permission_QB permissions()
+     * @property _IH_Role_C|Role[] $roles
+     * @property-read int $roles_count
+     * @method MorphToMany|_IH_Role_QB roles()
+     * @property _IH_Shop_C|Shop[] $shop
+     * @property-read int $shop_count
+     * @method BelongsToMany|_IH_Shop_QB shop()
      * @method _IH_User_QB newModelQuery()
      * @method _IH_User_QB newQuery()
      * @method static _IH_User_QB query()
@@ -1137,6 +1411,8 @@ namespace App\Models {
      * @method static _IH_User_QB withTrashed()
      * @method static _IH_User_QB onlyTrashed()
      * @method static _IH_User_QB withoutTrashed()
+     * @method static _IH_User_QB permission(array|Collection|Permission1|string $permissions)
+     * @method static _IH_User_QB role(array|Collection|Role1|string $roles, string $guard = null)
      * @method static UserFactory factory(...$parameters)
      */
     class User extends Model {}
@@ -1153,7 +1429,7 @@ namespace Illuminate\Notifications {
     use Illuminate\Pagination\Paginator;
     use LaravelIdea\Helper\Illuminate\Notifications\_IH_DatabaseNotification_C;
     use LaravelIdea\Helper\Illuminate\Notifications\_IH_DatabaseNotification_QB;
-    
+
     /**
      * @property Model $notifiable
      * @method MorphTo notifiable()
@@ -1292,7 +1568,7 @@ namespace Laravel\Jetstream {
     use Illuminate\Pagination\Paginator;
     use LaravelIdea\Helper\Laravel\Jetstream\_IH_TeamInvitation_C;
     use LaravelIdea\Helper\Laravel\Jetstream\_IH_TeamInvitation_QB;
-    
+
     /**
      * @method _IH_TeamInvitation_QB newModelQuery()
      * @method _IH_TeamInvitation_QB newQuery()
@@ -1439,7 +1715,7 @@ namespace Laravel\Passport {
     use LaravelIdea\Helper\Laravel\Passport\_IH_RefreshToken_QB;
     use LaravelIdea\Helper\Laravel\Passport\_IH_Token_C;
     use LaravelIdea\Helper\Laravel\Passport\_IH_Token_QB;
-    
+
     /**
      * @method _IH_AuthCode_QB newModelQuery()
      * @method _IH_AuthCode_QB newQuery()
@@ -1561,7 +1837,7 @@ namespace Laravel\Passport {
      * @method static _IH_AuthCode_QB withoutGlobalScopes(array $scopes = null)
      */
     class AuthCode extends Model {}
-    
+
     /**
      * @property-read null|string $plain_secret
      * @method _IH_Client_QB newModelQuery()
@@ -1685,7 +1961,7 @@ namespace Laravel\Passport {
      * @method static ClientFactory factory(...$parameters)
      */
     class Client extends Model {}
-    
+
     /**
      * @method _IH_PersonalAccessClient_QB newModelQuery()
      * @method _IH_PersonalAccessClient_QB newQuery()
@@ -1807,7 +2083,7 @@ namespace Laravel\Passport {
      * @method static _IH_PersonalAccessClient_QB withoutGlobalScopes(array $scopes = null)
      */
     class PersonalAccessClient extends Model {}
-    
+
     /**
      * @method _IH_RefreshToken_QB newModelQuery()
      * @method _IH_RefreshToken_QB newQuery()
@@ -1929,7 +2205,7 @@ namespace Laravel\Passport {
      * @method static _IH_RefreshToken_QB withoutGlobalScopes(array $scopes = null)
      */
     class RefreshToken extends Model {}
-    
+
     /**
      * @property User $user
      * @method BelongsTo|_IH_User_QB user()
@@ -2067,7 +2343,7 @@ namespace Laravel\Sanctum {
     use Illuminate\Support\Carbon;
     use LaravelIdea\Helper\Laravel\Sanctum\_IH_PersonalAccessToken_C;
     use LaravelIdea\Helper\Laravel\Sanctum\_IH_PersonalAccessToken_QB;
-    
+
     /**
      * @property int $id
      * @property int $tokenable_id
@@ -2230,7 +2506,7 @@ namespace Spatie\Permission\Models {
     use LaravelIdea\Helper\Spatie\Permission\Models\_IH_Role_QB;
     use Spatie\Permission\Contracts\Permission as Permission1;
     use Spatie\Permission\Contracts\Role as Role1;
-    
+
     /**
      * @property int $id
      * @property string $name
@@ -2370,7 +2646,7 @@ namespace Spatie\Permission\Models {
      * @method static _IH_Permission_QB role(array|Collection|Role1|string $roles, string $guard = null)
      */
     class Permission extends Model {}
-    
+
     /**
      * @property int $id
      * @property string $name

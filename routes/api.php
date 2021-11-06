@@ -22,40 +22,52 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware( 'auth:sanctum' )->get( '/v1/user', function ( Request $request ) {
+Route::middleware( 'auth:sanctum' )->get( '/v1/user', function (Request $request) {
 //    dd($request);
     return $request->user();
 }
 );
-Route::get( '/v1/testUser', function ( Request $request ) {
+Route::get( '/v1/testUser', function (Request $request) {
 //        return 11;
 //        return User::all();
 //        dd(auth()->user());
 //        return $request;
-        return auth()->user();
-    }
+    return auth()->user();
+}
 );
+Route::prefix( 'v1' )->middleware( ['auth:api'] )->group( function () {
+    Route::get( 'makeRole', function () {
+//        dd( config( 'auth.defaults.guard' ) );
+//        $role = \Spatie\Permission\Models\Role::create( ['name' => 'shopkeeper'] );
+//    $role = \Spatie\Permission\Models\Role::create(['name' => 'shopkeeper']);
+//        return $role;
 
-
-Route::post('/userRegister', [AuthController::class, 'userRegister'])->name('userRegister');
-Route::post('/userLogin', [AuthController::class, 'userLogin'])->name('userLogin');
-Route::post('/userNewToken', [AuthController::class, 'userNewToken'])->name('userNewToken');
-
-Route::group(['middleware' => ['auth:api']], function () {
-    Route::get('/userLogout', [AuthController::class, 'userLogout'])->name('userLogout');
+    }
+    );
 });
 
-Route::post('/customGrantToken', [CustomGrantController::class, 'customGrantToken'])->name('customGrantToken');
-Route::middleware(['auth:api', 'SwaggerRequest'])->post('/newTokenByRefreshToken', [CustomGrantController::class, 'newTokenByRefreshToken'])->name('newTokenByRefreshToken');
+//Route::get( '/v1/shops/{id}', function (Request $request) {return 1;} )->name( 'shops.show' );
+
+
+Route::post( '/userRegister', [AuthController::class, 'userRegister'] )->name( 'userRegister' );
+Route::post( '/userLogin', [AuthController::class, 'userLogin'] )->name( 'userLogin' );
+Route::post( '/userNewToken', [AuthController::class, 'userNewToken'] )->name( 'userNewToken' );
+
+Route::group( ['middleware' => ['auth:api']], function () {
+    Route::get( '/userLogout', [AuthController::class, 'userLogout'] )->name( 'userLogout' );
+} );
+
+Route::post( '/customGrantToken', [CustomGrantController::class, 'customGrantToken'] )->name( 'customGrantToken' );
+Route::middleware( ['auth:api', 'SwaggerRequest'] )->post( '/newTokenByRefreshToken', [CustomGrantController::class, 'newTokenByRefreshToken'] )->name( 'newTokenByRefreshToken' );
 //Route::post('/newTokenByRefreshToken', [CustomGrantController::class, 'newTokenByRefreshToken'])->name('newTokenByRefreshToken');
 //Route::middleware(['SwaggerRequest'])->post('/newTokenByRefreshToken',
 //        function (Request $request) {
 //            return response(["e" => $request, "auth" => [$request->request->all(), $request->headers->all(), $request->attributes->all()]]);
 //        }
 //    )->name('newTokenByRefreshToken');
-Route::post('/newTokenByOldToken', [CustomGrantController::class, 'newTokenByOldToken'])->name('newTokenByOldToken');
+Route::post( '/newTokenByOldToken', [CustomGrantController::class, 'newTokenByOldToken'] )->name( 'newTokenByOldToken' );
 //Route::middleware(['middleware' => 'throttle'])->post('/customGrantToken', [CustomGrantController::class, 'customGrantToken'])->name('customGrantToken');
-Route::post('/customIssueToken', [CustomAccessTokenController::class, 'customIssueToken'])->name('customIssueToken');
+Route::post( '/customIssueToken', [CustomAccessTokenController::class, 'customIssueToken'] )->name( 'customIssueToken' );
 
 //////////////////////////////////////////////
 
@@ -70,7 +82,7 @@ Route::prefix( 'v1' )->middleware( ['auth:api', 'SwaggerRequest'] )->group( func
         Route::put( 'categories/{id}', [CategoryController::class, 'update'] )->name( 'categories.update' );
         Route::delete( 'categories/{id}', [CategoryController::class, 'destroy'] )->name( 'categories.destroy' );
 
-    });
+    } );
 
     Route::prefix( 'shop' )->group( function () {
         Route::get( 'tags', [tagController::class, 'index'] )->name( 'tags.index' );
@@ -78,7 +90,7 @@ Route::prefix( 'v1' )->middleware( ['auth:api', 'SwaggerRequest'] )->group( func
         Route::get( 'tags/{id}', [tagController::class, 'show'] )->name( 'tags.show' );
         Route::put( 'tags/{id}', [tagController::class, 'update'] )->name( 'tags.update' );
         Route::delete( 'tags/{id}', [tagController::class, 'destroy'] )->name( 'tags.destroy' );
-    });
+    } );
 
     Route::get( 'shops', [shopController::class, 'index'] )->name( 'shops.index' );
     Route::post( 'shops', [shopController::class, 'store'] )->name( 'shops.store' );
@@ -86,54 +98,35 @@ Route::prefix( 'v1' )->middleware( ['auth:api', 'SwaggerRequest'] )->group( func
     Route::put( 'shops/{id}', [shopController::class, 'update'] )->name( 'shops.update' );
     Route::delete( 'shops/{id}', [shopController::class, 'destroy'] )->name( 'shops.destroy' );
 
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+} );
 
 
 //////////////////////////////////////////////////////////////
-Route::get('/v1/current', function ( Request $request) {
-    return auth()->guard('api')->user()->email;
-});
+Route::get( '/v1/current', function (Request $request) {
+    return auth()->guard( 'api' )->user()->email;
+} );
 
-Route::get('/v1/exception', function ( Request $request) {
+Route::get( '/v1/exception', function (Request $request) {
     try
     {
-        throw new MyExceptionAlias(' MY Exception; ');
+        throw new MyExceptionAlias( ' MY Exception; ' );
     }
-    catch (MyExceptionAlias $ex) {
-        report($ex);
+    catch (MyExceptionAlias $ex)
+    {
+        report( $ex );
     }
     return 'get';
-});
+} );
 
-Route::middleware(['auth:api', 'activeUser'])->get('/v1/user/{id}', function ( Request $request, $id) {
+Route::middleware( ['auth:api', 'activeUser'] )->get( '/v1/user/{id}', function (Request $request, $id) {
 //    $a = 5/0;
 //    return auth()->user();
 //    return 2;
-    $user = User::findOrFail($id);
+    $user = User::findOrFail( $id );
 
 //    $user = User::query()->findOrFail($id);
 
     return $user;
-})->name('user by id');
+} )->name( 'user by id' );
 
 

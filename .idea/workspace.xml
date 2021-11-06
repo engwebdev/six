@@ -4,22 +4,170 @@
     <option name="SPLITTER_PROPORTION" value="0.6052632" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d343e4e-b2a9-4dd0-8969-d76dec06ab9f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/shopController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Resources/ShopCollection.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Resources/ShopResource.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2021_09_29_163435_add_another_colmun_shops_table.php" afterDir="false" />
+    <list default="true" id="4d343e4e-b2a9-4dd0-8969-d76dec06ab9f" name="Default Changelist" comment="13">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CategoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CategoryController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/tagController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/tagController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/CategoryCollection.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/CategoryCollection.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/CategoryResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/CategoryResource.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/shopController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/shopController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Shop.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Shop.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Tag.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Tag.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/l5-swagger.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/l5-swagger.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/api-docs/api-docs.json" beforeDir="false" afterPath="$PROJECT_DIR$/storage/api-docs/api-docs.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X0280ca24c157a1b17bb9c6fd39ee0d33.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X04a481433137978f8d929de46461df5c.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X06797c8b333998a10f8d27549c27313c.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X08e717877145c5b4e06ae02bf982b186.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X0b0a5acc80d26f23da817675f30001c6.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X0d36675ad5ed70e28df980ac4a1dd083.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X0db75dabbfeed55cc01d919b32ee7821.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X0e9a72d7681f10ba1b3016b306ae679d.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X1109519a5040823e317fce0bc41b8e94.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X112e3ee0f14d972284f0dd8aa32ab52a.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X11323d61cd33eb891f40eb71d2728ce5.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X124fe4146fcc388c5026970feacbfdb4.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X137299101a48e13f5161d3a9727125a5.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X15c012c50d96853984f3dbac4139a3ee.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X1805bad58e3d6f8d44fab2549b7747b9.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X1a0b0219a3e3840b34c49c914c0705b9.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X1bd1efe6f4553e5a4062c2b5a302f1af.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X1bea8e1708bcc1dbbdca74369f1f210c.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X1dd5c8936afd2a7246f5dc3c7eecf3f3.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X1f0235a4c85a6059cf119bd2c20f25ae.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X1fcbf536e27f00b3a71cbae8a1ee17a7.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X20b9216a4d27d6bb4217a2d73d7a13c3.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X21ade401670b1521d4cbec25afdc5140.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X237066bd41d7901eceba5f35f3877478.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X2704ec4ab5eaf5e5316ef61a7c26e496.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X2b043c814798c2f2681ce1fc844b85f6.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X2cf05c43019c04a12fde826bcc466155.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X2e48b696aaf84c8f8efaf8e129a0d6d4.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X2ec3efb9e4325657f2ec556ba6b9fa51.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X313fc651e4b28c4269039dc0b1871084.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X31a2c39a4e981e2c187890010c51c132.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X355dc7bb835b081abe6ee3bc61b37a33.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X3878893515bed8ef652677169d21b50b.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X3bdeb9be53322461158197d96c4e8c64.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X3cca0be20b11a4cb39b76b5387415d5e.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X3d17269f4b4912d96a164e241950aa13.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X3e18582c74c46fb29c5de68ce6058a4d.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X3f2d5392d46b685b1c614f7f9bfeaef1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X3f9f1a4582f852d74e78b27097d7dfe9.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X40a4cff149e8742a8f782cdbf9707f3d.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X40efb8866c575c80ffbdcea596c923a7.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X424add2b0b35372925aaa16393a11fbb.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X44b8b9375a3681524db8c4ff8e92ed6b.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X46337589cd6fb5a83729d1279d00934c.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X46db81b2e487990222797d2ee2a4a9fa.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X497273a01dd84742ef2ee85f253a28a7.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X4ce7a9131f9dae2bc69ea5f7199098b6.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X4e629d2d85e0335da1f39671f701d187.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X4ea1e58998234a6a733f19c0134eb313.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X504e5251404de3e8d9d23f2cf8792b54.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X518ea0340d133ad08725c722d34c4e94.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X528ddd6b9f79e0f6a68d105208fc81ca.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X5643852ffb798223cee8dc9f050aff66.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X57b63c2b44b09cdc8124a26c2337dffa.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X58d15bdcfc0c0a104b25c0747724af34.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X5b05dae885207180c5110b695cd649fb.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X5ea2dfb951bcc04820dc03fc6b0d0c05.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X61689626080caa3208d005e810714667.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X646ef10969f1117f7f933944b2f30d1a.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X650433b28f5de08bcc939d86da6e9e59.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X65e5b8f3896cdec2caf9511c019faa4c.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X6710bc969266bf24a1d7f9445e3b759e.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X6750a6109e55e6ca5c7394d914950087.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X6774c660bbe704724120abf367528676.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X6b88f5e4fc0df92d6ee532701854b800.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X6d27fb881672ca22e0c4392fb2d1b6f0.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X6e4537666a3367528c8432e08f9adba6.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X71884af211c217a90f60763dfd68fbdb.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X728a0e44d4fab9a06a9337532a43eca3.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X73399a217c2d58bc67d465d65462451b.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X7ac13081dd9de5a954bfeec265a96f69.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X7c4bda3bbb6d4002b082545caaec73c7.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X7cbecad22529f10f3066e660c3608e6c.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X7df1f0ffa029457f5ffa10de99785fec.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X7dfe2081f1b30a7f9ca8c1c58ef654f4.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X81a0c7d18a249034569f01eef5b5e1b2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X82604c06e0f79c31cb54c8e7a9b26ed6.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X827d912ce286752a6b1de395503c5b27.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X882d6f4b42cb1a9dc4756b4d41309dd3.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X8855e4e9ef9599cce5606f3e6d4658ce.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X890705768aa96944f4b2f85740229409.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X89f6747ea822e16e0a961b1b328201aa.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X8c90c6afd50bf873f5e6edcaaa43f9db.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X8e9926849741ce5df7dbba6a3ec8c6c1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X8f1554b48b035d5ffc4aa57261e07943.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X8f4c9ff795a4096c277002b4aee56f98.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X9261dd9a6364a4badd4d9885d5346b68.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X95c070bcc0457f08e3277bea384fd164.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X9b1e9ef81b27cf03af8a7a321861b198.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X9efa73ed5fd803ff61ce44174e855bba.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X9fe0a50ab06df8cc42cfb66226c92745.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/Xa0463a420a78fa269e16b30b0dcf3a84.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/Xa0c51f63d14fa82566c0d97520612b8f.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/Xa383af19fb931c90a26c798173709eb0.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/Xa417bded62aae12f3b043160d49e701f.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/Xa44af65dc9fc66f1965c9cf2b8f7e5a3.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/Xa632aa9654691a093f0c3389ab47245b.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/Xa94cba7c681857a857bf85de3c4b2aa7.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/Xacc1bf3815b3a0eeefc02f21bd1463b6.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/Xad0c880ca0e031ff98d244ea3bc46745.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/Xb0ae467f57ffd8e4dffd3d2ccc76b83f.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/Xb131a46c814e998cc7d6494db3ca3c3f.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/Xb1d2dea7a1d1a4b4f83c19abf2e6b935.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/Xb2f57623400b768e987edeedd03f5f08.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/Xb97540d0a58a267b5e4b5265d499e9fe.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/Xbae06f51e7190ad4d02e4ebf3870482c.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/Xbc16aa80a0f986c2d3de32abb71ce0a5.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/Xbca7708405c64d8e1cf4b6eca1f35eed.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/Xbe97fef60c2c28e29f081a9409013f2f.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/Xc25896164b3aea2ad8db4c4c8b0055da.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/Xc4fb30673e967d299a17cf5210840a05.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/Xc6bffe3ff849dac7d4ab08cc4de01a3d.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/Xc73e2eafd8aaea97b7b3610cdbc34514.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/Xc86c9b2db09b80084c6512aecc2a0628.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/Xc9759d3c39902f66d444fad293531daf.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/Xcf5c30cb6ae883433792baa7b285ca5f.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/Xd1097a6bb274950f413fd67dd9b5ff9a.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/Xd2accaf1838671a0b03a162738c4375e.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/Xd35d15227fbf1183be56e369fd7301d1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/Xd64930279492d1aab8c5c02f7fed1e6a.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/Xda679c46f9c2fada9914d28a32f216b3.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/Xdabf4303a2b9e7dd16a4f394876585e5.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/Xe09160f43cc402474e6266ec7ffe6bea.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/Xe0e1d6f4dcec7e1357f3bb296d7ba494.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/Xe37763e017c6c14b8bde7384692b47d8.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/Xe85a991cf44a751b62b7a55f9d5ed9fe.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/Xe980ec12f2a56fcb8e543a365e0d12b5.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/Xe99a85b7bdedd9604fcf37cff1f32d4c.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/Xea315690c154ea4ca73cc7c78f83460d.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/Xea88296e6171b70e087fec3f9bcf12e4.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/Xec5f4c3f0344a8ed64719f4cc480dffd.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/Xee89a1fc197c5da777bb01e82e0b40f2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/Xeeff6c70c4a6b3f1f27b09a44d8c086a.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/Xf10c64ab388a106d4a05c33665b1b0fe.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/Xf1ae72de73be4c542a958057042e6fb3.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/Xf3733236aa16f669ab6d13f25cf4abcc.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/Xf3d71dee37ba289d62ba898a506e7bf9.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/Xf4f1bda14569d377f70dded7a50358ad.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/Xf5c738d8632bcb57a072dc21e0444c21.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/Xf6a02ce2dd648c246ddd1d50933440d9.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/Xf9123da8f59bf328ba858ce9a40a7f14.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/Xf9a931dc1b34dedd42b7fc073eb58792.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/Xfbc00274161487640ec8007b322dfe64.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/Xfbec0faaed56b79960f07446ae398213.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/Xfc6dedb856a0139726906f85f44b6664.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/Xfc9e1cbfad48ac499a97b7b18a33290b.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/Xff1e689489f56c1523f9b1cb6012fd85.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/Xff36e3f107f7ac9799a1e4e6c96cc629.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/Xff602e15118ac4662b4156563e1d8ea4.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/cache/data/31/f9/31f930cc1bc2882a18958bee5f8ccae60ba9492f" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/cache/data/31/f9/31f930cc1bc2882a18958bee5f8ccae60ba9492f" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/cache/data/60/25/60258c940f591d805fdfefc02a56944855011790" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/cache/data/60/25/60258c940f591d805fdfefc02a56944855011790" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/cache/data/71/14/71142ff14443f2bdb224a7d518967ceff2c666b8" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/cache/data/71/14/71142ff14443f2bdb224a7d518967ceff2c666b8" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/cache/data/97/a0/97a0205ac4fc64da4f85165b4bf40b9e140d1e00" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/cache/data/97/a0/97a0205ac4fc64da4f85165b4bf40b9e140d1e00" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/5b977b98339b6d1a4e95f027fd48d61cefdcf40f.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/5b977b98339b6d1a4e95f027fd48d61cefdcf40f.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/logs/laravel.log" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/laravel.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_model_builders.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_model_builders.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_models.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_models.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_static.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vendor/composer/package-versions-deprecated/src/PackageVersions/Versions.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/package-versions-deprecated/src/PackageVersions/Versions.php" afterDir="false" />
@@ -245,7 +393,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/database/factories" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Confirmation" />
+    <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\PhpStorm 2019.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
@@ -564,7 +712,17 @@
         <serviceView>
           <option name="contentProportion" value="0.17473821" />
           <treeState>
-            <expand />
+            <expand>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="root:six@localhost" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              </path>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="root:six@localhost" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+                <item name="com.intellij.database.console.session.MessageBusSession@448c2b56" type="9fbbdea:ServiceModel$ServiceNode" />
+              </path>
+            </expand>
             <select />
           </treeState>
         </serviceView>
@@ -625,7 +783,10 @@
       <workItem from="1633872138030" duration="2813000" />
       <workItem from="1634275003196" duration="21427000" />
       <workItem from="1634616244811" duration="34184000" />
-      <workItem from="1635565972160" duration="542000" />
+      <workItem from="1635565972160" duration="16203000" />
+      <workItem from="1635592180369" duration="50140000" />
+      <workItem from="1635862628372" duration="2172000" />
+      <workItem from="1635865526181" duration="16641000" />
     </task>
     <task id="LOCAL-00001" summary="1">
       <created>1628849277468</created>
@@ -711,7 +872,14 @@
       <option name="project" value="LOCAL" />
       <updated>1632893077683</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="13">
+      <created>1635566560723</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1635566560723</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -744,7 +912,8 @@
     <MESSAGE value="10" />
     <MESSAGE value="11" />
     <MESSAGE value="12" />
-    <option name="LAST_COMMIT_MESSAGE" value="12" />
+    <MESSAGE value="13" />
+    <option name="LAST_COMMIT_MESSAGE" value="13" />
   </component>
   <component name="WindowStateProjectService">
     <state x="309" y="37" key="#CLI_Interpreters" timestamp="1630122390985">
@@ -756,43 +925,28 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="392" y="88" key="#HTTP_Proxy/0.0.1600.860@0.0.1600.860" timestamp="1627298988828" />
-    <state x="275" y="22" key="#Inspections" timestamp="1630868118902">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="-1278" y="26" key="#Inspections" timestamp="1635591826260">
+      <screen x="-1600" y="0" width="1600" height="860" />
     </state>
     <state x="275" y="22" key="#Inspections/0.0.1366.728@0.0.1366.728" timestamp="1630868118902" />
+    <state x="-1278" y="26" key="#Inspections/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1635591826260" />
     <state x="322" y="26" key="#Inspections/0.0.1600.860@0.0.1600.860" timestamp="1628679072668" />
     <state x="275" y="0" width="816" height="728" key="#Intentions" timestamp="1630680305180">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="275" y="0" width="816" height="728" key="#Intentions/0.0.1366.728@0.0.1366.728" timestamp="1630680305180" />
-    <state x="545" y="112" key="#Mess_Detector_Ignored_Files" timestamp="1626613047249">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state x="545" y="112" key="#Mess_Detector_Ignored_Files/0.0.1600.860@0.0.1600.860" timestamp="1626613047249" />
     <state x="392" y="88" key="#Notifications" timestamp="1632550976684">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="392" y="88" key="#Notifications/0.0.1600.860/-1600.0.1600.860@0.0.1600.860" timestamp="1632550976684" />
-    <state x="392" y="88" key="#Notifications/0.0.1600.860@0.0.1600.860" timestamp="1626620018397" />
-    <state x="502" y="38" key="#PHP" timestamp="1626614724478">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state x="502" y="38" key="#PHP/0.0.1600.860@0.0.1600.860" timestamp="1626614724478" />
-    <state x="533" y="108" key="#PHP_CodeSniffer" timestamp="1626613817592">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state x="533" y="108" key="#PHP_CodeSniffer/0.0.1600.860@0.0.1600.860" timestamp="1626613817592" />
-    <state x="309" y="96" key="#PHP_CodeSniffer_Ignored_Files" timestamp="1626613039993">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state x="309" y="96" key="#PHP_CodeSniffer_Ignored_Files/0.0.1600.860@0.0.1600.860" timestamp="1626613039993" />
     <state x="392" y="88" key="#Servers" timestamp="1627293964625">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="392" y="88" key="#Servers/0.0.1600.860@0.0.1600.860" timestamp="1627293964625" />
-    <state x="345" y="61" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1627295550014">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state x="-1255" y="61" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1635862145188">
+      <screen x="-1600" y="0" width="1600" height="860" />
     </state>
+    <state x="-1255" y="61" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1635862145188" />
     <state x="345" y="61" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1600.860@0.0.1600.860" timestamp="1627295550014" />
     <state x="491" y="134" width="1078" height="591" key="#com.intellij.featureStatistics.actions.ShowFeatureUsageStatisticsDialog" timestamp="1627278756430">
       <screen x="0" y="0" width="1600" height="860" />
@@ -802,28 +956,23 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="628" y="272" key="#com.intellij.ide.actions.DebugLogConfigureAction/0.0.1600.860@0.0.1600.860" timestamp="1627278887036" />
-    <state x="572" y="93" key="#com.intellij.ide.util.MemberChooser" timestamp="1632052504821">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state x="-1028" y="93" key="#com.intellij.ide.util.MemberChooser" timestamp="1635594674147">
+      <screen x="-1600" y="0" width="1600" height="860" />
     </state>
     <state x="488" y="79" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1630870568974" />
+    <state x="-1028" y="93" key="#com.intellij.ide.util.MemberChooser/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1635594674147" />
     <state x="572" y="93" key="#com.intellij.ide.util.MemberChooser/0.0.1600.860/-1600.0.1600.860@0.0.1600.860" timestamp="1632052504821" />
-    <state x="524" y="231" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1626614654718">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state x="-1280" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1635591735828">
+      <screen x="-1600" y="0" width="1600" height="860" />
     </state>
-    <state x="524" y="231" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1600.860@0.0.1600.860" timestamp="1626614654718" />
-    <state x="320" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1632044322559">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
+    <state x="-1280" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1635591735828" />
     <state x="320" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1600.860/-1600.0.1600.860@0.0.1600.860" timestamp="1632044322559" />
     <state x="320" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1600.860@0.0.1600.860" timestamp="1628520283030" />
-    <state x="721" y="284" key="#com.intellij.tools.ToolEditorDialog" timestamp="1626615896140">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state x="721" y="284" key="#com.intellij.tools.ToolEditorDialog/0.0.1600.860@0.0.1600.860" timestamp="1626615896140" />
-    <state x="483" y="139" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1633530495382">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state x="-1117" y="139" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1635667385511">
+      <screen x="-1600" y="0" width="1600" height="860" />
     </state>
     <state x="412" y="118" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.728@0.0.1366.728" timestamp="1630870909333" />
+    <state x="-1117" y="139" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1635667385511" />
     <state x="483" y="139" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1600.860/-1600.0.1600.860@0.0.1600.860" timestamp="1633530495382" />
     <state x="483" y="139" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1600.860@0.0.1600.860" timestamp="1631108677772" />
     <state x="580" y="355" key="#com.jetbrains.php.lang.intentions.PhpImportClassDialog#" timestamp="1631084876737">
@@ -834,17 +983,13 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="558" y="291" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1600.860/-1600.0.1600.860@0.0.1600.860" timestamp="1632051667685" />
-    <state x="558" y="291" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1600.860@0.0.1600.860" timestamp="1626517157072" />
-    <state x="326" y="0" key="CommitChangelistDialog2" timestamp="1632893075732">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state x="-1274" y="0" key="CommitChangelistDialog2" timestamp="1635870051223">
+      <screen x="-1600" y="0" width="1600" height="860" />
     </state>
     <state x="278" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1628850717056" />
+    <state x="-1274" y="0" key="CommitChangelistDialog2/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1635870051223" />
     <state x="326" y="0" key="CommitChangelistDialog2/0.0.1600.860/-1600.0.1600.860@0.0.1600.860" timestamp="1632893075732" />
     <state x="326" y="0" key="CommitChangelistDialog2/0.0.1600.860@0.0.1600.860" timestamp="1631528617231" />
-    <state x="757" y="349" key="ComposerInitDialogKey" timestamp="1626614721421">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state x="757" y="349" key="ComposerInitDialogKey/0.0.1600.860@0.0.1600.860" timestamp="1626614721421" />
     <state x="645" y="336" key="Create Controller" timestamp="1632051413628">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -861,84 +1006,51 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="645" y="308" key="Create Resource Controller/0.0.1600.860/-1600.0.1600.860@0.0.1600.860" timestamp="1632052205023" />
-    <state width="254" height="195" key="DatabaseViewActions_Filter" timestamp="1626616460117">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state width="254" height="195" key="DatabaseViewActions_Filter/0.0.1600.860@0.0.1600.860" timestamp="1626616460117" />
     <state width="704" height="442" key="Diff.GoToChangePopup" timestamp="1628143866596">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="704" height="442" key="Diff.GoToChangePopup/0.0.1366.728@0.0.1366.728" timestamp="1628143866596" />
-    <state x="92" y="92" width="1416" height="676" key="DiffContextDialog" timestamp="1630905855701">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state x="-1508" y="92" width="1416" height="676" key="DiffContextDialog" timestamp="1635592017699">
+      <screen x="-1600" y="0" width="1600" height="860" />
     </state>
     <state x="79" y="78" width="1209" height="573" key="DiffContextDialog/0.0.1366.728@0.0.1366.728" timestamp="1630870745263" />
+    <state x="-1508" y="92" width="1416" height="676" key="DiffContextDialog/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1635592017699" />
     <state x="92" y="92" width="1416" height="676" key="DiffContextDialog/0.0.1600.860@0.0.1600.860" timestamp="1630905855701" />
-    <state x="687" y="215" key="EnvironmentVariablesDialog" timestamp="1626615977525">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state x="687" y="215" key="EnvironmentVariablesDialog/0.0.1600.860@0.0.1600.860" timestamp="1626615977525" />
-    <state x="516" y="91" key="FileChooserDialogImpl" timestamp="1630867836717">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="-996" y="108" key="FileChooserDialogImpl" timestamp="1635863330270">
+      <screen x="-1600" y="0" width="1600" height="860" />
     </state>
     <state x="516" y="91" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1630867836717" />
+    <state x="-996" y="108" key="FileChooserDialogImpl/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1635863330269" />
     <state x="622" y="308" key="FileChooserDialogImpl/0.0.1600.860@0.0.1600.860" timestamp="1627280150030" />
-    <state x="555" y="330" key="Generate Helper Code" timestamp="1632562602706">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state x="-1045" y="330" key="Generate Helper Code" timestamp="1635841953870">
+      <screen x="-1600" y="0" width="1600" height="860" />
     </state>
+    <state x="-1045" y="330" key="Generate Helper Code/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1635841953870" />
     <state x="555" y="330" key="Generate Helper Code/0.0.1600.860/-1600.0.1600.860@0.0.1600.860" timestamp="1632562602706" />
-    <state width="1260" height="276" key="GridCell.Tab.0.bottom" timestamp="1629725152472">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state width="1260" height="275" key="GridCell.Tab.0.bottom" timestamp="1635923901293">
+      <screen x="-1600" y="0" width="1600" height="860" />
     </state>
     <state width="1067" height="224" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1628067641996" />
+    <state width="1260" height="275" key="GridCell.Tab.0.bottom/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1635923901293" />
     <state width="1260" height="276" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1629725152472" />
-    <state width="1260" height="276" key="GridCell.Tab.0.center" timestamp="1629725152472">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state width="1260" height="275" key="GridCell.Tab.0.center" timestamp="1635923901293">
+      <screen x="-1600" y="0" width="1600" height="860" />
     </state>
     <state width="1067" height="224" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1628067641996" />
+    <state width="1260" height="275" key="GridCell.Tab.0.center/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1635923901293" />
     <state width="1260" height="276" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1629725152472" />
-    <state width="1260" height="276" key="GridCell.Tab.0.left" timestamp="1629725152471">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state width="1260" height="275" key="GridCell.Tab.0.left" timestamp="1635923901293">
+      <screen x="-1600" y="0" width="1600" height="860" />
     </state>
     <state width="1067" height="224" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1628067641995" />
+    <state width="1260" height="275" key="GridCell.Tab.0.left/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1635923901293" />
     <state width="1260" height="276" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1629725152471" />
-    <state width="1260" height="276" key="GridCell.Tab.0.right" timestamp="1629725152472">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state width="1260" height="275" key="GridCell.Tab.0.right" timestamp="1635923901293">
+      <screen x="-1600" y="0" width="1600" height="860" />
     </state>
     <state width="1067" height="224" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1628067641996" />
+    <state width="1260" height="275" key="GridCell.Tab.0.right/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1635923901293" />
     <state width="1260" height="276" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1629725152472" />
-    <state width="1557" height="276" key="GridCell.Tab.1.bottom" timestamp="1626517280609">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state width="1557" height="276" key="GridCell.Tab.1.bottom/0.0.1600.860@0.0.1600.860" timestamp="1626517280609" />
-    <state width="1557" height="276" key="GridCell.Tab.1.center" timestamp="1626517280608">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state width="1557" height="276" key="GridCell.Tab.1.center/0.0.1600.860@0.0.1600.860" timestamp="1626517280608" />
-    <state width="1557" height="276" key="GridCell.Tab.1.left" timestamp="1626517280608">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state width="1557" height="276" key="GridCell.Tab.1.left/0.0.1600.860@0.0.1600.860" timestamp="1626517280608" />
-    <state width="1557" height="276" key="GridCell.Tab.1.right" timestamp="1626517280609">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state width="1557" height="276" key="GridCell.Tab.1.right/0.0.1600.860@0.0.1600.860" timestamp="1626517280609" />
-    <state width="1557" height="276" key="GridCell.Tab.2.bottom" timestamp="1626517280609">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state width="1557" height="276" key="GridCell.Tab.2.bottom/0.0.1600.860@0.0.1600.860" timestamp="1626517280609" />
-    <state width="1557" height="276" key="GridCell.Tab.2.center" timestamp="1626517280609">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state width="1557" height="276" key="GridCell.Tab.2.center/0.0.1600.860@0.0.1600.860" timestamp="1626517280609" />
-    <state width="1557" height="276" key="GridCell.Tab.2.left" timestamp="1626517280609">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state width="1557" height="276" key="GridCell.Tab.2.left/0.0.1600.860@0.0.1600.860" timestamp="1626517280609" />
-    <state width="1557" height="276" key="GridCell.Tab.2.right" timestamp="1626517280609">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state width="1557" height="276" key="GridCell.Tab.2.right/0.0.1600.860@0.0.1600.860" timestamp="1626517280609" />
     <state x="555" y="210" key="NewPhpClassDialog" timestamp="1631085325918">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -947,28 +1059,26 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="634" y="353" key="NewPhpFileDialog/0.0.1600.860@0.0.1600.860" timestamp="1630468086867" />
-    <state x="532" y="235" key="PHPComposerAddDependencyDialogDimensionKey" timestamp="1626614894091">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state x="532" y="235" key="PHPComposerAddDependencyDialogDimensionKey/0.0.1600.860@0.0.1600.860" timestamp="1626614894091" />
     <state x="314" y="188" width="895" height="356" key="Performance.Activity.Monitor" timestamp="1627278863722">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="314" y="188" width="895" height="356" key="Performance.Activity.Monitor/0.0.1600.860@0.0.1600.860" timestamp="1627278863722" />
-    <state x="383" y="0" key="SettingsEditor" timestamp="1632923792469">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state x="-1217" y="0" key="SettingsEditor" timestamp="1635924248945">
+      <screen x="-1600" y="0" width="1600" height="860" />
     </state>
     <state x="186" y="12" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1630870103801" />
+    <state x="-1217" y="0" key="SettingsEditor/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1635924248945" />
     <state x="383" y="0" key="SettingsEditor/0.0.1600.860/-1600.0.1600.860@0.0.1600.860" timestamp="1632923792469" />
     <state x="383" y="0" key="SettingsEditor/0.0.1600.860@0.0.1600.860" timestamp="1631517688705" />
     <state x="647" y="345" key="VCS.ChangelistChooser" timestamp="1631688745258">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="647" y="345" key="VCS.ChangelistChooser/0.0.1600.860@0.0.1600.860" timestamp="1631688745258" />
-    <state x="322" y="100" key="Vcs.Push.Dialog.v2" timestamp="1632893079429">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state x="-1278" y="100" key="Vcs.Push.Dialog.v2" timestamp="1635566563791">
+      <screen x="-1600" y="0" width="1600" height="860" />
     </state>
     <state x="275" y="85" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1628850937221" />
+    <state x="-1278" y="100" key="Vcs.Push.Dialog.v2/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1635566563791" />
     <state x="322" y="100" key="Vcs.Push.Dialog.v2/0.0.1600.860/-1600.0.1600.860@0.0.1600.860" timestamp="1632893079429" />
     <state x="322" y="100" key="Vcs.Push.Dialog.v2/0.0.1600.860@0.0.1600.860" timestamp="1631528623715" />
     <state x="562" y="149" key="com.intellij.database.view.ui.DbObjectDialog" timestamp="1627456305309">
@@ -980,10 +1090,11 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="486" y="134" key="com.intellij.execution.console.ConsoleHistoryController$MyBrowseAction$1/0.0.1600.860@0.0.1600.860" timestamp="1627371081752" />
-    <state x="92" y="92" width="1416" height="676" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1630905855701">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state x="-1508" y="92" width="1416" height="676" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1635667461077">
+      <screen x="-1600" y="0" width="1600" height="860" />
     </state>
     <state x="79" y="78" width="1209" height="573" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog/0.0.1366.728@0.0.1366.728" timestamp="1630870745263" />
+    <state x="-1508" y="92" width="1416" height="676" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1635667461077" />
     <state x="92" y="92" width="1416" height="676" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog/0.0.1600.860@0.0.1600.860" timestamp="1630905855701" />
     <state x="108" y="109" width="1385" height="643" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1634625611418">
       <screen x="0" y="0" width="1600" height="860" />
@@ -1011,10 +1122,11 @@
     <state x="389" y="165" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1634291576703" />
     <state x="456" y="195" key="run.anything.popup/0.0.1600.860/-1600.0.1600.860@0.0.1600.860" timestamp="1632575086550" />
     <state x="456" y="195" key="run.anything.popup/0.0.1600.860@0.0.1600.860" timestamp="1634552182017" />
-    <state x="433" y="80" width="789" height="801" key="search.everywhere.popup" timestamp="1634651197246">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state x="-1167" y="80" width="789" height="801" key="search.everywhere.popup" timestamp="1635665064787">
+      <screen x="-1600" y="0" width="1600" height="860" />
     </state>
     <state x="346" y="49" width="674" height="679" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1630868229466" />
+    <state x="-1167" y="80" width="789" height="801" key="search.everywhere.popup/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1635665064787" />
     <state x="433" y="80" width="789" height="801" key="search.everywhere.popup/0.0.1600.860/-1600.0.1600.860@0.0.1600.860" timestamp="1634651197246" />
     <state x="433" y="80" width="789" height="801" key="search.everywhere.popup/0.0.1600.860@0.0.1600.860" timestamp="1631690428665" />
   </component>

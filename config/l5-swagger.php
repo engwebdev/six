@@ -78,7 +78,7 @@ return [
                     VerifyCsrfToken::class,
                     SubstituteBindings::class,
                     CreateFreshApiToken::class,
-//                    'auth',
+                    'auth',
 
                 ],
                 'asset' => [],

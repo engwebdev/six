@@ -341,8 +341,9 @@ namespace LaravelIdea\Helper\App\Models {
 
     use App\Models\Category;
     use App\Models\Membership;
+    use App\Models\NormalProduct;
+    use App\Models\RolesShopsUsers;
     use App\Models\Shop;
-    use App\Models\Tag2;
     use App\Models\Tag;
     use App\Models\Team;
     use App\Models\TeamInvitation;
@@ -351,8 +352,11 @@ namespace LaravelIdea\Helper\App\Models {
     use Illuminate\Database\Query\Expression;
     use Illuminate\Pagination\LengthAwarePaginator;
     use Illuminate\Pagination\Paginator;
+    use Illuminate\Support\Collection;
     use LaravelIdea\Helper\_BaseBuilder;
     use LaravelIdea\Helper\_BaseCollection;
+    use Spatie\Permission\Contracts\Permission;
+    use Spatie\Permission\Contracts\Role;
     
     /**
      * @method Category shift(int $count = 1)
@@ -466,6 +470,147 @@ namespace LaravelIdea\Helper\App\Models {
     class _IH_Membership_QB extends _BaseBuilder {}
     
     /**
+     * @method NormalProduct shift(int $count = 1)
+     * @method NormalProduct pop(int $count = 1)
+     * @method NormalProduct get($key, $default = null)
+     * @method NormalProduct pull($key, $default = null)
+     * @method NormalProduct first(callable $callback = null, $default = null)
+     * @method NormalProduct firstWhere(string $key, $operator = null, $value = null)
+     * @method NormalProduct find($key, $default = null)
+     * @method NormalProduct[] all()
+     * @method NormalProduct last(callable $callback = null, $default = null)
+     */
+    class _IH_NormalProduct_C extends _BaseCollection {
+        /**
+         * @param int $size
+         * @return NormalProduct[][]
+         */
+        public function chunk($size)
+        {
+            return [];
+        }
+    }
+    
+    /**
+     * @method _IH_NormalProduct_QB whereId($value)
+     * @method _IH_NormalProduct_QB whereProductName($value)
+     * @method _IH_NormalProduct_QB whereProductDescription($value)
+     * @method _IH_NormalProduct_QB whereProductInfo($value)
+     * @method _IH_NormalProduct_QB whereProductNote($value)
+     * @method _IH_NormalProduct_QB whereProductStatusAccept($value)
+     * @method _IH_NormalProduct_QB whereProductStatusConfirmUserId($value)
+     * @method _IH_NormalProduct_QB whereProductStatusConfirmUserComment($value)
+     * @method _IH_NormalProduct_QB whereProductStatusPublish($value)
+     * @method _IH_NormalProduct_QB whereProductStatusPublishDate($value)
+     * @method _IH_NormalProduct_QB whereProductLastPrice($value)
+     * @method _IH_NormalProduct_QB whereProductLastPriceDate($value)
+     * @method _IH_NormalProduct_QB whereProductStatusPriceDiscount($value)
+     * @method _IH_NormalProduct_QB whereProductLastPriceDiscountPercentage($value)
+     * @method _IH_NormalProduct_QB whereProductLastPriceDiscountType($value)
+     * @method _IH_NormalProduct_QB whereProductIndexImageUrl($value)
+     * @method _IH_NormalProduct_QB whereProductCategoryId($value)
+     * @method _IH_NormalProduct_QB whereProductShopId($value)
+     * @method _IH_NormalProduct_QB whereProductRegistryShopkeeperId($value)
+     * @method _IH_NormalProduct_QB whereProductQuantityTotal($value)
+     * @method _IH_NormalProduct_QB whereProductQuantitySold($value)
+     * @method _IH_NormalProduct_QB whereProductQuantitySelling($value)
+     * @method _IH_NormalProduct_QB whereProductQuantityReturned($value)
+     * @method _IH_NormalProduct_QB whereProductNumberComments($value)
+     * @method _IH_NormalProduct_QB whereProductTotalPoints($value)
+     * @method _IH_NormalProduct_QB whereProductAveragePoints($value)
+     * @method _IH_NormalProduct_QB whereProductLastPoint($value)
+     * @method _IH_NormalProduct_QB whereDeletedAt($value)
+     * @method _IH_NormalProduct_QB whereCreatedAt($value)
+     * @method _IH_NormalProduct_QB whereUpdatedAt($value)
+     * @method NormalProduct baseSole(array|string $columns = ['*'])
+     * @method NormalProduct create(array $attributes = [])
+     * @method _IH_NormalProduct_C|NormalProduct[] cursor()
+     * @method NormalProduct|null find($id, array $columns = ['*'])
+     * @method _IH_NormalProduct_C|NormalProduct[] findMany(array|Arrayable $ids, array $columns = ['*'])
+     * @method NormalProduct findOrFail($id, array $columns = ['*'])
+     * @method NormalProduct findOrNew($id, array $columns = ['*'])
+     * @method NormalProduct first(array|string $columns = ['*'])
+     * @method NormalProduct firstOr(array|\Closure $columns = ['*'], \Closure $callback = null)
+     * @method NormalProduct firstOrCreate(array $attributes = [], array $values = [])
+     * @method NormalProduct firstOrFail(array $columns = ['*'])
+     * @method NormalProduct firstOrNew(array $attributes = [], array $values = [])
+     * @method NormalProduct firstWhere(array|\Closure|Expression|string $column, $operator = null, $value = null, string $boolean = 'and')
+     * @method NormalProduct forceCreate(array $attributes)
+     * @method _IH_NormalProduct_C|NormalProduct[] fromQuery(string $query, array $bindings = [])
+     * @method _IH_NormalProduct_C|NormalProduct[] get(array|string $columns = ['*'])
+     * @method NormalProduct getModel()
+     * @method NormalProduct[] getModels(array|string $columns = ['*'])
+     * @method _IH_NormalProduct_C|NormalProduct[] hydrate(array $items)
+     * @method NormalProduct make(array $attributes = [])
+     * @method NormalProduct newModelInstance(array $attributes = [])
+     * @method LengthAwarePaginator|NormalProduct[]|_IH_NormalProduct_C paginate(int|null $perPage = null, array $columns = ['*'], string $pageName = 'page', int|null $page = null)
+     * @method Paginator|NormalProduct[]|_IH_NormalProduct_C simplePaginate(int|null $perPage = null, array $columns = ['*'], string $pageName = 'page', int|null $page = null)
+     * @method NormalProduct sole(array|string $columns = ['*'])
+     * @method NormalProduct updateOrCreate(array $attributes, array $values = [])
+     * @method _IH_NormalProduct_QB withTrashed()
+     * @method _IH_NormalProduct_QB onlyTrashed()
+     * @method _IH_NormalProduct_QB withoutTrashed()
+     * @method _IH_NormalProduct_QB restore()
+     */
+    class _IH_NormalProduct_QB extends _BaseBuilder {}
+    
+    /**
+     * @method RolesShopsUsers shift(int $count = 1)
+     * @method RolesShopsUsers pop(int $count = 1)
+     * @method RolesShopsUsers get($key, $default = null)
+     * @method RolesShopsUsers pull($key, $default = null)
+     * @method RolesShopsUsers first(callable $callback = null, $default = null)
+     * @method RolesShopsUsers firstWhere(string $key, $operator = null, $value = null)
+     * @method RolesShopsUsers find($key, $default = null)
+     * @method RolesShopsUsers[] all()
+     * @method RolesShopsUsers last(callable $callback = null, $default = null)
+     */
+    class _IH_RolesShopsUsers_C extends _BaseCollection {
+        /**
+         * @param int $size
+         * @return RolesShopsUsers[][]
+         */
+        public function chunk($size)
+        {
+            return [];
+        }
+    }
+    
+    /**
+     * @method _IH_RolesShopsUsers_QB whereUserId($value)
+     * @method _IH_RolesShopsUsers_QB whereRoleId($value)
+     * @method _IH_RolesShopsUsers_QB whereShopId($value)
+     * @method _IH_RolesShopsUsers_QB whereDeletedAt($value)
+     * @method _IH_RolesShopsUsers_QB whereShopType($value)
+     * @method RolesShopsUsers baseSole(array|string $columns = ['*'])
+     * @method RolesShopsUsers create(array $attributes = [])
+     * @method _IH_RolesShopsUsers_C|RolesShopsUsers[] cursor()
+     * @method RolesShopsUsers|null find($id, array $columns = ['*'])
+     * @method _IH_RolesShopsUsers_C|RolesShopsUsers[] findMany(array|Arrayable $ids, array $columns = ['*'])
+     * @method RolesShopsUsers findOrFail($id, array $columns = ['*'])
+     * @method RolesShopsUsers findOrNew($id, array $columns = ['*'])
+     * @method RolesShopsUsers first(array|string $columns = ['*'])
+     * @method RolesShopsUsers firstOr(array|\Closure $columns = ['*'], \Closure $callback = null)
+     * @method RolesShopsUsers firstOrCreate(array $attributes = [], array $values = [])
+     * @method RolesShopsUsers firstOrFail(array $columns = ['*'])
+     * @method RolesShopsUsers firstOrNew(array $attributes = [], array $values = [])
+     * @method RolesShopsUsers firstWhere(array|\Closure|Expression|string $column, $operator = null, $value = null, string $boolean = 'and')
+     * @method RolesShopsUsers forceCreate(array $attributes)
+     * @method _IH_RolesShopsUsers_C|RolesShopsUsers[] fromQuery(string $query, array $bindings = [])
+     * @method _IH_RolesShopsUsers_C|RolesShopsUsers[] get(array|string $columns = ['*'])
+     * @method RolesShopsUsers getModel()
+     * @method RolesShopsUsers[] getModels(array|string $columns = ['*'])
+     * @method _IH_RolesShopsUsers_C|RolesShopsUsers[] hydrate(array $items)
+     * @method RolesShopsUsers make(array $attributes = [])
+     * @method RolesShopsUsers newModelInstance(array $attributes = [])
+     * @method LengthAwarePaginator|RolesShopsUsers[]|_IH_RolesShopsUsers_C paginate(int|null $perPage = null, array $columns = ['*'], string $pageName = 'page', int|null $page = null)
+     * @method Paginator|RolesShopsUsers[]|_IH_RolesShopsUsers_C simplePaginate(int|null $perPage = null, array $columns = ['*'], string $pageName = 'page', int|null $page = null)
+     * @method RolesShopsUsers sole(array|string $columns = ['*'])
+     * @method RolesShopsUsers updateOrCreate(array $attributes, array $values = [])
+     */
+    class _IH_RolesShopsUsers_QB extends _BaseBuilder {}
+    
+    /**
      * @method Shop shift(int $count = 1)
      * @method Shop pop(int $count = 1)
      * @method Shop get($key, $default = null)
@@ -495,6 +640,22 @@ namespace LaravelIdea\Helper\App\Models {
      * @method _IH_Shop_QB whereUpdatedAt($value)
      * @method _IH_Shop_QB whereDeletedAt($value)
      * @method _IH_Shop_QB whereCategoryId($value)
+     * @method _IH_Shop_QB whereDescription($value)
+     * @method _IH_Shop_QB whereShopPhotoUrl($value)
+     * @method _IH_Shop_QB whereTypeLocation($value)
+     * @method _IH_Shop_QB whereLatLocation($value)
+     * @method _IH_Shop_QB whereLongLocation($value)
+     * @method _IH_Shop_QB whereShopCountry($value)
+     * @method _IH_Shop_QB whereShopProvince($value)
+     * @method _IH_Shop_QB whereShopCity($value)
+     * @method _IH_Shop_QB whereShopLocal($value)
+     * @method _IH_Shop_QB whereShopStreet($value)
+     * @method _IH_Shop_QB whereShopAlley($value)
+     * @method _IH_Shop_QB whereShopNumber($value)
+     * @method _IH_Shop_QB whereShopPostalCode($value)
+     * @method _IH_Shop_QB whereShopMainPhoneNumber($value)
+     * @method _IH_Shop_QB whereShopAcceptStatus($value)
+     * @method _IH_Shop_QB whereShopPriority($value)
      * @method Shop baseSole(array|string $columns = ['*'])
      * @method Shop create(array $attributes = [])
      * @method _IH_Shop_C|Shop[] cursor()
@@ -526,57 +687,6 @@ namespace LaravelIdea\Helper\App\Models {
      * @method _IH_Shop_QB restore()
      */
     class _IH_Shop_QB extends _BaseBuilder {}
-    
-    /**
-     * @method Tag2 shift(int $count = 1)
-     * @method Tag2 pop(int $count = 1)
-     * @method Tag2 get($key, $default = null)
-     * @method Tag2 pull($key, $default = null)
-     * @method Tag2 first(callable $callback = null, $default = null)
-     * @method Tag2 firstWhere(string $key, $operator = null, $value = null)
-     * @method Tag2 find($key, $default = null)
-     * @method Tag2[] all()
-     * @method Tag2 last(callable $callback = null, $default = null)
-     */
-    class _IH_Tag2_C extends _BaseCollection {
-        /**
-         * @param int $size
-         * @return Tag2[][]
-         */
-        public function chunk($size)
-        {
-            return [];
-        }
-    }
-    
-    /**
-     * @method Tag2 baseSole(array|string $columns = ['*'])
-     * @method Tag2 create(array $attributes = [])
-     * @method _IH_Tag2_C|Tag2[] cursor()
-     * @method Tag2|null find($id, array $columns = ['*'])
-     * @method _IH_Tag2_C|Tag2[] findMany(array|Arrayable $ids, array $columns = ['*'])
-     * @method Tag2 findOrFail($id, array $columns = ['*'])
-     * @method Tag2 findOrNew($id, array $columns = ['*'])
-     * @method Tag2 first(array|string $columns = ['*'])
-     * @method Tag2 firstOr(array|\Closure $columns = ['*'], \Closure $callback = null)
-     * @method Tag2 firstOrCreate(array $attributes = [], array $values = [])
-     * @method Tag2 firstOrFail(array $columns = ['*'])
-     * @method Tag2 firstOrNew(array $attributes = [], array $values = [])
-     * @method Tag2 firstWhere(array|\Closure|Expression|string $column, $operator = null, $value = null, string $boolean = 'and')
-     * @method Tag2 forceCreate(array $attributes)
-     * @method _IH_Tag2_C|Tag2[] fromQuery(string $query, array $bindings = [])
-     * @method _IH_Tag2_C|Tag2[] get(array|string $columns = ['*'])
-     * @method Tag2 getModel()
-     * @method Tag2[] getModels(array|string $columns = ['*'])
-     * @method _IH_Tag2_C|Tag2[] hydrate(array $items)
-     * @method Tag2 make(array $attributes = [])
-     * @method Tag2 newModelInstance(array $attributes = [])
-     * @method LengthAwarePaginator|Tag2[]|_IH_Tag2_C paginate(int|null $perPage = null, array $columns = ['*'], string $pageName = 'page', int|null $page = null)
-     * @method Paginator|Tag2[]|_IH_Tag2_C simplePaginate(int|null $perPage = null, array $columns = ['*'], string $pageName = 'page', int|null $page = null)
-     * @method Tag2 sole(array|string $columns = ['*'])
-     * @method Tag2 updateOrCreate(array $attributes, array $values = [])
-     */
-    class _IH_Tag2_QB extends _BaseBuilder {}
     
     /**
      * @method Tag shift(int $count = 1)
@@ -813,6 +923,8 @@ namespace LaravelIdea\Helper\App\Models {
      * @method _IH_User_QB onlyTrashed()
      * @method _IH_User_QB withoutTrashed()
      * @method _IH_User_QB restore()
+     * @method _IH_User_QB permission(array|Collection|Permission|string $permissions)
+     * @method _IH_User_QB role(array|Collection|Role|string $roles, string $guard = null)
      */
     class _IH_User_QB extends _BaseBuilder {}
 }
