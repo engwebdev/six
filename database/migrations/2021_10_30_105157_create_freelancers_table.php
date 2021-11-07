@@ -11,23 +11,23 @@ class CreateFreelancersTable extends Migration
      *
      * @return void
      */
-//    public function up()
-//    {
-//        Schema::create('freelancers', function (Blueprint $table) {
-//            $table->id();
-//
-//            $table->softDeletes();
-//            $table->timestamps();
-//        });
-//    }
+/*    public function up()
+    {
+        Schema::create('freelancers', function (Blueprint $table) {
+            $table->id();
+
+            $table->softDeletes();
+            $table->timestamps();
+        });
+    }*/
 
     /**
      * Reverse the migrations.
      *
      * @return void
      */
-    public function down()
-    {
-        Schema::dropIfExists('freelancers');
-    }
+//    public function down()
+//    {
+//        Schema::dropIfExists('freelancers');
+//    }
 }

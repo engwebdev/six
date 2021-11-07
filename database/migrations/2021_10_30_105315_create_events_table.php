@@ -11,23 +11,23 @@ class CreateEventsTable extends Migration
      *
      * @return void
      */
-//    public function up()
-//    {
-//        Schema::create('events', function (Blueprint $table) {
-//            $table->id();
-//
-//            $table->softDeletes();
-//            $table->timestamps();
-//        });
-//    }
+/*    public function up()
+    {
+        Schema::create('events', function (Blueprint $table) {
+            $table->id();
+
+            $table->softDeletes();
+            $table->timestamps();
+        });
+    }*/
 
     /**
      * Reverse the migrations.
      *
      * @return void
      */
-    public function down()
-    {
-        Schema::dropIfExists('events');
-    }
+//    public function down()
+//    {
+//        Schema::dropIfExists('events');
+//    }
 }
