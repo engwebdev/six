@@ -44,7 +44,6 @@ class CreateTasksTable extends Migration {
             $table->float( 'task_total_points', 16, 5 )->nullable()->comment( 'مجموع امتیازها' );
             $table->float( 'task_average_points', 7, 5 )->nullable()->comment( 'متوسط امتیازها' );
             $table->float( 'task_last_point', 6, 5 )->nullable()->comment( 'اخرین امتیاز' );
-
             $table->softDeletes();
             $table->timestamps();
 

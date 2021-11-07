@@ -16,13 +16,15 @@ class CreateProductCategoriesTable extends Migration
         Schema::create('product_categories', function (Blueprint $table) {
             $table->id();
             $table->string('product_category_name')->nullable();
-            $table->unsignedBigInteger('product_category_additional_user_id')->nullable();
+            $table->string('product_category_image_url');
 
             $table->unsignedBigInteger('product_categoryable_id')->nullable()->comment('ای دی محصول مورد تایی');
             $table->string('product_categoryable_type')->nullable()->comment('نوع موجودیت محصول');
 
+            $table->unsignedBigInteger('product_category_additional_user_id')->nullable();
             $table->string('product_category_additional_user_type')->nullable();
             $table->boolean('product_category_accept_status')->nullable();
+            $table->boolean('product_category_publish_status');
             $table->enum('product_category_show_status', ['private', 'public'])->nullable();
 
             $table->softDeletes();
