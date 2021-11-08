@@ -97,29 +97,41 @@ class Shop extends Model
      * Get the Shops for the Shop.
      * @return HasMany
      */
-    public function rolesShopsUsers()
+    public function userOfRolesShopsUsers()
     {
         return $this->hasMany(RolesShopsUsers::class, 'shop_id', 'id');
     }
 
 
-//    public function ()
-//    {
-//        return $this->hasMany(::class, 'id', '_id');
-//    }
-//
-//
-//    public function ()
-//    {
-//        return $this->hasMany(::class, 'id', '_id');
-//    }
+    public function roleOfRolesShopsUsers()
+    {
+        return $this->hasMany(RolesShopsUsers::class, 'shop_id', 'id');
+    }
 
 
 
 
+/*************************/
 
+    public function normalProducts()
+    {
+        return $this->hasMany(NormalProduct::class, 'product_shop_id', 'id');
+    }
 
+    public function customProducts()
+    {
+        return $this->hasMany(CustomProduct::class, 'custom_product_shop_id', 'id');
+    }
 
+    public function normalServices()
+    {
+        return $this->hasMany(normalService::class, 'normal_service_shop_id', 'id');
+    }
+
+    public function customServices()
+    {
+        return $this->hasMany(customService::class, 'custom_services_shop_id', 'id');
+    }
 
 
 
@@ -137,12 +149,13 @@ class Shop extends Model
 
     public function user()
     {
+//        return $this->belongsToMany(User::class, 'roles_shops_users', 'id' , 'id', '', '', '');
         return $this->belongsToMany(User::class, 'roles_shops_users');
     }
 
     public function role()
     {
-        return $this->belongsToMany(role::class);
+        return $this->belongsToMany(role::class, 'roles_shops_users');
     }
 
 }

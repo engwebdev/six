@@ -8,8 +8,7 @@ use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Traits\HasRoles;
 
-class RolesShopsUsers extends Model
-{
+class RolesShopsUsers extends Model {
     use HasFactory;
 //    use HasRoles;
 
@@ -29,29 +28,38 @@ class RolesShopsUsers extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo( User::class );
     }
 
     public function role()
     {
-        return $this->belongsTo(Role::class);
+        return $this->belongsTo( Role::class );
     }
 
+    // is true way for one to many
     public function shop()
     {
-        return $this->belongsTo(Shop::class, 'shop_id', 'id');
+        return $this->belongsTo( Shop::class, 'shop_id', 'id' );
     }
 
 //    public function ()
 //    {
 //
 //    }
+
+    /*********************/
+//
+//    public function shopOfRolesShopsUsers()
+//    {
+//        return $this->belongsTo( Shop::class, 'shop_id', 'id' );
+//    }
+
     /*************** * ********/
     // todo not true
 
     public function shopNormalProducts()
     {
-        return $this->hasOneThrough(NormalProduct::class, Shop::class);
+        return $this->hasOneThrough( NormalProduct::class, Shop::class );
     }
 
 //    public function shopCustomProducts()
@@ -59,13 +67,13 @@ class RolesShopsUsers extends Model
 //        return $this->hasOneThrough(CustomProduct::class, Shop::class);
 //    }
 
-/*    public function rolePermissions()
-    {
-        return $this->hasOneThrough(Permission::class, Role::class);
-    }
+    /*    public function rolePermissions()
+        {
+            return $this->hasOneThrough(Permission::class, Role::class);
+        }
 
-    public function userRoles()
-    {
-        return $this->hasOneThrough(Role::class, User::class);
-    }*/
+        public function userRoles()
+        {
+            return $this->hasOneThrough(Role::class, User::class);
+        }*/
 }

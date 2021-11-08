@@ -546,8 +546,8 @@ class shopController extends Controller {
         $shopkeeper_id = auth()->id();
 
         $shop = Shop::whereHas(
-                    'RolesShopsUsers'
-                    , function ($query) use ($shopkeeper_id) {
+                    'RolesShopsUsers',
+                    function ($query) use ($shopkeeper_id) {
                         $query
                             ->whereHas('role'
                             )
