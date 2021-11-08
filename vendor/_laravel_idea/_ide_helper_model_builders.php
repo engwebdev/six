@@ -522,6 +522,7 @@ namespace LaravelIdea\Helper\App\Models {
      * @method _IH_NormalProduct_QB whereDeletedAt($value)
      * @method _IH_NormalProduct_QB whereCreatedAt($value)
      * @method _IH_NormalProduct_QB whereUpdatedAt($value)
+     * @method _IH_NormalProduct_QB whereProductCategoryName($value)
      * @method NormalProduct baseSole(array|string $columns = ['*'])
      * @method NormalProduct create(array $attributes = [])
      * @method _IH_NormalProduct_C|NormalProduct[] cursor()

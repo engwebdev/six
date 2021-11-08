@@ -5,22 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4d343e4e-b2a9-4dd0-8969-d76dec06ab9f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/database/migrations/2021_11_07_171459_add_foreign_relation.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/debugbar/X32671cc6c0d6f9ceaff46a69031c2ffe.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/debugbar/X3adc268b0a25853c77a6e6747881c4ea.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/debugbar/X428d98e57d680649a42cf3c92bdfa8f9.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/debugbar/X81953b365aad322271dd043beab09a1d.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/debugbar/Xc7b3e50952ad012719619fd7ebf8b271.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/shopController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/shopController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/RolesShopsUsers.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/RolesShopsUsers.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Shop.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Shop.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_10_30_105157_create_freelancers_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_10_30_105157_create_freelancers_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_10_30_105315_create_events_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_10_30_105315_create_events_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/cache/data/02/47/0247bb36de8848a8f2a2ee50eeb7912eab2ae309" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/cache/data/02/47/0247bb36de8848a8f2a2ee50eeb7912eab2ae309" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/cache/data/6b/70/6b7041320a73d38513b4afcd5638b069fe86bd58" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/cache/data/6b/70/6b7041320a73d38513b4afcd5638b069fe86bd58" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/logs/laravel.log" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/laravel.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/package-versions-deprecated/src/PackageVersions/Versions.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/package-versions-deprecated/src/PackageVersions/Versions.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/NormalProduct.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/NormalProduct.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_model_builders.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_model_builders.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_models.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_models.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -637,7 +625,7 @@
       <workItem from="1635565972160" duration="16203000" />
       <workItem from="1635592180369" duration="50140000" />
       <workItem from="1635862628372" duration="2172000" />
-      <workItem from="1635865526181" duration="65774000" />
+      <workItem from="1635865526181" duration="71974000" />
     </task>
     <task id="LOCAL-00001" summary="1">
       <created>1628849277468</created>
@@ -751,7 +739,14 @@
       <option name="project" value="LOCAL" />
       <updated>1636292434968</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="17">
+      <created>1636376637896</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1636376637896</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -788,7 +783,8 @@
     <MESSAGE value="14" />
     <MESSAGE value="15" />
     <MESSAGE value="16" />
-    <option name="LAST_COMMIT_MESSAGE" value="16" />
+    <MESSAGE value="17" />
+    <option name="LAST_COMMIT_MESSAGE" value="17" />
   </component>
   <component name="WindowStateProjectService">
     <state x="309" y="37" key="#CLI_Interpreters" timestamp="1630122390985">
@@ -843,11 +839,11 @@
     <state x="-1280" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1635591735828" />
     <state x="320" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1600.860/-1600.0.1600.860@0.0.1600.860" timestamp="1632044322559" />
     <state x="320" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1600.860@0.0.1600.860" timestamp="1628520283030" />
-    <state x="-1117" y="139" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1635667385511">
+    <state x="-1117" y="139" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1636388295862">
       <screen x="-1600" y="0" width="1600" height="860" />
     </state>
     <state x="412" y="118" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.728@0.0.1366.728" timestamp="1630870909333" />
-    <state x="-1117" y="139" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1635667385511" />
+    <state x="-1117" y="139" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1636388295862" />
     <state x="483" y="139" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1600.860/-1600.0.1600.860@0.0.1600.860" timestamp="1633530495382" />
     <state x="483" y="139" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1600.860@0.0.1600.860" timestamp="1631108677772" />
     <state x="580" y="355" key="#com.jetbrains.php.lang.intentions.PhpImportClassDialog#" timestamp="1631084876737">
@@ -858,11 +854,11 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="558" y="291" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1600.860/-1600.0.1600.860@0.0.1600.860" timestamp="1632051667685" />
-    <state x="-1274" y="0" key="CommitChangelistDialog2" timestamp="1636292433316">
+    <state x="-1274" y="0" key="CommitChangelistDialog2" timestamp="1636376635744">
       <screen x="-1600" y="0" width="1600" height="860" />
     </state>
     <state x="278" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1628850717056" />
-    <state x="-1274" y="0" key="CommitChangelistDialog2/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1636292433316" />
+    <state x="-1274" y="0" key="CommitChangelistDialog2/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1636376635744" />
     <state x="326" y="0" key="CommitChangelistDialog2/0.0.1600.860/-1600.0.1600.860@0.0.1600.860" timestamp="1632893075732" />
     <state x="326" y="0" key="CommitChangelistDialog2/0.0.1600.860@0.0.1600.860" timestamp="1631528617231" />
     <state x="645" y="336" key="Create Controller" timestamp="1632051413628">
@@ -897,10 +893,10 @@
     <state x="516" y="91" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1630867836717" />
     <state x="-996" y="108" key="FileChooserDialogImpl/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1635863330269" />
     <state x="622" y="308" key="FileChooserDialogImpl/0.0.1600.860@0.0.1600.860" timestamp="1627280150030" />
-    <state x="-1045" y="330" key="Generate Helper Code" timestamp="1635841953870">
+    <state x="-1045" y="330" key="Generate Helper Code" timestamp="1636383485672">
       <screen x="-1600" y="0" width="1600" height="860" />
     </state>
-    <state x="-1045" y="330" key="Generate Helper Code/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1635841953870" />
+    <state x="-1045" y="330" key="Generate Helper Code/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1636383485672" />
     <state x="555" y="330" key="Generate Helper Code/0.0.1600.860/-1600.0.1600.860@0.0.1600.860" timestamp="1632562602706" />
     <state width="1260" height="275" key="GridCell.Tab.0.bottom" timestamp="1635923901293">
       <screen x="-1600" y="0" width="1600" height="860" />
@@ -949,11 +945,11 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="647" y="345" key="VCS.ChangelistChooser/0.0.1600.860@0.0.1600.860" timestamp="1631688745258" />
-    <state x="-1278" y="100" key="Vcs.Push.Dialog.v2" timestamp="1636292436974">
+    <state x="-1278" y="100" key="Vcs.Push.Dialog.v2" timestamp="1636376640545">
       <screen x="-1600" y="0" width="1600" height="860" />
     </state>
     <state x="275" y="85" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1628850937221" />
-    <state x="-1278" y="100" key="Vcs.Push.Dialog.v2/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1636292436974" />
+    <state x="-1278" y="100" key="Vcs.Push.Dialog.v2/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1636376640545" />
     <state x="322" y="100" key="Vcs.Push.Dialog.v2/0.0.1600.860/-1600.0.1600.860@0.0.1600.860" timestamp="1632893079429" />
     <state x="322" y="100" key="Vcs.Push.Dialog.v2/0.0.1600.860@0.0.1600.860" timestamp="1631528623715" />
     <state x="562" y="149" key="com.intellij.database.view.ui.DbObjectDialog" timestamp="1627456305309">
@@ -987,6 +983,10 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="530" y="32" key="com.intellij.troubleshooting.ui.CollectTroubleshootingInformationDialog/0.0.1600.860@0.0.1600.860" timestamp="1627278855925" />
+    <state width="885" height="247" key="javadoc.popup.new" timestamp="1636386756802">
+      <screen x="-1600" y="0" width="1600" height="860" />
+    </state>
+    <state width="885" height="247" key="javadoc.popup.new/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1636386756802" />
     <state x="541" y="72" key="refactoring.ChangeSignatureDialog" timestamp="1631083219967">
       <screen x="0" y="0" width="1600" height="860" />
     </state>

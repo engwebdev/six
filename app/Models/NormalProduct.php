@@ -51,9 +51,10 @@ class NormalProduct extends Model {
      * Get the Category that owns the Shops.
      * @return BelongsTo
      */
-    public function NormalProductCategory()
+    public function normalProductCategory()
     {
-        return $this->belongsTo( NormalProductCategory::class, 'id', 'product_category_id' );
+        return $this->belongsTo( ProductCategory::class, 'id', 'product_category_id' );
+//        return $this->morphMany( ProductCategory::class, 'product_categoryable', 'NormalProduct', null, 'product_category_id' );
     }
 
     /**
@@ -78,7 +79,7 @@ class NormalProduct extends Model {
      * Get the Category that owns the Shops.
      * @return BelongsTo
      */
-    public function NormalProductSystemConfirm()
+    public function normalProductSystemConfirm()
     {
         return $this->belongsTo( User::class, 'id', 'product_status_confirm_user_id' );
     }
@@ -90,48 +91,48 @@ class NormalProduct extends Model {
     {
 //        return $this->belongsToMany(tag::class, 'shops_tags', 'shop_id', 'id', null, null, null);
 //        return $this->belongsToMany( Tags::class, 'product_tag', 'product_id', 'tag_id', '', '', '')->withPivot( 'product_tag_accept_status' );
-        return $this->belongsToMany( NormalProductTag::class, 'product_tag')->withPivot( 'product_tag_accept_status' );
+        return $this->morphToMany( ProductTag::class, 'product_tags_tags')->withPivot( 'product_tags_tags_status' );
     }
 
     /**
-     * @return HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
      */
     public function normalProductPrices()
     {
-        return $this->hasMany( HistoryNormalProductPrice::class, 'product_id', 'id');
+        return $this->morphMany( productPriceHistory::class, 'product_price_history', 'NormalProduct');
     }
 
     /**
-     * @return HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
      */
     public function normalProductImages()
     {
-        return $this->hasMany( NormalProductImage::class, 'product_id', 'id');
+        return $this->morphMany( ProductImage::class, 'product_image', 'NormalProduct');
     }
 
     /**
-     * @return HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
      */
     public function normalProductCustomerComments()
     {
-        return $this->hasMany( NormalProductCustomerComment::class, 'product_id', 'id');
+        return $this->morphMany( ProductCustomerComments::class, 'product_customer_comments', 'NormalProduct');
     }
 
     /**
-     * @return HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
      */
     // todo tree in child tbl rel with 'product_status_confirm_user_id' && 'product_status_confirm_user_comment'
     public function normalProductStatuses()
     {
-        return $this->hasMany( NormalProductStatus::class, 'product_id', 'id');
+        return $this->morphMany( ConfirmComment::class, 'confirm_comment', 'NormalProduct');
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany|HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
      */
     // todo complex relational
     public function normalProductDetails()
     {
-        return $this->belongsToMany( NormalProductDetail::class);
+        return $this->morphMany( Detail::class, 'detail', '\'NormalProduct\'');
     }
 }

@@ -57,7 +57,7 @@ namespace App\Models {
     use Spatie\Permission\Contracts\Role as Role1;
     use Spatie\Permission\Models\Permission;
     use Spatie\Permission\Models\Role;
-
+    
     /**
      * @property int $id
      * @property string|null $category_name
@@ -196,7 +196,7 @@ namespace App\Models {
      * @method static CategoryFactory factory(...$parameters)
      */
     class Category extends Model {}
-
+    
     /**
      * @method _IH_Membership_QB newModelQuery()
      * @method _IH_Membership_QB newQuery()
@@ -318,7 +318,7 @@ namespace App\Models {
      * @method static _IH_Membership_QB withoutGlobalScopes(array $scopes = null)
      */
     class Membership extends Model {}
-
+    
     /**
      * @property int $id
      * @property string|null $product_name
@@ -350,6 +350,7 @@ namespace App\Models {
      * @property Carbon|null $deleted_at
      * @property Carbon|null $created_at
      * @property Carbon|null $updated_at
+     * @property string|null $product_category_name
      * @property User $NormalProductSystemConfirm
      * @method BelongsTo|_IH_User_QB NormalProductSystemConfirm()
      * @property Shop $shop
@@ -390,6 +391,7 @@ namespace App\Models {
      * @method static _IH_NormalProduct_QB whereDeletedAt($value)
      * @method static _IH_NormalProduct_QB whereCreatedAt($value)
      * @method static _IH_NormalProduct_QB whereUpdatedAt($value)
+     * @method static _IH_NormalProduct_QB whereProductCategoryName($value)
      * @method static NormalProduct baseSole(array|string $columns = ['*'])
      * @method static bool chunk(int $count, callable $callback)
      * @method static bool chunkById(int $count, callable $callback, null|string $column = null, null|string $alias = null)
@@ -509,7 +511,7 @@ namespace App\Models {
      * @method static _IH_NormalProduct_QB withoutTrashed()
      */
     class NormalProduct extends Model {}
-
+    
     /**
      * @property int|null $user_id
      * @property int|null $role_id
@@ -649,7 +651,7 @@ namespace App\Models {
      * @method static _IH_RolesShopsUsers_QB withoutGlobalScopes(array $scopes = null)
      */
     class RolesShopsUsers extends Model {}
-
+    
     /**
      * @property int $id
      * @property int|null $parent_id
@@ -679,14 +681,17 @@ namespace App\Models {
      * @property _IH_Shop_C|Shop[] $child
      * @property-read int $child_count
      * @method HasMany|_IH_Shop_QB child()
+     * @property _IH_NormalProduct_C|NormalProduct[] $normalProducts
+     * @property-read int $normal_products_count
+     * @method HasMany|_IH_NormalProduct_QB normalProducts()
      * @property Shop $parent
      * @method BelongsTo|_IH_Shop_QB parent()
      * @property _IH_Role_C|Role[] $role
      * @property-read int $role_count
      * @method BelongsToMany|_IH_Role_QB role()
-     * @property _IH_RolesShopsUsers_C|RolesShopsUsers[] $rolesShopsUsers
-     * @property-read int $roles_shops_users_count
-     * @method HasMany|_IH_RolesShopsUsers_QB rolesShopsUsers()
+     * @property _IH_RolesShopsUsers_C|RolesShopsUsers[] $roleOfRolesShopsUsers
+     * @property-read int $role_of_roles_shops_users_count
+     * @method HasMany|_IH_RolesShopsUsers_QB roleOfRolesShopsUsers()
      * @property _IH_tag_C|tag[] $tags
      * @property-read int $tags_count
      * @method BelongsToMany|_IH_tag_QB tags()
@@ -696,6 +701,9 @@ namespace App\Models {
      * @property _IH_User_C|User[] $user
      * @property-read int $user_count
      * @method BelongsToMany|_IH_User_QB user()
+     * @property _IH_RolesShopsUsers_C|RolesShopsUsers[] $userOfRolesShopsUsers
+     * @property-read int $user_of_roles_shops_users_count
+     * @method HasMany|_IH_RolesShopsUsers_QB userOfRolesShopsUsers()
      * @method _IH_Shop_QB newModelQuery()
      * @method _IH_Shop_QB newQuery()
      * @method static _IH_Shop_QB query()
@@ -843,7 +851,7 @@ namespace App\Models {
      * @method static ShopFactory factory(...$parameters)
      */
     class Shop extends Model {}
-
+    
     /**
      * @property int $id
      * @property string|null $tag_name
@@ -987,7 +995,7 @@ namespace App\Models {
      * @method static TagFactory factory(...$parameters)
      */
     class Tag extends Model {}
-
+    
     /**
      * @method _IH_Team_QB newModelQuery()
      * @method _IH_Team_QB newQuery()
@@ -1110,7 +1118,7 @@ namespace App\Models {
      * @method static TeamFactory factory(...$parameters)
      */
     class Team extends Model {}
-
+    
     /**
      * @method _IH_TeamInvitation_QB newModelQuery()
      * @method _IH_TeamInvitation_QB newQuery()
@@ -1232,7 +1240,7 @@ namespace App\Models {
      * @method static _IH_TeamInvitation_QB withoutGlobalScopes(array $scopes = null)
      */
     class TeamInvitation extends Model {}
-
+    
     /**
      * @property int $id
      * @property string|null $name
@@ -1429,7 +1437,7 @@ namespace Illuminate\Notifications {
     use Illuminate\Pagination\Paginator;
     use LaravelIdea\Helper\Illuminate\Notifications\_IH_DatabaseNotification_C;
     use LaravelIdea\Helper\Illuminate\Notifications\_IH_DatabaseNotification_QB;
-
+    
     /**
      * @property Model $notifiable
      * @method MorphTo notifiable()
@@ -1568,7 +1576,7 @@ namespace Laravel\Jetstream {
     use Illuminate\Pagination\Paginator;
     use LaravelIdea\Helper\Laravel\Jetstream\_IH_TeamInvitation_C;
     use LaravelIdea\Helper\Laravel\Jetstream\_IH_TeamInvitation_QB;
-
+    
     /**
      * @method _IH_TeamInvitation_QB newModelQuery()
      * @method _IH_TeamInvitation_QB newQuery()
@@ -1715,7 +1723,7 @@ namespace Laravel\Passport {
     use LaravelIdea\Helper\Laravel\Passport\_IH_RefreshToken_QB;
     use LaravelIdea\Helper\Laravel\Passport\_IH_Token_C;
     use LaravelIdea\Helper\Laravel\Passport\_IH_Token_QB;
-
+    
     /**
      * @method _IH_AuthCode_QB newModelQuery()
      * @method _IH_AuthCode_QB newQuery()
@@ -1837,7 +1845,7 @@ namespace Laravel\Passport {
      * @method static _IH_AuthCode_QB withoutGlobalScopes(array $scopes = null)
      */
     class AuthCode extends Model {}
-
+    
     /**
      * @property-read null|string $plain_secret
      * @method _IH_Client_QB newModelQuery()
@@ -1961,7 +1969,7 @@ namespace Laravel\Passport {
      * @method static ClientFactory factory(...$parameters)
      */
     class Client extends Model {}
-
+    
     /**
      * @method _IH_PersonalAccessClient_QB newModelQuery()
      * @method _IH_PersonalAccessClient_QB newQuery()
@@ -2083,7 +2091,7 @@ namespace Laravel\Passport {
      * @method static _IH_PersonalAccessClient_QB withoutGlobalScopes(array $scopes = null)
      */
     class PersonalAccessClient extends Model {}
-
+    
     /**
      * @method _IH_RefreshToken_QB newModelQuery()
      * @method _IH_RefreshToken_QB newQuery()
@@ -2205,7 +2213,7 @@ namespace Laravel\Passport {
      * @method static _IH_RefreshToken_QB withoutGlobalScopes(array $scopes = null)
      */
     class RefreshToken extends Model {}
-
+    
     /**
      * @property User $user
      * @method BelongsTo|_IH_User_QB user()
@@ -2343,7 +2351,7 @@ namespace Laravel\Sanctum {
     use Illuminate\Support\Carbon;
     use LaravelIdea\Helper\Laravel\Sanctum\_IH_PersonalAccessToken_C;
     use LaravelIdea\Helper\Laravel\Sanctum\_IH_PersonalAccessToken_QB;
-
+    
     /**
      * @property int $id
      * @property int $tokenable_id
@@ -2506,7 +2514,7 @@ namespace Spatie\Permission\Models {
     use LaravelIdea\Helper\Spatie\Permission\Models\_IH_Role_QB;
     use Spatie\Permission\Contracts\Permission as Permission1;
     use Spatie\Permission\Contracts\Role as Role1;
-
+    
     /**
      * @property int $id
      * @property string $name
@@ -2646,7 +2654,7 @@ namespace Spatie\Permission\Models {
      * @method static _IH_Permission_QB role(array|Collection|Role1|string $roles, string $guard = null)
      */
     class Permission extends Model {}
-
+    
     /**
      * @property int $id
      * @property string $name
