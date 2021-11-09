@@ -15,7 +15,15 @@ class ProductTag extends Model
      */
     public function normalProducts()
     {
-        return $this->morphedByMany(NormalProduct::class, 'product_tags_tags');
+//        return $this->belongsToMany( ProductTag::class, 'product_tags_tags', 'product_tags_id', 'productable_id', '', '','')->withPivot( 'product_tag_accept_status' );
+        return $this->morphToMany(
+            NormalProduct::class,
+            'product_tags_tags',
+            'product_tags_tags',
+            'product_tags_id',
+            'productable_id',
+            'id',
+            'id' );
     }
 
     /**
@@ -47,5 +55,11 @@ class ProductTag extends Model
     public function task()
     {
         return $this->morphedByMany(Task::class, 'product_tags_tags');
+    }
+
+    /************************/
+    public function tagAdditionalUser()
+    {
+        return $this->belongsTo(User::class, 'product_tag_additional_user_id', 'id');
     }
 }

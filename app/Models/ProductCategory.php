@@ -75,4 +75,10 @@ class ProductCategory extends Model
     {
         return $this->hasMany(Task::class, 'task_category_id', 'id');
     }
+
+    /*****************/
+    public function categoryAdditionalUser()
+    {
+        return $this->belongsTo(User::class, 'product_category_additional_user_id', 'id');
+    }
 }

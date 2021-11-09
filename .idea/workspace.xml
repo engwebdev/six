@@ -6,31 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="4d343e4e-b2a9-4dd0-8969-d76dec06ab9f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/ConfirmComment.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ConfirmComment.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/CustomProduct.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/CustomProduct.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Detail.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Detail.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/NormalProduct.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/NormalProduct.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/ProductCategory.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ProductCategory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/ProductCustomerComments.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ProductCustomerComments.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/ProductImage.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ProductImage.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/ProductTag.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ProductTag.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/productPriceHistory.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/productPriceHistory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/debugbar/X10a369fc73598249067fe4e60228d206.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/debugbar/X32671cc6c0d6f9ceaff46a69031c2ffe.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/debugbar/X3adc268b0a25853c77a6e6747881c4ea.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/debugbar/X428d98e57d680649a42cf3c92bdfa8f9.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/debugbar/X567226dfde2e50d1f7abb929dc892238.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/debugbar/X72ab1f44a644fc09c9a05758d7856896.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/debugbar/X81953b365aad322271dd043beab09a1d.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/debugbar/Xc7b3e50952ad012719619fd7ebf8b271.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/debugbar/Xf0e046e2cb3501f8da15c4932d39c29f.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/cache/data/c0/71/c071422490d526a8aada046adf3a9c9fa0593468" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/cache/data/c0/71/c071422490d526a8aada046adf3a9c9fa0593468" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/cache/data/ec/c4/ecc49f49f4da6b940dcde13f0571e79c299871e6" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/cache/data/ec/c4/ecc49f49f4da6b940dcde13f0571e79c299871e6" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/logs/laravel.log" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/laravel.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_static.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/package-versions-deprecated/src/PackageVersions/Versions.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/package-versions-deprecated/src/PackageVersions/Versions.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -647,7 +626,7 @@
       <workItem from="1635565972160" duration="16203000" />
       <workItem from="1635592180369" duration="50140000" />
       <workItem from="1635862628372" duration="2172000" />
-      <workItem from="1635865526181" duration="84991000" />
+      <workItem from="1635865526181" duration="89633000" />
     </task>
     <task id="LOCAL-00001" summary="1">
       <created>1628849277468</created>
@@ -775,7 +754,14 @@
       <option name="project" value="LOCAL" />
       <updated>1636388864623</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="19">
+      <created>1636471777741</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1636471777741</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -814,7 +800,8 @@
     <MESSAGE value="16" />
     <MESSAGE value="17" />
     <MESSAGE value="18" />
-    <option name="LAST_COMMIT_MESSAGE" value="18" />
+    <MESSAGE value="19" />
+    <option name="LAST_COMMIT_MESSAGE" value="19" />
   </component>
   <component name="WindowStateProjectService">
     <state x="309" y="37" key="#CLI_Interpreters" timestamp="1630122390985">
@@ -884,11 +871,11 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="558" y="291" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1600.860/-1600.0.1600.860@0.0.1600.860" timestamp="1632051667685" />
-    <state x="-1274" y="0" key="CommitChangelistDialog2" timestamp="1636471748129">
+    <state x="-1274" y="0" key="CommitChangelistDialog2" timestamp="1636471775385">
       <screen x="-1600" y="0" width="1600" height="860" />
     </state>
     <state x="278" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1628850717056" />
-    <state x="-1274" y="0" key="CommitChangelistDialog2/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1636471748129" />
+    <state x="-1274" y="0" key="CommitChangelistDialog2/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1636471775385" />
     <state x="326" y="0" key="CommitChangelistDialog2/0.0.1600.860/-1600.0.1600.860@0.0.1600.860" timestamp="1632893075732" />
     <state x="326" y="0" key="CommitChangelistDialog2/0.0.1600.860@0.0.1600.860" timestamp="1631528617231" />
     <state x="645" y="336" key="Create Controller" timestamp="1632051413628">
@@ -975,11 +962,11 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="647" y="345" key="VCS.ChangelistChooser/0.0.1600.860@0.0.1600.860" timestamp="1631688745258" />
-    <state x="-1278" y="100" key="Vcs.Push.Dialog.v2" timestamp="1636388869299">
+    <state x="-1278" y="100" key="Vcs.Push.Dialog.v2" timestamp="1636471780178">
       <screen x="-1600" y="0" width="1600" height="860" />
     </state>
     <state x="275" y="85" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1628850937221" />
-    <state x="-1278" y="100" key="Vcs.Push.Dialog.v2/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1636388869299" />
+    <state x="-1278" y="100" key="Vcs.Push.Dialog.v2/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1636471780178" />
     <state x="322" y="100" key="Vcs.Push.Dialog.v2/0.0.1600.860/-1600.0.1600.860@0.0.1600.860" timestamp="1632893079429" />
     <state x="322" y="100" key="Vcs.Push.Dialog.v2/0.0.1600.860@0.0.1600.860" timestamp="1631528623715" />
     <state x="562" y="149" key="com.intellij.database.view.ui.DbObjectDialog" timestamp="1627456305309">

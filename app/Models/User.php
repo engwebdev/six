@@ -141,6 +141,18 @@ class User extends Authenticatable
     }
 
     /*************************/
+    // product category adder
+    public function productCategoryAdditionalUser()
+    {
+        return $this->hasMany(ProductCategory::class, 'product_category_additional_user_id', 'id');
+    }
+
+    // product tag adder
+    public function productTagAdditionalUser()
+    {
+        return $this->hasMany(ProductTag::class, 'product_tag_additional_user_id', 'id');
+    }
+    /**************************/
 
     public function shop2()
     {

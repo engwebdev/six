@@ -89,9 +89,17 @@ class NormalProduct extends Model {
      */
     public function normalProductTags()
     {
-//        return $this->belongsToMany(tag::class, 'shops_tags', 'shop_id', 'id', null, null, null);
-//        return $this->belongsToMany( Tags::class, 'product_tag', 'product_id', 'tag_id', '', '', '')->withPivot( 'product_tag_accept_status' );
-        return $this->morphToMany( ProductTag::class, 'product_tags_tags')->withPivot( 'product_tags_tags_status' );
+//        return $this->belongsToMany( ProductTag::class, 'product_tags_tags', 'productable_id', 'product_tags_id', '', '', '')->withPivot( 'product_tag_accept_status' );
+//        return $this->morphToMany( ProductTag::class, 'product_tags_tags')->withPivot( 'product_tags_tags_status' );
+        return $this->morphedByMany(
+            NormalProduct::class,
+            'product_tags_tags',
+            'product_tags_tags',
+            'productable_id',
+            'product_tags_id',
+            'id',
+            'id');
+
     }
 
     /**
