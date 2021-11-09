@@ -8,4 +8,26 @@ use Illuminate\Database\Eloquent\Model;
 class ConfirmComment extends Model
 {
     use HasFactory;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public function confirm_commentable()
+    {
+//        return $this->morphTo('product_price_historiable', 'NormalProduct', '', 'id');
+        return $this->morphTo();
+    }
+
+
 }

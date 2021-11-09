@@ -96,7 +96,7 @@ class CustomProduct extends Model
      */
     public function customProductPrices()
     {
-        return $this->morphMany( productPriceHistory::class, 'product_price_history', 'CustomProduct');
+        return $this->morphMany( productPriceHistory::class, 'product_price_historiable', 'CustomProduct');
     }
 
     /**
@@ -104,7 +104,7 @@ class CustomProduct extends Model
      */
     public function customProductImages()
     {
-        return $this->morphMany( ProductImage::class, 'product_image', 'CustomProduct');
+        return $this->morphMany( ProductImage::class, 'product_imageable', 'CustomProduct');
     }
 
     /**
@@ -112,7 +112,7 @@ class CustomProduct extends Model
      */
     public function customProductCustomerComments()
     {
-        return $this->morphMany( ProductCustomerComments::class, 'product_customer_comments', 'CustomProduct');
+        return $this->morphMany( ProductCustomerComments::class, 'product_commentable', 'CustomProduct');
     }
     /**
      * @return \Illuminate\Database\Eloquent\Relations\MorphMany
@@ -120,7 +120,7 @@ class CustomProduct extends Model
     // todo tree in child tbl rel with 'product_status_confirm_user_id' && 'product_status_confirm_user_comment'
     public function normalProductStatuses()
     {
-        return $this->morphMany( ConfirmComment::class, 'confirm_comment', 'CustomProduct');
+        return $this->morphMany( ConfirmComment::class, 'confirm_commentable', 'CustomProduct');
     }
     /**
      * @return \Illuminate\Database\Eloquent\Relations\MorphMany
@@ -128,6 +128,6 @@ class CustomProduct extends Model
     // todo complex relational
     public function normalProductDetails()
     {
-        return $this->morphMany( Detail::class, 'detail', 'CustomProduct');
+        return $this->morphMany( Detail::class, 'detilable', 'CustomProduct');
     }
 }

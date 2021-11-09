@@ -48,4 +48,31 @@ class ProductCategory extends Model
     {
         return $this->hasMany(CustomProduct::class, 'custom_product_category_id', 'id');
     }
+
+    /**
+     * Get the Shops that owns the Category.
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function normalServices()
+    {
+        return $this->hasMany(NormalService::class, 'product_category_id', 'id');
+    }
+
+    /**
+     * Get the Shops that owns the Category.
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function customServices()
+    {
+        return $this->hasMany(CustomService::class, 'custom_product_category_id', 'id');
+    }
+
+    /**
+     * Get the Shops that owns the Category.
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function task()
+    {
+        return $this->hasMany(Task::class, 'task_category_id', 'id');
+    }
 }

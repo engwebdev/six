@@ -73,7 +73,7 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-    public function RoleShopUser()
+    public function roleShopUser()
     {
         return $this->hasMany(RolesShopsUsers::class);
     }
@@ -84,6 +84,63 @@ class User extends Authenticatable
     }
     /****************************************************************/
 
+    // shopkeeper
+
+    public function shopkeeperNormalProduct()
+    {
+        return $this->hasMany(NormalProduct::class, 'product_registry_shopkeeper_id', 'id');
+    }
+
+    public function shopkeeperCustomProduct()
+    {
+        return $this->hasMany(CustomProduct::class, 'custom_product_registry_shopkeeper_id', 'id');
+    }
+
+    public function shopkeeperNormalService()
+    {
+        return $this->hasMany(NormalService::class, 'normal_service_registry_shopkeeper_id', 'id');
+    }
+
+    public function shopkeeperCustomService()
+    {
+        return $this->hasMany(CustomService::class, 'custom_services_registry_shopkeeper_id', 'id');
+    }
+
+    public function shopkeeperTask()
+    {
+        return $this->hasMany(Task::class, 'task_registry_shopkeeper_id', 'id');
+    }
+
+    /****************************************************************/
+
+    // confirm user
+
+    public function confirmUserNormalProduct()
+    {
+        return $this->hasMany(NormalProduct::class, 'product_status_confirm_user_id', 'id');
+    }
+
+    public function confirmUserCustomProduct()
+    {
+        return $this->hasMany(CustomProduct::class, 'custom_product_status_confirm_user_id', 'id');
+    }
+
+    public function confirmUserNormalService() /// todo add to table
+    {
+        return $this->hasMany(NormalService::class, 'normal_service_registry_shopkeeper_id', 'id');
+    }
+
+    public function confirmUserCustomService()
+    {
+        return $this->hasMany(CustomService::class, 'custom_services_status_confirm_user_id', 'id');
+    }
+
+    public function confirmUserTask()
+    {
+        return $this->hasMany(Task::class, 'task_status_confirm_user_id', 'id');
+    }
+
+    /*************************/
 
     public function shop2()
     {

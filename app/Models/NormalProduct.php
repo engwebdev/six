@@ -99,7 +99,7 @@ class NormalProduct extends Model {
      */
     public function normalProductPrices()
     {
-        return $this->morphMany( productPriceHistory::class, 'product_price_history', 'NormalProduct');
+        return $this->morphMany( productPriceHistory::class, 'product_price_historiable', 'NormalProduct');
     }
 
     /**
@@ -107,7 +107,7 @@ class NormalProduct extends Model {
      */
     public function normalProductImages()
     {
-        return $this->morphMany( ProductImage::class, 'product_image', 'NormalProduct');
+        return $this->morphMany( ProductImage::class, 'product_imageable', 'NormalProduct');
     }
 
     /**
@@ -115,7 +115,7 @@ class NormalProduct extends Model {
      */
     public function normalProductCustomerComments()
     {
-        return $this->morphMany( ProductCustomerComments::class, 'product_customer_comments', 'NormalProduct');
+        return $this->morphMany( ProductCustomerComments::class, 'product_commentable', 'NormalProduct');
     }
 
     /**
@@ -124,7 +124,7 @@ class NormalProduct extends Model {
     // todo tree in child tbl rel with 'product_status_confirm_user_id' && 'product_status_confirm_user_comment'
     public function normalProductStatuses()
     {
-        return $this->morphMany( ConfirmComment::class, 'confirm_comment', 'NormalProduct');
+        return $this->morphMany( ConfirmComment::class, 'confirm_commentable', 'NormalProduct');
     }
 
     /**
@@ -133,6 +133,13 @@ class NormalProduct extends Model {
     // todo complex relational
     public function normalProductDetails()
     {
-        return $this->morphMany( Detail::class, 'detail', '\'NormalProduct\'');
+        return $this->morphMany( Detail::class, 'detilable', 'NormalProduct');
     }
 }
+
+
+
+
+
+
+
