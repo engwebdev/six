@@ -6,8 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="4d343e4e-b2a9-4dd0-8969-d76dec06ab9f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/l5-swagger.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/l5-swagger.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/logs/laravel.log" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/laravel.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/AuthController.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -615,7 +614,7 @@
       <workItem from="1635592180369" duration="50140000" />
       <workItem from="1635862628372" duration="2172000" />
       <workItem from="1635865526181" duration="99518000" />
-      <workItem from="1636869859033" duration="12785000" />
+      <workItem from="1636869859033" duration="13482000" />
     </task>
     <task id="LOCAL-00001" summary="1">
       <created>1628849277468</created>
@@ -764,7 +763,14 @@
       <option name="project" value="LOCAL" />
       <updated>1636890438774</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="21">
+      <created>1636890684191</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1636890684191</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -858,11 +864,11 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="558" y="291" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1600.860/-1600.0.1600.860@0.0.1600.860" timestamp="1632051667685" />
-    <state x="-1274" y="0" key="CommitChangelistDialog2" timestamp="1636890436168">
+    <state x="-1274" y="0" key="CommitChangelistDialog2" timestamp="1636890682344">
       <screen x="-1600" y="0" width="1600" height="860" />
     </state>
     <state x="278" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1628850717056" />
-    <state x="-1274" y="0" key="CommitChangelistDialog2/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1636890436168" />
+    <state x="-1274" y="0" key="CommitChangelistDialog2/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1636890682344" />
     <state x="326" y="0" key="CommitChangelistDialog2/0.0.1600.860/-1600.0.1600.860@0.0.1600.860" timestamp="1632893075732" />
     <state x="326" y="0" key="CommitChangelistDialog2/0.0.1600.860@0.0.1600.860" timestamp="1631528617231" />
     <state x="645" y="336" key="Create Controller" timestamp="1632051413628">
@@ -936,11 +942,11 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="647" y="345" key="VCS.ChangelistChooser/0.0.1600.860@0.0.1600.860" timestamp="1631688745258" />
-    <state x="-1278" y="100" key="Vcs.Push.Dialog.v2" timestamp="1636890442356">
+    <state x="-1278" y="100" key="Vcs.Push.Dialog.v2" timestamp="1636890689514">
       <screen x="-1600" y="0" width="1600" height="860" />
     </state>
     <state x="275" y="85" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1628850937221" />
-    <state x="-1278" y="100" key="Vcs.Push.Dialog.v2/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1636890442356" />
+    <state x="-1278" y="100" key="Vcs.Push.Dialog.v2/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1636890689514" />
     <state x="322" y="100" key="Vcs.Push.Dialog.v2/0.0.1600.860/-1600.0.1600.860@0.0.1600.860" timestamp="1632893079429" />
     <state x="322" y="100" key="Vcs.Push.Dialog.v2/0.0.1600.860@0.0.1600.860" timestamp="1631528623715" />
     <state x="-1508" y="92" width="1416" height="676" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1635667461077">

@@ -745,7 +745,7 @@ class AuthController extends Controller {
             $user = User::find(auth()->id());
             $user->first_name = $validated['firstName'];
             $user->last_name = $validated['lastName'];
-//            $user->save();
+            $user->save();
             $data = [
                 "userId" => $user->id,
                 "firstName" => $user->first_name,
