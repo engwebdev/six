@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Traits\HasRoles;
@@ -11,6 +12,7 @@ use Spatie\Permission\Traits\HasRoles;
 class RolesShopsUsers extends Model {
     use HasFactory;
 //    use HasRoles;
+    use SoftDeletes;
 
     public $incrementing = false;
 

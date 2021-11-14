@@ -55,6 +55,7 @@ Route::post( '/userNewToken', [AuthController::class, 'userNewToken'] )->name( '
 
 Route::group( ['middleware' => ['auth:api']], function () {
     Route::get( '/userLogout', [AuthController::class, 'userLogout'] )->name( 'userLogout' );
+    Route::post( '/userAccount', [AuthController::class, 'userAccount'] )->name( 'userAccount' );
 } );
 
 Route::post( '/customGrantToken', [CustomGrantController::class, 'customGrantToken'] )->name( 'customGrantToken' );

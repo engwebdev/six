@@ -381,6 +381,183 @@
                 ]
             }
         },
+        "/api/userAccount": {
+            "post": {
+                "tags": [
+                    "User Authorization"
+                ],
+                "summary": "Account set first name and last name.",
+                "description": "User Account here",
+                "operationId": "userAccount",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "firstName",
+                                    "lastName"
+                                ],
+                                "properties": {
+                                    "firstName": {
+                                        "description": "firstName",
+                                        "type": "string",
+                                        "format": "",
+                                        "example": "firstName"
+                                    },
+                                    "lastName": {
+                                        "description": "lastName",
+                                        "type": "string",
+                                        "format": "",
+                                        "example": "lastName"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "firstName",
+                                    "lastName"
+                                ],
+                                "properties": {
+                                    "firstName": {
+                                        "description": "firstName",
+                                        "type": "string",
+                                        "format": "",
+                                        "example": "firstName"
+                                    },
+                                    "lastName": {
+                                        "description": "lastName",
+                                        "type": "string",
+                                        "format": "",
+                                        "example": "lastName"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "user Login Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "user Login Successfully"
+                                        },
+                                        "success": {
+                                            "properties": {
+                                                "mobile": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "example": "+989360001234"
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "NotificationsEnServer": {
+                                            "type": "string",
+                                            "example": "The verification code was sent to the mobile number via SMS"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "201": {
+                        "description": "user Register Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "user Register Successfully"
+                                        },
+                                        "success": {
+                                            "properties": {
+                                                "mobile": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "example": "+989360001234"
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "NotificationsEnServer": {
+                                            "type": "string",
+                                            "example": "The verification code was sent to the mobile number via SMS"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Integrity constraint violation"
+                                        },
+                                        "errors": {
+                                            "properties": {
+                                                "mobile_phone_number": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "example": "The mobile phone number field is unique."
+                                                    }
+                                                },
+                                                "problem": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "example": "Duplicate entry mobile number"
+                                                    }
+                                                },
+                                                "exception": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "example": "Sql exception"
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "503": {
+                        "description": "Servr error"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
         "/api/v1/shop/categories": {
             "get": {
                 "tags": [

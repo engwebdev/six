@@ -5,11 +5,118 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4d343e4e-b2a9-4dd0-8969-d76dec06ab9f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/database/migrations/2021_11_14_131239_add_firt_last_user_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2021_11_14_143742_edit_product_category.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2021_11_14_144816_create_product_category_and_products_and_shops.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2021_11_14_145859_edit_categories_table_add_column.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/X0250786bfd845af40623471afb82370c.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/X0ef4105e2ca3f6eea76ef7210a7a36d5.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/X0fcfa3d9572bff6bf100a2790b3a5dee.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/X1549602a9b1a9b09c8a6b3ab8a77a79c.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/X204da4be133be56d34380d5462c39b07.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/X282f3266add05b224c20fdc4c7849971.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/X2a791296c651cfff86ab05e48683b11c.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/X2cfda0be153594d13df376d6cf4a6701.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/X2da100c2c3b1150cd1652e01efa62c11.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/X2f72daad85e96bc67b110aea17a266c8.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/X31f49dade71a90fab2f4a46f8df2949e.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/X374d6422e4813fc0475d470cf57f08e9.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/X3c7c2d7e04d4266e724cd872dd04c05e.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/X4bb89fb18f1bad7f4c4b0899bce41f2e.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/X5893391dc26e91137a8e3d2fad2f980c.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/X5be0d6ca1342c97fe7e643e18424e26e.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/X60af953d954bc231fed0370fbd4d6c5b.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/X63d05854ca0db80f2eb5b3f799b613e8.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/X644f371683326cffd4364d27d3a6c3ef.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/X70904a43b624eed77d7ca7f346de08cc.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/X780b7c37ceedf84dc8405ca3603926dc.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/X7b8e2219439fe865f767b5775499d58d.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/X7e2eb6d8d8d77a9e241107a801390750.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/X817c16328e87b654c44675658ddae924.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/X8394d2ead495575161d49c4afd90fb32.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/X85766b07d51621e5bc4bef6bcde56976.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/X8afa824b098ad3af902fd5d7389665d7.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/X8b7483659949db90ea04553a25387e15.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/X8e82ae98c114f1092f5796d6fc0edc17.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/X97782a2357ddde8abd8e4709269664c8.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/X9887b3267086d15b0eefc4f467463499.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/X9b3577752afe739d4d91dcb47795fd29.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/X9fc244b3c415977bc9ed36f9d590f0f2.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/Xa07be867e440f8f5c1945caa7805a4ef.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/Xa1648a7b2aaa3cbd7aac96c9f3af1448.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/Xa3a154045d11b257289cd7a2384b7186.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/Xaad3c8d48a0c5e87f57de04e6eed1457.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/Xabf3c4e81e6925bac111eac1b0c60ac1.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/Xac42993187bde15ffdfe280f2b080250.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/Xb2495f8bff1d20861fec75abb573c258.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/Xb30c5406af8df714ea7c6996374146e7.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/Xb5054109481a2409c2db906f41b617b8.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/Xb5c075b9862061b0909d1b6ccd616321.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/Xc812b8dc1568367950b9d4efd82c8f35.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/Xcbd9e67aaccea90229fedfe4b726bf94.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/Xcee871529eddfa32d736ec56bc9fb49e.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/Xd2a7f542e2db8c47c0e42a01f8fa0235.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/Xd7dd19498944cab7a5a3ce11cc8432b3.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/Xd923a815f2dfc73f10c2685ccfe1f85e.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/Xdca494aa773f74f20d1fc6c83ce183a7.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/Xe1316b641c50409c6f0a173af518e98e.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/Xe1c36cea219f2589052fe9daef328d66.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/Xec2520f2d9c129ba505f07a747d9131c.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/Xf2d83d18050dca96f57693c9df44f18e.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/Xf3e0da4b5d76178bc6adae8308eda4bc.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/Xf42644638c78578cb066186c4dfbb17a.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/Xf7f06f92cd1706fb5f775a38267e078e.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/NormalProduct.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/NormalProduct.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/AuthController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/shopController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/shopController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Attribute.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Attribute.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/AttributeValue.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/AttributeValue.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Category.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Category.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/ConfirmComment.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ConfirmComment.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/CustomProduct.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/CustomProduct.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/CustomService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/CustomService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Detail.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Detail.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/NormalService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/NormalService.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/ProductCategory.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ProductCategory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/ProductCustomerComments.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ProductCustomerComments.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/ProductImage.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ProductImage.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/ProductTag.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ProductTag.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/RolesShopsUsers.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/RolesShopsUsers.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Shop.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Shop.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Tasks.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Tasks.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/productPriceHistory.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/productPriceHistory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/l5-swagger.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/l5-swagger.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/api-docs/api-docs.json" beforeDir="false" afterPath="$PROJECT_DIR$/storage/api-docs/api-docs.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X0522a395e6518798fc340dcfdedaf1f0.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X0932b2e09d410cfa383634660ce4d73b.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X0a84d93daad2f17a84466c482c495245.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X359c70c7c07b5c6607b9037f1be3b175.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X387caf137dd22502296711a8b5e6e3ea.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X3c65de37bdbf670252f460f9a794972a.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X596f7fe55a5258e23a6285bbcfbc73ba.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X624867f0e1dfa389b84b06c9e394cb6f.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X7fa91c28b6f4923adaa2310c5eeafbbf.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X8d969ce7e9dc6d166c78370ea571ca14.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X9afd7b65876eddfdbf7c60466b866784.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/Xa53232e4988dd8180d90291b21165287.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/Xa702829ab454922010a570fb3e1d0cbb.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/Xb2dd8cbfd66883423ce74b8cd2a22654.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/Xd3008794748eb9b8c1da32c1bc2cc96c.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/Xee42644f7573e58760b5e5cfdd1f5e0a.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/cache/data/02/47/0247bb36de8848a8f2a2ee50eeb7912eab2ae309" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/cache/data/02/47/0247bb36de8848a8f2a2ee50eeb7912eab2ae309" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/cache/data/31/f9/31f930cc1bc2882a18958bee5f8ccae60ba9492f" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/cache/data/31/f9/31f930cc1bc2882a18958bee5f8ccae60ba9492f" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/cache/data/6b/70/6b7041320a73d38513b4afcd5638b069fe86bd58" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/cache/data/6b/70/6b7041320a73d38513b4afcd5638b069fe86bd58" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/cache/data/97/a0/97a0205ac4fc64da4f85165b4bf40b9e140d1e00" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/cache/data/97/a0/97a0205ac4fc64da4f85165b4bf40b9e140d1e00" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/e4437ecb5e86dd1258082e45f19fbfa69c668383.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/e4437ecb5e86dd1258082e45f19fbfa69c668383.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/logs/laravel.log" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/laravel.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_model_builders.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_model_builders.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_models.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_models.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_static.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/package-versions-deprecated/src/PackageVersions/Versions.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/package-versions-deprecated/src/PackageVersions/Versions.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -552,17 +659,7 @@
         <serviceView>
           <option name="contentProportion" value="0.17473821" />
           <treeState>
-            <expand>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="root:six@localhost" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="root:six@localhost" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="com.intellij.database.console.session.MessageBusSession@448c2b56" type="9fbbdea:ServiceModel$ServiceNode" />
-              </path>
-            </expand>
+            <expand />
             <select />
           </treeState>
         </serviceView>
@@ -626,7 +723,8 @@
       <workItem from="1635565972160" duration="16203000" />
       <workItem from="1635592180369" duration="50140000" />
       <workItem from="1635862628372" duration="2172000" />
-      <workItem from="1635865526181" duration="89633000" />
+      <workItem from="1635865526181" duration="99518000" />
+      <workItem from="1636869859033" duration="12537000" />
     </task>
     <task id="LOCAL-00001" summary="1">
       <created>1628849277468</created>
@@ -761,7 +859,14 @@
       <option name="project" value="LOCAL" />
       <updated>1636471777741</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="20">
+      <created>1636476487881</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1636476487881</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -801,18 +906,14 @@
     <MESSAGE value="17" />
     <MESSAGE value="18" />
     <MESSAGE value="19" />
-    <option name="LAST_COMMIT_MESSAGE" value="19" />
+    <MESSAGE value="20" />
+    <option name="LAST_COMMIT_MESSAGE" value="20" />
   </component>
   <component name="WindowStateProjectService">
     <state x="309" y="37" key="#CLI_Interpreters" timestamp="1630122390985">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="309" y="37" key="#CLI_Interpreters/0.0.1366.728@0.0.1366.728" timestamp="1630122390985" />
-    <state x="362" y="107" key="#CLI_Interpreters/0.0.1600.860@0.0.1600.860" timestamp="1627280165330" />
-    <state x="392" y="88" key="#HTTP_Proxy" timestamp="1627298988828">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state x="392" y="88" key="#HTTP_Proxy/0.0.1600.860@0.0.1600.860" timestamp="1627298988828" />
     <state x="-1278" y="26" key="#Inspections" timestamp="1635591826260">
       <screen x="-1600" y="0" width="1600" height="860" />
     </state>
@@ -827,23 +928,10 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="392" y="88" key="#Notifications/0.0.1600.860/-1600.0.1600.860@0.0.1600.860" timestamp="1632550976684" />
-    <state x="392" y="88" key="#Servers" timestamp="1627293964625">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state x="392" y="88" key="#Servers/0.0.1600.860@0.0.1600.860" timestamp="1627293964625" />
     <state x="-1255" y="61" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1635862145188">
       <screen x="-1600" y="0" width="1600" height="860" />
     </state>
     <state x="-1255" y="61" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1635862145188" />
-    <state x="345" y="61" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1600.860@0.0.1600.860" timestamp="1627295550014" />
-    <state x="491" y="134" width="1078" height="591" key="#com.intellij.featureStatistics.actions.ShowFeatureUsageStatisticsDialog" timestamp="1627278756430">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state x="491" y="134" width="1078" height="591" key="#com.intellij.featureStatistics.actions.ShowFeatureUsageStatisticsDialog/0.0.1600.860@0.0.1600.860" timestamp="1627278756430" />
-    <state x="628" y="272" key="#com.intellij.ide.actions.DebugLogConfigureAction" timestamp="1627278887036">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state x="628" y="272" key="#com.intellij.ide.actions.DebugLogConfigureAction/0.0.1600.860@0.0.1600.860" timestamp="1627278887036" />
     <state x="-1028" y="93" key="#com.intellij.ide.util.MemberChooser" timestamp="1635594674147">
       <screen x="-1600" y="0" width="1600" height="860" />
     </state>
@@ -856,11 +944,11 @@
     <state x="-1280" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1635591735828" />
     <state x="320" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1600.860/-1600.0.1600.860@0.0.1600.860" timestamp="1632044322559" />
     <state x="320" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1600.860@0.0.1600.860" timestamp="1628520283030" />
-    <state x="-1117" y="139" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1636470293237">
+    <state x="-1117" y="139" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1636522112217">
       <screen x="-1600" y="0" width="1600" height="860" />
     </state>
     <state x="412" y="118" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.728@0.0.1366.728" timestamp="1630870909333" />
-    <state x="-1117" y="139" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1636470293237" />
+    <state x="-1117" y="139" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1636522112217" />
     <state x="483" y="139" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1600.860/-1600.0.1600.860@0.0.1600.860" timestamp="1633530495382" />
     <state x="483" y="139" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1600.860@0.0.1600.860" timestamp="1631108677772" />
     <state x="580" y="355" key="#com.jetbrains.php.lang.intentions.PhpImportClassDialog#" timestamp="1631084876737">
@@ -871,11 +959,11 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="558" y="291" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1600.860/-1600.0.1600.860@0.0.1600.860" timestamp="1632051667685" />
-    <state x="-1274" y="0" key="CommitChangelistDialog2" timestamp="1636471775385">
+    <state x="-1274" y="0" key="CommitChangelistDialog2" timestamp="1636476486054">
       <screen x="-1600" y="0" width="1600" height="860" />
     </state>
     <state x="278" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1628850717056" />
-    <state x="-1274" y="0" key="CommitChangelistDialog2/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1636471775385" />
+    <state x="-1274" y="0" key="CommitChangelistDialog2/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1636476486054" />
     <state x="326" y="0" key="CommitChangelistDialog2/0.0.1600.860/-1600.0.1600.860@0.0.1600.860" timestamp="1632893075732" />
     <state x="326" y="0" key="CommitChangelistDialog2/0.0.1600.860@0.0.1600.860" timestamp="1631528617231" />
     <state x="645" y="336" key="Create Controller" timestamp="1632051413628">
@@ -894,10 +982,6 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="645" y="308" key="Create Resource Controller/0.0.1600.860/-1600.0.1600.860@0.0.1600.860" timestamp="1632052205023" />
-    <state width="704" height="442" key="Diff.GoToChangePopup" timestamp="1628143866596">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state width="704" height="442" key="Diff.GoToChangePopup/0.0.1366.728@0.0.1366.728" timestamp="1628143866596" />
     <state x="-1508" y="92" width="1416" height="676" key="DiffContextDialog" timestamp="1635592017699">
       <screen x="-1600" y="0" width="1600" height="860" />
     </state>
@@ -909,34 +993,29 @@
     </state>
     <state x="516" y="91" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1630867836717" />
     <state x="-996" y="108" key="FileChooserDialogImpl/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1635863330269" />
-    <state x="622" y="308" key="FileChooserDialogImpl/0.0.1600.860@0.0.1600.860" timestamp="1627280150030" />
-    <state x="-1045" y="330" key="Generate Helper Code" timestamp="1636383485672">
+    <state x="-1045" y="330" key="Generate Helper Code" timestamp="1636883492321">
       <screen x="-1600" y="0" width="1600" height="860" />
     </state>
-    <state x="-1045" y="330" key="Generate Helper Code/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1636383485672" />
+    <state x="-1045" y="330" key="Generate Helper Code/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1636883492321" />
     <state x="555" y="330" key="Generate Helper Code/0.0.1600.860/-1600.0.1600.860@0.0.1600.860" timestamp="1632562602706" />
     <state width="1260" height="275" key="GridCell.Tab.0.bottom" timestamp="1635923901293">
       <screen x="-1600" y="0" width="1600" height="860" />
     </state>
-    <state width="1067" height="224" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1628067641996" />
     <state width="1260" height="275" key="GridCell.Tab.0.bottom/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1635923901293" />
     <state width="1260" height="276" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1629725152472" />
     <state width="1260" height="275" key="GridCell.Tab.0.center" timestamp="1635923901293">
       <screen x="-1600" y="0" width="1600" height="860" />
     </state>
-    <state width="1067" height="224" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1628067641996" />
     <state width="1260" height="275" key="GridCell.Tab.0.center/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1635923901293" />
     <state width="1260" height="276" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1629725152472" />
     <state width="1260" height="275" key="GridCell.Tab.0.left" timestamp="1635923901293">
       <screen x="-1600" y="0" width="1600" height="860" />
     </state>
-    <state width="1067" height="224" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1628067641995" />
     <state width="1260" height="275" key="GridCell.Tab.0.left/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1635923901293" />
     <state width="1260" height="276" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1629725152471" />
     <state width="1260" height="275" key="GridCell.Tab.0.right" timestamp="1635923901293">
       <screen x="-1600" y="0" width="1600" height="860" />
     </state>
-    <state width="1067" height="224" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1628067641996" />
     <state width="1260" height="275" key="GridCell.Tab.0.right/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1635923901293" />
     <state width="1260" height="276" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1629725152472" />
     <state x="555" y="210" key="NewPhpClassDialog" timestamp="1631085325918">
@@ -947,10 +1026,6 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="634" y="353" key="NewPhpFileDialog/0.0.1600.860@0.0.1600.860" timestamp="1630468086867" />
-    <state x="314" y="188" width="895" height="356" key="Performance.Activity.Monitor" timestamp="1627278863722">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state x="314" y="188" width="895" height="356" key="Performance.Activity.Monitor/0.0.1600.860@0.0.1600.860" timestamp="1627278863722" />
     <state x="-1217" y="0" key="SettingsEditor" timestamp="1635924248945">
       <screen x="-1600" y="0" width="1600" height="860" />
     </state>
@@ -962,44 +1037,35 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="647" y="345" key="VCS.ChangelistChooser/0.0.1600.860@0.0.1600.860" timestamp="1631688745258" />
-    <state x="-1278" y="100" key="Vcs.Push.Dialog.v2" timestamp="1636471780178">
+    <state x="-1278" y="100" key="Vcs.Push.Dialog.v2" timestamp="1636476548180">
       <screen x="-1600" y="0" width="1600" height="860" />
     </state>
     <state x="275" y="85" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1628850937221" />
-    <state x="-1278" y="100" key="Vcs.Push.Dialog.v2/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1636471780178" />
+    <state x="-1278" y="100" key="Vcs.Push.Dialog.v2/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1636476548180" />
     <state x="322" y="100" key="Vcs.Push.Dialog.v2/0.0.1600.860/-1600.0.1600.860@0.0.1600.860" timestamp="1632893079429" />
     <state x="322" y="100" key="Vcs.Push.Dialog.v2/0.0.1600.860@0.0.1600.860" timestamp="1631528623715" />
-    <state x="562" y="149" key="com.intellij.database.view.ui.DbObjectDialog" timestamp="1627456305309">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="562" y="149" key="com.intellij.database.view.ui.DbObjectDialog/0.0.1366.728@0.0.1366.728" timestamp="1627456305309" />
-    <state x="658" y="176" key="com.intellij.database.view.ui.DbObjectDialog/0.0.1600.860@0.0.1600.860" timestamp="1627295558966" />
-    <state x="486" y="134" key="com.intellij.execution.console.ConsoleHistoryController$MyBrowseAction$1" timestamp="1627371081752">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state x="486" y="134" key="com.intellij.execution.console.ConsoleHistoryController$MyBrowseAction$1/0.0.1600.860@0.0.1600.860" timestamp="1627371081752" />
     <state x="-1508" y="92" width="1416" height="676" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1635667461077">
       <screen x="-1600" y="0" width="1600" height="860" />
     </state>
     <state x="79" y="78" width="1209" height="573" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog/0.0.1366.728@0.0.1366.728" timestamp="1630870745263" />
     <state x="-1508" y="92" width="1416" height="676" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1635667461077" />
     <state x="92" y="92" width="1416" height="676" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog/0.0.1600.860@0.0.1600.860" timestamp="1630905855701" />
-    <state x="108" y="109" width="1385" height="643" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1634625611418">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state x="-1492" y="109" width="1385" height="643" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1636522789144">
+      <screen x="-1600" y="0" width="1600" height="860" />
     </state>
     <state x="92" y="92" width="1182" height="544" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1366.728@0.0.1366.728" timestamp="1630762974164" />
-    <state x="92" y="92" width="1182" height="544" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1366.768@0.0.1366.768" timestamp="1627472029273" />
+    <state x="-1492" y="109" width="1385" height="643" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1636522789144" />
     <state x="108" y="109" width="1385" height="643" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1600.860/-1600.0.1600.860@0.0.1600.860" timestamp="1634625611418" />
     <state x="108" y="109" width="1385" height="643" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1600.860@0.0.1600.860" timestamp="1630496170965" />
+    <state x="-1508" y="92" width="1416" height="676" key="com.intellij.history.integration.ui.views.SelectionHistoryDialog" timestamp="1636522789144">
+      <screen x="-1600" y="0" width="1600" height="860" />
+    </state>
+    <state x="-1508" y="92" width="1416" height="676" key="com.intellij.history.integration.ui.views.SelectionHistoryDialog/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1636522789144" />
     <state x="496" y="253" key="com.intellij.ide.util.TipDialog" timestamp="1631517348748">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="423" y="214" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1630870122857" />
     <state x="496" y="253" key="com.intellij.ide.util.TipDialog/0.0.1600.860@0.0.1600.860" timestamp="1631517348748" />
-    <state x="530" y="32" key="com.intellij.troubleshooting.ui.CollectTroubleshootingInformationDialog" timestamp="1627278855925">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state x="530" y="32" key="com.intellij.troubleshooting.ui.CollectTroubleshootingInformationDialog/0.0.1600.860@0.0.1600.860" timestamp="1627278855925" />
     <state width="885" height="247" key="javadoc.popup.new" timestamp="1636386756802">
       <screen x="-1600" y="0" width="1600" height="860" />
     </state>

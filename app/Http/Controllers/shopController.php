@@ -7,6 +7,7 @@ use App\Http\Resources\ShopCollection;
 use App\Http\Resources\ShopResource;
 use App\Models\RolesShopsUsers;
 use App\Models\Shop;
+//use Auth;
 use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -215,7 +216,7 @@ class shopController extends Controller {
                     ->where( 'long_location', '>=', $right )
                     ->paginate( $limit, '*', 'page', $page );
 
-                $ShopCollection = (new ShopCollection($shops));
+                $ShopCollection = (new ShopCollection( $shops ));
                 $ShopCollection->toJson();
                 $Response = $ShopCollection->toResponse( $request );
                 $Response->setStatusCode( 200 );
@@ -472,7 +473,7 @@ class shopController extends Controller {
             // new user_role_shop
             // user_id => ($shopkeeper_id), role_id => (shopkeeper), shop_id => ($shop->id), shop_type => (child)
             // $shop->tags()->attach($tag);
-            $shop->user()->attach($shopkeeper_id, ['shop_type' => 'child', 'role_id' => 1]);
+            $shop->user()->attach( $shopkeeper_id, ['shop_type' => 'child', 'role_id' => 1] );
 
             $responseCode = 201;
             $message = 'New Shop Created';
@@ -533,7 +534,7 @@ class shopController extends Controller {
      * Display the specified resource.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show($id)
     {
@@ -544,47 +545,62 @@ class shopController extends Controller {
 
         //
         $shopkeeper_id = auth()->id();
+//        return $shopkeeper_id;
 
-        $shop = Shop::whereHas(
-                    'RolesShopsUsers',
-                    function ($query) use ($shopkeeper_id) {
-                        $query
-                            ->whereHas('role'
-                            )
-                            ->with('role')
-                            ->where( 'roles_shops_users.user_id', '=', $shopkeeper_id );
-                    }
-            )->with('RolesShopsUsers')
-            ->where('id', '=', $id) // for get all remove this line
-            ->get(); // result => "select * from `shops` where exists (select * from `roles_shops_users` where `shops`.`id` = `roles_shops_users`.`shop_id` and `roles_shops_users`.`user_id` = ".$shopkeeper_id.") and `shops`.`deleted_at` is null"
+        $shop = Shop::with( 'userOfRolesShopsUsers' )->get();
+        $shop = Shop::whereHas( 'userOfRolesShopsUsers', function ($query) use ($shopkeeper_id) {
+            $query->where( 'roles_shops_users.user_id', '=', $shopkeeper_id );
+        } )
+            ->where( 'id', '=', (int) $id ) // for get all remove this line
+            ->with( 'userOfRolesShopsUsers' )
+            ->with( 'roleOfRolesShopsUsers' )
+//            ->with( ['roleOfRolesShopsUsers', function ($subQuery) use ($shopkeeper_id) {
+//                $subQuery->;
+//            }] )
+            ->get();
+        /*        $shop = Shop::whereHas(
+                            'RolesShopsUsers',
+                            function ($query) use ($shopkeeper_id) {
+                                $query
+                                    ->whereHas('role'
+                                    )
+                                    ->with('role')
+                                    ->where( 'roles_shops_users.user_id', '=', $shopkeeper_id );
+                            }
+                    )->with('RolesShopsUsers')
+                    ->where('id', '=', $id) // for get all remove this line
+                    ->get(); // result => "select * from `shops` where exists (select * from `roles_shops_users` where `shops`.`id` = `roles_shops_users`.`shop_id` and `roles_shops_users`.`user_id` = ".$shopkeeper_id.") and `shops`.`deleted_at` is null"*/
 
 //        $shop = Shop::join('roles_shops_users', 'id', '=', 'shop_id', '', '')
 
         return $shop;
+//        return response()->json( [
+//            'shop' => $shop,
+//            'shop_id' => $shop->id,
+//        ], 200 );
+//        return $shop->description;
+        return $shop->user_of_roles_shops_users;
 //        $query = DB::getQueryLog();
 //        $query = end( $query );
 //        dd( $query );
 
 
-
-
-
-/*        // todo many to many not work
-        $shop = Shop::
-        with(
-//            'user'
-            ['user' => function ($query) {
-//                $query->wherePivot( 'user_id', '=', 2 );
-                $query->where( 'roles_shops_users.user_id', 2 );
-            }]
-        )
-//            ->where('user_id', '=', 2)
-            ->get();
-//        dd($shop);
-//        $query = DB::getQueryLog();
-//        $query = end( $query );
-//        dd( $query );
-        return $shop;*/
+        /*        // todo many to many not work
+                $shop = Shop::
+                with(
+        //            'user'
+                    ['user' => function ($query) {
+        //                $query->wherePivot( 'user_id', '=', 2 );
+                        $query->where( 'roles_shops_users.user_id', 2 );
+                    }]
+                )
+        //            ->where('user_id', '=', 2)
+                    ->get();
+        //        dd($shop);
+        //        $query = DB::getQueryLog();
+        //        $query = end( $query );
+        //        dd( $query );
+                return $shop;*/
 
     }
 

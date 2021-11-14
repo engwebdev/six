@@ -452,43 +452,43 @@ class AuthController extends Controller {
                     );
 
                     $tokenRequest = $request->create( '/api/v1/token', 'POST', $request->all() );
-                    $response = app()->handle($tokenRequest);
-/*
-                    return response()->json(
-                        [
-                            "message" => [
-                                "token" => $tokenRequest,
-                                "auth" => auth()->guard( 'api' ),
-                                "server" => $request->server->all(),
-                                "cookies" => $request->cookies->all(),
-                                "headers" => $request->headers->all(),
-                                "user" => $request->user(),
-//                                "token" => $request->user()->token(),
-                                "ReHeaders" => $response->headers->all(),
-                                "ReOriginal" => $response->original,
-                                "ReException" => $response->exception,
-                                "ReResponseContent" => json_decode($response->getContent()),
-//                                "response1" => $response->toArray(),
-//                                "response2" => $response->get('content'),
-//                                "response" => $response->statusCode,
-                            ],
-                        ], 403 );
-*/
+                    $response = app()->handle( $tokenRequest );
+                    /*
+                                        return response()->json(
+                                            [
+                                                "message" => [
+                                                    "token" => $tokenRequest,
+                                                    "auth" => auth()->guard( 'api' ),
+                                                    "server" => $request->server->all(),
+                                                    "cookies" => $request->cookies->all(),
+                                                    "headers" => $request->headers->all(),
+                                                    "user" => $request->user(),
+                    //                                "token" => $request->user()->token(),
+                                                    "ReHeaders" => $response->headers->all(),
+                                                    "ReOriginal" => $response->original,
+                                                    "ReException" => $response->exception,
+                                                    "ReResponseContent" => json_decode($response->getContent()),
+                    //                                "response1" => $response->toArray(),
+                    //                                "response2" => $response->get('content'),
+                    //                                "response" => $response->statusCode,
+                                                ],
+                                            ], 403 );
+                    */
                     $token = $user->createToken( 'CustomGrant' )->accessToken;
                     $user->mobile_verified_at = Carbon::now();
                     $user->save();
                     return response()->json(
-                        json_decode($response->getContent())
+                        json_decode( $response->getContent() )
                         , 201 );
-/*
-                    return response()->json(
-                        [
-                            "token_type" => "Bearer",
-                            "expires_in" => "31536000",
-                            'access_token' => $response->access_token,
-                            'refresh_token' => $response->refresh_token,
-                        ], 201 );
-                    */
+                    /*
+                                        return response()->json(
+                                            [
+                                                "token_type" => "Bearer",
+                                                "expires_in" => "31536000",
+                                                'access_token' => $response->access_token,
+                                                'refresh_token' => $response->refresh_token,
+                                            ], 201 );
+                                        */
                 }
                 else
                 {
@@ -587,6 +587,187 @@ class AuthController extends Controller {
 
     }
 
+    /**
+     * @OA\Post(
+     * path="/api/userAccount",
+     * operationId="userAccount",
+     * tags={"User Authorization"},
+     * summary="Account set first name and last name.",
+     * description="User Account here",
+     *
+     *
+     *     security={
+     *         {"bearer": {}}
+     *     },
+     *
+     *     @OA\RequestBody(
+     *         @OA\JsonContent(
+     *               required={"firstName", "lastName"},
+     *               @OA\Property(property="firstName", type="string", example="firstName", format="", description="firstName"),
+     *               @OA\Property(property="lastName", type="string", example="lastName", format="", description="lastName"),
+     *          ),
+     *         @OA\MediaType(
+     *            mediaType="multipart/form-data",
+     *            @OA\Schema(
+     *               type="object",
+     *               required={"firstName", "lastName"},
+     *               @OA\Property(property="firstName", type="string", example="firstName", format="", description="firstName"),
+     *               @OA\Property(property="lastName", type="string", example="lastName", format="", description="lastName"),
+     *
+     *            ),
+     *        ),
+     *    ),
+     *
+     *
+     *      @OA\Response(
+     *          response=200,
+     *          description="user Login Successfully",
+     *
+     *          @OA\JsonContent(
+     *              type="object",
+     *
+     *              @OA\Property(property="message", type="string", example="user Login Successfully"),
+     *              @OA\Property(
+     *                      property="success",
+     *                      type="object",
+     *                  @OA\Property(
+     *                      property="mobile",
+     *                      type="array",
+     *                      @OA\Items(
+     *                          example="+989360001234"
+     *                      ),
+     *                  ),
+     *              ),
+     *
+     *              @OA\Property(
+     *                  property="NotificationsEnServer",
+     *                  type="string",
+     *                  example="The verification code was sent to the mobile number via SMS",
+     *              ),
+     *
+     *          ),
+     *      ),
+     *
+     *
+     *      @OA\Response(
+     *          response=201,
+     *          description="user Register Successfully",
+     *
+     *          @OA\JsonContent(
+     *              type="object",
+     *
+     *              @OA\Property(property="message", type="string", example="user Register Successfully"),
+     *              @OA\Property(
+     *                      property="success",
+     *                      type="object",
+     *                  @OA\Property(
+     *                      property="mobile",
+     *                      type="array",
+     *                      @OA\Items(
+     *                          example="+989360001234"
+     *                      ),
+     *                  ),
+     *              ),
+     *
+     *              @OA\Property(
+     *                  property="NotificationsEnServer",
+     *                  type="string",
+     *                  example="The verification code was sent to the mobile number via SMS",
+     *              ),
+     *
+     *          ),
+     *      ),
+     *
+     *      @OA\Response(response=400, description="Bad request"),
+     *      @OA\Response(response=404, description="Resource Not Found"),
+     *
+     *
+     *      @OA\Response(
+     *          response=422,
+     *          description="Unprocessable Entity",
+     *          @OA\JsonContent(
+     *              type="object",
+     *              @OA\Property(
+     *                  property="message",
+     *                  type="string",
+     *                  example="Integrity constraint violation",
+     *              ),
+     *              @OA\Property(
+     *                  property="errors",
+     *                  type="object",
+     *                  @OA\Property(
+     *                      property="mobile_phone_number",
+     *                      type="array",
+     *                      @OA\Items(
+     *                          example="The mobile phone number field is unique."
+     *                      ),
+     *                  ),
+     *                  @OA\Property(
+     *                      property="problem",
+     *                      type="array",
+     *                      @OA\Items(
+     *                          example="Duplicate entry mobile number"
+     *                      ),
+     *                  ),
+     *                  @OA\Property(
+     *                      property="exception",
+     *                      type="array",
+     *                      @OA\Items(
+     *                          example="Sql exception"
+     *                      ),
+     *                  ),
+     *              ),
+     *          ),
+     *       ),
+     *
+     *      @OA\Response(response=503, description="Servr error"),
+     * )
+     *
+     *
+     *
+     *
+     *
+     */
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function userAccount(Request $request)
+    {
+        try
+        {
+            $validated = $request->validate([
+                'firstName' => ['required','string', 'min:2'],
+                'lastName' => ['string', 'min:2'],
+
+            ] );
+
+            $user = User::find(auth()->id());
+            $user->first_name = $validated['firstName'];
+            $user->last_name = $validated['lastName'];
+//            $user->save();
+            $data = [
+                "userId" => $user->id,
+                "firstName" => $user->first_name,
+                "lastName" => $user->last_name,
+                "fullName" => $user->first_name . ' ' . $user->last_name,
+                "mobileNumber" => $user->mobile,
+                "username" => $user->username,
+                "email" => $user->email,
+                "profileImageUrl" => $user->profile_photo_path,
+            ];
+//dd($user);
+
+            return response()->json( [
+                "message" => "Test request",
+                "data" => $data,
+            ], 200 );
+        }
+        catch (QueryException $e)
+        {
+
+        }
+    }
 
 
     /********************************************************************************************************************/

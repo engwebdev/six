@@ -92,20 +92,35 @@ class Shop extends Model
     }
 
     /******************************/
-
+    // todo done many to many
     /**
      * Get the Shops for the Shop.
-     * @return HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function userOfRolesShopsUsers()
     {
-        return $this->hasMany(RolesShopsUsers::class, 'shop_id', 'id');
+//        return $this->hasMany(RolesShopsUsers::class, 'shop_id', 'id');
+        return $this->belongsToMany(User::class,
+            'roles_shops_users',
+            'shop_id',
+            'user_id',
+            'id',
+            'id'
+            );
     }
 
 
     public function roleOfRolesShopsUsers()
     {
-        return $this->hasMany(RolesShopsUsers::class, 'shop_id', 'id');
+//        return $this->hasMany(RolesShopsUsers::class,'shop_id', 'id');
+        return $this->belongsToMany(Role::class,
+            'roles_shops_users',
+            'shop_id',
+            'role_id',
+            'id',
+            'id'
+        );
+
     }
 
 

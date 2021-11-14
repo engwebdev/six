@@ -288,8 +288,8 @@ return [
          * Uncomment to add constants which can be used in annotations
          */
          'constants' => [
-//         'L5_SWAGGER_CONST_HOST' => env('L5_SWAGGER_CONST_HOST', 'http://my-default-host.com'),  // sample
          'L5_SWAGGER_CONST_HOST' => env('L5_SWAGGER_CONST_HOST', 'http://127.0.0.1:8001'), // working
+//         'L5_SWAGGER_CONST_HOST' => env('L5_SWAGGER_CONST_HOST', 'https://kasbokary.ir'), // working
 //         'L5_SWAGGER_CONST_HOST' => env('L5_SWAGGER_CONST_HOST', 'localhost'), // not working
 //         'L5_SWAGGER_CONST_HOST' => env('L5_SWAGGER_CONST_HOST', 'Mehdi AND Meysam Test Api Example'), // not working
 //         'L5_SWAGGER_CONST_HOST' => env('L5_SWAGGER_CONST_HOST', 'test'), // not working
