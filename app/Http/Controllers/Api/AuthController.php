@@ -382,8 +382,8 @@ class AuthController extends Controller {
         {
             $validated = $request->validate( [
                 'verify_code' => ['required'],
-                'country_code' => ['string', 'min:2', 'max:4'],
-                'mobile_phone_number' => ['required', 'numeric', 'digits:10'],
+                'country_code' => ['string', 'nullable'],
+                'mobile_phone_number' => ['numeric', 'digits:10', 'nullable'],
 //                'mobile' => ['string', 'size:13',
 //                    function () use () {
 //                    }
@@ -589,9 +589,9 @@ class AuthController extends Controller {
 
     /**
      * @OA\Post(
-     * path="/api/userAccount",
+     * path="/api/v1/userAccount",
      * operationId="userAccount",
-     * tags={"User Authorization"},
+     * tags={"Profile"},
      * summary="Account set first name and last name.",
      * description="User Account here",
      *
@@ -602,7 +602,7 @@ class AuthController extends Controller {
      *
      *     @OA\RequestBody(
      *         @OA\JsonContent(
-     *               required={"firstName", "lastName"},
+     *               required={"firstName"},
      *               @OA\Property(property="firstName", type="string", example="firstName", format="", description="firstName"),
      *               @OA\Property(property="lastName", type="string", example="lastName", format="", description="lastName"),
      *          ),
@@ -610,7 +610,7 @@ class AuthController extends Controller {
      *            mediaType="multipart/form-data",
      *            @OA\Schema(
      *               type="object",
-     *               required={"firstName", "lastName"},
+     *               required={"firstName"},
      *               @OA\Property(property="firstName", type="string", example="firstName", format="", description="firstName"),
      *               @OA\Property(property="lastName", type="string", example="lastName", format="", description="lastName"),
      *
@@ -738,13 +738,16 @@ class AuthController extends Controller {
         {
             $validated = $request->validate([
                 'firstName' => ['required','string', 'min:2'],
-                'lastName' => ['string', 'min:2'],
+                'lastName' => ['string', 'min:2', 'nullable'],
 
             ] );
 
             $user = User::find(auth()->id());
             $user->first_name = $validated['firstName'];
-            $user->last_name = $validated['lastName'];
+            if (!empty( $validated['lastName'] ))
+            {
+                $user->last_name = $validated['lastName'];
+            }
             $user->save();
             $data = [
                 "userId" => $user->id,

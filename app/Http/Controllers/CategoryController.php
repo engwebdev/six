@@ -6,10 +6,12 @@ use App\Exceptions\MyException;
 use App\Http\Resources\CategoryCollection;
 use App\Http\Resources\CategoryResource;
 use App\Models\Category;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
+use Spatie\Permission\Models\Role;
 
 class CategoryController extends Controller {
 
@@ -260,8 +262,23 @@ class CategoryController extends Controller {
         {
             $order = 'asc';
         }
-        $category = Category::orderBy( $sort, $order )
-            ->paginate( $limit, '*', 'page', $page );
+
+        $user = User::find( auth()->id() );
+        $user->guard_name = 'api'; // todo important for role
+
+        if ($user->hasRole( 'system' ))
+        {
+            $category = Category::orderBy( $sort, $order )
+                ->paginate( $limit, '*', 'page', $page );
+        }
+        else if (!$user->hasRole( 'system' ))
+        {
+            $category = Category::orderBy( $sort, $order )
+                ->where( 'category_accept_status', '=', true )
+                ->where( 'category_publish_status', '=', true )
+                ->where( 'category_show_status', '=', 'public' )
+                ->paginate( $limit, '*', 'page', $page );
+        }
 
         $CategoryCollection = (new CategoryCollection( $category ));
         $CategoryCollection->toJson();
@@ -663,7 +680,12 @@ class CategoryController extends Controller {
         {
             $validated = $request->validate(
                 [
-                    'category_name' => ['required', 'string', 'min:8'],
+                    'category_name' => ['required', 'string', 'min:3'],
+                    'category_image_url' => ['string', 'nullable'],
+
+                    'category_accept_status' => ['string', 'nullable'],
+                    'category_publish_status' => ['string', 'nullable'],
+                    'category_show_status' => ['string', 'nullable'],
                 ]
             );
 
@@ -679,9 +701,76 @@ class CategoryController extends Controller {
                 ], 503 );
             }
 
+            if (isset($validated['category_image_url']))
+            {
+                $category_image_url = $validated['category_image_url'];
+            }
+            else
+            {
+                $category_image_url = null;
+            }
 
+            $user = User::find( auth()->id() );
+            $user->guard_name = 'api'; // todo important
+
+//            $all_roles_in_database = Role::all()->pluck( 'name' );
+//            $user->assignRole('system');
+//            $user->removeRole('system');
+//            dd(
+//                $all_roles_in_database,
+//                $user->getRoleNames(),
+//                $user->getAllPermissions(),
+//                $user->getDirectPermissions()
+//            );
+
+/*
+            $userGetRoleNames = $user->getRoleNames();
+
+            if ($userGetRoleNames->count() > 1){
+//                error
+                $category_additional_user_type = 'unknown';
+            } else {
+                $category_additional_user_type = $userGetRoleNames->toArray()[0];
+            }
+
+
+            if ($user->hasRole( 'shopkeeper' ))
+            {
+                $category_accept_status = false;
+                $category_publish_status = false;
+                $category_show_status = 'private';
+            }
+            elseif ($user->hasRole( 'system' ))
+            {
+                $category_accept_status = true;
+                $category_publish_status = true;
+                $category_show_status = 'public';
+//            } elseif ($user->hasRole('user')) {
+//                $category_additional_user_type = 'user';
+//                $category_accept_status = false;
+//                $category_publish_status = false;
+//                $category_show_status = 'privet';
+            }
+            else
+            {
+                $category_additional_user_type = 'unknown';
+                $category_accept_status = false;
+                $category_publish_status = false;
+                $category_show_status = 'privet';
+            }
+*/
+
+
+            $category_statuses = $this->category_status_result($user);
             $category = Category::create( [
                 'category_name' => $validated['category_name'],
+                'category_image_url' => $category_image_url,
+                'category_additional_user_id' => auth()->id(),
+                'category_additional_user_type' => $category_statuses['category_additional_user_type'],
+                'category_accept_status' => $category_statuses['category_accept_status'],
+                'category_publish_status' => $category_statuses['category_publish_status'],
+                'category_show_status' => $category_statuses['category_show_status'],
+
             ] );
             $success['id'] = $category->id;
 
@@ -693,6 +782,7 @@ class CategoryController extends Controller {
             return response()->json( [
                 'message' => $message,
                 'success' => $success,
+                'data' => $category,
                 'NotificationsEnServer' => $notifications_En_Server,
                 'NotificationsFaServer' => $notifications_Fa_Server,
             ], $responseCode );
@@ -869,13 +959,18 @@ class CategoryController extends Controller {
 //        {
 //
 //        }
+        $user = User::find( auth()->id() );
+        $user->guard_name = 'api'; // todo important
+
+        $category_statuses = $this->category_status_result($user);
+
         $validated = $request->validate(
             [
-                'category_name' => ['required', 'string', 'min:8'],
+                'category_name' => ['required', 'string', 'min:3'],
             ]
         );
         $validator = Validator::make( $validated, [
-            'category_name' => ['string', 'unique:categories,category_name', 'min:8'],
+            'category_name' => ['string', 'unique:categories,category_name', 'min:3'],
         ] );
         if ($validator->fails())
         {
@@ -887,14 +982,19 @@ class CategoryController extends Controller {
             ], 503 );
         }
 
-        $category = Category::find($id);
+        $category = Category::find( $id );
         $category->category_name = $validated['category_name'];
+        $category->category_additional_user_id = $user->id;
+        $category->category_additional_user_type = $category_statuses['category_additional_user_type'];
+        $category->category_accept_status = $category_statuses['category_accept_status'];
+        $category->category_publish_status = $category_statuses['category_publish_status'];
+        $category->category_show_status = $category_statuses['category_show_status'];
         $category->save();
 //        dd($category);
 
         return response()->json(
             [
-                'data' => (new CategoryResource($category))
+                'data' => (new CategoryResource( $category )),
             ],
             200
         );
@@ -1007,8 +1107,9 @@ class CategoryController extends Controller {
     public function destroy(Category $category, $id)
     {
         //
-        $category = Category::find($id);
-        if ($category) {
+        $category = Category::find( $id );
+        if ($category)
+        {
             $category->delete();
             $message = "Shop Category " . $id . " deleted.";
             $success = $id;
@@ -1029,11 +1130,56 @@ class CategoryController extends Controller {
             return response()->json(
                 [
                     "errors" => [
-                        "shop_category" => "Shop Category " . $id . " Not Found!"
-                    ]
+                        "shop_category" => "Shop Category " . $id . " Not Found!",
+                    ],
                 ],
                 404
             );
         }
+    }
+
+    private function category_status_result(User $user)
+    {
+        $userGetRoleNames = $user->getRoleNames();
+
+        if ($userGetRoleNames->count() > 1){
+//                error
+            $category_additional_user_type = 'unknown';
+        } else {
+            $category_additional_user_type = $userGetRoleNames->toArray()[0];
+        }
+
+
+        if ($user->hasRole( 'shopkeeper' ))
+        {
+            $category_accept_status = false;
+            $category_publish_status = false;
+            $category_show_status = 'private';
+        }
+        elseif ($user->hasRole( 'system' ))
+        {
+            $category_accept_status = true;
+            $category_publish_status = true;
+            $category_show_status = 'public';
+//            } elseif ($user->hasRole('user')) {
+//                $category_additional_user_type = 'user';
+//                $category_accept_status = false;
+//                $category_publish_status = false;
+//                $category_show_status = 'privet';
+        }
+        else
+        {
+            $category_additional_user_type = 'unknown';
+            $category_accept_status = false;
+            $category_publish_status = false;
+            $category_show_status = 'privet';
+        }
+
+        return [
+            'category_additional_user_type' => $category_additional_user_type,
+            'category_accept_status' => $category_accept_status,
+            'category_publish_status' => $category_publish_status,
+            'category_show_status' => $category_show_status,
+        ];
     }
 }

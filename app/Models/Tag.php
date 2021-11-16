@@ -22,7 +22,7 @@ class Tag extends Model
     public function shops()
     {
 //        return $this->belongsToMany(shop::class, 'shops_tags', 'tag_id', 'id', null, null, null);
-        return $this->belongsToMany(shop::class)->withPivot('tag_accept_status');
+        return $this->belongsToMany(shop::class, 'shops_tags')->withPivot('tag_accept_status')->withTimestamps();
     }
 
     /**

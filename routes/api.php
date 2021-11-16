@@ -55,7 +55,10 @@ Route::post( '/userNewToken', [AuthController::class, 'userNewToken'] )->name( '
 
 Route::group( ['middleware' => ['auth:api']], function () {
     Route::get( '/userLogout', [AuthController::class, 'userLogout'] )->name( 'userLogout' );
-    Route::post( '/userAccount', [AuthController::class, 'userAccount'] )->name( 'userAccount' );
+    Route::prefix( 'v1' )->group( function () {
+        Route::post( '/userAccount', [AuthController::class, 'userAccount'] )->name( 'userAccount' );
+
+    });
 } );
 
 Route::post( '/customGrantToken', [CustomGrantController::class, 'customGrantToken'] )->name( 'customGrantToken' );
@@ -98,6 +101,7 @@ Route::prefix( 'v1' )->middleware( ['auth:api', 'SwaggerRequest'] )->group( func
     Route::get( 'shops/{id}', [shopController::class, 'show'] )->name( 'shops.show' );
     Route::put( 'shops/{id}', [shopController::class, 'update'] )->name( 'shops.update' );
     Route::delete( 'shops/{id}', [shopController::class, 'destroy'] )->name( 'shops.destroy' );
+    Route::get( 'shops/self', [shopController::class, 'getSelfShop'] )->name( 'shops.getSelfShop' );
 
 } );
 

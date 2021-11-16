@@ -28,7 +28,8 @@ class SaveSMSVerificationCode
     {
         $user = $event->getUser();
 
-        $user->mobile_verified_code = base_convert( intval( strval( substr( $user->mobile, 4 ) ) ) . time(), 10, 36 );
+//        $user->mobile_verified_code = base_convert( intval( strval( substr( $user->mobile, 4 ) ) ) . time(), 10, 36 );
+        $user->mobile_verified_code = intval(strval(substr(time(), -5)));
         $user->mobile_verified_code_expire_time = date( 'Y-m-d H:i:s', 360 + time() );
 
         $user->save();

@@ -389,6 +389,7 @@ class shopController extends Controller {
                     'parent_id' => ['nullable', 'integer'],
                     'name' => ['required', 'string', 'min:3'],
                     'category_id' => ['required', 'integer', 'exists:categories,id'],
+                    'tag_ids.*' => ['nullable', 'integer', 'exists:tags,id'],
                     'description' => ['required', 'string', 'min:5'],
                     'shop_photo_url' => ['nullable', 'string'],
                     'type_location' => ['required', 'boolean'],
@@ -406,6 +407,7 @@ class shopController extends Controller {
                 ]
             );
 
+            $tag_ids = $validated['tag_ids'];
             /**
              * if type_location = false => location is dynamic
              * if type_location = true => location is static
@@ -470,6 +472,10 @@ class shopController extends Controller {
             );
 //            dd($shop);
             $success['id'] = $shop->id;
+            // todo $shop->id and $tag_ids insert to pivot table
+            $shop->tags()->attach($tag_ids, ['tag_accept_status' => 0]);
+//            $shop->tags()->sync($tag_ids, ['tag_accept_status' => 0]);
+
             // new user_role_shop
             // user_id => ($shopkeeper_id), role_id => (shopkeeper), shop_id => ($shop->id), shop_type => (child)
             // $shop->tags()->attach($tag);
@@ -660,7 +666,8 @@ class shopController extends Controller {
      */
     public function update(Request $request, $id)
     {
-        //
+        $shopkeeper_id = auth()->id();
+
     }
 
 
@@ -711,6 +718,17 @@ class shopController extends Controller {
         //
     }
 
+    public function getSelfShop(Request $request)
+    {
+        $shopkeeper_id = auth()->id();
+        dd($shopkeeper_id);
+        $shop = Shop::whereHas( 'userOfRolesShopsUsers', function ($query) use ($shopkeeper_id) {
+            $query->where( 'roles_shops_users.user_id', '=', $shopkeeper_id );
+        } )
+            ->with( 'userOfRolesShopsUsers' )
+            ->with( 'roleOfRolesShopsUsers' )
+            ->get();
+    }
 
 }
 

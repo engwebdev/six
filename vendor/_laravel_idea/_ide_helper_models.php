@@ -380,6 +380,14 @@ namespace App\Models {
      * @property Carbon|null $deleted_at
      * @property Carbon|null $created_at
      * @property Carbon|null $updated_at
+     * @property string|null $category_image_url
+     * @property int|null $categoryable_id
+     * @property string|null $categoryable_type
+     * @property int|null $category_additional_user_id
+     * @property string|null $category_additional_user_type
+     * @property bool|null $category_accept_status
+     * @property bool|null $category_publish_status
+     * @property string|null $category_show_status
      * @property _IH_Shop_C|Shop[] $shops
      * @property-read int $shops_count
      * @method HasMany|_IH_Shop_QB shops()
@@ -392,6 +400,14 @@ namespace App\Models {
      * @method static _IH_Category_QB whereDeletedAt($value)
      * @method static _IH_Category_QB whereCreatedAt($value)
      * @method static _IH_Category_QB whereUpdatedAt($value)
+     * @method static _IH_Category_QB whereCategoryImageUrl($value)
+     * @method static _IH_Category_QB whereCategoryableId($value)
+     * @method static _IH_Category_QB whereCategoryableType($value)
+     * @method static _IH_Category_QB whereCategoryAdditionalUserId($value)
+     * @method static _IH_Category_QB whereCategoryAdditionalUserType($value)
+     * @method static _IH_Category_QB whereCategoryAcceptStatus($value)
+     * @method static _IH_Category_QB whereCategoryPublishStatus($value)
+     * @method static _IH_Category_QB whereCategoryShowStatus($value)
      * @method static Category baseSole(array|string $columns = ['*'])
      * @method static bool chunk(int $count, callable $callback)
      * @method static bool chunkById(int $count, callable $callback, null|string $column = null, null|string $alias = null)
@@ -1769,6 +1785,7 @@ namespace App\Models {
      * @property Carbon|null $deleted_at
      * @property Carbon|null $created_at
      * @property Carbon|null $updated_at
+     * @property int|null $parent_id
      * @property _IH_NormalProduct_C|NormalProduct[] $Products
      * @property-read int $products_count
      * @method HasMany|_IH_NormalProduct_QB Products()
@@ -1803,6 +1820,7 @@ namespace App\Models {
      * @method static _IH_ProductCategory_QB whereDeletedAt($value)
      * @method static _IH_ProductCategory_QB whereCreatedAt($value)
      * @method static _IH_ProductCategory_QB whereUpdatedAt($value)
+     * @method static _IH_ProductCategory_QB whereParentId($value)
      * @method static ProductCategory baseSole(array|string $columns = ['*'])
      * @method static bool chunk(int $count, callable $callback)
      * @method static bool chunkById(int $count, callable $callback, null|string $column = null, null|string $alias = null)

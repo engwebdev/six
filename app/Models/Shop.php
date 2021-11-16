@@ -80,7 +80,7 @@ class Shop extends Model
     public function tags()
     {
 //        return $this->belongsToMany(tag::class, 'shops_tags', 'shop_id', 'id', null, null, null);
-        return $this->belongsToMany(tag::class)->withPivot('tag_accept_status');
+        return $this->belongsToMany(tag::class, 'shops_tags')->withPivot('tag_accept_status')->withTimestamps();
     }
 
     /**

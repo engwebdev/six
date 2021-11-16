@@ -58,6 +58,10 @@ class tagController extends Controller {
             $order = 'asc';
         }
 
+        $tags = Tag::orderBy( $sort, $order )
+//            ->lazy()->count();
+//                ->where( 'shop_accept_status', '=', 1 )
+            ->paginate( $limit, '*', 'page', $page );
 
         return response()->json(
             [
@@ -103,11 +107,13 @@ class tagController extends Controller {
      * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @return void
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(Request $request)
     {
-        //
+//        dd(auth()->user()->getRoleNames());
+        dd($this->authorizeForUser(auth()->user(), 'admin', 'test'));
     }
 
     /**

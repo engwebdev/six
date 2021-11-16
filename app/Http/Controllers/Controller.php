@@ -45,6 +45,9 @@ class Controller extends BaseController
      *   name="User Authorization",
      * ),
      * @OA\Tag(
+     *   name="Profile",
+     * ),
+     * @OA\Tag(
      *   name="Category for shops",
      *   description="API Endpoints of Category"
      * ),
