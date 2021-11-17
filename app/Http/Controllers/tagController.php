@@ -18,6 +18,40 @@ class tagController extends Controller {
      * description="get all tags",
      *
      *
+     *
+     *
+     *      @OA\Response(
+     *          response=200,
+     *          description="New Category Successfully",
+     *
+     *      ),
+     *
+     *
+     *      @OA\Response(
+     *          response=201,
+     *          description="New Category Successfully",
+     *
+     *      ),
+     *
+     *
+     *     @OA\RequestBody(
+     *         @OA\JsonContent(
+     *               required={"name", "description", "type_location", "shop_postal_code", "shop_main_phone_number", "shop_photo"},
+     *               @OA\Property(
+     *                  property="file",
+     *                  type="string",
+     *                  example="file",
+     *                  format="binary",
+     *                  description="file",
+     *                  default="null",
+     *                  nullable=true,
+     *               ),
+     *         ),
+     *     ),
+     *
+     *
+     *
+     *
      *      @OA\Response(response=511, description="Network Authentication Required"),
      *
      *     security={
