@@ -1837,6 +1837,81 @@
                 "description": "get all shops",
                 "operationId": "get shops",
                 "responses": {
+                    "200": {
+                        "description": "New Category Successfully"
+                    },
+                    "201": {
+                        "description": "New Category Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unauthenticated."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    },
+                    "405": {
+                        "description": "Method Not Allowed"
+                    },
+                    "406": {
+                        "description": "Not Acceptable"
+                    },
+                    "407": {
+                        "description": "Proxy Authentication Required"
+                    },
+                    "410": {
+                        "description": "Resource Gone"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "423": {
+                        "description": "Resource Locked"
+                    },
+                    "429": {
+                        "description": "Too Many Requests"
+                    },
+                    "451": {
+                        "description": "Unavailable For Legal Reasons"
+                    },
+                    "500": {
+                        "description": "Internal Server"
+                    },
+                    "502": {
+                        "description": "Bad Gateway"
+                    },
+                    "503": {
+                        "description": "Service Unavailable"
+                    },
+                    "504": {
+                        "description": "Gateway Timeout"
+                    },
+                    "505": {
+                        "description": "HTTP Version Not Supported"
+                    },
                     "511": {
                         "description": "Network Authentication Required"
                     }
@@ -1854,7 +1929,430 @@
                 "summary": "create new shop. => only for shopkeeper",
                 "description": "create new shop",
                 "operationId": "newShop",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "description",
+                                    "type_location",
+                                    "shop_postal_code",
+                                    "shop_main_phone_number",
+                                    "shop_photo"
+                                ],
+                                "properties": {
+                                    "file": {
+                                        "nullable": true,
+                                        "description": "file",
+                                        "type": "string",
+                                        "format": "binary",
+                                        "default": "null",
+                                        "example": "file"
+                                    },
+                                    "parent_id": {
+                                        "nullable": true,
+                                        "description": "parent_id",
+                                        "type": "integer",
+                                        "default": "null",
+                                        "example": "12"
+                                    },
+                                    "name": {
+                                        "nullable": false,
+                                        "description": "name",
+                                        "type": "integer",
+                                        "example": "name"
+                                    },
+                                    "category_id": {
+                                        "nullable": true,
+                                        "description": "category_id",
+                                        "type": "integer",
+                                        "default": "null",
+                                        "example": "12"
+                                    },
+                                    "tag_ids": {
+                                        "nullable": true,
+                                        "description": "tag_ids",
+                                        "type": "object",
+                                        "format": "array",
+                                        "default": "null",
+                                        "example": "[1, 2, 3, 8]"
+                                    },
+                                    "description": {
+                                        "nullable": false,
+                                        "description": "description",
+                                        "type": "string",
+                                        "example": "description"
+                                    },
+                                    "type_location": {
+                                        "nullable": false,
+                                        "description": "type_location",
+                                        "type": "boolen",
+                                        "format": "string",
+                                        "example": "true or false || 0 or 1 "
+                                    },
+                                    "lat_location": {
+                                        "nullable": true,
+                                        "description": "lat_location",
+                                        "type": "string",
+                                        "default": "null",
+                                        "example": "10.0000001"
+                                    },
+                                    "long_location": {
+                                        "nullable": true,
+                                        "description": "long_location",
+                                        "type": "string",
+                                        "default": "null",
+                                        "example": "10.0000001"
+                                    },
+                                    "shop_country": {
+                                        "nullable": true,
+                                        "description": "shop_country",
+                                        "type": "string",
+                                        "default": "null",
+                                        "example": "iran"
+                                    },
+                                    "shop_province": {
+                                        "nullable": true,
+                                        "description": "shop_province",
+                                        "type": "string",
+                                        "default": "null",
+                                        "example": "tehran"
+                                    },
+                                    "shop_city": {
+                                        "nullable": true,
+                                        "description": "shop_city",
+                                        "type": "string",
+                                        "default": "null",
+                                        "example": "tehran"
+                                    },
+                                    "shop_local": {
+                                        "nullable": true,
+                                        "description": "shop_local",
+                                        "type": "string",
+                                        "default": "null",
+                                        "example": "sadeghiye"
+                                    },
+                                    "shop_Street": {
+                                        "nullable": true,
+                                        "description": "shop_Street",
+                                        "type": "string",
+                                        "default": "null",
+                                        "example": "shop_Street"
+                                    },
+                                    "shop_alley": {
+                                        "nullable": true,
+                                        "description": "shop_alley",
+                                        "type": "string",
+                                        "default": "null",
+                                        "example": "shop_alley"
+                                    },
+                                    "shop_number": {
+                                        "nullable": true,
+                                        "description": "shop_number",
+                                        "type": "string",
+                                        "default": "null",
+                                        "example": "02188118811"
+                                    },
+                                    "shop_postal_code": {
+                                        "nullable": false,
+                                        "description": "shop_postal_code",
+                                        "type": "integer",
+                                        "example": "9876543210"
+                                    },
+                                    "shop_main_phone_number": {
+                                        "nullable": true,
+                                        "description": "shop_main_phone_number",
+                                        "type": "string",
+                                        "default": "null",
+                                        "example": "02188118811"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "description",
+                                    "type_location",
+                                    "shop_postal_code",
+                                    "shop_main_phone_number",
+                                    "shop_photo"
+                                ],
+                                "properties": {
+                                    "file": {
+                                        "nullable": true,
+                                        "description": "file",
+                                        "type": "string",
+                                        "format": "binary",
+                                        "default": "null",
+                                        "example": "file"
+                                    },
+                                    "parent_id": {
+                                        "nullable": true,
+                                        "description": "parent_id",
+                                        "type": "integer",
+                                        "default": "null",
+                                        "example": "12"
+                                    },
+                                    "name": {
+                                        "nullable": false,
+                                        "description": "name",
+                                        "type": "integer",
+                                        "example": "name"
+                                    },
+                                    "category_id": {
+                                        "nullable": true,
+                                        "description": "category_id",
+                                        "type": "integer",
+                                        "default": "null",
+                                        "example": "12"
+                                    },
+                                    "tag_ids": {
+                                        "nullable": true,
+                                        "description": "tag_ids",
+                                        "type": "objet",
+                                        "default": "null",
+                                        "example": "[1, 2, 3, 8]"
+                                    },
+                                    "description": {
+                                        "nullable": false,
+                                        "description": "description",
+                                        "type": "string",
+                                        "example": "description"
+                                    },
+                                    "type_location": {
+                                        "nullable": false,
+                                        "description": "type_location",
+                                        "type": "string",
+                                        "example": "true or false || 0 or 1 "
+                                    },
+                                    "lat_location": {
+                                        "nullable": true,
+                                        "description": "lat_location",
+                                        "type": "string",
+                                        "default": "null",
+                                        "example": "10.0000001"
+                                    },
+                                    "long_location": {
+                                        "nullable": true,
+                                        "description": "long_location",
+                                        "type": "string",
+                                        "default": "null",
+                                        "example": "10.0000001"
+                                    },
+                                    "shop_country": {
+                                        "nullable": true,
+                                        "description": "shop_country",
+                                        "type": "string",
+                                        "default": "null",
+                                        "example": "iran"
+                                    },
+                                    "shop_province": {
+                                        "nullable": true,
+                                        "description": "shop_province",
+                                        "type": "string",
+                                        "default": "null",
+                                        "example": "tehran"
+                                    },
+                                    "shop_city": {
+                                        "nullable": true,
+                                        "description": "shop_city",
+                                        "type": "string",
+                                        "default": "null",
+                                        "example": "tehran"
+                                    },
+                                    "shop_local": {
+                                        "nullable": true,
+                                        "description": "shop_local",
+                                        "type": "string",
+                                        "default": "null",
+                                        "example": "sadeghiye"
+                                    },
+                                    "shop_Street": {
+                                        "nullable": true,
+                                        "description": "shop_Street",
+                                        "type": "string",
+                                        "default": "null",
+                                        "example": "shop_Street"
+                                    },
+                                    "shop_alley": {
+                                        "nullable": true,
+                                        "description": "shop_alley",
+                                        "type": "string",
+                                        "default": "null",
+                                        "example": "shop_alley"
+                                    },
+                                    "shop_number": {
+                                        "nullable": true,
+                                        "description": "shop_number",
+                                        "type": "string",
+                                        "default": "null",
+                                        "example": "02188118811"
+                                    },
+                                    "shop_postal_code": {
+                                        "nullable": false,
+                                        "description": "shop_postal_code",
+                                        "type": "integer",
+                                        "example": "9876543210"
+                                    },
+                                    "shop_main_phone_number": {
+                                        "nullable": true,
+                                        "description": "shop_main_phone_number",
+                                        "type": "string",
+                                        "default": "null",
+                                        "example": "02188118811"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
                 "responses": {
+                    "200": {
+                        "description": "New shop Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "New Shop Created"
+                                        },
+                                        "success": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string",
+                                                    "format": "string",
+                                                    "example": "12"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "NotificationsEnServer": {
+                                            "type": "string",
+                                            "format": "string",
+                                            "example": "New Shop Created"
+                                        },
+                                        "NotificationsFaServer": {
+                                            "type": "string",
+                                            "format": "string",
+                                            "example": "فروشگاه جدید ایجاد شد. و منتظر تایید مدیر میباشد."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "201": {
+                        "description": "New shop Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "New Shop Created"
+                                        },
+                                        "success": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string",
+                                                    "format": "string",
+                                                    "example": "12"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "NotificationsEnServer": {
+                                            "type": "string",
+                                            "format": "string",
+                                            "example": "New Shop Created"
+                                        },
+                                        "NotificationsFaServer": {
+                                            "type": "string",
+                                            "format": "string",
+                                            "example": "فروشگاه جدید ایجاد شد. و منتظر تایید مدیر میباشد."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unauthenticated."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    },
+                    "405": {
+                        "description": "Method Not Allowed"
+                    },
+                    "406": {
+                        "description": "Not Acceptable"
+                    },
+                    "407": {
+                        "description": "Proxy Authentication Required"
+                    },
+                    "410": {
+                        "description": "Resource Gone"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "423": {
+                        "description": "Resource Locked"
+                    },
+                    "429": {
+                        "description": "Too Many Requests"
+                    },
+                    "451": {
+                        "description": "Unavailable For Legal Reasons"
+                    },
+                    "500": {
+                        "description": "Internal Server"
+                    },
+                    "502": {
+                        "description": "Bad Gateway"
+                    },
+                    "503": {
+                        "description": "Service Unavailable"
+                    },
+                    "504": {
+                        "description": "Gateway Timeout"
+                    },
+                    "505": {
+                        "description": "HTTP Version Not Supported"
+                    },
                     "511": {
                         "description": "Network Authentication Required"
                     }

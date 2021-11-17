@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\MyException;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -39,6 +40,8 @@ class tagController extends Controller {
      */
     public function index(Request $request)
     {
+        $user = auth()->user();
+        $user_id = $user->id;
         $page = $request->input( 'page' );
         $limit = $request->input( 'limit' );
         if ($request->input( 'sort' ))
@@ -59,8 +62,14 @@ class tagController extends Controller {
         }
 
         $tags = Tag::orderBy( $sort, $order )
+            ->when(true, function ($query) use ($user_id) {
+                $query->where('tag_accept_status', true);
+            })
+            ->when(!empty($user->id), function ($query) use ($user_id) {
+                $query->where('tag_additional_user_id', '=', $user_id);
+            })
 //            ->lazy()->count();
-//                ->where( 'shop_accept_status', '=', 1 )
+//            ->where( 'shop_accept_status', '=', 1 )
             ->paginate( $limit, '*', 'page', $page );
 
         return response()->json(
@@ -107,13 +116,76 @@ class tagController extends Controller {
      * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @return void
+     * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(Request $request)
     {
-//        dd(auth()->user()->getRoleNames());
-        dd($this->authorizeForUser(auth()->user(), 'admin', 'test'));
+        try
+        {
+            $user = auth()->user();
+            $roles = auth()->user()->getRoleNames();
+
+            // todo filtering by role multi
+            if ($roles->count() > 0)
+            {
+                if ($roles->count() > 1)
+                {
+//                error
+                    $additional_user_type = 'unknown';
+                }
+                else
+                {
+                    $additional_user_type = $roles->toArray()[0];
+                }
+            }
+            else
+            {
+                $additional_user_type = 'user';
+            }
+
+            $validated = $request->validate(
+                [
+                    'tag_name' => ['required', 'string', 'min:3'],
+                ]
+            );
+            if (!$validated)
+            {
+                return response()->json( [
+                    "message" => "Unknown server problem",
+                    "errors" => [
+                        "problem" => [
+                            "Unknown server problem",
+                        ],
+                    ],
+                ], 503 );
+            }
+
+            $tag = Tag::create(
+                [
+                    'tag_name' => $validated['tag_name'],
+                    'tag_publish_status' => false,
+                    'tag_accept_status' => false,
+                    'tag_additional_type' => $additional_user_type,
+                    'tag_additional_user_id' => $user->id,
+                ]
+            );
+            $success['id'] = $tag->id;
+
+            $responseCode = 201;
+            $message = 'New Tag Created';
+            $notifications_En_Server = 'New Tag Created';
+            $notifications_Fa_Server = 'برچسب جدید ایجاد شد. و منتظر تایید مدیر میباشد.';
+
+            return response()->json( [
+                'message' => $message,
+                'success' => $success,
+                'NotificationsEnServer' => $notifications_En_Server,
+                'NotificationsFaServer' => $notifications_Fa_Server,
+            ], $responseCode );
+
+        }
+        catch (MyException $exception) {}
     }
 
     /**

@@ -2743,6 +2743,10 @@ namespace App\Models {
      * @property Carbon|null $deleted_at
      * @property Carbon|null $created_at
      * @property Carbon|null $updated_at
+     * @property string|null $tag_image_url
+     * @property bool|null $tag_publish_status
+     * @property string|null $tag_additional_type
+     * @property int|null $tag_additional_user_id
      * @property _IH_shop_C|shop[] $shops
      * @property-read int $shops_count
      * @method BelongsToMany|_IH_shop_QB shops()
@@ -2759,6 +2763,10 @@ namespace App\Models {
      * @method static _IH_Tag_QB whereDeletedAt($value)
      * @method static _IH_Tag_QB whereCreatedAt($value)
      * @method static _IH_Tag_QB whereUpdatedAt($value)
+     * @method static _IH_Tag_QB whereTagImageUrl($value)
+     * @method static _IH_Tag_QB whereTagPublishStatus($value)
+     * @method static _IH_Tag_QB whereTagAdditionalType($value)
+     * @method static _IH_Tag_QB whereTagAdditionalUserId($value)
      * @method static Tag baseSole(array|string $columns = ['*'])
      * @method static bool chunk(int $count, callable $callback)
      * @method static bool chunkById(int $count, callable $callback, null|string $column = null, null|string $alias = null)

@@ -33,7 +33,7 @@ class Shop extends Model
         'type_location',
         'lat_location',
         'long_location',
-        'shopkeeper_id',
+//        'shopkeeper_id',
         'shop_country',
         'shop_province',
         'shop_city',

@@ -243,6 +243,7 @@ class AuthController extends Controller {
                 $user = User::create( [
                     'mobile' => $validated['country_code'] . $validated['mobile_phone_number'],
                 ] );
+
                 $responseCode = 201;
                 $message = 'User Register Successfully';
                 $notifications_En_Server = 'The verification code was sent to the mobile number via SMS';

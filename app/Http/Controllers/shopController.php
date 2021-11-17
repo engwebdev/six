@@ -25,7 +25,63 @@ class shopController extends Controller {
      * description="get all shops",
      *
      *
+     *
+     *
+     *
+     *      @OA\Response(
+     *          response=200,
+     *          description="New Category Successfully",
+     *
+     *      ),
+     *
+     *
+     *      @OA\Response(
+     *          response=201,
+     *          description="New Category Successfully",
+     *
+     *      ),
+     *
+     *      @OA\Response(response=400, description="Bad request"),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthorized",
+     *
+     *          @OA\JsonContent(
+     *              type="object",
+     *
+     *              @OA\Property(property="message", type="string", example="Unauthenticated."),
+     *          ),
+     *
+     *      ),
+     *
+     *      @OA\Response(response=403, description="Forbidden"),
+     *      @OA\Response(response=404, description="Resource Not Found"),
+     *      @OA\Response(response=405, description="Method Not Allowed"),
+     *      @OA\Response(response=406, description="Not Acceptable"),
+     *      @OA\Response(response=407, description="Proxy Authentication Required"),
+     *      @OA\Response(response=410, description="Resource Gone"),
+     *
+     *      @OA\Response(
+     *          response=422,
+     *          description="Unprocessable Entity",
+     *          @OA\JsonContent()
+     *       ),
+     *
+     *      @OA\Response(response=423, description="Resource Locked"),
+     *      @OA\Response(response=429, description="Too Many Requests"),
+     *      @OA\Response(response=451, description="Unavailable For Legal Reasons"),
+     *
+     *      @OA\Response(response=500, description="Internal Server"),
+     *      @OA\Response(response=502, description="Bad Gateway"),
+     *      @OA\Response(response=503, description="Service Unavailable"),
+     *      @OA\Response(response=504, description="Gateway Timeout"),
+     *      @OA\Response(response=505, description="HTTP Version Not Supported"),
      *      @OA\Response(response=511, description="Network Authentication Required"),
+     *
+     *
+     *
+     *
+     *
      *
      *     security={
      *         {"bearer": {}}
@@ -330,7 +386,239 @@ class shopController extends Controller {
      * summary="create new shop. => only for shopkeeper",
      * description="create new shop",
      *
+     *
+     *     @OA\RequestBody(
+     *         @OA\JsonContent(
+     *               required={"name", "description", "type_location", "shop_postal_code", "shop_main_phone_number", "shop_photo"},
+     *               @OA\Property(
+     *                  property="file",
+     *                  type="string",
+     *                  example="file",
+     *                  format="binary",
+     *                  description="file",
+     *                  default="null",
+     *                  nullable=true,
+     *               ),
+     *               @OA\Property(
+     *                  property="parent_id", type="integer", example="12", description="parent_id", default="null", nullable=true
+     *               ),
+     *               @OA\Property(
+     *                  property="name", type="integer", example="name", description="name", nullable=false
+     *               ),
+     *               @OA\Property(
+     *                  property="category_id", type="integer", example="12", description="category_id", default="null", nullable=true
+     *               ),
+     *               @OA\Property(
+     *                  property="tag_ids", type="objet", example="[1, 2, 3, 8]", description="tag_ids", default="null", nullable=true
+     *               ),
+     *               @OA\Property(
+     *                  property="description", type="string", example="description", description="description", nullable=false
+     *               ),
+     *               @OA\Property(
+     *                  property="type_location", type="string", example="true or false || 0 or 1 ", description="type_location", nullable=false
+     *               ),
+     *               @OA\Property(
+     *                  property="lat_location", type="string", example="10.0000001", description="lat_location", default="null", nullable=true
+     *               ),
+     *               @OA\Property(
+     *                  property="long_location", type="string", example="10.0000001", description="long_location", default="null", nullable=true
+     *               ),
+     *               @OA\Property(
+     *                  property="shop_country", type="string", example="iran", description="shop_country", default="null", nullable=true
+     *               ),
+     *               @OA\Property(
+     *                  property="shop_province", type="string", example="tehran", description="shop_province", default="null", nullable=true
+     *               ),
+     *               @OA\Property(
+     *                  property="shop_city", type="string", example="tehran", description="shop_city", default="null", nullable=true
+     *               ),
+     *               @OA\Property(
+     *                  property="shop_local", type="string", example="sadeghiye", description="shop_local", default="null", nullable=true
+     *               ),
+     *               @OA\Property(
+     *                  property="shop_Street", type="string", example="shop_Street", description="shop_Street", default="null", nullable=true
+     *               ),
+     *               @OA\Property(
+     *                  property="shop_alley", type="string", example="shop_alley", description="shop_alley", default="null", nullable=true
+     *               ),
+     *               @OA\Property(
+     *                  property="shop_number", type="string", example="02188118811", description="shop_number", default="null", nullable=true
+     *               ),
+     *               @OA\Property(
+     *                  property="shop_postal_code", type="integer", example="9876543210", description="shop_postal_code", nullable=false
+     *               ),
+     *               @OA\Property(
+     *                  property="shop_main_phone_number", type="string", example="02188118811", description="shop_main_phone_number", default="null", nullable=true
+     *               ),
+     *
+     *         ),
+     *
+     *         @OA\MediaType(
+     *            mediaType="multipart/form-data",
+     *            @OA\Schema(
+     *               type="object",
+     *               required={"name", "description", "type_location", "shop_postal_code", "shop_main_phone_number", "shop_photo"},
+     *               @OA\Property(
+     *                  property="file",
+     *                  type="string",
+     *                  example="file",
+     *                  format="binary",
+     *                  description="file",
+     *                  default="null",
+     *                  nullable=true,
+     *               ),
+     *               @OA\Property(
+     *                  property="parent_id", type="integer", example="12", description="parent_id", default="null", nullable=true
+     *               ),
+     *               @OA\Property(
+     *                  property="name", type="integer", example="name", description="name", nullable=false
+     *               ),
+     *               @OA\Property(
+     *                  property="category_id", type="integer", example="12", description="category_id", default="null", nullable=true
+     *               ),
+     *               @OA\Property(
+     *                  property="tag_ids", type="object", format="array", example="[1, 2, 3, 8]", description="tag_ids", default="null", nullable=true
+     *               ),
+     *               @OA\Property(
+     *                  property="description", type="string", example="description", description="description", nullable=false
+     *               ),
+     *               @OA\Property(
+     *                  property="type_location", type="boolen", format="string", example="true or false || 0 or 1 ", description="type_location", nullable=false
+     *               ),
+     *               @OA\Property(
+     *                  property="lat_location", type="string", example="10.0000001", description="lat_location", default="null", nullable=true
+     *               ),
+     *               @OA\Property(
+     *                  property="long_location", type="string", example="10.0000001", description="long_location", default="null", nullable=true
+     *               ),
+     *               @OA\Property(
+     *                  property="shop_country", type="string", example="iran", description="shop_country", default="null", nullable=true
+     *               ),
+     *               @OA\Property(
+     *                  property="shop_province", type="string", example="tehran", description="shop_province", default="null", nullable=true
+     *               ),
+     *               @OA\Property(
+     *                  property="shop_city", type="string", example="tehran", description="shop_city", default="null", nullable=true
+     *               ),
+     *               @OA\Property(
+     *                  property="shop_local", type="string", example="sadeghiye", description="shop_local", default="null", nullable=true
+     *               ),
+     *               @OA\Property(
+     *                  property="shop_Street", type="string", example="shop_Street", description="shop_Street", default="null", nullable=true
+     *               ),
+     *               @OA\Property(
+     *                  property="shop_alley", type="string", example="shop_alley", description="shop_alley", default="null", nullable=true
+     *               ),
+     *               @OA\Property(
+     *                  property="shop_number", type="string", example="02188118811", description="shop_number", default="null", nullable=true
+     *               ),
+     *               @OA\Property(
+     *                  property="shop_postal_code", type="integer", example="9876543210", description="shop_postal_code", nullable=false
+     *               ),
+     *               @OA\Property(
+     *                  property="shop_main_phone_number", type="string", example="02188118811", description="shop_main_phone_number", default="null", nullable=true
+     *               ),
+     *
+     *            ),
+     *        ),
+     *    ),
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *      @OA\Response(
+     *          response=200,
+     *          description="New shop Successfully",
+     *
+     *          @OA\JsonContent(
+     *              type="object",
+     *
+     *              @OA\Property(property="message", type="string", example="New Shop Created"),
+     *              @OA\Property(
+     *                      property="success",
+     *                      type="object",
+     *                  @OA\Property(
+     *                      property="id",
+     *                      type="string",
+     *                      format="string",
+     *                      example="12"
+     *                  ),
+     *              ),
+     *              @OA\Property(property="NotificationsEnServer", type="string", format="string", example="New Shop Created"),
+     *              @OA\Property(property="NotificationsFaServer", type="string", format="string", example="فروشگاه جدید ایجاد شد. و منتظر تایید مدیر میباشد."),
+     *          ),
+     *      ),
+     *
+     *
+     *
+     *      @OA\Response(
+     *          response=201,
+     *          description="New shop Successfully",
+     *
+     *          @OA\JsonContent(
+     *              type="object",
+     *
+     *              @OA\Property(property="message", type="string", example="New Shop Created"),
+     *              @OA\Property(
+     *                      property="success",
+     *                      type="object",
+     *                  @OA\Property(
+     *                      property="id",
+     *                      type="string",
+     *                      format="string",
+     *                      example="12"
+     *                  ),
+     *              ),
+     *              @OA\Property(property="NotificationsEnServer", type="string", format="string", example="New Shop Created"),
+     *              @OA\Property(property="NotificationsFaServer", type="string", format="string", example="فروشگاه جدید ایجاد شد. و منتظر تایید مدیر میباشد."),
+     *          ),
+     *      ),
+     *
+     *
+     *      @OA\Response(response=400, description="Bad request"),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthorized",
+     *
+     *          @OA\JsonContent(
+     *              type="object",
+     *
+     *              @OA\Property(property="message", type="string", example="Unauthenticated."),
+     *          ),
+     *
+     *      ),
+     *
+     *      @OA\Response(response=403, description="Forbidden"),
+     *      @OA\Response(response=404, description="Resource Not Found"),
+     *      @OA\Response(response=405, description="Method Not Allowed"),
+     *      @OA\Response(response=406, description="Not Acceptable"),
+     *      @OA\Response(response=407, description="Proxy Authentication Required"),
+     *      @OA\Response(response=410, description="Resource Gone"),
+     *
+     *      @OA\Response(
+     *          response=422,
+     *          description="Unprocessable Entity",
+     *          @OA\JsonContent()
+     *       ),
+     *
+     *      @OA\Response(response=423, description="Resource Locked"),
+     *      @OA\Response(response=429, description="Too Many Requests"),
+     *      @OA\Response(response=451, description="Unavailable For Legal Reasons"),
+     *
+     *      @OA\Response(response=500, description="Internal Server"),
+     *      @OA\Response(response=502, description="Bad Gateway"),
+     *      @OA\Response(response=503, description="Service Unavailable"),
+     *      @OA\Response(response=504, description="Gateway Timeout"),
+     *      @OA\Response(response=505, description="HTTP Version Not Supported"),
      *      @OA\Response(response=511, description="Network Authentication Required"),
+     *
+     *
+     *
+     *
+     *
      *
      *     security={
      *         {"bearer": {}}
@@ -391,7 +679,7 @@ class shopController extends Controller {
                     'category_id' => ['required', 'integer', 'exists:categories,id'],
                     'tag_ids.*' => ['nullable', 'integer', 'exists:tags,id'],
                     'description' => ['required', 'string', 'min:5'],
-                    'shop_photo_url' => ['nullable', 'string'],
+                    'shop_photo' => ['nullable', 'string'],
                     'type_location' => ['required', 'boolean'],
                     'lat_location' => ['nullable', 'string', 'min:8'],
                     'long_location' => ['nullable', 'string', 'min:8'],
@@ -407,7 +695,6 @@ class shopController extends Controller {
                 ]
             );
 
-            $tag_ids = $validated['tag_ids'];
             /**
              * if type_location = false => location is dynamic
              * if type_location = true => location is static
@@ -428,18 +715,7 @@ class shopController extends Controller {
             }
 
 
-            if (!$validated)
-            {
-                return response()->json( [
-                    "message" => "Unknown server problem",
-                    "errors" => [
-                        "problem" => [
-                            "Unknown server problem",
-                        ],
-                    ],
-                ], 503 );
-            }
-
+//            dd($validated);
 //            dd($validated);
 
             /**
@@ -451,35 +727,54 @@ class shopController extends Controller {
             $shop = Shop::create(
                 [
                     'parent_id' => null,
-                    'name' => $validated['name'],
-                    'category_id' => $validated['category_id'],
-                    'description' => $validated['description'],
+                    'name' => $request->name,
+                    'category_id' => $request->category_id,
+                    'description' => $request->description,
                     'shop_accept_status' => false,
-                    'shop_photo_url' => $validated['shop_photo_url'],
-                    'type_location' => $validated['type_location'],
-                    'lat_location' => $validated['lat_location'],
-                    'long_location' => $validated['long_location'],
-                    'shop_country' => $validated['shop_country'],
-                    'shop_province' => $validated['shop_province'],
-                    'shop_city' => $validated['shop_city'],
-                    'shop_local' => $validated['shop_local'],
-                    'shop_Street' => $validated['shop_Street'],
-                    'shop_alley' => $validated['shop_alley'],
-                    'shop_number' => $validated['shop_number'],
-                    'shop_postal_code' => $validated['shop_postal_code'],
-                    'shop_main_phone_number' => $validated['shop_main_phone_number'],
+                    'shop_photo_url' => $request->shop_photo,
+                    'type_location' => $request->type_location,
+                    'lat_location' => $request->lat_location,
+                    'long_location' => $request->long_location,
+                    'shop_country' => $request->shop_country,
+                    'shop_province' => $request->shop_province,
+                    'shop_city' => $request->shop_city,
+                    'shop_local' => $request->shop_local,
+                    'shop_Street' => $request->shop_Street,
+                    'shop_alley' => $request->shop_alley,
+                    'shop_number' => $request->shop_number,
+                    'shop_postal_code' => $request->shop_postal_code,
+                    'shop_main_phone_number' => $request->shop_main_phone_number,
                 ]
             );
+
+//            model has role
 //            dd($shop);
             $success['id'] = $shop->id;
             // todo $shop->id and $tag_ids insert to pivot table
-            $shop->tags()->attach($tag_ids, ['tag_accept_status' => 0]);
+            if (isset( $validated['tag_ids'] ))
+            {
+                $tag_ids = $validated['tag_ids'];
+                $shop->tags()->attach( $tag_ids, ['tag_accept_status' => 0] );
+            }
 //            $shop->tags()->sync($tag_ids, ['tag_accept_status' => 0]);
 
-            // new user_role_shop
             // user_id => ($shopkeeper_id), role_id => (shopkeeper), shop_id => ($shop->id), shop_type => (child)
             // $shop->tags()->attach($tag);
-            $shop->user()->attach( $shopkeeper_id, ['shop_type' => 'child', 'role_id' => 1] );
+
+            if (!$validated)
+            {
+                return response()->json( [
+                    "message" => "Unknown server problem",
+                    "errors" => [
+                        "problem" => [
+                            "Unknown server problem",
+                        ],
+                    ],
+                ], 503 );
+            }
+            auth()->user()->guard_name = 'api';
+            auth()->user()->assignRole('shopkeeper');
+            $shop->userOfRolesShopsUsers()->attach( $shopkeeper_id, ['shop_type' => 'child', 'role_id' => 1] );
 
             $responseCode = 201;
             $message = 'New Shop Created';
@@ -721,7 +1016,7 @@ class shopController extends Controller {
     public function getSelfShop(Request $request)
     {
         $shopkeeper_id = auth()->id();
-        dd($shopkeeper_id);
+//        dd($shopkeeper_id);
         $shop = Shop::whereHas( 'userOfRolesShopsUsers', function ($query) use ($shopkeeper_id) {
             $query->where( 'roles_shops_users.user_id', '=', $shopkeeper_id );
         } )
