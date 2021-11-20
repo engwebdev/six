@@ -12,7 +12,7 @@ use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class shopController extends Controller {
+class ShopController extends Controller {
     // todo one to many polymorphic between -confirm_comment- -history_price- -image- -category- -tag- -customer_comment- -- -- -- -- -- --
     // todo -shop_confirm_comment- -shop_comment- --
 

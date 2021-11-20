@@ -36,9 +36,9 @@ namespace App\Models {
     use LaravelIdea\Helper\App\Models\_IH_CustomProduct_C;
     use LaravelIdea\Helper\App\Models\_IH_CustomProduct_QB;
     use LaravelIdea\Helper\App\Models\_IH_CustomService_C;
-//    use LaravelIdea\Helper\App\Models\_IH_customService_C;
+    use LaravelIdea\Helper\App\Models\_IH_customService_C;
     use LaravelIdea\Helper\App\Models\_IH_CustomService_QB;
-//    use LaravelIdea\Helper\App\Models\_IH_customService_QB;
+    use LaravelIdea\Helper\App\Models\_IH_customService_QB;
     use LaravelIdea\Helper\App\Models\_IH_Detail_C;
     use LaravelIdea\Helper\App\Models\_IH_Detail_QB;
     use LaravelIdea\Helper\App\Models\_IH_Membership_C;
@@ -46,9 +46,9 @@ namespace App\Models {
     use LaravelIdea\Helper\App\Models\_IH_NormalProduct_C;
     use LaravelIdea\Helper\App\Models\_IH_NormalProduct_QB;
     use LaravelIdea\Helper\App\Models\_IH_NormalService_C;
-//    use LaravelIdea\Helper\App\Models\_IH_normalService_C;
+    use LaravelIdea\Helper\App\Models\_IH_normalService_C;
     use LaravelIdea\Helper\App\Models\_IH_NormalService_QB;
-//    use LaravelIdea\Helper\App\Models\_IH_normalService_QB;
+    use LaravelIdea\Helper\App\Models\_IH_normalService_QB;
     use LaravelIdea\Helper\App\Models\_IH_ProductCategory_C;
     use LaravelIdea\Helper\App\Models\_IH_ProductCategory_QB;
     use LaravelIdea\Helper\App\Models\_IH_ProductCustomerComments_C;
@@ -62,13 +62,13 @@ namespace App\Models {
     use LaravelIdea\Helper\App\Models\_IH_RolesShopsUsers_C;
     use LaravelIdea\Helper\App\Models\_IH_RolesShopsUsers_QB;
     use LaravelIdea\Helper\App\Models\_IH_Shop_C;
-//    use LaravelIdea\Helper\App\Models\_IH_shop_C;
+    use LaravelIdea\Helper\App\Models\_IH_shop_C;
     use LaravelIdea\Helper\App\Models\_IH_Shop_QB;
-//    use LaravelIdea\Helper\App\Models\_IH_shop_QB;
+    use LaravelIdea\Helper\App\Models\_IH_shop_QB;
     use LaravelIdea\Helper\App\Models\_IH_tag_C;
-//    use LaravelIdea\Helper\App\Models\_IH_Tag_C;
+    use LaravelIdea\Helper\App\Models\_IH_Tag_C;
     use LaravelIdea\Helper\App\Models\_IH_tag_QB;
-//    use LaravelIdea\Helper\App\Models\_IH_Tag_QB;
+    use LaravelIdea\Helper\App\Models\_IH_Tag_QB;
     use LaravelIdea\Helper\App\Models\_IH_Tasks_C;
     use LaravelIdea\Helper\App\Models\_IH_Tasks_QB;
     use LaravelIdea\Helper\App\Models\_IH_TeamInvitation_C;
@@ -87,7 +87,7 @@ namespace App\Models {
     use Spatie\Permission\Contracts\Role as Role1;
     use Spatie\Permission\Models\Permission;
     use Spatie\Permission\Models\Role;
-
+    
     /**
      * @property int $id
      * @property string|null $attribute_name
@@ -230,7 +230,7 @@ namespace App\Models {
      * @method static _IH_Attribute_QB withoutTrashed()
      */
     class Attribute extends Model {}
-
+    
     /**
      * @property int $id
      * @property string|null $attribute_value_name
@@ -373,7 +373,7 @@ namespace App\Models {
      * @method static _IH_AttributeValue_QB withoutTrashed()
      */
     class AttributeValue extends Model {}
-
+    
     /**
      * @property int $id
      * @property string|null $category_name
@@ -528,7 +528,7 @@ namespace App\Models {
      * @method static CategoryFactory factory(...$parameters)
      */
     class Category extends Model {}
-
+    
     /**
      * @property Model $confirm_commentable
      * @method MorphTo confirm_commentable()
@@ -655,7 +655,7 @@ namespace App\Models {
      * @method static _IH_ConfirmComment_QB withoutTrashed()
      */
     class ConfirmComment extends Model {}
-
+    
     /**
      * @property int $id
      * @property string|null $custom_product_name
@@ -868,7 +868,7 @@ namespace App\Models {
      * @method static _IH_CustomProduct_QB withoutTrashed()
      */
     class CustomProduct extends Model {}
-
+    
     /**
      * @property int $id
      * @property string|null $custom_services_name
@@ -1079,7 +1079,7 @@ namespace App\Models {
      * @method static _IH_CustomService_QB withoutTrashed()
      */
     class CustomService extends Model {}
-
+    
     /**
      * @property int $id
      * @property int|null $normal_product_id
@@ -1232,7 +1232,7 @@ namespace App\Models {
      * @method static _IH_Detail_QB withoutTrashed()
      */
     class Detail extends Model {}
-
+    
     /**
      * @method _IH_Membership_QB newModelQuery()
      * @method _IH_Membership_QB newQuery()
@@ -1354,7 +1354,7 @@ namespace App\Models {
      * @method static _IH_Membership_QB withoutGlobalScopes(array $scopes = null)
      */
     class Membership extends Model {}
-
+    
     /**
      * @property int $id
      * @property string|null $product_name
@@ -1567,7 +1567,7 @@ namespace App\Models {
      * @method static _IH_NormalProduct_QB withoutTrashed()
      */
     class NormalProduct extends Model {}
-
+    
     /**
      * @property int $id
      * @property string|null $normal_service_name
@@ -1770,7 +1770,7 @@ namespace App\Models {
      * @method static _IH_NormalService_QB withoutTrashed()
      */
     class NormalService extends Model {}
-
+    
     /**
      * @property int $id
      * @property string|null $product_category_name
@@ -1940,7 +1940,7 @@ namespace App\Models {
      * @method static _IH_ProductCategory_QB withoutTrashed()
      */
     class ProductCategory extends Model {}
-
+    
     /**
      * @property int $id
      * @property string|null $product_customer_comment
@@ -2097,7 +2097,7 @@ namespace App\Models {
      * @method static _IH_ProductCustomerComments_QB withoutTrashed()
      */
     class ProductCustomerComments extends Model {}
-
+    
     /**
      * @property Model $product_imageable
      * @method MorphTo product_imageable()
@@ -2224,7 +2224,7 @@ namespace App\Models {
      * @method static _IH_ProductImage_QB withoutTrashed()
      */
     class ProductImage extends Model {}
-
+    
     /**
      * @property int $id
      * @property string $product_tag_name
@@ -2383,7 +2383,7 @@ namespace App\Models {
      * @method static _IH_ProductTag_QB withoutTrashed()
      */
     class ProductTag extends Model {}
-
+    
     /**
      * @property int|null $user_id
      * @property int|null $role_id
@@ -2526,7 +2526,7 @@ namespace App\Models {
      * @method static _IH_RolesShopsUsers_QB withoutTrashed()
      */
     class RolesShopsUsers extends Model {}
-
+    
     /**
      * @property int $id
      * @property int|null $parent_id
@@ -2735,7 +2735,7 @@ namespace App\Models {
      * @method static ShopFactory factory(...$parameters)
      */
     class Shop extends Model {}
-
+    
     /**
      * @property int $id
      * @property string|null $tag_name
@@ -2887,7 +2887,7 @@ namespace App\Models {
      * @method static TagFactory factory(...$parameters)
      */
     class Tag extends Model {}
-
+    
     /**
      * @property int $id
      * @property string|null $task_name
@@ -3078,7 +3078,7 @@ namespace App\Models {
      * @method static _IH_Tasks_QB withoutTrashed()
      */
     class Tasks extends Model {}
-
+    
     /**
      * @method _IH_Team_QB newModelQuery()
      * @method _IH_Team_QB newQuery()
@@ -3201,7 +3201,7 @@ namespace App\Models {
      * @method static TeamFactory factory(...$parameters)
      */
     class Team extends Model {}
-
+    
     /**
      * @method _IH_TeamInvitation_QB newModelQuery()
      * @method _IH_TeamInvitation_QB newQuery()
@@ -3323,7 +3323,7 @@ namespace App\Models {
      * @method static _IH_TeamInvitation_QB withoutGlobalScopes(array $scopes = null)
      */
     class TeamInvitation extends Model {}
-
+    
     /**
      * @property int $id
      * @property string|null $name
@@ -3546,7 +3546,7 @@ namespace App\Models {
      * @method static UserFactory factory(...$parameters)
      */
     class User extends Model {}
-
+    
     /**
      * @property Model $product_price_historiable
      * @method MorphTo product_price_historiable()
@@ -3686,7 +3686,7 @@ namespace Illuminate\Notifications {
     use Illuminate\Pagination\Paginator;
     use LaravelIdea\Helper\Illuminate\Notifications\_IH_DatabaseNotification_C;
     use LaravelIdea\Helper\Illuminate\Notifications\_IH_DatabaseNotification_QB;
-
+    
     /**
      * @property Model $notifiable
      * @method MorphTo notifiable()
@@ -3825,7 +3825,7 @@ namespace Laravel\Jetstream {
     use Illuminate\Pagination\Paginator;
     use LaravelIdea\Helper\Laravel\Jetstream\_IH_TeamInvitation_C;
     use LaravelIdea\Helper\Laravel\Jetstream\_IH_TeamInvitation_QB;
-
+    
     /**
      * @method _IH_TeamInvitation_QB newModelQuery()
      * @method _IH_TeamInvitation_QB newQuery()
@@ -3972,7 +3972,7 @@ namespace Laravel\Passport {
     use LaravelIdea\Helper\Laravel\Passport\_IH_RefreshToken_QB;
     use LaravelIdea\Helper\Laravel\Passport\_IH_Token_C;
     use LaravelIdea\Helper\Laravel\Passport\_IH_Token_QB;
-
+    
     /**
      * @method _IH_AuthCode_QB newModelQuery()
      * @method _IH_AuthCode_QB newQuery()
@@ -4094,7 +4094,7 @@ namespace Laravel\Passport {
      * @method static _IH_AuthCode_QB withoutGlobalScopes(array $scopes = null)
      */
     class AuthCode extends Model {}
-
+    
     /**
      * @property-read null|string $plain_secret
      * @method _IH_Client_QB newModelQuery()
@@ -4218,7 +4218,7 @@ namespace Laravel\Passport {
      * @method static ClientFactory factory(...$parameters)
      */
     class Client extends Model {}
-
+    
     /**
      * @method _IH_PersonalAccessClient_QB newModelQuery()
      * @method _IH_PersonalAccessClient_QB newQuery()
@@ -4340,7 +4340,7 @@ namespace Laravel\Passport {
      * @method static _IH_PersonalAccessClient_QB withoutGlobalScopes(array $scopes = null)
      */
     class PersonalAccessClient extends Model {}
-
+    
     /**
      * @method _IH_RefreshToken_QB newModelQuery()
      * @method _IH_RefreshToken_QB newQuery()
@@ -4462,7 +4462,7 @@ namespace Laravel\Passport {
      * @method static _IH_RefreshToken_QB withoutGlobalScopes(array $scopes = null)
      */
     class RefreshToken extends Model {}
-
+    
     /**
      * @property User $user
      * @method BelongsTo|_IH_User_QB user()
@@ -4600,7 +4600,7 @@ namespace Laravel\Sanctum {
     use Illuminate\Support\Carbon;
     use LaravelIdea\Helper\Laravel\Sanctum\_IH_PersonalAccessToken_C;
     use LaravelIdea\Helper\Laravel\Sanctum\_IH_PersonalAccessToken_QB;
-
+    
     /**
      * @property int $id
      * @property int $tokenable_id
@@ -4763,7 +4763,7 @@ namespace Spatie\Permission\Models {
     use LaravelIdea\Helper\Spatie\Permission\Models\_IH_Role_QB;
     use Spatie\Permission\Contracts\Permission as Permission1;
     use Spatie\Permission\Contracts\Role as Role1;
-
+    
     /**
      * @property int $id
      * @property string $name
@@ -4903,7 +4903,7 @@ namespace Spatie\Permission\Models {
      * @method static _IH_Permission_QB role(array|Collection|Role1|string $roles, string $guard = null)
      */
     class Permission extends Model {}
-
+    
     /**
      * @property int $id
      * @property string $name

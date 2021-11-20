@@ -6,7 +6,7 @@ use App\Http\Controllers\Grant\CustomAccessTokenController;
 use App\Http\Controllers\Grant\CustomGrantController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TagController;
-use App\Http\Controllers\shopController;
+use App\Http\Controllers\ShopController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -89,19 +89,19 @@ Route::prefix( 'v1' )->middleware( ['auth:api', 'SwaggerRequest'] )->group( func
     } );
 
     Route::prefix( 'shop' )->group( function () {
-        Route::get( 'tags', [tagController::class, 'index'] )->name( 'tags.index' );
-        Route::post( 'tags', [tagController::class, 'store'] )->name( 'tags.store' );
-        Route::get( 'tags/{id}', [tagController::class, 'show'] )->name( 'tags.show' );
-        Route::put( 'tags/{id}', [tagController::class, 'update'] )->name( 'tags.update' );
-        Route::delete( 'tags/{id}', [tagController::class, 'destroy'] )->name( 'tags.destroy' );
+        Route::get( 'tags', [TagController::class, 'index'] )->name( 'tags.index' );
+        Route::post( 'tags', [TagController::class, 'store'] )->name( 'tags.store' );
+        Route::get( 'tags/{id}', [TagController::class, 'show'] )->name( 'tags.show' );
+        Route::put( 'tags/{id}', [TagController::class, 'update'] )->name( 'tags.update' );
+        Route::delete( 'tags/{id}', [TagController::class, 'destroy'] )->name( 'tags.destroy' );
     } );
 
-    Route::get( 'shops', [shopController::class, 'index'] )->name( 'shops.index' );
-    Route::post( 'shops', [shopController::class, 'store'] )->name( 'shops.store' );
-    Route::get( 'shops/{id}', [shopController::class, 'show'] )->name( 'shops.show' );
-    Route::put( 'shops/{id}', [shopController::class, 'update'] )->name( 'shops.update' );
-    Route::delete( 'shops/{id}', [shopController::class, 'destroy'] )->name( 'shops.destroy' );
-    Route::get( 'shops/self', [shopController::class, 'getSelfShop'] )->name( 'shops.getSelfShop' );
+    Route::get( 'shops', [ShopController::class, 'index'] )->name( 'shops.index' );
+    Route::post( 'shops', [ShopController::class, 'store'] )->name( 'shops.store' );
+    Route::get( 'shops/{id}', [ShopController::class, 'show'] )->name( 'shops.show' );
+    Route::put( 'shops/{id}', [ShopController::class, 'update'] )->name( 'shops.update' );
+    Route::delete( 'shops/{id}', [ShopController::class, 'destroy'] )->name( 'shops.destroy' );
+    Route::get( 'shops/self', [ShopController::class, 'getSelfShop'] )->name( 'shops.getSelfShop' );
 
 } );
 

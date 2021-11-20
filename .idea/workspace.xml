@@ -6,7 +6,15 @@
   <component name="ChangeListManager">
     <list default="true" id="4d343e4e-b2a9-4dd0-8969-d76dec06ab9f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/shopController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ShopController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/tagController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/tagController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/api-docs/api-docs.json" beforeDir="false" afterPath="$PROJECT_DIR$/storage/api-docs/api-docs.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/X6090a211c5da6d08878159eec02bec4e.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/cache/data/28/04/2804f508765c05036b7b3553b0f167b57df36569" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/cache/data/28/04/2804f508765c05036b7b3553b0f167b57df36569" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/cache/data/31/f9/31f930cc1bc2882a18958bee5f8ccae60ba9492f" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/cache/data/31/f9/31f930cc1bc2882a18958bee5f8ccae60ba9492f" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/cache/data/6b/1f/6b1f3cc587dd69296fc2dbcca2b924d9a2bced80" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/cache/data/6b/1f/6b1f3cc587dd69296fc2dbcca2b924d9a2bced80" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/cache/data/97/a0/97a0205ac4fc64da4f85165b4bf40b9e140d1e00" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/cache/data/97/a0/97a0205ac4fc64da4f85165b4bf40b9e140d1e00" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_models.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_models.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -230,7 +238,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/database/migrations" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="preferences.fileTypes" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\PhpStorm 2019.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
@@ -615,7 +623,8 @@
       <workItem from="1635592180369" duration="50140000" />
       <workItem from="1635862628372" duration="2172000" />
       <workItem from="1635865526181" duration="99518000" />
-      <workItem from="1636869859033" duration="73578000" />
+      <workItem from="1636869859033" duration="78291000" />
+      <workItem from="1637397955219" duration="1561000" />
     </task>
     <task id="LOCAL-00001" summary="1">
       <created>1628849277468</created>
@@ -813,7 +822,14 @@
       <option name="project" value="LOCAL" />
       <updated>1637167579974</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="28">
+      <created>1637383625394</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1637383625394</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -834,7 +850,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="3" />
     <MESSAGE value="4" />
     <MESSAGE value="5" />
     <MESSAGE value="6" />
@@ -859,7 +874,8 @@
     <MESSAGE value="25" />
     <MESSAGE value="26" />
     <MESSAGE value="27" />
-    <option name="LAST_COMMIT_MESSAGE" value="27" />
+    <MESSAGE value="28" />
+    <option name="LAST_COMMIT_MESSAGE" value="28" />
   </component>
   <component name="WindowStateProjectService">
     <state x="309" y="37" key="#CLI_Interpreters" timestamp="1630122390985">
@@ -871,7 +887,6 @@
     </state>
     <state x="275" y="22" key="#Inspections/0.0.1366.728@0.0.1366.728" timestamp="1630868118902" />
     <state x="-1278" y="26" key="#Inspections/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1635591826260" />
-    <state x="322" y="26" key="#Inspections/0.0.1600.860@0.0.1600.860" timestamp="1628679072668" />
     <state x="275" y="0" width="816" height="728" key="#Intentions" timestamp="1630680305180">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -895,7 +910,6 @@
     </state>
     <state x="-1280" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1635591735828" />
     <state x="320" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1600.860/-1600.0.1600.860@0.0.1600.860" timestamp="1632044322559" />
-    <state x="320" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1600.860@0.0.1600.860" timestamp="1628520283030" />
     <state x="-1117" y="139" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1637163762590">
       <screen x="-1600" y="0" width="1600" height="860" />
     </state>
@@ -911,11 +925,11 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="558" y="291" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1600.860/-1600.0.1600.860@0.0.1600.860" timestamp="1632051667685" />
-    <state x="-1274" y="0" key="CommitChangelistDialog2" timestamp="1637383602871">
+    <state x="-1274" y="0" key="CommitChangelistDialog2" timestamp="1637383623222">
       <screen x="-1600" y="0" width="1600" height="860" />
     </state>
     <state x="278" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1628850717056" />
-    <state x="-1274" y="0" key="CommitChangelistDialog2/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1637383602871" />
+    <state x="-1274" y="0" key="CommitChangelistDialog2/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1637383623222" />
     <state x="326" y="0" key="CommitChangelistDialog2/0.0.1600.860/-1600.0.1600.860@0.0.1600.860" timestamp="1632893075732" />
     <state x="326" y="0" key="CommitChangelistDialog2/0.0.1600.860@0.0.1600.860" timestamp="1631528617231" />
     <state x="645" y="336" key="Create Controller" timestamp="1632051413628">
@@ -945,10 +959,10 @@
     </state>
     <state x="516" y="91" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1630867836717" />
     <state x="-996" y="108" key="FileChooserDialogImpl/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1635863330269" />
-    <state x="-1045" y="330" key="Generate Helper Code" timestamp="1637383185651">
+    <state x="-1045" y="330" key="Generate Helper Code" timestamp="1637400323392">
       <screen x="-1600" y="0" width="1600" height="860" />
     </state>
-    <state x="-1045" y="330" key="Generate Helper Code/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1637383185651" />
+    <state x="-1045" y="330" key="Generate Helper Code/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1637400323392" />
     <state x="555" y="330" key="Generate Helper Code/0.0.1600.860/-1600.0.1600.860@0.0.1600.860" timestamp="1632562602706" />
     <state width="1260" height="275" key="GridCell.Tab.0.bottom" timestamp="1635923901293">
       <screen x="-1600" y="0" width="1600" height="860" />
@@ -978,22 +992,22 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="634" y="353" key="NewPhpFileDialog/0.0.1600.860@0.0.1600.860" timestamp="1630468086867" />
-    <state x="-1217" y="0" key="SettingsEditor" timestamp="1637127328448">
+    <state x="-1217" y="0" key="SettingsEditor" timestamp="1637393914284">
       <screen x="-1600" y="0" width="1600" height="860" />
     </state>
     <state x="186" y="12" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1630870103801" />
-    <state x="-1217" y="0" key="SettingsEditor/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1637127328448" />
+    <state x="-1217" y="0" key="SettingsEditor/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1637393914284" />
     <state x="383" y="0" key="SettingsEditor/0.0.1600.860/-1600.0.1600.860@0.0.1600.860" timestamp="1632923792469" />
     <state x="383" y="0" key="SettingsEditor/0.0.1600.860@0.0.1600.860" timestamp="1631517688705" />
     <state x="647" y="345" key="VCS.ChangelistChooser" timestamp="1631688745258">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="647" y="345" key="VCS.ChangelistChooser/0.0.1600.860@0.0.1600.860" timestamp="1631688745258" />
-    <state x="-1278" y="100" key="Vcs.Push.Dialog.v2" timestamp="1637167589452">
+    <state x="-1278" y="100" key="Vcs.Push.Dialog.v2" timestamp="1637383629467">
       <screen x="-1600" y="0" width="1600" height="860" />
     </state>
     <state x="275" y="85" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1628850937221" />
-    <state x="-1278" y="100" key="Vcs.Push.Dialog.v2/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1637167589452" />
+    <state x="-1278" y="100" key="Vcs.Push.Dialog.v2/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1637383629467" />
     <state x="322" y="100" key="Vcs.Push.Dialog.v2/0.0.1600.860/-1600.0.1600.860@0.0.1600.860" timestamp="1632893079429" />
     <state x="322" y="100" key="Vcs.Push.Dialog.v2/0.0.1600.860@0.0.1600.860" timestamp="1631528623715" />
     <state x="-1508" y="92" width="1416" height="676" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1635667461077">
