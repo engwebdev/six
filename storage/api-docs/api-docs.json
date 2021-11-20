@@ -2464,7 +2464,40 @@
                 "summary": "get all tags. => for shopkeeper and system admin",
                 "description": "get all tags",
                 "operationId": "get categories",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "description",
+                                    "type_location",
+                                    "shop_postal_code",
+                                    "shop_main_phone_number",
+                                    "shop_photo"
+                                ],
+                                "properties": {
+                                    "file": {
+                                        "nullable": true,
+                                        "description": "file",
+                                        "type": "string",
+                                        "format": "binary",
+                                        "default": "null",
+                                        "example": "file"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
                 "responses": {
+                    "200": {
+                        "description": "New Category Successfully"
+                    },
+                    "201": {
+                        "description": "New Category Successfully"
+                    },
                     "511": {
                         "description": "Network Authentication Required"
                     }
