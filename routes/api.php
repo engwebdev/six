@@ -57,6 +57,7 @@ Route::group( ['middleware' => ['auth:api']], function () {
     Route::get( '/userLogout', [AuthController::class, 'userLogout'] )->name( 'userLogout' );
     Route::prefix( 'v1' )->group( function () {
         Route::post( '/userAccount', [AuthController::class, 'userAccount'] )->name( 'userAccount' );
+        Route::put( '/userUpdate/{id}', [AuthController::class, 'update'] )->name( 'userUpdate' );
 
     });
 } );
@@ -103,8 +104,14 @@ Route::prefix( 'v1' )->middleware( ['auth:api', 'SwaggerRequest'] )->group( func
     Route::delete( 'shops/{id}', [ShopController::class, 'destroy'] )->name( 'shops.destroy' );
     Route::get( 'shops/self', [ShopController::class, 'getSelfShop'] )->name( 'shops.getSelfShop' );
 
+//    Route::get('shops/shopImage/{id}', [ShopController::class, 'shopImage'])->name('shop.shopImage');
+
+
 } );
 
+Route::prefix( 'v1' )->middleware( ['auth:api', 'SwaggerRequest'] )->group( function () {
+    Route::get('shopImage/{id}', [ShopController::class, 'image'])->name('shop.image');
+});
 
 //////////////////////////////////////////////////////////////
 Route::get( '/v1/current', function (Request $request) {

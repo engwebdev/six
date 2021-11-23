@@ -64,6 +64,18 @@ class Shop extends Model
         return $this->belongsTo(Shop::class, 'id', 'parent_id');
     }
 
+    /*****************************/
+    /**
+     * Get the Shops for the Shop.
+     * @return HasMany
+     */
+    public function images()
+    {
+        return $this->hasMany(ShopImages::class, 'shop_id', 'id');
+    }
+
+
+    /******************************/
 
     /**
  * Get the Category that owns the Shops.

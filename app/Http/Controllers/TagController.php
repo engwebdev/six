@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\MyException;
+use App\Http\Resources\TagResource;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -308,13 +309,113 @@ class TagController extends Controller {
      * summary="create new tag. => only for system admin",
      * description="create new tag",
      *
+     *
+     *     @OA\RequestBody(
+     *         @OA\JsonContent(
+     *               required={"tag_name"},
+     *               @OA\Property(
+     *                  property="tag_name",
+     *                  type="string",
+     *                  example="tag name",
+     *                  format="string",
+     *                  description="tag name",
+     *                  default="null",
+     *                  nullable=false,
+     *               ),
+     *         ),
+     *
+     *         @OA\MediaType(
+     *            mediaType="multipart/form-data",
+     *            @OA\Schema(
+     *               type="object",
+     *               required={"tag_name"},
+     *               @OA\Property(
+     *                  property="tag_name",
+     *                  type="string",
+     *                  example="tag name",
+     *                  format="string",
+     *                  description="tag name",
+     *                  default="null",
+     *                  nullable=false,
+     *               ),
+     *
+     *
+     *
+     *            ),
+     *        ),
+     *    ),
+     *
+     *      @OA\Response(
+     *          response=200,
+     *          description="New Category Successfully",
+     *
+     *          @OA\JsonContent(
+     *              type="object",
+     *
+     *              @OA\Property(property="category_id", type="integer", example="12"),
+     *              @OA\Property(property="category_name", type="string", example="category_name"),
+     *              @OA\Property(property="created_at", type="timestamp", example="2021-08-05 01:19:35"),
+     *          ),
+     *      ),
+     *
+     *
+     *      @OA\Response(
+     *          response=201,
+     *          description="New Category Successfully",
+     *
+     *          @OA\JsonContent(
+     *              type="object",
+     *
+     *              @OA\Property(property="category_id", type="integer", example="12"),
+     *              @OA\Property(property="category_name", type="string", example="category_name"),
+     *              @OA\Property(property="created_at", type="timestamp", example="2021-08-05 01:19:35"),
+     *          ),
+     *      ),
+     *
+     *      @OA\Response(response=400, description="Bad request"),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthorized",
+     *
+     *          @OA\JsonContent(
+     *              type="object",
+     *
+     *              @OA\Property(property="message", type="string", example="Unauthenticated."),
+     *          ),
+     *
+     *      ),
+     *
+     *      @OA\Response(response=403, description="Forbidden"),
+     *      @OA\Response(response=404, description="Resource Not Found"),
+     *      @OA\Response(response=405, description="Method Not Allowed"),
+     *      @OA\Response(response=406, description="Not Acceptable"),
+     *      @OA\Response(response=407, description="Proxy Authentication Required"),
+     *      @OA\Response(response=410, description="Resource Gone"),
+     *
+     *      @OA\Response(
+     *          response=422,
+     *          description="Unprocessable Entity",
+     *          @OA\JsonContent()
+     *       ),
+     *
+     *      @OA\Response(response=423, description="Resource Locked"),
+     *      @OA\Response(response=429, description="Too Many Requests"),
+     *      @OA\Response(response=451, description="Unavailable For Legal Reasons"),
+     *
+     *      @OA\Response(response=500, description="Internal Server"),
+     *      @OA\Response(response=502, description="Bad Gateway"),
+     *      @OA\Response(response=503, description="Service Unavailable"),
+     *      @OA\Response(response=504, description="Gateway Timeout"),
+     *      @OA\Response(response=505, description="HTTP Version Not Supported"),
      *      @OA\Response(response=511, description="Network Authentication Required"),
+     *
      *
      *     security={
      *         {"bearer": {}}
      *     },
      *
      * ),
+     *
      *
      */
     /**
@@ -377,6 +478,7 @@ class TagController extends Controller {
                     'tag_additional_user_id' => $user->id,
                 ]
             );
+
             $success['id'] = $tag->id;
 
             $responseCode = 201;
@@ -387,12 +489,15 @@ class TagController extends Controller {
             return response()->json( [
                 'message' => $message,
                 'success' => $success,
+                "data" => new TagResource($tag),
                 'NotificationsEnServer' => $notifications_En_Server,
                 'NotificationsFaServer' => $notifications_Fa_Server,
             ], $responseCode );
 
         }
-        catch (MyException $exception) {}
+        catch (MyException $exception) {
+//            throw MyException::class();
+        }
     }
 
     /**
@@ -437,18 +542,14 @@ class TagController extends Controller {
      */
     public function show($id)
     {
-        //
-        return new Response(
-            [
-                'errors' => [
-                    'shop_tag' => "Tag Not Found!",
-                ],
-            ], 404 );
-        $tag = Tag::findO( $id );
-        return $tag;
+
+
+        $tag = Tag::findOrFail($id);
+
+
         return response(
             [
-                $tag,
+                "data" => new TagResource($tag),
             ], 200 );
     }
 

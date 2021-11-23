@@ -8,9 +8,15 @@ use App\Http\Resources\ShopResource;
 use App\Models\RolesShopsUsers;
 use App\Models\Shop;
 //use Auth;
+use App\Models\ShopImages;
+use Carbon\Carbon;
 use DB;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use File;
+use mysql_xdevapi\Exception;
 
 class ShopController extends Controller {
     // todo one to many polymorphic between -confirm_comment- -history_price- -image- -category- -tag- -customer_comment- -- -- -- -- -- --
@@ -164,6 +170,7 @@ class ShopController extends Controller {
         {
             $sort = 'id';
         }
+
         if ($request->input( 'order' ))
         {
             $validate_order = $request->validate(
@@ -177,6 +184,7 @@ class ShopController extends Controller {
         {
             $order = 'asc';
         }
+
         if ($request->input( 'page' ))
         {
             $validate_page = $request->validate(
@@ -190,6 +198,10 @@ class ShopController extends Controller {
         {
             $page = 1;
         }
+
+//        $request->validate(["page" => "numeric"]);
+//        $page = $request->get("page") ? : 1 ;
+
         if ($request->input( 'limit' ))
         {
             $validate_limit = $request->validate(
@@ -364,19 +376,6 @@ class ShopController extends Controller {
 //            200
 //        );
     }
-
-    /**
-     *
-     * get /shops/create
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
 
     /**
      * @OA\Post(
@@ -644,7 +643,6 @@ class ShopController extends Controller {
             $shopkeeper_id = auth()->id();
             if (auth()->user()->disable_at != null)
             {
-//                dd( $shopkeeper_id );
                 return response()->json( [
                     "message" => "Forbidden",
                     "errors" => [
@@ -670,7 +668,6 @@ class ShopController extends Controller {
                 ], 404 );
             }// mobile_verified_at,
 
-
             // todo added   ' shop_Priority '   default 17 => بی اهمیت
             $validated = $request->validate(
                 [
@@ -679,7 +676,7 @@ class ShopController extends Controller {
                     'category_id' => ['required', 'integer', 'exists:categories,id'],
                     'tag_ids.*' => ['nullable', 'integer', 'exists:tags,id'],
                     'description' => ['required', 'string', 'min:5'],
-                    'shop_photo' => ['nullable', 'string'],
+                    'shop_photo' => ['nullable', 'mimes:jpeg,png,jpg,webp,bmp'],
                     'type_location' => ['required', 'boolean'],
                     'lat_location' => ['nullable', 'string', 'min:8'],
                     'long_location' => ['nullable', 'string', 'min:8'],
@@ -714,10 +711,6 @@ class ShopController extends Controller {
                 ], 422 );
             }
 
-
-//            dd($validated);
-//            dd($validated);
-
             /**
              * shop accept status default false => not accepted by admin
              *
@@ -731,7 +724,7 @@ class ShopController extends Controller {
                     'category_id' => $request->category_id,
                     'description' => $request->description,
                     'shop_accept_status' => false,
-                    'shop_photo_url' => $request->shop_photo,
+//                    'shop_photo_url' => $request->shop_photo,
                     'type_location' => $request->type_location,
                     'lat_location' => $request->lat_location,
                     'long_location' => $request->long_location,
@@ -748,8 +741,42 @@ class ShopController extends Controller {
             );
 
 //            model has role
-//            dd($shop);
             $success['id'] = $shop->id;
+            if ($file = $validated['shop_photo'])
+            {
+                $shop_photo_name = $request->file( 'shop_photo' )->getClientOriginalName();
+                $format = (explode( '.', $shop_photo_name ));
+                $file_name_is = $format[0];
+                $file_format_is = end( $format );
+                $name_in_store = $file_name_is . '-' . date( 'Y-m-d', strtotime( Carbon::now() ) ) . '.' . $file_format_is;
+
+                $shop_photo_path = $request->file( 'shop_photo' )
+                    ->storeAs( 'shop_id/' . $shop->id . '_shop_name_' . $shop->name, $name_in_store );
+
+                $shop->shop_photo_url = 'shop/' . $shop_photo_path;
+                $shop->save();
+                $resolution = getimagesize( $file )[3];
+
+                $image = ShopImages::create(
+                    [
+                        'shop_id' => $shop->id,
+                        'shop_image_index_point' => 1,
+                        'shop_image_url' => 'shop/' . $shop_photo_path,
+                        'shop_image_type' => $file->getClientMimeType(),
+                        'shop_image_format' => $file->guessClientExtension(),
+                        'shop_image_size' => $file->getSize(),
+                        'shop_image_resolution' => $resolution,
+                        'shop_image_old_name' => $file->getClientOriginalName(),
+                        'shop_image_new_name' => $name_in_store,
+                        'shop_image_uploader_user_id' => $shopkeeper_id,
+                        'shop_image_accept_status' => 0,
+                        'shop_image_active_status' => 1,
+                        'shop_image_publish_status' => 1,
+                        'shop_image_thumbnail_url' => null,
+                        'shop_image_thumbnail_name' => null,
+                    ]
+                );
+            }
             // todo $shop->id and $tag_ids insert to pivot table
             if (isset( $validated['tag_ids'] ))
             {
@@ -773,7 +800,7 @@ class ShopController extends Controller {
                 ], 503 );
             }
             auth()->user()->guard_name = 'api';
-            auth()->user()->assignRole('shopkeeper');
+            auth()->user()->assignRole( 'shopkeeper' );
             $shop->userOfRolesShopsUsers()->attach( $shopkeeper_id, ['shop_type' => 'child', 'role_id' => 1] );
 
             $responseCode = 201;
@@ -906,20 +933,6 @@ class ShopController extends Controller {
     }
 
     /**
-     *
-     * get /tags/{tag}/edit
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-
-    /**
      * @OA\Put(
      * path="/api/v1/shops/{id}",
      * operationId="updateShop",
@@ -929,19 +942,238 @@ class ShopController extends Controller {
      *
      *
      *
-     *     @OA\Parameter(
-     *         name="id",
-     *         in="path",
-     *         description="id of Category",
-     *         required=true,
-     *         @OA\Schema(
-     *           type="string",
+     *
+     *     @OA\RequestBody(
+     *         @OA\JsonContent(
+     *               required={"name", "description", "type_location", "shop_postal_code", "shop_main_phone_number", "shop_photo"},
+     *               @OA\Property(
+     *                  property="file",
+     *                  type="string",
+     *                  example="file",
+     *                  format="binary",
+     *                  description="file",
+     *                  default="null",
+     *                  nullable=true,
+     *               ),
+     *               @OA\Property(
+     *                  property="parent_id", type="integer", example="12", description="parent_id", default="null", nullable=true
+     *               ),
+     *               @OA\Property(
+     *                  property="name", type="integer", example="name", description="name", nullable=false
+     *               ),
+     *               @OA\Property(
+     *                  property="category_id", type="integer", example="12", description="category_id", default="null", nullable=true
+     *               ),
+     *               @OA\Property(
+     *                  property="tag_ids", type="objet", example="[1, 2, 3, 8]", description="tag_ids", default="null", nullable=true
+     *               ),
+     *               @OA\Property(
+     *                  property="description", type="string", example="description", description="description", nullable=false
+     *               ),
+     *               @OA\Property(
+     *                  property="type_location", type="string", example="true or false || 0 or 1 ", description="type_location", nullable=false
+     *               ),
+     *               @OA\Property(
+     *                  property="lat_location", type="string", example="10.0000001", description="lat_location", default="null", nullable=true
+     *               ),
+     *               @OA\Property(
+     *                  property="long_location", type="string", example="10.0000001", description="long_location", default="null", nullable=true
+     *               ),
+     *               @OA\Property(
+     *                  property="shop_country", type="string", example="iran", description="shop_country", default="null", nullable=true
+     *               ),
+     *               @OA\Property(
+     *                  property="shop_province", type="string", example="tehran", description="shop_province", default="null", nullable=true
+     *               ),
+     *               @OA\Property(
+     *                  property="shop_city", type="string", example="tehran", description="shop_city", default="null", nullable=true
+     *               ),
+     *               @OA\Property(
+     *                  property="shop_local", type="string", example="sadeghiye", description="shop_local", default="null", nullable=true
+     *               ),
+     *               @OA\Property(
+     *                  property="shop_Street", type="string", example="shop_Street", description="shop_Street", default="null", nullable=true
+     *               ),
+     *               @OA\Property(
+     *                  property="shop_alley", type="string", example="shop_alley", description="shop_alley", default="null", nullable=true
+     *               ),
+     *               @OA\Property(
+     *                  property="shop_number", type="string", example="02188118811", description="shop_number", default="null", nullable=true
+     *               ),
+     *               @OA\Property(
+     *                  property="shop_postal_code", type="integer", example="9876543210", description="shop_postal_code", nullable=false
+     *               ),
+     *               @OA\Property(
+     *                  property="shop_main_phone_number", type="string", example="02188118811", description="shop_main_phone_number", default="null", nullable=true
+     *               ),
+     *
      *         ),
-     *         example="1",
-     *     ),
+     *
+     *         @OA\MediaType(
+     *            mediaType="multipart/form-data",
+     *            @OA\Schema(
+     *               type="object",
+     *               required={"name", "description", "type_location", "shop_postal_code", "shop_main_phone_number", "shop_photo"},
+     *               @OA\Property(
+     *                  property="file",
+     *                  type="string",
+     *                  example="file",
+     *                  format="binary",
+     *                  description="file",
+     *                  default="null",
+     *                  nullable=true,
+     *               ),
+     *               @OA\Property(
+     *                  property="parent_id", type="integer", example="12", description="parent_id", default="null", nullable=true
+     *               ),
+     *               @OA\Property(
+     *                  property="name", type="integer", example="name", description="name", nullable=false
+     *               ),
+     *               @OA\Property(
+     *                  property="category_id", type="integer", example="12", description="category_id", default="null", nullable=true
+     *               ),
+     *               @OA\Property(
+     *                  property="tag_ids", type="object", format="array", example="[1, 2, 3, 8]", description="tag_ids", default="null", nullable=true
+     *               ),
+     *               @OA\Property(
+     *                  property="description", type="string", example="description", description="description", nullable=false
+     *               ),
+     *               @OA\Property(
+     *                  property="type_location", type="boolen", format="string", example="true or false || 0 or 1 ", description="type_location", nullable=false
+     *               ),
+     *               @OA\Property(
+     *                  property="lat_location", type="string", example="10.0000001", description="lat_location", default="null", nullable=true
+     *               ),
+     *               @OA\Property(
+     *                  property="long_location", type="string", example="10.0000001", description="long_location", default="null", nullable=true
+     *               ),
+     *               @OA\Property(
+     *                  property="shop_country", type="string", example="iran", description="shop_country", default="null", nullable=true
+     *               ),
+     *               @OA\Property(
+     *                  property="shop_province", type="string", example="tehran", description="shop_province", default="null", nullable=true
+     *               ),
+     *               @OA\Property(
+     *                  property="shop_city", type="string", example="tehran", description="shop_city", default="null", nullable=true
+     *               ),
+     *               @OA\Property(
+     *                  property="shop_local", type="string", example="sadeghiye", description="shop_local", default="null", nullable=true
+     *               ),
+     *               @OA\Property(
+     *                  property="shop_Street", type="string", example="shop_Street", description="shop_Street", default="null", nullable=true
+     *               ),
+     *               @OA\Property(
+     *                  property="shop_alley", type="string", example="shop_alley", description="shop_alley", default="null", nullable=true
+     *               ),
+     *               @OA\Property(
+     *                  property="shop_number", type="string", example="02188118811", description="shop_number", default="null", nullable=true
+     *               ),
+     *               @OA\Property(
+     *                  property="shop_postal_code", type="integer", example="9876543210", description="shop_postal_code", nullable=false
+     *               ),
+     *               @OA\Property(
+     *                  property="shop_main_phone_number", type="string", example="02188118811", description="shop_main_phone_number", default="null", nullable=true
+     *               ),
+     *
+     *            ),
+     *        ),
+     *    ),
      *
      *
+     *
+     *
+     *
+     *
+     *
+     *      @OA\Response(
+     *          response=200,
+     *          description="New shop Successfully",
+     *
+     *          @OA\JsonContent(
+     *              type="object",
+     *
+     *              @OA\Property(property="message", type="string", example="New Shop Created"),
+     *              @OA\Property(
+     *                      property="success",
+     *                      type="object",
+     *                  @OA\Property(
+     *                      property="id",
+     *                      type="string",
+     *                      format="string",
+     *                      example="12"
+     *                  ),
+     *              ),
+     *              @OA\Property(property="NotificationsEnServer", type="string", format="string", example="New Shop Created"),
+     *              @OA\Property(property="NotificationsFaServer", type="string", format="string", example="فروشگاه جدید ایجاد شد. و منتظر تایید مدیر میباشد."),
+     *          ),
+     *      ),
+     *
+     *
+     *
+     *      @OA\Response(
+     *          response=201,
+     *          description="New shop Successfully",
+     *
+     *          @OA\JsonContent(
+     *              type="object",
+     *
+     *              @OA\Property(property="message", type="string", example="New Shop Created"),
+     *              @OA\Property(
+     *                      property="success",
+     *                      type="object",
+     *                  @OA\Property(
+     *                      property="id",
+     *                      type="string",
+     *                      format="string",
+     *                      example="12"
+     *                  ),
+     *              ),
+     *              @OA\Property(property="NotificationsEnServer", type="string", format="string", example="New Shop Created"),
+     *              @OA\Property(property="NotificationsFaServer", type="string", format="string", example="فروشگاه جدید ایجاد شد. و منتظر تایید مدیر میباشد."),
+     *          ),
+     *      ),
+     *
+     *
+     *      @OA\Response(response=400, description="Bad request"),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthorized",
+     *
+     *          @OA\JsonContent(
+     *              type="object",
+     *
+     *              @OA\Property(property="message", type="string", example="Unauthenticated."),
+     *          ),
+     *
+     *      ),
+     *
+     *      @OA\Response(response=403, description="Forbidden"),
+     *      @OA\Response(response=404, description="Resource Not Found"),
+     *      @OA\Response(response=405, description="Method Not Allowed"),
+     *      @OA\Response(response=406, description="Not Acceptable"),
+     *      @OA\Response(response=407, description="Proxy Authentication Required"),
+     *      @OA\Response(response=410, description="Resource Gone"),
+     *
+     *      @OA\Response(
+     *          response=422,
+     *          description="Unprocessable Entity",
+     *          @OA\JsonContent()
+     *       ),
+     *
+     *      @OA\Response(response=423, description="Resource Locked"),
+     *      @OA\Response(response=429, description="Too Many Requests"),
+     *      @OA\Response(response=451, description="Unavailable For Legal Reasons"),
+     *
+     *      @OA\Response(response=500, description="Internal Server"),
+     *      @OA\Response(response=502, description="Bad Gateway"),
+     *      @OA\Response(response=503, description="Service Unavailable"),
+     *      @OA\Response(response=504, description="Gateway Timeout"),
+     *      @OA\Response(response=505, description="HTTP Version Not Supported"),
      *      @OA\Response(response=511, description="Network Authentication Required"),
+     *
+     *
+     *
+     *
      *
      *
      *     security={
@@ -949,6 +1181,9 @@ class ShopController extends Controller {
      *     },
      *
      * ),
+     *
+     *
+     *
      */
     /**
      *
@@ -957,16 +1192,174 @@ class ShopController extends Controller {
      *
      * @param \Illuminate\Http\Request $request
      * @param int                      $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(Request $request, $id)
     {
-        $shopkeeper_id = auth()->id();
+        $user_id = auth()->id();
+        $validate_id = Validator::make(
+            [
+                'id' => $id,
+            ],
+            [
+                'id' => ['required', 'numeric'],
+            ]
+        );
+
+        if ($validate_id->fails())
+        {
+            $exception = $validate_id->messages();
+            return response()->json( [
+                "message" => "The given data was invalid.",
+                "errors" => $validate_id->messages(),
+            ], 422 );
+        }
+
+        $shop = Shop::findOrFail( $id );
+
+        $validated = $request->validate(
+            [
+                'parent_id' => ['nullable', 'integer'],
+                'name' => ['nullable', 'string', 'min:3'],
+                'category_id' => ['nullable', 'integer', 'exists:categories,id'],
+                'tag_ids.*' => ['nullable', 'integer', 'exists:tags,id'],
+                'description' => ['nullable', 'string', 'min:5'],
+                'shop_photo' => ['nullable', 'mimes:jpeg,png,jpg,webp,bmp'],
+                'type_location' => ['nullable', 'boolean'],
+                'lat_location' => ['nullable', 'string', 'min:8'],
+                'long_location' => ['nullable', 'string', 'min:8'],
+                'shop_country' => ['nullable', 'string', 'min:8'],
+                'shop_province' => ['nullable', 'string', 'min:8'],
+                'shop_city' => ['nullable', 'string', 'min:8'],
+                'shop_local' => ['nullable', 'string', 'min:8'],
+                'shop_Street' => ['nullable', 'string', 'min:8'],
+                'shop_alley' => ['nullable', 'string', 'min:8'],
+                'shop_number' => ['nullable', 'string', 'min:8'],
+                'shop_postal_code' => ['nullable', 'digits:10'],
+                'shop_main_phone_number' => ['nullable', 'string', 'min:10', 'max:11'], // 09876543210  9876543210 11 or 10
+            ]
+        );
+
+        $validator = Validator::make( $request->all()
+//            [
+//                'lat_location' => $request->lat_location,
+//                'long_location' => $request->lat_location,
+//                'type_location' => $request->type_location
+//            ]
+            ,
+            [
+                'lat_location' => ['required_unless:type_location,false'],
+                'long_location' => ['required_unless:type_location,false'],
+            ]
+        );
+        if ($validator->fails())
+        {
+            $exception = $validator->messages();
+            return response()->json( [
+                "message" => "The given data was invalid.",
+                "errors" => $validator->messages(),
+            ], 422 );
+        }
+
+        $shop->parent_id = $request->parent_id;
+        $shop->name = $request->name;
+        $shop->category_id = $request->category_id;
+
+        $shop->description = $request->description;
+//        $shop->shop_photo_url = $request->shop_photo;
+        $shop->type_location = $request->type_location;
+        $shop->lat_location = $request->lat_location;
+        $shop->long_location = $request->long_location;
+        $shop->shop_country = $request->shop_country;
+        $shop->shop_province = $request->shop_province;
+        $shop->shop_city = $request->shop_city;
+        $shop->shop_local = $request->shop_local;
+        $shop->shop_Street = $request->shop_Street;
+        $shop->shop_alley = $request->shop_alley;
+        $shop->shop_number = $request->shop_number;
+        $shop->shop_postal_code = $request->shop_postal_code;
+        $shop->shop_main_phone_number = $request->shop_main_phone_number;
+
+        $shop->save();
+
+        if ($file = $request->shop_photo)
+        {
+            $shop_photo_name =
+                $request->file( 'shop_photo' )->getClientOriginalName();
+            $format = (explode( '.', $shop_photo_name ));
+            $file_name_is = $format[0];
+            $file_format_is = end( $format );
+            $name_in_store = $file_name_is . '-' . date( 'Y-m-d', strtotime( Carbon::now() ) ) . '.' . $file_format_is;
+
+            $shop_photo_path = $request->file( 'shop_photo' )
+                ->storeAs( 'shop_id/' . $shop->id . '_shop_name_' . $shop->name, $name_in_store );
+
+            $shop->shop_photo_url = 'shop/' . $shop_photo_path;
+            $resolution = getimagesize( $file )[3];
+
+            $oldImagePoint = ShopImages::select( ['shop_image_index_point', 'shop_image_url'] )
+                ->orderBy( 'shop_image_index_point', 'desc' )
+                ->where( 'shop_id', '=', $id )
+                ->first();
+//            dd( $oldImagePoint );
+            $imagePoint = $oldImagePoint;
+
+            $imagePoint = $imagePoint->shop_image_index_point + 1;
+//            $shop_image_url = $imagePoint->shop_image_url;
+            $image = ShopImages::create(
+                [
+                    'shop_id' => $shop->id,
+                    'shop_image_index_point' => $imagePoint,
+                    'shop_image_url' => 'shop/' . $shop_photo_path,
+                    'shop_image_type' => $file->getClientMimeType(),
+                    'shop_image_format' => $file->guessClientExtension(),
+                    'shop_image_size' => $file->getSize(),
+                    'shop_image_resolution' => $resolution,
+                    'shop_image_old_name' => $file->getClientOriginalName(),
+                    'shop_image_new_name' => $name_in_store,
+                    'shop_image_uploader_user_id' => $user_id,
+                    'shop_image_accept_status' => 0,
+                    'shop_image_active_status' => 1,
+                    'shop_image_publish_status' => 1,
+                    'shop_image_thumbnail_url' => null,
+                    'shop_image_thumbnail_name' => null,
+                ]
+            );
+//            $shop->shop_image_index_point = $imagePoint;
+            $shop->save();
+        }
+
+        if (isset( $request->tag_ids ))
+        {
+            $tag_ids = $request->tag_ids;
+            try
+            {
+                $shop->tags()->attach( $tag_ids, ['tag_accept_status' => 0] );
+            }
+            catch (QueryException $e)
+            { // addd foregin key todo necessary
+                $errorCode = $e->errorInfo[1];
+                if ($errorCode == 1062)
+                {
+                    return response()->json( [
+                        'message' => 'shop updated. and tags are Duplicate entry',
+                        'error' => [
+                            'Duplicate entry. tags already inserted.',
+                            $e->errorInfo[2]
+                        ],
+                        'data' => $shop,
+                    ], 200);
+                }
+            }
+        }
+
+        return response()->json( [
+            'message' => 'shop updated.',
+            'data' => $shop,
+        ], 200 );
+
 
     }
-
-
-
 
     /**
      * @OA\Delete(
@@ -1023,6 +1416,140 @@ class ShopController extends Controller {
             ->with( 'userOfRolesShopsUsers' )
             ->with( 'roleOfRolesShopsUsers' )
             ->get();
+    }
+
+    /**************************/
+    /**
+     * @OA\Get(
+     * path="/api/v1/shopImage/{id}",
+     * operationId="get image of shops id",
+     * tags={"Shops"},
+     * summary="get Image of Shop by id in url. => for all user and shopkeeper and system admin",
+     * description="get image of Shop by id in patch 'url'",
+     *
+     *
+     *
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="id of image",
+     *         required=true,
+     *         @OA\Schema(
+     *           type="string",
+     *         ),
+     *         example="1",
+     *     ),
+     *
+     *
+     *      @OA\Response(response=511, description="Network Authentication Required"),
+     *
+     *     security={
+     *         {"bearer": {}}
+     *     },
+     *
+     * ),
+     *
+     *
+     */
+    /**
+     *
+     * DELETE /tags/{tag}
+     * Remove the specified resource from storage.
+     *
+     * @param Request $request
+     * @param int     $id
+     * @return \Illuminate\Http\Response
+     */
+    public function image(Request $request, $id)
+    {
+        // get shop image by id
+        // validation id
+        $shop = Shop::findOrFail( $id );
+        $filePath = public_path() . '/' . $shop->shop_photo_url;
+
+        /*        $content = file_get_contents( $filePath );
+                $file_url = env('APP_URL')."/shop/" . $shop->shop_photo_url;
+                $content = base64_encode($content);
+                return response( $file_url , 201, [
+                    'Content-Type' => 'application/json',
+                ]);
+                    ->headers->set(
+                        'Access-Control-Allow-Headers', 'Content-Type, Accept, Authorization, X-Requested-With, Application'
+                    );*/
+
+        if (file_exists( $filePath ))
+        {
+            $type = File::mimeType( $filePath );
+            $content = file_get_contents( $filePath );
+            $response = response( $content, 200, [
+                'Content-Type' => $type,
+                'Content-Disposition' => 'attachment; filename="' . 'pp' . '.jpeg"',
+            ] );
+            return $response;
+        }
+        else
+        {
+            return response()->json( [
+                "message" => "Unknown server problem",
+                "errors" => [
+                    "problem" => [
+                        "Unknown server problem",
+                    ],
+                ],
+            ], 503 );
+        }
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /************************************/
+
+    /**
+     *
+     * get /shops/create
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     *
+     * get /tags/{tag}/edit
+     * Show the form for editing the specified resource.
+     *
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
     }
 
 }

@@ -949,8 +949,8 @@ class CategoryController extends Controller {
     /**
      * Update the specified resource in storage.
      *
-     * @param Request  $request
-     * @param Category $category
+     * @param Request $request
+     * @param         $id
      * @return \Illuminate\Http\JsonResponse
      */
     public function update(Request $request, $id)

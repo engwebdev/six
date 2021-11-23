@@ -356,6 +356,7 @@ namespace LaravelIdea\Helper\App\Models {
     use App\Models\ProductTag;
     use App\Models\RolesShopsUsers;
     use App\Models\Shop;
+    use App\Models\ShopImages;
     use App\Models\Tag;
     use App\Models\Tasks;
     use App\Models\Team;
@@ -1397,6 +1398,80 @@ namespace LaravelIdea\Helper\App\Models {
      * @method _IH_RolesShopsUsers_QB restore()
      */
     class _IH_RolesShopsUsers_QB extends _BaseBuilder {}
+    
+    /**
+     * @method ShopImages shift(int $count = 1)
+     * @method ShopImages pop(int $count = 1)
+     * @method ShopImages get($key, $default = null)
+     * @method ShopImages pull($key, $default = null)
+     * @method ShopImages first(callable $callback = null, $default = null)
+     * @method ShopImages firstWhere(string $key, $operator = null, $value = null)
+     * @method ShopImages find($key, $default = null)
+     * @method ShopImages[] all()
+     * @method ShopImages last(callable $callback = null, $default = null)
+     */
+    class _IH_ShopImages_C extends _BaseCollection {
+        /**
+         * @param int $size
+         * @return ShopImages[][]
+         */
+        public function chunk($size)
+        {
+            return [];
+        }
+    }
+    
+    /**
+     * @method _IH_ShopImages_QB whereId($value)
+     * @method _IH_ShopImages_QB whereShopId($value)
+     * @method _IH_ShopImages_QB whereShopImageIndexPoint($value)
+     * @method _IH_ShopImages_QB whereShopImageUrl($value)
+     * @method _IH_ShopImages_QB whereShopImageType($value)
+     * @method _IH_ShopImages_QB whereShopImageFormat($value)
+     * @method _IH_ShopImages_QB whereShopImageSize($value)
+     * @method _IH_ShopImages_QB whereShopImageResolution($value)
+     * @method _IH_ShopImages_QB whereShopImageOldName($value)
+     * @method _IH_ShopImages_QB whereShopImageNewName($value)
+     * @method _IH_ShopImages_QB whereShopImageUploaderUserId($value)
+     * @method _IH_ShopImages_QB whereShopImageAcceptStatus($value)
+     * @method _IH_ShopImages_QB whereShopImageActiveStatus($value)
+     * @method _IH_ShopImages_QB whereShopImagePublishStatus($value)
+     * @method _IH_ShopImages_QB whereShopImageThumbnailUrl($value)
+     * @method _IH_ShopImages_QB whereShopImageThumbnailName($value)
+     * @method _IH_ShopImages_QB whereDeletedAt($value)
+     * @method _IH_ShopImages_QB whereCreatedAt($value)
+     * @method _IH_ShopImages_QB whereUpdatedAt($value)
+     * @method ShopImages baseSole(array|string $columns = ['*'])
+     * @method ShopImages create(array $attributes = [])
+     * @method _IH_ShopImages_C|ShopImages[] cursor()
+     * @method ShopImages|null find($id, array $columns = ['*'])
+     * @method _IH_ShopImages_C|ShopImages[] findMany(array|Arrayable $ids, array $columns = ['*'])
+     * @method ShopImages findOrFail($id, array $columns = ['*'])
+     * @method ShopImages findOrNew($id, array $columns = ['*'])
+     * @method ShopImages first(array|string $columns = ['*'])
+     * @method ShopImages firstOr(array|\Closure $columns = ['*'], \Closure $callback = null)
+     * @method ShopImages firstOrCreate(array $attributes = [], array $values = [])
+     * @method ShopImages firstOrFail(array $columns = ['*'])
+     * @method ShopImages firstOrNew(array $attributes = [], array $values = [])
+     * @method ShopImages firstWhere(array|\Closure|Expression|string $column, $operator = null, $value = null, string $boolean = 'and')
+     * @method ShopImages forceCreate(array $attributes)
+     * @method _IH_ShopImages_C|ShopImages[] fromQuery(string $query, array $bindings = [])
+     * @method _IH_ShopImages_C|ShopImages[] get(array|string $columns = ['*'])
+     * @method ShopImages getModel()
+     * @method ShopImages[] getModels(array|string $columns = ['*'])
+     * @method _IH_ShopImages_C|ShopImages[] hydrate(array $items)
+     * @method ShopImages make(array $attributes = [])
+     * @method ShopImages newModelInstance(array $attributes = [])
+     * @method LengthAwarePaginator|ShopImages[]|_IH_ShopImages_C paginate(int|null $perPage = null, array $columns = ['*'], string $pageName = 'page', int|null $page = null)
+     * @method Paginator|ShopImages[]|_IH_ShopImages_C simplePaginate(int|null $perPage = null, array $columns = ['*'], string $pageName = 'page', int|null $page = null)
+     * @method ShopImages sole(array|string $columns = ['*'])
+     * @method ShopImages updateOrCreate(array $attributes, array $values = [])
+     * @method _IH_ShopImages_QB withTrashed()
+     * @method _IH_ShopImages_QB onlyTrashed()
+     * @method _IH_ShopImages_QB withoutTrashed()
+     * @method _IH_ShopImages_QB restore()
+     */
+    class _IH_ShopImages_QB extends _BaseBuilder {}
     
     /**
      * @method Shop shift(int $count = 1)

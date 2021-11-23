@@ -4,7 +4,7 @@
 namespace App\Exceptions;
 
 
-use Exception as Exception;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 

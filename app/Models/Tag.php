@@ -13,7 +13,11 @@ class Tag extends Model
 
     protected $fillable = [
         'tag_name',
+        'tag_image_url',
+        'tag_publish_status',
         'tag_accept_status',
+        'tag_additional_type',
+        'tag_additional_user_id',
     ];
 
     /**
@@ -33,3 +37,6 @@ class Tag extends Model
         return $this->belongsToMany(shop::class)->withPivot('tag_accept_status');
     }
 }
+
+
+

@@ -737,13 +737,13 @@ class AuthController extends Controller {
     {
         try
         {
-            $validated = $request->validate([
-                'firstName' => ['required','string', 'min:2'],
+            $validated = $request->validate( [
+                'firstName' => ['required', 'string', 'min:2'],
                 'lastName' => ['string', 'min:2', 'nullable'],
 
             ] );
 
-            $user = User::find(auth()->id());
+            $user = User::find( auth()->id() );
             $user->first_name = $validated['firstName'];
             if (!empty( $validated['lastName'] ))
             {
@@ -773,6 +773,201 @@ class AuthController extends Controller {
         }
     }
 
+    /**
+     * @OA\Put(
+     * path="/api/v1/userUpdate/{id}",
+     * operationId="updateUser",
+     * tags={"Profile"},
+     * summary="update users. => only for user and system admin",
+     * description="update users",
+     *
+     *
+     *
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="id of user",
+     *         required=false,
+     *         @OA\Schema(
+     *           type="string",
+     *         ),
+     *         example="1",
+     *     ),
+     *
+     *
+     *     @OA\RequestBody(
+     *         @OA\JsonContent(
+     *               @OA\Property(
+     *                  property="profile_photo",
+     *                  type="string",
+     *                  example="file",
+     *                  format="binary",
+     *                  description="file",
+     *                  default="null",
+     *                  nullable=true,
+     *               ),
+     *               @OA\Property(
+     *                  property="name", type="string", example="name", description="name", default="null", nullable=true
+     *               ),
+     *               @OA\Property(
+     *                  property="first_name", type="string", example="first_name", description="first_name", nullable=false
+     *               ),
+     *               @OA\Property(
+     *                  property="last_name", type="string", example="last_name", description="last_name", default="null", nullable=true
+     *               ),
+     *               @OA\Property(
+     *                  property="disable", type="boolen", format="string", example="0 or 1", description="disable default false", default="null", nullable=true
+     *               ),
+     *         ),
+     *
+     *         @OA\MediaType(
+     *            mediaType="multipart/form-data",
+     *            @OA\Schema(
+     *               type="object",
+     *               @OA\Property(
+     *                  property="profile_photo",
+     *                  type="string",
+     *                  example="file",
+     *                  format="binary",
+     *                  description="file",
+     *                  default="null",
+     *                  nullable=true,
+     *               ),
+     *               @OA\Property(
+     *                  property="name", type="string", example="name", description="name", default="null", nullable=true
+     *               ),
+     *               @OA\Property(
+     *                  property="first_name", type="string", example="first_name", description="first_name", nullable=false
+     *               ),
+     *               @OA\Property(
+     *                  property="last_name", type="string", example="last_name", description="last_name", default="null", nullable=true
+     *               ),
+     *               @OA\Property(
+     *                  property="disable", type="boolen", format="string", example="0", description="disable default false", default="0", nullable=true
+     *               ),
+     *            ),
+     *         ),
+     *    ),
+     *
+     *
+     *
+     *      @OA\Response(
+     *          response=200,
+     *          description="Update User Successfully",
+     *          @OA\JsonContent(
+     *              type="object",
+     *
+     *              @OA\Property(property="message", type="string", example="user Updated."),
+     *              @OA\Property(property="data", type="string", example="user"),
+     *          ),
+     *      ),
+     *
+     *
+     *      @OA\Response(
+     *          response=201,
+     *          description="Update User Successfully Created",
+     *          @OA\JsonContent(
+     *              type="object",
+     *
+     *              @OA\Property(property="message", type="string", example="user Updated."),
+     *              @OA\Property(property="data", type="string", example="user"),
+     *          ),
+     *      ),
+     *
+     *
+     *      @OA\Response(response=503, description="Unknown server problem in user update"),
+     *      @OA\Response(response=511, description="Network Authentication Required"),
+     *
+     *
+     *     security={
+     *         {"bearer": {}}
+     *     },
+     *
+     * ),
+     */
+    /**
+     * @param Request $request
+     * @param         $id
+     * @return JsonResponse
+     */
+    public function update(Request $request, $id)
+    {
+        try
+        {
+            $current_user_id = auth()->id();
+            $user = User::findOrFail( $id );
+            $validated = $request->validate(
+                [
+                    'name' => ['nullable', 'string', 'min:2'],
+                    'first_name' => ['nullable', 'string', 'min:2'],
+                    'last_name' => ['nullable', 'string', 'min:2'],
+                    'username' => ['nullable', 'string', 'min:2'],
+                    'profile_photo' => ['nullable', 'mimes:jpeg,png,jpg,webp,bmp'],
+                    'disable_by' => ['nullable', 'string', 'min:2'],
+                    'disable_at' => ['nullable', 'string', 'min:2'],
+                ]
+            );
+
+            $user->name = $request->name;
+            $user->first_name = $request->first_name;
+            $user->last_name = $request->last_name;
+            $user->username = $request->username;
+
+            if (isset( $validated['disable'] ))
+            {
+                $disable_by = $current_user_id;
+                if ($validated['disable'] = 1)
+                {
+                    $user->disable_by = $disable_by;
+                    $user->disable_at = time();
+                }
+            }
+
+            if (isset($validated['profile_photo']))
+            {
+                $profile_photo = $validated['profile_photo'];
+                $profile_photo_name = $request->file( 'profile_photo' )->getClientOriginalName();
+                $format = (explode( '.', $profile_photo_name ));
+                $file_name_is = $format[0];
+                $file_format_is = end( $format );
+                $name_in_store = $file_name_is . '-' . date( 'Y-m-d', strtotime( Carbon::now() ) ) . '.' . $file_format_is;
+
+                $profile_photo_path = $request->file( 'profile_photo' )
+                    ->storeAs( 'user_id/'. $id .'_profile_' . substr($user->mobile,1), $name_in_store );
+
+
+//                $user->profile_photo_path = $validated['profile_photo'];
+                $user->profile_photo_path = 'shop/' . $profile_photo_path;
+
+            }
+//            else
+//            {
+//                $profile_photo_path = null;
+//                return response()->json( [
+//                    "message" => "Unknown server problem in user update",
+//                    "errors" => [
+//                        "problem" => [
+//                            "Unknown server problem in user update",
+//                        ],
+//                    ],
+//                ], 503 );
+//            }
+
+//            $user->profile_photo_path = $profile_photo_path;
+
+            $user->save();
+
+            return response()->json( [
+                "message" => "user Updated",
+                "data" => $user,
+            ], 200 );
+
+        }
+        catch (QueryException $e)
+        {
+
+        }
+    }
 
     /********************************************************************************************************************/
     /********************************************************************************************************************/

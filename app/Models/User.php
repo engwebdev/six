@@ -74,7 +74,7 @@ class User extends Authenticatable {
      * @var array
      */
     protected $appends = [
-        'profile_photo_url',
+//        'profile_photo_url',
     ];
     /***************************/
     // id one to many disable_by
@@ -88,6 +88,13 @@ class User extends Authenticatable {
         return $this->belongsTo(User::class, 'disable_by', 'id');
     }
 
+
+    /****************************/
+
+    public function shopImages()
+    {
+        return $this->hasMany( ShopImages::class, 'shop_image_uploader_user_id', 'id' );
+    }
 
     /****************************/
 

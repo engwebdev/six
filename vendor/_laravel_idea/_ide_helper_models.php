@@ -61,6 +61,8 @@ namespace App\Models {
     use LaravelIdea\Helper\App\Models\_IH_ProductTag_QB;
     use LaravelIdea\Helper\App\Models\_IH_RolesShopsUsers_C;
     use LaravelIdea\Helper\App\Models\_IH_RolesShopsUsers_QB;
+    use LaravelIdea\Helper\App\Models\_IH_ShopImages_C;
+    use LaravelIdea\Helper\App\Models\_IH_ShopImages_QB;
     use LaravelIdea\Helper\App\Models\_IH_Shop_C;
     use LaravelIdea\Helper\App\Models\_IH_shop_C;
     use LaravelIdea\Helper\App\Models\_IH_Shop_QB;
@@ -2562,6 +2564,9 @@ namespace App\Models {
      * @property _IH_customService_C|customService[] $customServices
      * @property-read int $custom_services_count
      * @method HasMany|_IH_customService_QB customServices()
+     * @property _IH_ShopImages_C|ShopImages[] $images
+     * @property-read int $images_count
+     * @method HasMany|_IH_ShopImages_QB images()
      * @property _IH_NormalProduct_C|NormalProduct[] $normalProducts
      * @property-read int $normal_products_count
      * @method HasMany|_IH_NormalProduct_QB normalProducts()
@@ -2735,6 +2740,173 @@ namespace App\Models {
      * @method static ShopFactory factory(...$parameters)
      */
     class Shop extends Model {}
+    
+    /**
+     * @property int $id
+     * @property int|null $shop_id
+     * @property int|null $shop_image_index_point
+     * @property string|null $shop_image_url
+     * @property string|null $shop_image_type
+     * @property string|null $shop_image_format
+     * @property string|null $shop_image_size
+     * @property string|null $shop_image_resolution
+     * @property string|null $shop_image_old_name
+     * @property string|null $shop_image_new_name
+     * @property int|null $shop_image_uploader_user_id
+     * @property bool|null $shop_image_accept_status
+     * @property bool|null $shop_image_active_status
+     * @property bool|null $shop_image_publish_status
+     * @property string|null $shop_image_thumbnail_url
+     * @property string|null $shop_image_thumbnail_name
+     * @property Carbon|null $deleted_at
+     * @property Carbon|null $created_at
+     * @property Carbon|null $updated_at
+     * @property Shop $shop
+     * @method BelongsTo|_IH_Shop_QB shop()
+     * @property User $user
+     * @method BelongsTo|_IH_User_QB user()
+     * @method _IH_ShopImages_QB newModelQuery()
+     * @method _IH_ShopImages_QB newQuery()
+     * @method static _IH_ShopImages_QB query()
+     * @method static _IH_ShopImages_C|ShopImages[] all()
+     * @method static _IH_ShopImages_QB whereId($value)
+     * @method static _IH_ShopImages_QB whereShopId($value)
+     * @method static _IH_ShopImages_QB whereShopImageIndexPoint($value)
+     * @method static _IH_ShopImages_QB whereShopImageUrl($value)
+     * @method static _IH_ShopImages_QB whereShopImageType($value)
+     * @method static _IH_ShopImages_QB whereShopImageFormat($value)
+     * @method static _IH_ShopImages_QB whereShopImageSize($value)
+     * @method static _IH_ShopImages_QB whereShopImageResolution($value)
+     * @method static _IH_ShopImages_QB whereShopImageOldName($value)
+     * @method static _IH_ShopImages_QB whereShopImageNewName($value)
+     * @method static _IH_ShopImages_QB whereShopImageUploaderUserId($value)
+     * @method static _IH_ShopImages_QB whereShopImageAcceptStatus($value)
+     * @method static _IH_ShopImages_QB whereShopImageActiveStatus($value)
+     * @method static _IH_ShopImages_QB whereShopImagePublishStatus($value)
+     * @method static _IH_ShopImages_QB whereShopImageThumbnailUrl($value)
+     * @method static _IH_ShopImages_QB whereShopImageThumbnailName($value)
+     * @method static _IH_ShopImages_QB whereDeletedAt($value)
+     * @method static _IH_ShopImages_QB whereCreatedAt($value)
+     * @method static _IH_ShopImages_QB whereUpdatedAt($value)
+     * @method static ShopImages baseSole(array|string $columns = ['*'])
+     * @method static bool chunk(int $count, callable $callback)
+     * @method static bool chunkById(int $count, callable $callback, null|string $column = null, null|string $alias = null)
+     * @method static int count(string $columns = '*')
+     * @method static ShopImages create(array $attributes = [])
+     * @method static _IH_ShopImages_QB crossJoin(string $table, \Closure|null|string $first = null, null|string $operator = null, null|string $second = null)
+     * @method static _IH_ShopImages_C|ShopImages[] cursor()
+     * @method static int decrement(Expression|string $column, float|int $amount = 1, array $extra = [])
+     * @method static _IH_ShopImages_QB distinct()
+     * @method static bool doesntExist()
+     * @method static _IH_ShopImages_QB each(callable $callback, int $count = 1000)
+     * @method static bool eachById(callable $callback, int $count = 1000, null|string $column = null, null|string $alias = null)
+     * @method static bool exists()
+     * @method static ShopImages|null find($id, array $columns = ['*'])
+     * @method static _IH_ShopImages_C|ShopImages[] findMany(array|Arrayable $ids, array $columns = ['*'])
+     * @method static ShopImages findOrFail($id, array $columns = ['*'])
+     * @method static ShopImages findOrNew($id, array $columns = ['*'])
+     * @method static ShopImages first(array|string $columns = ['*'])
+     * @method static ShopImages firstOr(array|\Closure $columns = ['*'], \Closure $callback = null)
+     * @method static ShopImages firstOrCreate(array $attributes = [], array $values = [])
+     * @method static ShopImages firstOrFail(array $columns = ['*'])
+     * @method static ShopImages firstOrNew(array $attributes = [], array $values = [])
+     * @method static ShopImages firstWhere(array|\Closure|Expression|string $column, $operator = null, $value = null, string $boolean = 'and')
+     * @method static ShopImages forceCreate(array $attributes)
+     * @method static _IH_ShopImages_C|ShopImages[] fromQuery(string $query, array $bindings = [])
+     * @method static _IH_ShopImages_C|ShopImages[] get(array|string $columns = ['*'])
+     * @method static int getCountForPagination(array $columns = ['*'])
+     * @method static ShopImages getModel()
+     * @method static ShopImages[] getModels(array|string $columns = ['*'])
+     * @method static _IH_ShopImages_QB getQuery()
+     * @method static _IH_ShopImages_QB groupBy(...$groups)
+     * @method static bool hasGlobalMacro(string $name)
+     * @method static bool hasMacro(string $name)
+     * @method static bool hasNamedScope(string $scope)
+     * @method static _IH_ShopImages_C|ShopImages[] hydrate(array $items)
+     * @method static _IH_ShopImages_QB inRandomOrder(string $seed = '')
+     * @method static int increment(Expression|string $column, float|int $amount = 1, array $extra = [])
+     * @method static bool insert(array $values)
+     * @method static int insertGetId(array $values, null|string $sequence = null)
+     * @method static int insertOrIgnore(array $values)
+     * @method static int insertUsing(array $columns, \Closure|\Illuminate\Database\Query\Builder|string $query)
+     * @method static _IH_ShopImages_QB join(string $table, \Closure|string $first, null|string $operator = null, null|string $second = null, string $type = 'inner', bool $where = false)
+     * @method static _IH_ShopImages_QB latest(Expression|string $column = null)
+     * @method static _IH_ShopImages_QB leftJoin(string $table, \Closure|string $first, null|string $operator = null, null|string $second = null)
+     * @method static _IH_ShopImages_QB limit(int $value)
+     * @method static ShopImages make(array $attributes = [])
+     * @method static ShopImages newModelInstance(array $attributes = [])
+     * @method static int numericAggregate(string $function, array $columns = ['*'])
+     * @method static _IH_ShopImages_QB offset(int $value)
+     * @method static _IH_ShopImages_QB oldest(Expression|string $column = null)
+     * @method static _IH_ShopImages_QB orderBy(\Closure|\Illuminate\Database\Query\Builder|Expression|string $column, string $direction = 'asc')
+     * @method static _IH_ShopImages_QB orderByDesc(\Closure|\Illuminate\Database\Query\Builder|Expression|string $column)
+     * @method static _IH_ShopImages_QB orderByRaw(string $sql, array $bindings = [])
+     * @method static LengthAwarePaginator|ShopImages[]|_IH_ShopImages_C paginate(int|null $perPage = null, array $columns = ['*'], string $pageName = 'page', int|null $page = null)
+     * @method static _IH_ShopImages_QB rightJoin(string $table, \Closure|string $first, null|string $operator = null, null|string $second = null)
+     * @method static _IH_ShopImages_QB select(array|mixed $columns = ['*'])
+     * @method static _IH_ShopImages_QB setQuery(\Illuminate\Database\Query\Builder $query)
+     * @method static Paginator|ShopImages[]|_IH_ShopImages_C simplePaginate(int|null $perPage = null, array $columns = ['*'], string $pageName = 'page', int|null $page = null)
+     * @method static _IH_ShopImages_QB skip(int $value)
+     * @method static ShopImages sole(array|string $columns = ['*'])
+     * @method static _IH_ShopImages_QB take(int $value)
+     * @method static _IH_ShopImages_QB tap(callable $callback)
+     * @method static _IH_ShopImages_QB truncate()
+     * @method static _IH_ShopImages_QB unless($value, callable $callback, callable|null $default = null)
+     * @method static int update(array $values)
+     * @method static ShopImages updateOrCreate(array $attributes, array $values = [])
+     * @method static bool updateOrInsert(array $attributes, array $values = [])
+     * @method static int upsert(array $values, array|string $uniqueBy, array|null $update = null)
+     * @method static _IH_ShopImages_QB when($value, callable $callback, callable|null $default = null)
+     * @method static _IH_ShopImages_QB where(array|\Closure|Expression|string $column, $operator = null, $value = null, string $boolean = 'and')
+     * @method static _IH_ShopImages_QB whereBetween(Expression|string $column, array $values, string $boolean = 'and', bool $not = false)
+     * @method static _IH_ShopImages_QB whereBetweenColumns(string $column, array $values, string $boolean = 'and', bool $not = false)
+     * @method static _IH_ShopImages_QB whereColumn(array|string $first, null|string $operator = null, null|string $second = null, null|string $boolean = 'and')
+     * @method static _IH_ShopImages_QB whereDate(string $column, string $operator, \DateTimeInterface|null|string $value = null, string $boolean = 'and')
+     * @method static _IH_ShopImages_QB whereDay(string $column, string $operator, \DateTimeInterface|null|string $value = null, string $boolean = 'and')
+     * @method static _IH_ShopImages_QB whereDoesntHave(string $relation, \Closure $callback = null)
+     * @method static _IH_ShopImages_QB whereDoesntHaveMorph(MorphTo|string $relation, array|string $types, \Closure $callback = null)
+     * @method static _IH_ShopImages_QB whereExists(\Closure $callback, string $boolean = 'and', bool $not = false)
+     * @method static _IH_ShopImages_QB whereHas(string $relation, \Closure $callback = null, string $operator = '>=', int $count = 1)
+     * @method static _IH_ShopImages_QB whereHasMorph(MorphTo|string $relation, array|string $types, \Closure $callback = null, string $operator = '>=', int $count = 1)
+     * @method static _IH_ShopImages_QB whereIn(string $column, $values, string $boolean = 'and', bool $not = false)
+     * @method static _IH_ShopImages_QB whereIntegerInRaw(string $column, array|Arrayable $values, string $boolean = 'and', bool $not = false)
+     * @method static _IH_ShopImages_QB whereIntegerNotInRaw(string $column, array|Arrayable $values, string $boolean = 'and')
+     * @method static _IH_ShopImages_QB whereJsonContains(string $column, $value, string $boolean = 'and', bool $not = false)
+     * @method static _IH_ShopImages_QB whereJsonDoesntContain(string $column, $value, string $boolean = 'and')
+     * @method static _IH_ShopImages_QB whereJsonLength(string $column, $operator, $value = null, string $boolean = 'and')
+     * @method static _IH_ShopImages_QB whereKey($id)
+     * @method static _IH_ShopImages_QB whereKeyNot($id)
+     * @method static _IH_ShopImages_QB whereMonth(string $column, string $operator, \DateTimeInterface|null|string $value = null, string $boolean = 'and')
+     * @method static _IH_ShopImages_QB whereNested(\Closure $callback, string $boolean = 'and')
+     * @method static _IH_ShopImages_QB whereNotBetween(string $column, array $values, string $boolean = 'and')
+     * @method static _IH_ShopImages_QB whereNotBetweenColumns(string $column, array $values, string $boolean = 'and')
+     * @method static _IH_ShopImages_QB whereNotExists(\Closure $callback, string $boolean = 'and')
+     * @method static _IH_ShopImages_QB whereNotIn(string $column, $values, string $boolean = 'and')
+     * @method static _IH_ShopImages_QB whereNotNull(array|string $columns, string $boolean = 'and')
+     * @method static _IH_ShopImages_QB whereNull(array|string $columns, string $boolean = 'and', bool $not = false)
+     * @method static _IH_ShopImages_QB whereRaw(string $sql, $bindings = [], string $boolean = 'and')
+     * @method static _IH_ShopImages_QB whereRowValues(array $columns, string $operator, array $values, string $boolean = 'and')
+     * @method static _IH_ShopImages_QB whereTime(string $column, string $operator, \DateTimeInterface|null|string $value = null, string $boolean = 'and')
+     * @method static _IH_ShopImages_QB whereYear(string $column, string $operator, \DateTimeInterface|int|null|string $value = null, string $boolean = 'and')
+     * @method static _IH_ShopImages_QB with(array|string $relations, \Closure|null|string $callback = null)
+     * @method static _IH_ShopImages_QB withAggregate($relations, string $column, string $function = null)
+     * @method static _IH_ShopImages_QB withAvg(array|string $relation, string $column)
+     * @method static _IH_ShopImages_QB withCasts(array $casts)
+     * @method static _IH_ShopImages_QB withCount($relations)
+     * @method static _IH_ShopImages_QB withExists(array|string $relation)
+     * @method static _IH_ShopImages_QB withGlobalScope(string $identifier, \Closure|Scope $scope)
+     * @method static _IH_ShopImages_QB withMax(array|string $relation, string $column)
+     * @method static _IH_ShopImages_QB withMin(array|string $relation, string $column)
+     * @method static _IH_ShopImages_QB withOnly($relations)
+     * @method static _IH_ShopImages_QB withSum(array|string $relation, string $column)
+     * @method static _IH_ShopImages_QB without($relations)
+     * @method static _IH_ShopImages_QB withoutGlobalScope(Scope|string $scope)
+     * @method static _IH_ShopImages_QB withoutGlobalScopes(array $scopes = null)
+     * @method static _IH_ShopImages_QB withTrashed()
+     * @method static _IH_ShopImages_QB onlyTrashed()
+     * @method static _IH_ShopImages_QB withoutTrashed()
+     */
+    class ShopImages extends Model {}
     
     /**
      * @property int $id
@@ -3386,6 +3558,9 @@ namespace App\Models {
      * @property _IH_Shop_C|Shop[] $shop
      * @property-read int $shop_count
      * @method BelongsToMany|_IH_Shop_QB shop()
+     * @property _IH_ShopImages_C|ShopImages[] $shopImages
+     * @property-read int $shop_images_count
+     * @method HasMany|_IH_ShopImages_QB shopImages()
      * @property _IH_CustomProduct_C|CustomProduct[] $shopkeeperCustomProduct
      * @property-read int $shopkeeper_custom_product_count
      * @method HasMany|_IH_CustomProduct_QB shopkeeperCustomProduct()
