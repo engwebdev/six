@@ -941,6 +941,18 @@ class ShopController extends Controller {
      * description="update shops",
      *
      *
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="id of Tag",
+     *         required=true,
+     *         @OA\Schema(
+     *           type="string",
+     *         ),
+     *         example="1",
+     *     ),
+     *
+     *
      *
      *
      *     @OA\RequestBody(

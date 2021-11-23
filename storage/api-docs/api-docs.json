@@ -2567,6 +2567,18 @@
                 "summary": "update shops. => only for shopkeeper and system admin",
                 "description": "update shops",
                 "operationId": "updateShop",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Tag",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "1"
+                    }
+                ],
                 "requestBody": {
                     "content": {
                         "multipart/form-data": {
