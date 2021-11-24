@@ -9,6 +9,7 @@ use App\Models\RolesShopsUsers;
 use App\Models\Shop;
 //use Auth;
 use App\Models\ShopImages;
+use App\Repositories\ShopRepositories;
 use Carbon\Carbon;
 use DB;
 use Illuminate\Database\QueryException;
@@ -16,11 +17,17 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use File;
-use mysql_xdevapi\Exception;
 
 class ShopController extends Controller {
     // todo one to many polymorphic between -confirm_comment- -history_price- -image- -category- -tag- -customer_comment- -- -- -- -- -- --
     // todo -shop_confirm_comment- -shop_comment- --
+
+    private $shops;
+
+    public function __construct(ShopRepositories $shops)
+    {
+        $this->shops = $shops;
+    }
 
     /**
      * @OA\Get(
@@ -861,57 +868,22 @@ class ShopController extends Controller {
      * get /tags/{tag}
      * Display the specified resource.
      *
-     * @param int $id
+     * @param int              $id
+     * @param ShopRepositories $shops
      * @return \Illuminate\Http\JsonResponse
      */
-    public function show($id)
+    public function show($id, ShopRepositories $shops)
     {
-//        dd(auth::guard('api'));
-
-
+//        auth::guard('api');
         DB::enableQueryLog();
-
-        //
         $shopkeeper_id = auth()->id();
-//        return $shopkeeper_id;
-
-        $shop = Shop::with( 'userOfRolesShopsUsers' )->get();
-        $shop = Shop::whereHas( 'userOfRolesShopsUsers', function ($query) use ($shopkeeper_id) {
-            $query->where( 'roles_shops_users.user_id', '=', $shopkeeper_id );
-        } )
-            ->where( 'id', '=', (int) $id ) // for get all remove this line
-            ->with( 'userOfRolesShopsUsers' )
-            ->with( 'roleOfRolesShopsUsers' )
-//            ->with( ['roleOfRolesShopsUsers', function ($subQuery) use ($shopkeeper_id) {
-//                $subQuery->;
-//            }] )
-            ->get();
-        /*        $shop = Shop::whereHas(
-                            'RolesShopsUsers',
-                            function ($query) use ($shopkeeper_id) {
-                                $query
-                                    ->whereHas('role'
-                                    )
-                                    ->with('role')
-                                    ->where( 'roles_shops_users.user_id', '=', $shopkeeper_id );
-                            }
-                    )->with('RolesShopsUsers')
-                    ->where('id', '=', $id) // for get all remove this line
-                    ->get(); // result => "select * from `shops` where exists (select * from `roles_shops_users` where `shops`.`id` = `roles_shops_users`.`shop_id` and `roles_shops_users`.`user_id` = ".$shopkeeper_id.") and `shops`.`deleted_at` is null"*/
-
-//        $shop = Shop::join('roles_shops_users', 'id', '=', 'shop_id', '', '')
+        $shop = new ShopResource( $shops->getByShopId($id));
 
         return $shop;
 //        return response()->json( [
 //            'shop' => $shop,
 //            'shop_id' => $shop->id,
 //        ], 200 );
-//        return $shop->description;
-        return $shop->user_of_roles_shops_users;
-//        $query = DB::getQueryLog();
-//        $query = end( $query );
-//        dd( $query );
-
 
         /*        // todo many to many not work
                 $shop = Shop::
@@ -929,7 +901,6 @@ class ShopController extends Controller {
         //        $query = end( $query );
         //        dd( $query );
                 return $shop;*/
-
     }
 
     /**

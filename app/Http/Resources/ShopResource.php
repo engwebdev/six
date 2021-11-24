@@ -2,18 +2,47 @@
 
 namespace App\Http\Resources;
 
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * @property mixed id
+ * @property mixed parent_id
+ * @property mixed name
+ * @property mixed category_id
+ * @property mixed description
+ * @property mixed shop_photo_url
+ * @property mixed type_location
+ * @property mixed lat_location
+ * @property mixed long_location
+ * @property mixed shop_country
+ * @property mixed shop_province
+ * @property mixed shop_city
+ * @property mixed shop_local
+ * @property mixed shop_Street
+ * @property mixed shop_alley
+ * @property mixed shop_number
+ * @property mixed shop_postal_code
+ * @property mixed shop_main_phone_number
+ *
+ *
+ *
+ * @property mixed userOfRolesShopsUsers
+ * @property mixed roleOfRolesShopsUsers
+ *
+ * @property mixed data
+ */
 class ShopResource extends JsonResource {
     /**
      * Transform the resource into an array.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param Request $request
      * @return array
      */
     public function toArray($request)
     {
-        return [
+//        dd($this);
+        $data = [
             'id' => $this->id,
             'parent_id' => $this->parent_id,
             'name' => $this->name,
@@ -32,8 +61,26 @@ class ShopResource extends JsonResource {
             'shop_number' => $this->shop_number,
             'shop_postal_code' => $this->shop_postal_code,
             'shop_main_phone_number' => $this->shop_main_phone_number,
-
         ];
+
+        if ($this->relationLoaded('userOfRolesShopsUsers')) {
+//            $userOfRolesShopsUsers = new UserResource();
+//            dd($this->userOfRolesShopsUsers[0],$this->userOfRolesShopsUsers[1]);
+            $userOfRolesShopsUsers = new UserCollection($this->userOfRolesShopsUsers);
+//            $data['userOfRolesShopsUsers'] = $userOfRolesShopsUsers;
+            $data['relation']['users'] = $userOfRolesShopsUsers;
+
+        }
+
+        if ($this->relationLoaded('roleOfRolesShopsUsers')) {
+//            $userOfRolesShopsUsers = new UserResource();
+            $roleOfRolesShopsUsers = new RoleCollection($this->roleOfRolesShopsUsers);
+//            dd($roleOfRolesShopsUsers);
+//            $data['roleOfRolesShopsUsers'] = $roleOfRolesShopsUsers;
+            $data['relation']['roles'] = $roleOfRolesShopsUsers;
+        }
+
+        return $data;
 //        return parent::toArray($request);
     }
 }

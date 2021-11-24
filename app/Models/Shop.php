@@ -176,13 +176,31 @@ class Shop extends Model
 
     public function user()
     {
-//        return $this->belongsToMany(User::class, 'roles_shops_users', 'id' , 'id', '', '', '');
+//        return $this->hasMany(RolesShopsUsers::class, 'roles_shops_users', 'id' , 'id', '', '', '');
         return $this->belongsToMany(User::class, 'roles_shops_users');
     }
 
     public function role()
     {
         return $this->belongsToMany(role::class, 'roles_shops_users');
+    }
+
+
+    /************************************/
+    // scopes
+    public function scopeShopAcceptStatus($query, $status)
+    {
+        return $query->where('shop_accept_status', $status);
+    }
+
+    public function shopAccepted($query)
+    {
+        return $query->where('shop_accept_status', '=', 1);
+    }
+
+    public function shopRejected($query)
+    {
+        return $query->where('shop_accept_status',  '=', 0);
     }
 
 }
