@@ -18,6 +18,7 @@ class TagResource extends JsonResource {
             'tag_id' => $this->resource->id,
             'tag_name' => $this->resource->tag_name,
             'tag_accept_status' => $this->resource->tag_accept_status,
+            'tag_publish_status' => $this->resource->tag_publish_status,
         ];
     }
 }

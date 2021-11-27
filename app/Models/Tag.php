@@ -26,7 +26,7 @@ class Tag extends Model
     public function shops()
     {
 //        return $this->belongsToMany(shop::class, 'shops_tags', 'tag_id', 'id', null, null, null);
-        return $this->belongsToMany(shop::class, 'shops_tags')->withPivot('tag_accept_status')->withTimestamps();
+        return $this->belongsToMany(Shop::class, 'shops_tags')->withPivot('tag_accept_status')->withTimestamps();
     }
 
     /**
@@ -34,7 +34,7 @@ class Tag extends Model
      */
     public function shopsByAccept()
     {
-        return $this->belongsToMany(shop::class)->withPivot('tag_accept_status');
+        return $this->belongsToMany(Shop::class)->withPivot('tag_accept_status');
     }
 }
 

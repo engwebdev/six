@@ -21,11 +21,11 @@ class CategoryResource extends JsonResource
             'cat_id' => $this->resource->id,
             'category_name' => $this->resource->category_name,
             'category_image_url' => $this->resource->category_image_url,
-//            'category_additional_user_id' => $this->resource->category_additional_user_id,
-//            'category_additional_user_type' => $this->resource->category_additional_user_type,
-//            'category_accept_status' => $this->resource->category_accept_status,
-//            'category_publish_status' => $this->resource->category_publish_status,
-//            'category_show_status' => $this->resource->category_show_status,
+            'category_additional_user_id' => $this->resource->category_additional_user_id,
+            'category_additional_user_type' => $this->resource->category_additional_user_type,
+            'category_accept_status' => $this->resource->category_accept_status,
+            'category_publish_status' => $this->resource->category_publish_status,
+            'category_show_status' => $this->resource->category_show_status,
 
         ];
 //        return parent::toArray($request);

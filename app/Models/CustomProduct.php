@@ -98,7 +98,7 @@ class CustomProduct extends Model
      */
     public function customProductPrices()
     {
-        return $this->morphMany( productPriceHistory::class, 'product_price_historiable', 'CustomProduct');
+        return $this->morphMany( ProductPriceHistory::class, 'product_price_historiable', 'CustomProduct');
     }
 
     /**

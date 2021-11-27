@@ -244,17 +244,17 @@ class CategoryController extends Controller {
      */
     public function findAll(Request $request)
     {
-        $page = $request->input( 'page' );
-        $limit = $request->input( 'limit' );
-        if ($request->input( 'sort' ))
+        $page = $request->query( 'page' );
+        $limit = $request->query( 'limit' );
+        if ($request->query( 'sort' ))
         {
-            $sort = $request->input( 'sort' );
+            $sort = $request->query( 'sort' );
         }
         else
         {
             $sort = 'id';
         }
-        if ($request->input( 'order' ))
+        if ($request->query( 'order' ))
         {
             $order = $request->input( 'order' );
         }
@@ -263,52 +263,40 @@ class CategoryController extends Controller {
             $order = 'asc';
         }
 
-        $user = User::find( auth()->id() );
-        $user->guard_name = 'api'; // todo important for role
+        dd($sort,$order);
+//        $user = User::find( auth()->id() );
+//        $user->guard_name = 'api'; // todo important for role
 
-        if ($user->hasRole( 'system' ))
-        {
-            $category = Category::orderBy( $sort, $order )
-                ->paginate( $limit, '*', 'page', $page );
-        }
-        else if (!$user->hasRole( 'system' ))
-        {
-            $category = Category::orderBy( $sort, $order )
-                ->where( 'category_accept_status', '=', true )
-                ->where( 'category_publish_status', '=', true )
-                ->where( 'category_show_status', '=', 'public' )
-                ->paginate( $limit, '*', 'page', $page );
-        }
+        $user = auth()->user();
+        $user_id = $user->id;
+
+        $category = Category::orderBy( $sort, $order )
+            ->when( $user->hasRole( 'shopkeeper', 'api' ), function ($query) use ($user_id) {
+                return $query
+                    ->select( 'id', 'category_name', 'category_accept_status', 'category_publish_status', 'category_show_status', 'category_additional_user_id', 'category_additional_user_type' )
+                    ->Where( 'category_accept_status', true )
+                    ->orWhere( function ($subQuery) use ($user_id) {
+                        $subQuery
+                            ->where( 'category_accept_status', false )
+                            ->Where( 'category_additional_user_id', $user_id );
+                    } );
+            } )
+            ->when( $user->hasRole( 'user', 'api' ), function ($query) use ($user_id) {
+                return $query
+                    ->select( 'id', 'category_name' )
+                    ->Where( 'category_accept_status', true )
+                    ->where( 'category_publish_status', true )
+                    ->where( 'category_show_status', 'public' );
+            } )
+            ->paginate( $limit, '*', 'page', $page );
 
         $CategoryCollection = (new CategoryCollection( $category ));
         $CategoryCollection->toJson();
 
         $Response = ($CategoryCollection)->toResponse( $request );
         $Response->setStatusCode( 200 );
-//        $Resource = new CategoryResource($category);
-//        $collection = new CategoryCollection($category);
-//        $data = CategoryCollection::collection($category);
-//        $collection = new CategoryCollection($category);
 
         return $Response;
-//        $category = Category::paginate();
-//        return CategoryResource::collection( $category );
-//        );
-//        $ResourceCollection = CategoryResource::collection( $category );
-//
-        /*        return response($request)->json(
-                    [
-        //                'data' => $category,
-        //                'data' => $ResourceCollection,
-                        'data' => $CategoryCollection,
-        //                'data' => $collection,
-        //                'data' => $Resource,
-        //                'data' => $data,
-                    ],
-                    200
-                );*/
-
-
     }
 
 
@@ -701,7 +689,7 @@ class CategoryController extends Controller {
                 ], 503 );
             }
 
-            if (isset($validated['category_image_url']))
+            if (isset( $validated['category_image_url'] ))
             {
                 $category_image_url = $validated['category_image_url'];
             }
@@ -723,45 +711,45 @@ class CategoryController extends Controller {
 //                $user->getDirectPermissions()
 //            );
 
-/*
-            $userGetRoleNames = $user->getRoleNames();
+            /*
+                        $userGetRoleNames = $user->getRoleNames();
 
-            if ($userGetRoleNames->count() > 1){
-//                error
-                $category_additional_user_type = 'unknown';
-            } else {
-                $category_additional_user_type = $userGetRoleNames->toArray()[0];
-            }
-
-
-            if ($user->hasRole( 'shopkeeper' ))
-            {
-                $category_accept_status = false;
-                $category_publish_status = false;
-                $category_show_status = 'private';
-            }
-            elseif ($user->hasRole( 'system' ))
-            {
-                $category_accept_status = true;
-                $category_publish_status = true;
-                $category_show_status = 'public';
-//            } elseif ($user->hasRole('user')) {
-//                $category_additional_user_type = 'user';
-//                $category_accept_status = false;
-//                $category_publish_status = false;
-//                $category_show_status = 'privet';
-            }
-            else
-            {
-                $category_additional_user_type = 'unknown';
-                $category_accept_status = false;
-                $category_publish_status = false;
-                $category_show_status = 'privet';
-            }
-*/
+                        if ($userGetRoleNames->count() > 1){
+            //                error
+                            $category_additional_user_type = 'unknown';
+                        } else {
+                            $category_additional_user_type = $userGetRoleNames->toArray()[0];
+                        }
 
 
-            $category_statuses = $this->category_status_result($user);
+                        if ($user->hasRole( 'shopkeeper' ))
+                        {
+                            $category_accept_status = false;
+                            $category_publish_status = false;
+                            $category_show_status = 'private';
+                        }
+                        elseif ($user->hasRole( 'system' ))
+                        {
+                            $category_accept_status = true;
+                            $category_publish_status = true;
+                            $category_show_status = 'public';
+            //            } elseif ($user->hasRole('user')) {
+            //                $category_additional_user_type = 'user';
+            //                $category_accept_status = false;
+            //                $category_publish_status = false;
+            //                $category_show_status = 'privet';
+                        }
+                        else
+                        {
+                            $category_additional_user_type = 'unknown';
+                            $category_accept_status = false;
+                            $category_publish_status = false;
+                            $category_show_status = 'privet';
+                        }
+            */
+
+
+            $category_statuses = $this->category_status_result( $user );
             $category = Category::create( [
                 'category_name' => $validated['category_name'],
                 'category_image_url' => $category_image_url,
@@ -962,7 +950,7 @@ class CategoryController extends Controller {
         $user = User::find( auth()->id() );
         $user->guard_name = 'api'; // todo important
 
-        $category_statuses = $this->category_status_result($user);
+        $category_statuses = $this->category_status_result( $user );
 
         $validated = $request->validate(
             [
@@ -1142,10 +1130,13 @@ class CategoryController extends Controller {
     {
         $userGetRoleNames = $user->getRoleNames();
 
-        if ($userGetRoleNames->count() > 1){
+        if ($userGetRoleNames->count() > 1)
+        {
 //                error
             $category_additional_user_type = 'unknown';
-        } else {
+        }
+        else
+        {
             $category_additional_user_type = $userGetRoleNames->toArray()[0];
         }
 

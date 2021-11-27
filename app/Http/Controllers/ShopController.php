@@ -17,11 +17,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use File;
+use App\Traits\QueryParams;
+
 
 class ShopController extends Controller {
+    use QueryParams;
+
     // todo one to many polymorphic between -confirm_comment- -history_price- -image- -category- -tag- -customer_comment- -- -- -- -- -- --
     // todo -shop_confirm_comment- -shop_comment- --
-
     private $shops;
 
     public function __construct(ShopRepositories $shops)
@@ -116,11 +119,6 @@ class ShopController extends Controller {
      */
     public function index(Request $request)
     {
-//        $shopkeeper_id = auth()->id();
-//        dd($shopkeeper_id);
-//        dd($request->query->all());
-//        dd($request->input());
-//        dd($request);
         // center => 35.7705959,51.1262078 // tehran
         // right => 35.6862143,54.2505103
         // left => 35.7629133,49.9820273
@@ -128,22 +126,19 @@ class ShopController extends Controller {
         // bottom => 31.9983325,51.1800853
         // 35.6880403    51.3737222
         // 35.6862045    51.4629649
-        $page = $request->input( 'page' );
-        $limit = $request->input( 'limit' );
-
         /**
          * @var string $zoom
          * for show top level location in shop table
          */
-//        $zoom = $request->input( 'zoom' );; // todo location add to query latitude longitude
-//        $radius = $request->input( 'radius' );; // todo location add to query , radius
-//        $longitude = $request->input( 'longitude' );; // todo location add to query , longitude //طول جغرافیایی // by e or w
-//        $latitude = $request->input( 'latitude' );; // todo location add to query , latitude // عرض جغرافیایی // by n or s
-//        $NWLongitude = $request->input( 'NWLongitude' );; // todo location add to query , longitude
-//        $NWLatitude = $request->input( 'NWLatitude' );; // todo location add to query , latitude
-////        $radius = 5;
-////        $longitude = 35.6880403;
-////        $latitude = 51.3737222;
+        /*        $zoom = $request->query( 'zoom' );; // todo location add to query latitude longitude
+                $radius = $request->query( 'radius' );; // todo location add to query , radius
+                $longitude = $request->query( 'longitude' );; // todo location add to query , longitude //طول جغرافیایی // by e or w
+                $latitude = $request->query( 'latitude' );; // todo location add to query , latitude // عرض جغرافیایی // by n or s
+                $NWLongitude = $request->query( 'NWLongitude' );; // todo location add to query , longitude
+                $NWLatitude = $request->query( 'NWLatitude' );; // todo location add to query , latitude
+                $radius = 5;
+                $longitude = 35.6880403;
+                $latitude = 51.3737222;*/
         /*
         DB::('SELECT id,
         (
@@ -163,68 +158,9 @@ class ShopController extends Controller {
         ) AS distance FROM shops HAVING distance < 50 ORDER BY distance');
         */
 
+        $this->CheckQueryParams( $request );
 
-        if ($request->input( 'sort' ))
-        {
-            $validate_sort = $request->validate(
-                [
-                    'sort' => ['string'],
-                ]
-            );
-            $sort = $validate_sort['sort'];
-        }
-        else
-        {
-            $sort = 'id';
-        }
-
-        if ($request->input( 'order' ))
-        {
-            $validate_order = $request->validate(
-                [
-                    'order' => ['string', 'min:3', 'max:4'],
-                ]
-            );
-            $order = $validate_order['order'];
-        }
-        else
-        {
-            $order = 'asc';
-        }
-
-        if ($request->input( 'page' ))
-        {
-            $validate_page = $request->validate(
-                [
-                    'page' => ['numeric'],
-                ]
-            );
-            $page = $validate_page['page'];
-        }
-        else
-        {
-            $page = 1;
-        }
-
-//        $request->validate(["page" => "numeric"]);
-//        $page = $request->get("page") ? : 1 ;
-
-        if ($request->input( 'limit' ))
-        {
-            $validate_limit = $request->validate(
-                [
-                    'limit' => ['numeric'],
-                ]
-            );
-            $limit = $validate_limit['limit'];
-        }
-        else
-        {
-            $limit = 20;
-        }
-
-
-        if ($request->input( 'longitude' ) and $request->input( 'latitude' ))
+        if ($request->query( 'longitude' ) and $request->query( 'latitude' ))
         {
             $validated_location_center = $request->validate(
                 [
@@ -260,8 +196,9 @@ class ShopController extends Controller {
             $center_latitude = $validated_location_center['latitude'];
             $center_longitude = $validated_location_center['longitude'];
 
-            if ($request->input( 'NWLongitude' ) or $request->input( 'NWLatitude' ))
+            if ($request->query( 'NWLongitude' ) or $request->query( 'NWLatitude' ))
             {
+
                 $validated_location_corner = $request->validate(
                     [
                         'NWLatitude' => ['required', 'required_with:NWLongitude', 'numeric', 'min:1'],
@@ -277,19 +214,16 @@ class ShopController extends Controller {
                 $bottom = $center_latitude + ($center_latitude - $top);
                 $right = $center_longitude + ($center_longitude - $left);
 
-//                dd( 'top :' . $top, 'bottom :' . $bottom, 'left :' . $left, 'right :' . $right, 'zoom :' . $zoom );
-
-                $shops = Shop::orderBy( $sort, $order )
+                $shops = Shop::orderBy( $this->sort, $this->order )
 //                    ->whereBetween( 'lat_location', [$top, $bottom] )
 //                    ->whereBetween( 'long_location', [$left, $right] )
-
 //                    ->where('shop_accept_status', '=', 1)
 //                    ->where('shop_Priority', '<=', $zoom) // todo (notice : mehdi) top level number small, low level number biggest, shop_Priority = 'اولویت'
                     ->where( 'lat_location', '<=', $top )
                     ->where( 'lat_location', '>=', $bottom )
                     ->where( 'long_location', '<=', $left )
                     ->where( 'long_location', '>=', $right )
-                    ->paginate( $limit, '*', 'page', $page );
+                    ->paginate( $this->limit, '*', 'page', $this->page );
 
                 $ShopCollection = (new ShopCollection( $shops ));
                 $ShopCollection->toJson();
@@ -299,7 +233,7 @@ class ShopController extends Controller {
                 return $Response;
 
             }
-            elseif ($request->input( 'radius' ))
+            elseif ($request->query( 'radius' ))
             {
                 $validated_radius = $request->validate(
                     [
@@ -323,11 +257,11 @@ class ShopController extends Controller {
 //            ->where('shop_level_in_map', '>', 12) // todo zoom > value => shops -> more
                     ->having( "distance", "<", $radius ) // $radius meter
                     ->orderBy( 'distance', 'asc' )
-                    ->limit( $limit )
+                    ->limit( $this->limit )
 //                    ->offset(0)
 //                    ->get();
 //                    ->toSql();
-                    ->paginate( $limit, '*', 'page', $page );
+                    ->paginate( $this->limit, '*', 'page', $this->page );
 
 
 //                $query = DB::getQueryLog();
@@ -360,9 +294,9 @@ class ShopController extends Controller {
         }
         else
         {
-            $shops = Shop::orderBy( $sort, $order )
+            $shops = Shop::orderBy( $this->sort, $this->order )
 //                ->where( 'shop_accept_status', '=', 1 )
-                ->paginate( $limit, '*', 'page', $page );
+                ->paginate( $this->limit, '*', 'page', $this->page );
 
             $ShopCollection = (new ShopCollection( $shops ));
             $ShopCollection->toJson();
@@ -372,8 +306,6 @@ class ShopController extends Controller {
 
             return $Response;
         }
-
-
 //        ShopResource::collection( $shops );
 ////        $collection = new ShopCollection($shops);
 //        return response()->json(
@@ -877,7 +809,7 @@ class ShopController extends Controller {
 //        auth::guard('api');
         DB::enableQueryLog();
         $shopkeeper_id = auth()->id();
-        $shop = new ShopResource( $shops->getByShopId($id));
+        $shop = new ShopResource( $shops->getByShopId( $id ) );
 
         return $shop;
 //        return response()->json( [
@@ -1328,10 +1260,10 @@ class ShopController extends Controller {
                         'message' => 'shop updated. and tags are Duplicate entry',
                         'error' => [
                             'Duplicate entry. tags already inserted.',
-                            $e->errorInfo[2]
+                            $e->errorInfo[2],
                         ],
                         'data' => $shop,
-                    ], 200);
+                    ], 200 );
                 }
             }
         }
@@ -1466,7 +1398,7 @@ class ShopController extends Controller {
             $content = file_get_contents( $filePath );
             $response = response( $content, 200, [
                 'Content-Type' => $type,
-                'Content-Disposition' => 'attachment; filename="' . 'pp' . '.jpeg"',
+                'Content-Disposition' => 'attachment; filename="' . $shop->name . '.jpeg"',
             ] );
             return $response;
         }

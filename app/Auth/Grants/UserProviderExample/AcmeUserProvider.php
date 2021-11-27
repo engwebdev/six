@@ -6,7 +6,7 @@
 namespace App\Sk\Passport;
 
 
-use App\User;
+use App\Models\User;
 use Psr\Http\Message\ServerRequestInterface;
 use Sk\Passport\UserProvider;
 

@@ -352,13 +352,13 @@ namespace LaravelIdea\Helper\App\Models {
     use App\Models\ProductCategory;
     use App\Models\ProductCustomerComments;
     use App\Models\ProductImage;
-    use App\Models\productPriceHistory;
+    use App\Models\ProductPriceHistory;
     use App\Models\ProductTag;
     use App\Models\RolesShopsUsers;
     use App\Models\Shop;
     use App\Models\ShopImages;
     use App\Models\Tag;
-    use App\Models\Tasks;
+    use App\Models\Task;
     use App\Models\Team;
     use App\Models\TeamInvitation;
     use App\Models\User;
@@ -404,6 +404,8 @@ namespace LaravelIdea\Helper\App\Models {
      * @method _IH_AttributeValue_QB whereDeletedAt($value)
      * @method _IH_AttributeValue_QB whereCreatedAt($value)
      * @method _IH_AttributeValue_QB whereUpdatedAt($value)
+     * @method _IH_AttributeValue_QB whereAttributeId($value)
+     * @method _IH_AttributeValue_QB whereAttributeName($value)
      * @method AttributeValue baseSole(array|string $columns = ['*'])
      * @method AttributeValue create(array $attributes = [])
      * @method _IH_AttributeValue_C|AttributeValue[] cursor()
@@ -818,7 +820,6 @@ namespace LaravelIdea\Helper\App\Models {
     
     /**
      * @method _IH_Detail_QB whereId($value)
-     * @method _IH_Detail_QB whereNormalProductId($value)
      * @method _IH_Detail_QB whereNormalProductName($value)
      * @method _IH_Detail_QB whereNormalProductAttributeNameId($value)
      * @method _IH_Detail_QB whereNormalProductAttributeName($value)
@@ -830,6 +831,8 @@ namespace LaravelIdea\Helper\App\Models {
      * @method _IH_Detail_QB whereType($value)
      * @method _IH_Detail_QB wherePriceId($value)
      * @method _IH_Detail_QB wherePriceValue($value)
+     * @method _IH_Detail_QB whereProductableId($value)
+     * @method _IH_Detail_QB whereProductableType($value)
      * @method Detail baseSole(array|string $columns = ['*'])
      * @method Detail create(array $attributes = [])
      * @method _IH_Detail_C|Detail[] cursor()
@@ -1275,6 +1278,61 @@ namespace LaravelIdea\Helper\App\Models {
     class _IH_ProductImage_QB extends _BaseBuilder {}
     
     /**
+     * @method ProductPriceHistory shift(int $count = 1)
+     * @method ProductPriceHistory pop(int $count = 1)
+     * @method ProductPriceHistory get($key, $default = null)
+     * @method ProductPriceHistory pull($key, $default = null)
+     * @method ProductPriceHistory first(callable $callback = null, $default = null)
+     * @method ProductPriceHistory firstWhere(string $key, $operator = null, $value = null)
+     * @method ProductPriceHistory find($key, $default = null)
+     * @method ProductPriceHistory[] all()
+     * @method ProductPriceHistory last(callable $callback = null, $default = null)
+     */
+    class _IH_ProductPriceHistory_C extends _BaseCollection {
+        /**
+         * @param int $size
+         * @return ProductPriceHistory[][]
+         */
+        public function chunk($size)
+        {
+            return [];
+        }
+    }
+    
+    /**
+     * @method ProductPriceHistory baseSole(array|string $columns = ['*'])
+     * @method ProductPriceHistory create(array $attributes = [])
+     * @method _IH_ProductPriceHistory_C|ProductPriceHistory[] cursor()
+     * @method ProductPriceHistory|null find($id, array $columns = ['*'])
+     * @method _IH_ProductPriceHistory_C|ProductPriceHistory[] findMany(array|Arrayable $ids, array $columns = ['*'])
+     * @method ProductPriceHistory findOrFail($id, array $columns = ['*'])
+     * @method ProductPriceHistory findOrNew($id, array $columns = ['*'])
+     * @method ProductPriceHistory first(array|string $columns = ['*'])
+     * @method ProductPriceHistory firstOr(array|\Closure $columns = ['*'], \Closure $callback = null)
+     * @method ProductPriceHistory firstOrCreate(array $attributes = [], array $values = [])
+     * @method ProductPriceHistory firstOrFail(array $columns = ['*'])
+     * @method ProductPriceHistory firstOrNew(array $attributes = [], array $values = [])
+     * @method ProductPriceHistory firstWhere(array|\Closure|Expression|string $column, $operator = null, $value = null, string $boolean = 'and')
+     * @method ProductPriceHistory forceCreate(array $attributes)
+     * @method _IH_ProductPriceHistory_C|ProductPriceHistory[] fromQuery(string $query, array $bindings = [])
+     * @method _IH_ProductPriceHistory_C|ProductPriceHistory[] get(array|string $columns = ['*'])
+     * @method ProductPriceHistory getModel()
+     * @method ProductPriceHistory[] getModels(array|string $columns = ['*'])
+     * @method _IH_ProductPriceHistory_C|ProductPriceHistory[] hydrate(array $items)
+     * @method ProductPriceHistory make(array $attributes = [])
+     * @method ProductPriceHistory newModelInstance(array $attributes = [])
+     * @method LengthAwarePaginator|ProductPriceHistory[]|_IH_ProductPriceHistory_C paginate(int|null $perPage = null, array $columns = ['*'], string $pageName = 'page', int|null $page = null)
+     * @method Paginator|ProductPriceHistory[]|_IH_ProductPriceHistory_C simplePaginate(int|null $perPage = null, array $columns = ['*'], string $pageName = 'page', int|null $page = null)
+     * @method ProductPriceHistory sole(array|string $columns = ['*'])
+     * @method ProductPriceHistory updateOrCreate(array $attributes, array $values = [])
+     * @method _IH_ProductPriceHistory_QB withTrashed()
+     * @method _IH_ProductPriceHistory_QB onlyTrashed()
+     * @method _IH_ProductPriceHistory_QB withoutTrashed()
+     * @method _IH_ProductPriceHistory_QB restore()
+     */
+    class _IH_ProductPriceHistory_QB extends _BaseBuilder {}
+    
+    /**
      * @method ProductTag shift(int $count = 1)
      * @method ProductTag pop(int $count = 1)
      * @method ProductTag get($key, $default = null)
@@ -1548,6 +1606,10 @@ namespace LaravelIdea\Helper\App\Models {
      * @method _IH_Shop_QB onlyTrashed()
      * @method _IH_Shop_QB withoutTrashed()
      * @method _IH_Shop_QB restore()
+     * @method _IH_Shop_QB orderBy($sort, $order)
+     * @method _IH_Shop_QB shopAcceptStatus($status)
+     * @method _IH_Shop_QB shopAccepted()
+     * @method _IH_Shop_QB shopRejected()
      */
     class _IH_Shop_QB extends _BaseBuilder {}
     
@@ -1617,20 +1679,20 @@ namespace LaravelIdea\Helper\App\Models {
     class _IH_Tag_QB extends _BaseBuilder {}
     
     /**
-     * @method Tasks shift(int $count = 1)
-     * @method Tasks pop(int $count = 1)
-     * @method Tasks get($key, $default = null)
-     * @method Tasks pull($key, $default = null)
-     * @method Tasks first(callable $callback = null, $default = null)
-     * @method Tasks firstWhere(string $key, $operator = null, $value = null)
-     * @method Tasks find($key, $default = null)
-     * @method Tasks[] all()
-     * @method Tasks last(callable $callback = null, $default = null)
+     * @method Task shift(int $count = 1)
+     * @method Task pop(int $count = 1)
+     * @method Task get($key, $default = null)
+     * @method Task pull($key, $default = null)
+     * @method Task first(callable $callback = null, $default = null)
+     * @method Task firstWhere(string $key, $operator = null, $value = null)
+     * @method Task find($key, $default = null)
+     * @method Task[] all()
+     * @method Task last(callable $callback = null, $default = null)
      */
-    class _IH_Tasks_C extends _BaseCollection {
+    class _IH_Task_C extends _BaseCollection {
         /**
          * @param int $size
-         * @return Tasks[][]
+         * @return Task[][]
          */
         public function chunk($size)
         {
@@ -1639,70 +1701,70 @@ namespace LaravelIdea\Helper\App\Models {
     }
     
     /**
-     * @method _IH_Tasks_QB whereId($value)
-     * @method _IH_Tasks_QB whereTaskName($value)
-     * @method _IH_Tasks_QB whereTaskDescription($value)
-     * @method _IH_Tasks_QB whereTaskInfo($value)
-     * @method _IH_Tasks_QB whereTaskNote($value)
-     * @method _IH_Tasks_QB whereTaskStatusAccept($value)
-     * @method _IH_Tasks_QB whereTaskStatusConfirmUserId($value)
-     * @method _IH_Tasks_QB whereCustomServicesId($value)
-     * @method _IH_Tasks_QB whereTaskStatusConfirmUserComment($value)
-     * @method _IH_Tasks_QB whereTaskStatusPublish($value)
-     * @method _IH_Tasks_QB whereTaskStatusPublishDate($value)
-     * @method _IH_Tasks_QB whereTaskLastBasePrice($value)
-     * @method _IH_Tasks_QB whereTaskLastBasePriceDate($value)
-     * @method _IH_Tasks_QB whereTaskStatusBasePriceDiscount($value)
-     * @method _IH_Tasks_QB whereTaskLastBasePriceDiscountPercentage($value)
-     * @method _IH_Tasks_QB whereTaskLastBasePriceDiscountType($value)
-     * @method _IH_Tasks_QB whereTaskUnitOfMeasurementId($value)
-     * @method _IH_Tasks_QB whereTaskUnitOfMeasurementName($value)
-     * @method _IH_Tasks_QB whereTaskIndexImageUrl($value)
-     * @method _IH_Tasks_QB whereTaskCategoryId($value)
-     * @method _IH_Tasks_QB whereTaskCategoryName($value)
-     * @method _IH_Tasks_QB whereTaskShopId($value)
-     * @method _IH_Tasks_QB whereTaskRegistryShopkeeperId($value)
-     * @method _IH_Tasks_QB whereTaskQuantitySold($value)
-     * @method _IH_Tasks_QB whereTaskQuantitySelling($value)
-     * @method _IH_Tasks_QB whereTaskQuantityReturned($value)
-     * @method _IH_Tasks_QB whereTaskNumberComments($value)
-     * @method _IH_Tasks_QB whereTaskTotalPoints($value)
-     * @method _IH_Tasks_QB whereTaskAveragePoints($value)
-     * @method _IH_Tasks_QB whereTaskLastPoint($value)
-     * @method _IH_Tasks_QB whereDeletedAt($value)
-     * @method _IH_Tasks_QB whereCreatedAt($value)
-     * @method _IH_Tasks_QB whereUpdatedAt($value)
-     * @method Tasks baseSole(array|string $columns = ['*'])
-     * @method Tasks create(array $attributes = [])
-     * @method _IH_Tasks_C|Tasks[] cursor()
-     * @method Tasks|null find($id, array $columns = ['*'])
-     * @method _IH_Tasks_C|Tasks[] findMany(array|Arrayable $ids, array $columns = ['*'])
-     * @method Tasks findOrFail($id, array $columns = ['*'])
-     * @method Tasks findOrNew($id, array $columns = ['*'])
-     * @method Tasks first(array|string $columns = ['*'])
-     * @method Tasks firstOr(array|\Closure $columns = ['*'], \Closure $callback = null)
-     * @method Tasks firstOrCreate(array $attributes = [], array $values = [])
-     * @method Tasks firstOrFail(array $columns = ['*'])
-     * @method Tasks firstOrNew(array $attributes = [], array $values = [])
-     * @method Tasks firstWhere(array|\Closure|Expression|string $column, $operator = null, $value = null, string $boolean = 'and')
-     * @method Tasks forceCreate(array $attributes)
-     * @method _IH_Tasks_C|Tasks[] fromQuery(string $query, array $bindings = [])
-     * @method _IH_Tasks_C|Tasks[] get(array|string $columns = ['*'])
-     * @method Tasks getModel()
-     * @method Tasks[] getModels(array|string $columns = ['*'])
-     * @method _IH_Tasks_C|Tasks[] hydrate(array $items)
-     * @method Tasks make(array $attributes = [])
-     * @method Tasks newModelInstance(array $attributes = [])
-     * @method LengthAwarePaginator|Tasks[]|_IH_Tasks_C paginate(int|null $perPage = null, array $columns = ['*'], string $pageName = 'page', int|null $page = null)
-     * @method Paginator|Tasks[]|_IH_Tasks_C simplePaginate(int|null $perPage = null, array $columns = ['*'], string $pageName = 'page', int|null $page = null)
-     * @method Tasks sole(array|string $columns = ['*'])
-     * @method Tasks updateOrCreate(array $attributes, array $values = [])
-     * @method _IH_Tasks_QB withTrashed()
-     * @method _IH_Tasks_QB onlyTrashed()
-     * @method _IH_Tasks_QB withoutTrashed()
-     * @method _IH_Tasks_QB restore()
+     * @method _IH_Task_QB whereId($value)
+     * @method _IH_Task_QB whereTaskName($value)
+     * @method _IH_Task_QB whereTaskDescription($value)
+     * @method _IH_Task_QB whereTaskInfo($value)
+     * @method _IH_Task_QB whereTaskNote($value)
+     * @method _IH_Task_QB whereTaskStatusAccept($value)
+     * @method _IH_Task_QB whereTaskStatusConfirmUserId($value)
+     * @method _IH_Task_QB whereCustomServicesId($value)
+     * @method _IH_Task_QB whereTaskStatusConfirmUserComment($value)
+     * @method _IH_Task_QB whereTaskStatusPublish($value)
+     * @method _IH_Task_QB whereTaskStatusPublishDate($value)
+     * @method _IH_Task_QB whereTaskLastBasePrice($value)
+     * @method _IH_Task_QB whereTaskLastBasePriceDate($value)
+     * @method _IH_Task_QB whereTaskStatusBasePriceDiscount($value)
+     * @method _IH_Task_QB whereTaskLastBasePriceDiscountPercentage($value)
+     * @method _IH_Task_QB whereTaskLastBasePriceDiscountType($value)
+     * @method _IH_Task_QB whereTaskUnitOfMeasurementId($value)
+     * @method _IH_Task_QB whereTaskUnitOfMeasurementName($value)
+     * @method _IH_Task_QB whereTaskIndexImageUrl($value)
+     * @method _IH_Task_QB whereTaskCategoryId($value)
+     * @method _IH_Task_QB whereTaskCategoryName($value)
+     * @method _IH_Task_QB whereTaskShopId($value)
+     * @method _IH_Task_QB whereTaskRegistryShopkeeperId($value)
+     * @method _IH_Task_QB whereTaskQuantitySold($value)
+     * @method _IH_Task_QB whereTaskQuantitySelling($value)
+     * @method _IH_Task_QB whereTaskQuantityReturned($value)
+     * @method _IH_Task_QB whereTaskNumberComments($value)
+     * @method _IH_Task_QB whereTaskTotalPoints($value)
+     * @method _IH_Task_QB whereTaskAveragePoints($value)
+     * @method _IH_Task_QB whereTaskLastPoint($value)
+     * @method _IH_Task_QB whereDeletedAt($value)
+     * @method _IH_Task_QB whereCreatedAt($value)
+     * @method _IH_Task_QB whereUpdatedAt($value)
+     * @method Task baseSole(array|string $columns = ['*'])
+     * @method Task create(array $attributes = [])
+     * @method _IH_Task_C|Task[] cursor()
+     * @method Task|null find($id, array $columns = ['*'])
+     * @method _IH_Task_C|Task[] findMany(array|Arrayable $ids, array $columns = ['*'])
+     * @method Task findOrFail($id, array $columns = ['*'])
+     * @method Task findOrNew($id, array $columns = ['*'])
+     * @method Task first(array|string $columns = ['*'])
+     * @method Task firstOr(array|\Closure $columns = ['*'], \Closure $callback = null)
+     * @method Task firstOrCreate(array $attributes = [], array $values = [])
+     * @method Task firstOrFail(array $columns = ['*'])
+     * @method Task firstOrNew(array $attributes = [], array $values = [])
+     * @method Task firstWhere(array|\Closure|Expression|string $column, $operator = null, $value = null, string $boolean = 'and')
+     * @method Task forceCreate(array $attributes)
+     * @method _IH_Task_C|Task[] fromQuery(string $query, array $bindings = [])
+     * @method _IH_Task_C|Task[] get(array|string $columns = ['*'])
+     * @method Task getModel()
+     * @method Task[] getModels(array|string $columns = ['*'])
+     * @method _IH_Task_C|Task[] hydrate(array $items)
+     * @method Task make(array $attributes = [])
+     * @method Task newModelInstance(array $attributes = [])
+     * @method LengthAwarePaginator|Task[]|_IH_Task_C paginate(int|null $perPage = null, array $columns = ['*'], string $pageName = 'page', int|null $page = null)
+     * @method Paginator|Task[]|_IH_Task_C simplePaginate(int|null $perPage = null, array $columns = ['*'], string $pageName = 'page', int|null $page = null)
+     * @method Task sole(array|string $columns = ['*'])
+     * @method Task updateOrCreate(array $attributes, array $values = [])
+     * @method _IH_Task_QB withTrashed()
+     * @method _IH_Task_QB onlyTrashed()
+     * @method _IH_Task_QB withoutTrashed()
+     * @method _IH_Task_QB restore()
      */
-    class _IH_Tasks_QB extends _BaseBuilder {}
+    class _IH_Task_QB extends _BaseBuilder {}
     
     /**
      * @method TeamInvitation shift(int $count = 1)
@@ -1884,61 +1946,6 @@ namespace LaravelIdea\Helper\App\Models {
      * @method _IH_User_QB role(array|Collection|Role|string $roles, string $guard = null)
      */
     class _IH_User_QB extends _BaseBuilder {}
-    
-    /**
-     * @method productPriceHistory shift(int $count = 1)
-     * @method productPriceHistory pop(int $count = 1)
-     * @method productPriceHistory get($key, $default = null)
-     * @method productPriceHistory pull($key, $default = null)
-     * @method productPriceHistory first(callable $callback = null, $default = null)
-     * @method productPriceHistory firstWhere(string $key, $operator = null, $value = null)
-     * @method productPriceHistory find($key, $default = null)
-     * @method productPriceHistory[] all()
-     * @method productPriceHistory last(callable $callback = null, $default = null)
-     */
-    class _IH_productPriceHistory_C extends _BaseCollection {
-        /**
-         * @param int $size
-         * @return productPriceHistory[][]
-         */
-        public function chunk($size)
-        {
-            return [];
-        }
-    }
-    
-    /**
-     * @method productPriceHistory baseSole(array|string $columns = ['*'])
-     * @method productPriceHistory create(array $attributes = [])
-     * @method _IH_productPriceHistory_C|productPriceHistory[] cursor()
-     * @method productPriceHistory|null find($id, array $columns = ['*'])
-     * @method _IH_productPriceHistory_C|productPriceHistory[] findMany(array|Arrayable $ids, array $columns = ['*'])
-     * @method productPriceHistory findOrFail($id, array $columns = ['*'])
-     * @method productPriceHistory findOrNew($id, array $columns = ['*'])
-     * @method productPriceHistory first(array|string $columns = ['*'])
-     * @method productPriceHistory firstOr(array|\Closure $columns = ['*'], \Closure $callback = null)
-     * @method productPriceHistory firstOrCreate(array $attributes = [], array $values = [])
-     * @method productPriceHistory firstOrFail(array $columns = ['*'])
-     * @method productPriceHistory firstOrNew(array $attributes = [], array $values = [])
-     * @method productPriceHistory firstWhere(array|\Closure|Expression|string $column, $operator = null, $value = null, string $boolean = 'and')
-     * @method productPriceHistory forceCreate(array $attributes)
-     * @method _IH_productPriceHistory_C|productPriceHistory[] fromQuery(string $query, array $bindings = [])
-     * @method _IH_productPriceHistory_C|productPriceHistory[] get(array|string $columns = ['*'])
-     * @method productPriceHistory getModel()
-     * @method productPriceHistory[] getModels(array|string $columns = ['*'])
-     * @method _IH_productPriceHistory_C|productPriceHistory[] hydrate(array $items)
-     * @method productPriceHistory make(array $attributes = [])
-     * @method productPriceHistory newModelInstance(array $attributes = [])
-     * @method LengthAwarePaginator|productPriceHistory[]|_IH_productPriceHistory_C paginate(int|null $perPage = null, array $columns = ['*'], string $pageName = 'page', int|null $page = null)
-     * @method Paginator|productPriceHistory[]|_IH_productPriceHistory_C simplePaginate(int|null $perPage = null, array $columns = ['*'], string $pageName = 'page', int|null $page = null)
-     * @method productPriceHistory sole(array|string $columns = ['*'])
-     * @method productPriceHistory updateOrCreate(array $attributes, array $values = [])
-     * @method _IH_productPriceHistory_QB withTrashed()
-     * @method _IH_productPriceHistory_QB onlyTrashed()
-     * @method _IH_productPriceHistory_QB withoutTrashed()
-     * @method _IH_productPriceHistory_QB restore()
-     */
-    class _IH_productPriceHistory_QB extends _BaseBuilder {}
 }
 
 namespace LaravelIdea\Helper\Illuminate\Notifications {

@@ -92,7 +92,7 @@ class Shop extends Model
     public function tags()
     {
 //        return $this->belongsToMany(tag::class, 'shops_tags', 'shop_id', 'id', null, null, null);
-        return $this->belongsToMany(tag::class, 'shops_tags')->withPivot('tag_accept_status')->withTimestamps();
+        return $this->belongsToMany(Tag::class, 'shops_tags')->withPivot('tag_accept_status')->withTimestamps();
     }
 
     /**
@@ -100,7 +100,7 @@ class Shop extends Model
      */
     public function tagsByAccept()
     {
-        return $this->belongsToMany(tag::class)->withPivot('tag_accept_status');
+        return $this->belongsToMany(Tag::class)->withPivot('tag_accept_status');
     }
 
     /******************************/
@@ -152,12 +152,12 @@ class Shop extends Model
 
     public function normalServices()
     {
-        return $this->hasMany(normalService::class, 'normal_service_shop_id', 'id');
+        return $this->hasMany(NormalService::class, 'normal_service_shop_id', 'id');
     }
 
     public function customServices()
     {
-        return $this->hasMany(customService::class, 'custom_services_shop_id', 'id');
+        return $this->hasMany(CustomService::class, 'custom_services_shop_id', 'id');
     }
 
 
@@ -193,14 +193,19 @@ class Shop extends Model
         return $query->where('shop_accept_status', $status);
     }
 
-    public function shopAccepted($query)
+    public function scopeShopAccepted($query)
     {
         return $query->where('shop_accept_status', '=', 1);
     }
 
-    public function shopRejected($query)
+    public function scopeShopRejected($query)
     {
         return $query->where('shop_accept_status',  '=', 0);
     }
 
+    // query string scopes
+    public function scopeOrder($query, $sort, $order)
+    {
+        return $query->orderBy($sort, $order);
+    }
 }

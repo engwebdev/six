@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use App\Exceptions\MyException;
 use App\Http\Resources\TagResource;
 use App\Models\Tag;
+use App\Traits\QueryParams;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class TagController extends Controller {
+    use QueryParams;
 
     /**
      * @OA\Get(
@@ -235,7 +237,6 @@ class TagController extends Controller {
      *
      * ),
      *
-
      *
      */
     /**
@@ -250,56 +251,31 @@ class TagController extends Controller {
     {
         $user = auth()->user();
         $user_id = $user->id;
-        $page = $request->input( 'page' );
-        $limit = $request->input( 'limit' );
-        if ($request->input( 'sort' ))
-        {
-            $sort = $request->input( 'sort' );
-        }
-        else
-        {
-            $sort = 'id';
-        }
-        if ($request->input( 'order' ))
-        {
-            $order = $request->input( 'order' );
-        }
-        else
-        {
-            $order = 'asc';
-        }
+        $this->CheckQueryParams( $request );
 
-        $tags = Tag::orderBy( $sort, $order )
-            ->when(true, function ($query) use ($user_id) {
-                $query->where('tag_accept_status', true);
-            })
-            ->when(!empty($user->id), function ($query) use ($user_id) {
-                $query->where('tag_additional_user_id', '=', $user_id);
-            })
-//            ->lazy()->count();
-//            ->where( 'shop_accept_status', '=', 1 )
-            ->paginate( $limit, '*', 'page', $page );
+        $tags = Tag::orderBy( $this->sort, $this->order )
+            ->when( $user->hasRole( 'shopkeeper', 'api' ), function ($query) use ($user_id) {
+                return $query
+                    ->select( 'id', 'tag_name', 'tag_accept_status', 'tag_publish_status', 'tag_additional_user_id' )
+                    ->Where( 'tag_accept_status', true )
+                    ->orWhere( function ($subQuery) use ($user_id) {
+                        $subQuery
+                            ->where( 'tag_accept_status', false )
+                            ->Where( 'tag_additional_user_id', $user_id );
+                    } );
+            } )
+            ->when( $user->hasRole( 'user', 'api' ), function ($query) use ($user_id) {
+                return $query
+                    ->select( 'id', 'tag_name' )
+                    ->Where( 'tag_accept_status', true )
+                    ->where( 'tag_publish_status', true );
+            } )
+            ->paginate( $this->limit, '*', 'page', $this->page );
 
-        return response()->json(
-            [
-                'data' => $tags,
-            ],
+        return response()->json( $tags,
             200
         );
     }
-
-    /**
-     *
-     * get /tags/create
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
 
     /**
      * @OA\Post(
@@ -432,24 +408,36 @@ class TagController extends Controller {
         try
         {
             $user = auth()->user();
-            $roles = auth()->user()->getRoleNames();
 
-            // todo filtering by role multi
-            if ($roles->count() > 0)
+            if ($user->hasRole( 'shopkeeper', 'api' ))
             {
-                if ($roles->count() > 1)
-                {
-//                error
-                    $additional_user_type = 'unknown';
-                }
-                else
-                {
-                    $additional_user_type = $roles->toArray()[0];
-                }
+                $additional_user_type = 'shopkeeper';
+                $tag_publish_status = false;
+                $tag_accept_status = false;
+            }
+            elseif ($user->hasRole( 'system', 'api' ))
+            {
+                $additional_user_type = 'user';
+                $tag_publish_status = true;
+                $tag_accept_status = true;
+            }
+            elseif ($user->hasRole( 'user', 'api' ))
+            {
+                $additional_user_type = 'user';
+                $tag_publish_status = false;
+                $tag_accept_status = false;
+            }
+            elseif ($user->hasRole( 'admin', 'api' ))
+            {
+                $additional_user_type = 'admin';
+                $tag_publish_status = true;
+                $tag_accept_status = true;
             }
             else
             {
-                $additional_user_type = 'user';
+                $additional_user_type = 'unknown';
+                $tag_publish_status = false;
+                $tag_accept_status = false;
             }
 
             $validated = $request->validate(
@@ -472,8 +460,8 @@ class TagController extends Controller {
             $tag = Tag::create(
                 [
                     'tag_name' => $validated['tag_name'],
-                    'tag_publish_status' => false,
-                    'tag_accept_status' => false,
+                    'tag_publish_status' => $tag_publish_status,
+                    'tag_accept_status' => $tag_accept_status,
                     'tag_additional_type' => $additional_user_type,
                     'tag_additional_user_id' => $user->id,
                 ]
@@ -489,13 +477,14 @@ class TagController extends Controller {
             return response()->json( [
                 'message' => $message,
                 'success' => $success,
-                "data" => new TagResource($tag),
+                "data" => new TagResource( $tag ),
                 'NotificationsEnServer' => $notifications_En_Server,
                 'NotificationsFaServer' => $notifications_Fa_Server,
             ], $responseCode );
 
         }
-        catch (MyException $exception) {
+        catch (MyException $exception)
+        {
 //            throw MyException::class();
         }
     }
@@ -544,28 +533,14 @@ class TagController extends Controller {
     {
 
 
-        $tag = Tag::findOrFail($id);
+        $tag = Tag::findOrFail( $id );
 
 
         return response(
             [
-                "data" => new TagResource($tag),
+                "data" => new TagResource( $tag ),
             ], 200 );
     }
-
-    /**
-     *
-     * get /tags/{tag}/edit
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
 
     /**
      * @OA\Put(
@@ -605,15 +580,46 @@ class TagController extends Controller {
      *
      * @param \Illuminate\Http\Request $request
      * @param int                      $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = auth()->user();
+        $user_id = $user->id;
+
+        $validated = $request->validate(
+            [
+                'tag_name' => ['nullable', 'string', 'min:3'],
+                'tag_accept_status' => ['nullable', 'boolean'],
+                'tag_publish_status' => ['nullable', 'boolean'],
+            ]
+        );
+
+        if (($user->hasRole( 'admin', 'api' )) or ($user->hasRole( 'system', 'api' )))
+        {
+            $tag = Tag::findOrFail( $id );
+            $tag->tag_name = $validated['tag_name'];
+            $tag->tag_accept_status = $validated['tag_accept_status'];
+            $tag->tag_publish_status = $validated['tag_publish_status'];
+            $tag->save();
+        }
+        else
+        {
+            return response()->json(
+                [
+                    'message' => 'Forbidden.',
+                    'error' => 'You can not access to resource.',
+                ],
+                403
+            );
+        }
+        return response()->json(
+            new TagResource ($tag),
+            200
+        );
+
+
     }
-
-
-
 
     /**
      * @OA\Delete(

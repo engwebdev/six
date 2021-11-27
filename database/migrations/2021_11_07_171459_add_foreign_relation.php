@@ -12,61 +12,61 @@ class AddForeignRelation extends Migration {
      */
     public function up()
     {
-//        Schema::table( 'details', function (Blueprint $table) {
-//            $table->unsignedBigInteger( 'price_id' )->change();
-//            $table->foreign( 'normal_product_attribute_name_id' )
-//                ->references( 'id' )
-//                ->on( 'attributes' )
-//                ->onDelete( 'set null' )
-//                ->onUpdate( 'restrict' );
-//
-//            $table->foreign( 'normal_product_attribute_value_id' )
-//                ->references( 'id' )
-//                ->on( 'attribute_values' )
-//                ->onDelete( 'set null' )
-//                ->onUpdate( 'restrict' );
+        Schema::table( 'details', function (Blueprint $table) {
+            $table->unsignedBigInteger( 'price_id' )->change();
+            $table->foreign( 'normal_product_attribute_name_id' )
+                ->references( 'id' )
+                ->on( 'attributes' )
+                ->onDelete( 'set null' )
+                ->onUpdate( 'restrict' );
 
-//            $table->foreign( 'price_id' )
-//                ->references( 'id' )
-//                ->on( 'product_price_history' )
-//                ->onDelete( 'set null' )
-//                ->onUpdate( 'restrict' );
-//        } );
+            $table->foreign( 'normal_product_attribute_value_id' )
+                ->references( 'id' )
+                ->on( 'attribute_values' )
+                ->onDelete( 'set null' )
+                ->onUpdate( 'restrict' );
 
-//        Schema::table( 'normal_services', function (Blueprint $table) {
+            $table->foreign( 'price_id' )
+                ->references( 'id' )
+                ->on( 'product_price_history' )
+                ->onDelete( 'set null' )
+                ->onUpdate( 'restrict' );
+        } );
+
+        Schema::table( 'normal_services', function (Blueprint $table) {
 //            $table->foreign( 'normal_service_category_id' )
 //                ->references( 'id' )
 //                ->on( 'product_categories' )
 //                ->onDelete( 'set null' )
 //                ->onUpdate( 'restrict' );
 
-//            $table->foreign( 'normal_service_shop_id' )
-//                ->references( 'id' )
-//                ->on( 'shops' )
-//                ->onDelete( 'set null' )
-//                ->onUpdate( 'restrict' );
+            $table->foreign( 'normal_service_shop_id' )
+                ->references( 'id' )
+                ->on( 'shops' )
+                ->onDelete( 'set null' )
+                ->onUpdate( 'restrict' );
 
-//            $table->foreign( 'normal_service_registry_shopkeeper_id' )
-//                ->references( 'id' )
-//                ->on( 'users' )
-//                ->onDelete( 'set null' )
-//                ->onUpdate( 'restrict' );
+            $table->foreign( 'normal_service_registry_shopkeeper_id' )
+                ->references( 'id' )
+                ->on( 'users' )
+                ->onDelete( 'set null' )
+                ->onUpdate( 'restrict' );
 
-//            $table->foreign( 'normal_service_status_confirm_user_id' )
-//                ->references( 'id' )
-//                ->on( 'users' )
-//                ->onDelete( 'set null' )
-//                ->onUpdate( 'restrict' );
+            $table->foreign( 'normal_service_status_confirm_user_id' )
+                ->references( 'id' )
+                ->on( 'users' )
+                ->onDelete( 'set null' )
+                ->onUpdate( 'restrict' );
 
-//            $table->foreign( 'normal_service_category_id' )
-//                ->references( 'id' )
-//                ->on( 'product_categories' )
-//                ->onDelete( 'set null' )
-//                ->onUpdate( 'restrict' );
+            $table->foreign( 'normal_service_category_id' )
+                ->references( 'id' )
+                ->on( 'product_categories' )
+                ->onDelete( 'set null' )
+                ->onUpdate( 'restrict' );
 
-//        } );
+        } );
 /*****************/
-        /*
+
 
         Schema::table( 'confirm_comment', function (Blueprint $table) {
             $table->foreign( 'system_user_id' )
@@ -133,48 +133,51 @@ class AddForeignRelation extends Migration {
                 ->onUpdate( 'restrict' );
         } );
 
-        */
+
         /************************/
 
-//        Schema::table( 'product_tags_tags', function (Blueprint $table) {
-//            $table->renameColumn( 'tag_id', 'product_tags_id' );
-//            $table->foreign( 'product_tags_id' )
-//                ->references( 'id' )
-//                ->on( 'product_tags' )
-//                ->onDelete( 'set null' )
-//                ->onUpdate( 'restrict' );
-//        });
+        Schema::table( 'product_tags_tags', function (Blueprint $table) {
+            $table->renameColumn( 'tag_id', 'product_tags_id' );
+            $table->foreign( 'product_tags_id' )
+                ->references( 'id' )
+                ->on( 'product_tags' )
+                ->onDelete( 'set null' )
+                ->onUpdate( 'restrict' );
+        });
 
-//        Schema::table( 'details', function (Blueprint $table) {
-////            $table->renameColumn( 'normal_product_id', 'productable_id' );
-//            $table->string( 'productable_type' )
-//                ->after( 'productable_id' )
-//                ->nullable();
-//        });
+        Schema::table( 'details', function (Blueprint $table) {
+            $table->renameColumn( 'normal_product_id', 'productable_id' );
+        });
 
-//        Schema::table( 'normal_products', function (Blueprint $table) {
-//            $table->foreign( 'product_category_id' )
-//                ->references( 'id' )
-//                ->on( 'product_categories' )
-//                ->onDelete( 'set null' )
-//                ->onUpdate( 'restrict' );
-//        });
-//
-//        Schema::table( 'custom_products', function (Blueprint $table) {
-//            $table->foreign( 'custom_product_category_id' )
-//                ->references( 'id' )
-//                ->on( 'product_categories' )
-//                ->onDelete( 'set null' )
-//                ->onUpdate( 'restrict' );
-//        });
+        Schema::table( 'details', function (Blueprint $table) {
+            $table->string( 'productable_type' )
+                ->after( 'productable_id' )
+                ->nullable();
+        });
 
-//        Schema::table( 'custom_services', function (Blueprint $table) {
-//            $table->foreign( 'custom_services_category_id' )
-//                ->references( 'id' )
-//                ->on( 'product_categories' )
-//                ->onDelete( 'set null' )
-//                ->onUpdate( 'restrict' );
-//        });
+        Schema::table( 'normal_products', function (Blueprint $table) {
+            $table->foreign( 'product_category_id' )
+                ->references( 'id' )
+                ->on( 'product_categories' )
+                ->onDelete( 'set null' )
+                ->onUpdate( 'restrict' );
+        });
+
+        Schema::table( 'custom_products', function (Blueprint $table) {
+            $table->foreign( 'custom_product_category_id' )
+                ->references( 'id' )
+                ->on( 'product_categories' )
+                ->onDelete( 'set null' )
+                ->onUpdate( 'restrict' );
+        });
+
+        Schema::table( 'custom_services', function (Blueprint $table) {
+            $table->foreign( 'custom_services_category_id' )
+                ->references( 'id' )
+                ->on( 'product_categories' )
+                ->onDelete( 'set null' )
+                ->onUpdate( 'restrict' );
+        });
 
 
     }

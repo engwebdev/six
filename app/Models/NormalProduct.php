@@ -107,7 +107,7 @@ class NormalProduct extends Model {
      */
     public function normalProductPrices()
     {
-        return $this->morphMany( productPriceHistory::class, 'product_price_historiable', 'NormalProduct');
+        return $this->morphMany( ProductPriceHistory::class, 'product_price_historiable', 'NormalProduct');
     }
 
     /**
