@@ -12,6 +12,7 @@ class Tag extends Model
     use SoftDeletes;
 
     protected $fillable = [
+        'id',
         'tag_name',
         'tag_image_url',
         'tag_publish_status',

@@ -123,7 +123,7 @@ class CategoryController extends Controller {
      *              @OA\Property(property="from", type="number", example="1"),
      *              @OA\Property(
      *                  property="links",
-     *                  example="{'url': null,'label': '&laquo; Previous','active': false},{'url': 'http://127.0.0.1:8001/api/v1/shop/categories?page=1','label': '1','active': true},{'url': null,'label': 'Next &raquo;','active': false}",
+     *                  example="{'url': null,'label': ' Previous','active': false},{'url': 'http://127.0.0.1:8001/api/v1/shop/categories?page=1','label': '1','active': true},{'url': null,'label': 'Next &raquo;','active': false}",
      *
      *
      *
@@ -263,7 +263,7 @@ class CategoryController extends Controller {
             $order = 'asc';
         }
 
-        dd($sort,$order);
+//        dd($sort,$order);
 //        $user = User::find( auth()->id() );
 //        $user->guard_name = 'api'; // todo important for role
 
@@ -271,6 +271,11 @@ class CategoryController extends Controller {
         $user_id = $user->id;
 
         $category = Category::orderBy( $sort, $order )
+            ->when( $user->hasRole( 'system', 'api' ), function ($query) use ($user_id) {
+                return $query
+                    ->Where( 'category_accept_status', true )
+                    ->orWhere('category_accept_status', false);
+            } )
             ->when( $user->hasRole( 'shopkeeper', 'api' ), function ($query) use ($user_id) {
                 return $query
                     ->select( 'id', 'category_name', 'category_accept_status', 'category_publish_status', 'category_show_status', 'category_additional_user_id', 'category_additional_user_type' )
@@ -291,12 +296,16 @@ class CategoryController extends Controller {
             ->paginate( $limit, '*', 'page', $page );
 
         $CategoryCollection = (new CategoryCollection( $category ));
-        $CategoryCollection->toJson();
+        return response()->json(
+            [
+                $CategoryCollection
+            ], 200
+        );
 
-        $Response = ($CategoryCollection)->toResponse( $request );
-        $Response->setStatusCode( 200 );
-
-        return $Response;
+//        $CategoryCollection->toJson();
+//        $Response = ($CategoryCollection)->toResponse( $request );
+//        $Response->setStatusCode( 200 );
+//        return $Response;
     }
 
 
@@ -532,14 +541,19 @@ class CategoryController extends Controller {
     /**
      * Display a listing of the resource.
      *
-     * @return CategoryResource|AnonymousResourceCollection
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
         $paginate = 25;
         $relations = null;
 
-        return CategoryResource::collection( Category::with( $relations )->paginate( $paginate ) );
+//        return CategoryResource::collection( Category::with( $relations )->paginate( $paginate ) );
+        return response()->json(
+            [
+
+            ], 200
+        );
     }
 
     /**
@@ -1094,8 +1108,10 @@ class CategoryController extends Controller {
      */
     public function destroy(Category $category, $id)
     {
-        //
+        // todo transaction for delete or update all sub entities
         $category = Category::find( $id );
+
+
         if ($category)
         {
             $category->delete();

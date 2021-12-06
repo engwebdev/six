@@ -5,16 +5,29 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class CategoryResource extends JsonResource
-{
+class CategoryResource extends JsonResource {
     /**
      * Transform the resource into an array.
      *
-     * @param  Request  $request
+     * @param Request $request
      * @return array
      */
     public function toArray($request)
     {
+/*        if (auth()->user()->hasRole( 'system', 'api' ))
+        {
+            $param = true;
+        }
+        elseif ((auth()->user()->hasRole( 'shopkeeper', 'api' )) and ($this->resource->category_additional_user_id == auth()->user()->id))
+        {
+            $param = true;
+        }
+        else
+        {
+            $param = false;
+        }*/
+
+
 //        return parent::toArray($request);
 //        dd($this);
         return [
@@ -23,6 +36,7 @@ class CategoryResource extends JsonResource
             'category_image_url' => $this->resource->category_image_url,
             'category_additional_user_id' => $this->resource->category_additional_user_id,
             'category_additional_user_type' => $this->resource->category_additional_user_type,
+//            'category_accept_status' => $this->when( $param, $this->resource->category_accept_status ),
             'category_accept_status' => $this->resource->category_accept_status,
             'category_publish_status' => $this->resource->category_publish_status,
             'category_show_status' => $this->resource->category_show_status,

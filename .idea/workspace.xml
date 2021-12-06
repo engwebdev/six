@@ -6,23 +6,34 @@
   <component name="ChangeListManager">
     <list default="true" id="4d343e4e-b2a9-4dd0-8969-d76dec06ab9f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Auth/Grants/UserProviderExample/AcmeUserProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Auth/Grants/UserProviderExample/AcmeUserProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/AuthController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CategoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CategoryController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ShopController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ShopController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TagController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TagController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/StoreShopRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/StoreShopRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/AttributeCollection.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/AttributeCollection.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/AttributeValueCollection.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/AttributeValueCollection.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/CategoryCollection.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/CategoryCollection.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Resources/CategoryResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/CategoryResource.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/ConfirmCommentCollection.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/ConfirmCommentCollection.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/CustomProductCollection.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/CustomProductCollection.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/CustomServiceCollection.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/CustomServiceCollection.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/DetailCollection.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/DetailCollection.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/NormalProductCollection.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/NormalProductCollection.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/NormalServiceCollection.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/NormalServiceCollection.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/RoleCollection.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/RoleCollection.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/ShopCollection.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/ShopCollection.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/TagCollection.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/TagCollection.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Resources/TagResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/TagResource.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/CustomProduct.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/CustomProduct.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/CustomService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/CustomService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/NormalProduct.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/NormalProduct.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/NormalService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/NormalService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/UserCollection.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/UserCollection.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/ProductCategory.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ProductCategory.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Shop.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Shop.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Tag.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Tag.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Tasks.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Task.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/productPriceHistory.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ProductPriceHistory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_11_07_171459_add_foreign_relation.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_11_07_171459_add_foreign_relation.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/logs/laravel.log" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/laravel.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Traits/QueryParams.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Traits/QueryParams.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/api-docs/api-docs.json" beforeDir="false" afterPath="$PROJECT_DIR$/storage/api-docs/api-docs.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/FXm8Jm7uSF814ZXrzaTovdsOTksijCHUtu0lVjWw" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_model_builders.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_model_builders.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_models.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_models.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" afterDir="false" />
@@ -637,7 +648,8 @@
       <workItem from="1635862628372" duration="2172000" />
       <workItem from="1635865526181" duration="99518000" />
       <workItem from="1636869859033" duration="78291000" />
-      <workItem from="1637397955219" duration="133217000" />
+      <workItem from="1637397955219" duration="172942000" />
+      <workItem from="1638331342980" duration="57265000" />
     </task>
     <task id="LOCAL-00001" summary="1">
       <created>1628849277468</created>
@@ -891,7 +903,14 @@
       <option name="project" value="LOCAL" />
       <updated>1637728807517</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="36">
+      <created>1638030006586</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1638030006586</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -912,7 +931,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="11" />
     <MESSAGE value="12" />
     <MESSAGE value="13" />
     <MESSAGE value="14" />
@@ -937,18 +955,19 @@
     <MESSAGE value="33" />
     <MESSAGE value="34" />
     <MESSAGE value="35" />
-    <option name="LAST_COMMIT_MESSAGE" value="35" />
+    <MESSAGE value="36" />
+    <option name="LAST_COMMIT_MESSAGE" value="36" />
   </component>
   <component name="WindowStateProjectService">
     <state x="309" y="37" key="#CLI_Interpreters" timestamp="1630122390985">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="309" y="37" key="#CLI_Interpreters/0.0.1366.728@0.0.1366.728" timestamp="1630122390985" />
-    <state x="-1278" y="26" key="#Inspections" timestamp="1635591826260">
+    <state x="-1278" y="26" key="#Inspections" timestamp="1638118286704">
       <screen x="-1600" y="0" width="1600" height="860" />
     </state>
     <state x="275" y="22" key="#Inspections/0.0.1366.728@0.0.1366.728" timestamp="1630868118902" />
-    <state x="-1278" y="26" key="#Inspections/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1635591826260" />
+    <state x="-1278" y="26" key="#Inspections/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1638118286704" />
     <state x="275" y="0" width="816" height="728" key="#Intentions" timestamp="1630680305180">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -972,11 +991,11 @@
     </state>
     <state x="-1280" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1635591735828" />
     <state x="320" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1600.860/-1600.0.1600.860@0.0.1600.860" timestamp="1632044322559" />
-    <state x="-1117" y="139" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1637424556297">
+    <state x="-1117" y="139" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1638677859642">
       <screen x="-1600" y="0" width="1600" height="860" />
     </state>
     <state x="412" y="118" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.728@0.0.1366.728" timestamp="1630870909333" />
-    <state x="-1117" y="139" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1637424556297" />
+    <state x="-1117" y="139" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1638677859642" />
     <state x="483" y="139" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1600.860/-1600.0.1600.860@0.0.1600.860" timestamp="1633530495382" />
     <state x="483" y="139" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1600.860@0.0.1600.860" timestamp="1631108677772" />
     <state x="580" y="355" key="#com.jetbrains.php.lang.intentions.PhpImportClassDialog#" timestamp="1631084876737">
@@ -987,11 +1006,10 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="558" y="291" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1600.860/-1600.0.1600.860@0.0.1600.860" timestamp="1632051667685" />
-    <state x="-1274" y="0" key="CommitChangelistDialog2" timestamp="1637728805100">
+    <state x="-1274" y="0" key="CommitChangelistDialog2" timestamp="1638030003780">
       <screen x="-1600" y="0" width="1600" height="860" />
     </state>
-    <state x="278" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1628850717056" />
-    <state x="-1274" y="0" key="CommitChangelistDialog2/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1637728805100" />
+    <state x="-1274" y="0" key="CommitChangelistDialog2/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1638030003780" />
     <state x="326" y="0" key="CommitChangelistDialog2/0.0.1600.860/-1600.0.1600.860@0.0.1600.860" timestamp="1632893075732" />
     <state x="326" y="0" key="CommitChangelistDialog2/0.0.1600.860@0.0.1600.860" timestamp="1631528617231" />
     <state x="645" y="336" key="Create Controller" timestamp="1632051413628">
@@ -1021,10 +1039,10 @@
     </state>
     <state x="516" y="91" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1630867836717" />
     <state x="-996" y="108" key="FileChooserDialogImpl/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1635863330269" />
-    <state x="-1045" y="330" key="Generate Helper Code" timestamp="1638022744776">
+    <state x="-1045" y="330" key="Generate Helper Code" timestamp="1638683506362">
       <screen x="-1600" y="0" width="1600" height="860" />
     </state>
-    <state x="-1045" y="330" key="Generate Helper Code/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1638022744776" />
+    <state x="-1045" y="330" key="Generate Helper Code/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1638683506362" />
     <state x="555" y="330" key="Generate Helper Code/0.0.1600.860/-1600.0.1600.860@0.0.1600.860" timestamp="1632562602706" />
     <state width="1260" height="275" key="GridCell.Tab.0.bottom" timestamp="1635923901293">
       <screen x="-1600" y="0" width="1600" height="860" />
@@ -1067,11 +1085,10 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="647" y="345" key="VCS.ChangelistChooser/0.0.1600.860@0.0.1600.860" timestamp="1631688745258" />
-    <state x="-1278" y="100" key="Vcs.Push.Dialog.v2" timestamp="1637728814961">
+    <state x="-1278" y="100" key="Vcs.Push.Dialog.v2" timestamp="1638030008370">
       <screen x="-1600" y="0" width="1600" height="860" />
     </state>
-    <state x="275" y="85" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1628850937221" />
-    <state x="-1278" y="100" key="Vcs.Push.Dialog.v2/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1637728814961" />
+    <state x="-1278" y="100" key="Vcs.Push.Dialog.v2/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1638030008370" />
     <state x="322" y="100" key="Vcs.Push.Dialog.v2/0.0.1600.860/-1600.0.1600.860@0.0.1600.860" timestamp="1632893079429" />
     <state x="322" y="100" key="Vcs.Push.Dialog.v2/0.0.1600.860@0.0.1600.860" timestamp="1631528623715" />
     <state x="-1508" y="92" width="1416" height="676" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1637424068615">
@@ -1080,11 +1097,11 @@
     <state x="79" y="78" width="1209" height="573" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog/0.0.1366.728@0.0.1366.728" timestamp="1630870745263" />
     <state x="-1508" y="92" width="1416" height="676" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1637424068615" />
     <state x="92" y="92" width="1416" height="676" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog/0.0.1600.860@0.0.1600.860" timestamp="1630905855701" />
-    <state x="-1434" y="55" width="1384" height="643" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1638022079669">
+    <state x="-1434" y="55" width="1384" height="643" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1638116055751">
       <screen x="-1600" y="0" width="1600" height="860" />
     </state>
     <state x="92" y="92" width="1182" height="544" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1366.728@0.0.1366.728" timestamp="1630762974164" />
-    <state x="-1434" y="55" width="1384" height="643" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1638022079669" />
+    <state x="-1434" y="55" width="1384" height="643" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1638116055751" />
     <state x="108" y="109" width="1385" height="643" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1600.860/-1600.0.1600.860@0.0.1600.860" timestamp="1634625611418" />
     <state x="108" y="109" width="1385" height="643" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1600.860@0.0.1600.860" timestamp="1630496170965" />
     <state x="-1508" y="92" width="1416" height="676" key="com.intellij.history.integration.ui.views.SelectionHistoryDialog" timestamp="1636522789144">
@@ -1104,18 +1121,18 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="541" y="72" key="refactoring.ChangeSignatureDialog/0.0.1600.860@0.0.1600.860" timestamp="1631083219967" />
-    <state x="-1144" y="195" width="672" height="677" key="run.anything.popup" timestamp="1637151427186">
+    <state x="-1144" y="195" width="672" height="677" key="run.anything.popup" timestamp="1638698231558">
       <screen x="-1600" y="0" width="1600" height="860" />
     </state>
     <state x="389" y="165" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1634291576703" />
-    <state x="-1144" y="195" width="672" height="677" key="run.anything.popup/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1637151427186" />
+    <state x="-1144" y="195" width="672" height="677" key="run.anything.popup/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1638698231558" />
     <state x="456" y="195" key="run.anything.popup/0.0.1600.860/-1600.0.1600.860@0.0.1600.860" timestamp="1632575086550" />
     <state x="456" y="195" key="run.anything.popup/0.0.1600.860@0.0.1600.860" timestamp="1634552182017" />
-    <state x="-1167" y="80" width="789" height="801" key="search.everywhere.popup" timestamp="1638025145335">
+    <state x="-1167" y="80" width="789" height="801" key="search.everywhere.popup" timestamp="1638709726967">
       <screen x="-1600" y="0" width="1600" height="860" />
     </state>
     <state x="346" y="49" width="674" height="679" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1630868229466" />
-    <state x="-1167" y="80" width="789" height="801" key="search.everywhere.popup/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1638025145335" />
+    <state x="-1167" y="80" width="789" height="801" key="search.everywhere.popup/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1638709726967" />
     <state x="433" y="80" width="789" height="801" key="search.everywhere.popup/0.0.1600.860/-1600.0.1600.860@0.0.1600.860" timestamp="1634651197246" />
     <state x="433" y="80" width="789" height="801" key="search.everywhere.popup/0.0.1600.860@0.0.1600.860" timestamp="1631690428665" />
   </component>

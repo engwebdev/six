@@ -5,10 +5,14 @@ namespace App\Http\Controllers;
 use App\Exceptions\MyException;
 use App\Http\Resources\ShopCollection;
 use App\Http\Resources\ShopResource;
+use App\Http\Resources\TagCollection;
+use App\Http\Resources\TagResource;
+use App\Http\Resources\UltraTagShopStatusCollection;
 use App\Models\RolesShopsUsers;
 use App\Models\Shop;
 //use Auth;
 use App\Models\ShopImages;
+use App\Models\Tag;
 use App\Repositories\ShopRepositories;
 use Carbon\Carbon;
 use DB;
@@ -21,6 +25,7 @@ use App\Traits\QueryParams;
 
 
 class ShopController extends Controller {
+
     use QueryParams;
 
     // todo one to many polymorphic between -confirm_comment- -history_price- -image- -category- -tag- -customer_comment- -- -- -- -- -- --
@@ -158,7 +163,7 @@ class ShopController extends Controller {
         ) AS distance FROM shops HAVING distance < 50 ORDER BY distance');
         */
 
-        $this->CheckQueryParams( $request );
+        $this->checkQueryParams( $request );
 
         if ($request->query( 'longitude' ) and $request->query( 'latitude' ))
         {
@@ -681,8 +686,9 @@ class ShopController extends Controller {
 
 //            model has role
             $success['id'] = $shop->id;
-            if ($file = $validated['shop_photo'])
+            if ($request->input( 'shop_photo' ))
             {
+                $file = $validated['shop_photo'];
                 $shop_photo_name = $request->file( 'shop_photo' )->getClientOriginalName();
                 $format = (explode( '.', $shop_photo_name ));
                 $file_name_is = $format[0];
@@ -1318,7 +1324,8 @@ class ShopController extends Controller {
      */
     public function destroy($id)
     {
-        //
+        // todo transaction delete all products, all services, all relationship
+        // todo call other destroy function
     }
 
     public function getSelfShop(Request $request)
@@ -1416,6 +1423,126 @@ class ShopController extends Controller {
 
     }
 
+    /***************************/
+
+    /**
+     * @OA\Get(
+     * path="/api/v1/tagsShop/{id}",
+     * operationId="get tag status of shops id",
+     * tags={"Shops"},
+     * summary="get tag status of Shop by id in url. => for system admin",
+     * description="get tag status of Shop by id in patch 'url'",
+     *
+     *
+     *
+     *     @OA\Parameter(
+     *         name="accept",
+     *         in="query",
+     *         description="Tags to stuats listing",
+     *         required=false,
+     *         example="",
+     *         @OA\Schema(
+     *           type="boolean",
+     *         nullable=true,
+     *         ),
+     *         style="form"
+     *     ),
+     *
+     *
+     *
+     *
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="id of shop",
+     *         required=true,
+     *         @OA\Schema(
+     *           type="string",
+     *         ),
+     *         example="1",
+     *     ),
+     *
+     *
+     *      @OA\Response(response=511, description="Network Authentication Required"),
+     *
+     *     security={
+     *         {"bearer": {}}
+     *     },
+     *
+     * ),
+     *
+     *
+     */
+    /**
+     * @param Request  $request
+     * @param          $id
+     * @return UltraTagShopStatusCollection|\Illuminate\Http\JsonResponse
+     *
+     *
+     * @property mixed shop_id
+     * @property mixed tag_accept_status_use
+     *
+     *
+     *
+     */
+    public function tagsShopById(Request $request, $id)
+    {
+        $user = auth()->user();
+        if ($user == $user)
+//        if (($user->hasRole( 'admin', 'api' )) or ($user->hasRole( 'system', 'api' )))
+        {
+
+            if ($request->query( 'accept' ) == null)
+            {
+                $when = false;
+            }
+            else
+            {
+                $when = true;
+            }
+            $acceptStatus = filter_var( $request->query( 'accept' ), FILTER_VALIDATE_BOOLEAN );
+
+//            dd($request->query( 'accept' ),$acceptStatus, $when);
+            $tags = Tag::whereHas( 'shops', function ($query) use ($id, $request, $acceptStatus, $when) {
+                $query->whereIn( 'shops_tags.shop_id', [$id] );
+                $query->when( $when, function ($query) use ($acceptStatus) {
+                    $query->where( 'shops_tags.tag_accept_status', (int) $acceptStatus );
+                } );
+            } )
+                ->with( 'shops:id' )
+                ->get();
+
+            /**
+             *
+             * @var integer $item->shop_id
+             * @property integer $item->shop_id
+             * @type mixed   tag_accept_status_use
+             */
+            $val = $tags->map( function ($item) {
+                /**
+                 * @property integer $item->shop_id
+                 * @var mixed $item->shop_id
+                 */
+                $item->shop_id = $item->shops[0]->id;
+                $item->tag_accept_status_use = $item->shops[0]->pivot->tag_accept_status;
+                unset( $item->shops );
+
+                return $item;
+            } );
+
+            return new UltraTagShopStatusCollection( $val );
+        }
+        else
+        {
+            return response()->json(
+                [
+                    'message' => 'Forbidden.',
+                    'error' => 'You can not access to resource.',
+                ],
+                403
+            );
+        }
+    }
 
 
 

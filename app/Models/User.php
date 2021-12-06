@@ -77,6 +77,12 @@ class User extends Authenticatable {
 //        'profile_photo_url',
     ];
     /***************************/
+    protected $guard_name = 'api';
+    public function guardName()
+    {
+        return 'api';
+    }
+    /***************************/
     // id one to many disable_by
     public function disabling()
     {

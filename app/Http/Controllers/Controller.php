@@ -63,6 +63,12 @@ class Controller extends BaseController
      * ),
      *
      *
+     * @OA\Tag(
+     *   name="Normal Products",
+     *   description="API Endpoints of shops"
+     * ),
+     *
+     *
      */
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
     // *      title="Integration Swagger in Laravel with Passport Auth Documentation",

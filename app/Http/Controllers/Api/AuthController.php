@@ -37,20 +37,21 @@ class AuthController extends Controller {
      * description="User Register here",
      *     @OA\RequestBody(
      *         @OA\JsonContent(
-     *               required={"country_name", "country_code", "mobile_phone_number"},
+     *               required={"country_name", "country_code", "mobile_phone_number", "client_type"},
      *               @OA\Property(property="country_name", type="string", example="IR", format="", description="2 uppercase characters. sample => IR or EN"),
      *               @OA\Property(property="country_code", type="string", example="+98", format="int64", description="Character '+' with 1 to 3 digits. sample => +1 to +999"),
      *               @OA\Property(property="mobile_phone_number", type="integer", example="9361230099", format="number", description="digit 10 characters. sample => 9361230099"),
+     *               @OA\Property(property="client_type", type="string", example="shop", format="", description="shop for shopkeeper and customer for user"),
      *          ),
      *         @OA\MediaType(
      *            mediaType="multipart/form-data",
      *            @OA\Schema(
      *               type="object",
-     *               required={"country_name", "country_code", "mobile_phone_number"},
+     *               required={"country_name", "country_code", "mobile_phone_number", "client_type"},
      *               @OA\Property(property="country_name", type="string", example="IR", format="", description="2 uppercase characters. sample => IR or EN"),
      *               @OA\Property(property="country_code", type="string", example="+98", format="int64", description="Character '+' with 1 to 3 digits. sample => +1 to +999"),
      *               @OA\Property(property="mobile_phone_number", type="integer", example="9361230099", format="number", description="digit 10 characters. sample => 9361230099"),
-     *
+     *               @OA\Property(property="client_type", type="string", example="shop", format="", description="shop for shopkeeper and customer for user"),
      *            ),
      *        ),
      *    ),
@@ -174,6 +175,7 @@ class AuthController extends Controller {
                     'country_code' => ['required', 'string', 'min:2', 'max:4'],
                     // for performance unique time called from db, todo #db_optimizer
                     'mobile_phone_number' => ['required', 'numeric', 'digits:10'],
+                    'client_type' => ['required', 'string'],
                 ]
 
             );
@@ -229,10 +231,19 @@ class AuthController extends Controller {
         {
             // update Or Create user
             $user = User::where( 'mobile', $validated['country_code'] . $validated['mobile_phone_number'] )->first();
-
             if ($user !== null)
             {
                 $user->update( ['mobile' => $validated['country_code'] . $validated['mobile_phone_number']] );
+//                dd($user);
+//                $user->guard_name = 'api';
+                if ($request->post( 'client_type' ) == 'shop')
+                {
+                    $user->assignRole( 'shopkeeper');
+                }
+                elseif ($request->post( 'client_type' ) == 'customer')
+                {
+                    $user->assignRole( 'user' );
+                }
                 $responseCode = 200;
                 $message = 'User Login Successfully';
                 $notifications_En_Server = 'The verification code was sent to the mobile number via SMS';
@@ -243,7 +254,17 @@ class AuthController extends Controller {
                 $user = User::create( [
                     'mobile' => $validated['country_code'] . $validated['mobile_phone_number'],
                 ] );
+//                $user->guard_name = 'api';
+//                dd($user);
 
+                if ($request->post( 'client_type' ) == 'shop')
+                {
+                    $user->assignRole( 'shopkeeper' );
+                }
+                elseif ($request->post( 'client_type' ) == 'customer')
+                {
+                    $user->assignRole( 'user' );
+                }
                 $responseCode = 201;
                 $message = 'User Register Successfully';
                 $notifications_En_Server = 'The verification code was sent to the mobile number via SMS';

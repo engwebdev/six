@@ -1606,7 +1606,7 @@ namespace LaravelIdea\Helper\App\Models {
      * @method _IH_Shop_QB onlyTrashed()
      * @method _IH_Shop_QB withoutTrashed()
      * @method _IH_Shop_QB restore()
-     * @method _IH_Shop_QB orderBy($sort, $order)
+     * @method _IH_Shop_QB order($sort, $order)
      * @method _IH_Shop_QB shopAcceptStatus($status)
      * @method _IH_Shop_QB shopAccepted()
      * @method _IH_Shop_QB shopRejected()

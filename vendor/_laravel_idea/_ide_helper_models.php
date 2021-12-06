@@ -1774,7 +1774,7 @@ namespace App\Models {
     /**
      * @property int $id
      * @property string|null $product_category_name
-     * @property string $product_category_image_url
+     * @property string|null $product_category_image_url
      * @property int|null $product_categoryable_id
      * @property string|null $product_categoryable_type
      * @property int|null $product_category_additional_user_id
@@ -1791,6 +1791,9 @@ namespace App\Models {
      * @method HasMany|_IH_NormalProduct_QB Products()
      * @property User $categoryAdditionalUser
      * @method BelongsTo|_IH_User_QB categoryAdditionalUser()
+     * @property _IH_ProductCategory_C|ProductCategory[] $child
+     * @property-read int $child_count
+     * @method HasMany|_IH_ProductCategory_QB child()
      * @property _IH_CustomProduct_C|CustomProduct[] $customProducts
      * @property-read int $custom_products_count
      * @method HasMany|_IH_CustomProduct_QB customProducts()
@@ -1803,6 +1806,8 @@ namespace App\Models {
      * @property _IH_NormalService_C|NormalService[] $normalServices
      * @property-read int $normal_services_count
      * @method HasMany|_IH_NormalService_QB normalServices()
+     * @property ProductCategory $parent
+     * @method BelongsTo|_IH_ProductCategory_QB parent()
      * @property _IH_Task_C|Task[] $task
      * @property-read int $task_count
      * @method HasMany|_IH_Task_QB task()
@@ -2868,7 +2873,7 @@ namespace App\Models {
      * @method static _IH_Shop_QB withTrashed()
      * @method static _IH_Shop_QB onlyTrashed()
      * @method static _IH_Shop_QB withoutTrashed()
-     * @method static _IH_Shop_QB orderBy($sort, $order)
+     * @method static _IH_Shop_QB order($sort, $order)
      * @method static _IH_Shop_QB shopAcceptStatus($status)
      * @method static _IH_Shop_QB shopAccepted()
      * @method static _IH_Shop_QB shopRejected()

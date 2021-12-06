@@ -16,21 +16,19 @@ class CategoryCollection extends ResourceCollection {
      */
     public function toArray($request)
     {
-//        return $this->collection->map(function ($category) {
-//        return [
-//            'id' => $this->resource->id,
-//            'category_name' => $this->resource->category_name,
-//            'category_image_url' => $this->resource->category_image_url,
-//            'category_additional_user_id' => $this->resource->category_additional_user_id,
-//            'category_additional_user_type' => $this->resource->category_additional_user_type,
-//            'category_accept_status' => $this->resource->category_accept_status,
-//            'category_publish_status' => $this->resource->category_publish_status,
-//            'category_show_status' => $this->resource->category_show_status,
-//        ];
-//        });
-//        return [
-//            'data' => $this->collection,
-//        ];
-        return parent::toArray($request);
+//        return parent::toArray($request);
+        return [
+            'data' => $this->collection,
+            'meta' => [
+                'current_page' => (int) $this->currentPage(),
+                'last_page' => (int) $this->lastPage(),
+                'total_pages' => (int) $this->lastPage(),
+                'per_page' => (int) $this->perPage(),
+                'from' => (int) $this->firstItem(),
+                'to' => (int) $this->lastItem(),
+                'total' => (int) $this->total(),
+                'count' => (int) $this->count(),
+            ],
+        ];
     }
 }

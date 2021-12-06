@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\MyException;
+use App\Http\Resources\TagCollection;
 use App\Http\Resources\TagResource;
 use App\Models\Tag;
 use App\Traits\QueryParams;
@@ -251,7 +252,7 @@ class TagController extends Controller {
     {
         $user = auth()->user();
         $user_id = $user->id;
-        $this->CheckQueryParams( $request );
+        $this->checkQueryParams( $request );
 
         $tags = Tag::orderBy( $this->sort, $this->order )
             ->when( $user->hasRole( 'shopkeeper', 'api' ), function ($query) use ($user_id) {
@@ -272,7 +273,9 @@ class TagController extends Controller {
             } )
             ->paginate( $this->limit, '*', 'page', $this->page );
 
-        return response()->json( $tags,
+        return response()->json(
+            new TagCollection
+            ($tags),
             200
         );
     }

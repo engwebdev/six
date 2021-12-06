@@ -13,6 +13,10 @@ class TagResource extends JsonResource {
      */
     public function toArray($request)
     {
+//        if (is_null($this->resource)) {
+//            $this->resource = [];
+//        }
+//        dd($this);
 //        return parent::toArray($request);
         return [
             'tag_id' => $this->resource->id,
@@ -21,4 +25,9 @@ class TagResource extends JsonResource {
             'tag_publish_status' => $this->resource->tag_publish_status,
         ];
     }
+
+
+//    public function resolve($request)
+//    {
+//    }
 }

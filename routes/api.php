@@ -7,9 +7,12 @@ use App\Http\Controllers\Grant\CustomGrantController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\ProductCategoryController;
+use App\Http\Controllers\NormalProductController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -44,7 +47,7 @@ Route::prefix( 'v1' )->middleware( ['auth:api'] )->group( function () {
 
     }
     );
-});
+} );
 
 //Route::get( '/v1/shops/{id}', function (Request $request) {return 1;} )->name( 'shops.show' );
 
@@ -59,7 +62,7 @@ Route::group( ['middleware' => ['auth:api']], function () {
         Route::post( '/userAccount', [AuthController::class, 'userAccount'] )->name( 'userAccount' );
         Route::put( '/userUpdate/{id}', [AuthController::class, 'update'] )->name( 'userUpdate' );
 
-    });
+    } );
 } );
 
 Route::post( '/customGrantToken', [CustomGrantController::class, 'customGrantToken'] )->name( 'customGrantToken' );
@@ -105,13 +108,26 @@ Route::prefix( 'v1' )->middleware( ['auth:api', 'SwaggerRequest'] )->group( func
     Route::get( 'shops/self', [ShopController::class, 'getSelfShop'] )->name( 'shops.getSelfShop' );
 
 //    Route::get('shops/shopImage/{id}', [ShopController::class, 'shopImage'])->name('shop.shopImage');
+    Route::get( 'tagsShop/{id}', [ShopController::class, 'tagsShopById'] )->name( 'tagsShop.show' );
 
+
+    Route::get( 'normal-products', [NormalProductController::class, 'index'] )->name( 'normal-products.index' );
+    Route::post( 'normal-products', [NormalProductController::class, 'store'] )->name( 'normal-products.store' );
+    Route::get( 'normal-products/{id}', [NormalProductController::class, 'show'] )->name( 'normal-products.show' );
+    Route::put( 'normal-products/{id}', [NormalProductController::class, 'update'] )->name( 'normal-products.update' );
+    Route::delete( 'normal-products/{id}', [NormalProductController::class, 'destroy'] )->name( 'normal-products.destroy' );
+
+    Route::get( 'product-category', [ProductCategoryController::class, 'index'] )->name( 'product-category.index' );
+    Route::post( 'product-category', [ProductCategoryController::class, 'store'] )->name( 'product-category.store' );
+    Route::get( 'product-category/{id}', [ProductCategoryController::class, 'show'] )->name( 'product-category.show' );
+    Route::put( 'product-category/{id}', [ProductCategoryController::class, 'update'] )->name( 'product-category.update' );
+    Route::delete( 'product-category/{id}', [ProductCategoryController::class, 'destroy'] )->name( 'product-category.destroy' );
 
 } );
 
 Route::prefix( 'v1' )->middleware( ['auth:api', 'SwaggerRequest'] )->group( function () {
-    Route::get('shopImage/{id}', [ShopController::class, 'image'])->name('shop.image');
-});
+    Route::get( 'shopImage/{id}', [ShopController::class, 'image'] )->name( 'shop.image' );
+} );
 
 //////////////////////////////////////////////////////////////
 Route::get( '/v1/current', function (Request $request) {
