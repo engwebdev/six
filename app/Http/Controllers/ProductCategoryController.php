@@ -7,7 +7,9 @@ use App\Http\Resources\ProductCategoryCollection;
 use App\Http\Resources\ProductCategoryResource;
 use App\Models\ProductCategory;
 use App\Traits\QueryParams;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 
 class ProductCategoryController extends Controller {
@@ -17,10 +19,11 @@ class ProductCategoryController extends Controller {
      * Display a listing of the resource.
      *
      * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function index(Request $request)
     {
+        dd($request);
         $user = auth()->user();
         $user_id = $user->id;
         $this->checkQueryParams( $request );
@@ -43,7 +46,7 @@ class ProductCategoryController extends Controller {
             } )
             ->when( $user->hasRole( 'user', 'api' ), function ($query) use ($user_id) {
                 return $query
-                    ->select()
+//                    ->select()
                     ->where( 'product_category_accept_status', 1 )
                     ->where( 'product_category_publish_status', 1 );
             } )
@@ -61,7 +64,7 @@ class ProductCategoryController extends Controller {
      * Store a newly created resource in storage.
      *
      * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function store(Request $request)
     {
@@ -148,7 +151,7 @@ class ProductCategoryController extends Controller {
      * Display the specified resource.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function show($id)
     {
@@ -158,9 +161,9 @@ class ProductCategoryController extends Controller {
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param Request $request
      * @param int                      $id
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function update(Request $request, $id)
     {
@@ -217,10 +220,17 @@ class ProductCategoryController extends Controller {
      * Remove the specified resource from storage.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function destroy($id)
     {
         //
+    }
+
+
+    public function getShopCategoriesByShopId(Request $request, $id)
+    {
+        // todo from table categories_products_shops
+        // for edit self categories for shop
     }
 }

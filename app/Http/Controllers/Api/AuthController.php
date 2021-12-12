@@ -343,19 +343,21 @@ class AuthController extends Controller {
      * description="Login User Here",
      *     @OA\RequestBody(
      *         @OA\JsonContent(
-     *               required={"verify_code"},
+     *               required={"verify_code", "client_type"},
      *               @OA\Property(property="verify_code", type="string", example="rg05sszlqbvz", format="string", description="unique code for verify phone number"),
      *               @OA\Property(property="country_code", type="string", example="+98", format="string", description="Character '+' with 1 to 3 digits. sample => +1 to +999"),
      *               @OA\Property(property="mobile_phone_number", type="integer", example="9361230099", format="number", description="digit 10 characters. sample => 9361230099"),
+     *               @OA\Property(property="client_type", type="string", example="shop", format="", description="shop for shopkeeper and customer for user"),
      *          ),
      *         @OA\MediaType(
      *            mediaType="multipart/form-data",
      *            @OA\Schema(
      *               type="object",
-     *               required={"verify_code"},
+     *               required={"verify_code", "client_type"},
      *               @OA\Property(property="verify_code", type="string", example="rg05sszlqbvz", format="string", description="unique code for verify phone number"),
      *               @OA\Property(property="country_code", type="string", example="+98", format="string", description="Character '+' with 1 to 3 digits. sample => +1 to +999"),
      *               @OA\Property(property="mobile_phone_number", type="integer", example="9361230099", format="number", description="digit 10 characters. sample => 9361230099"),
+     *               @OA\Property(property="client_type", type="string", example="shop", format="", description="shop for shopkeeper and customer for user"),
      *
      *            ),
      *        ),
@@ -406,6 +408,9 @@ class AuthController extends Controller {
                 'verify_code' => ['required'],
                 'country_code' => ['string', 'nullable'],
                 'mobile_phone_number' => ['numeric', 'digits:10', 'nullable'],
+                'client_type' => ['required', 'string'],
+
+
 //                'mobile' => ['string', 'size:13',
 //                    function () use () {
 //                    }
@@ -464,12 +469,20 @@ class AuthController extends Controller {
 
                     // call issueToken and get token
 
+                    if ($request->post( 'client_type' ) == 'shop')
+                    {
+                        $client_id = 3;
+                    }
+                    else
+                    {
+                        $client_id = 1;
+                    }
 
                     $request->request->add(
                         [
                             "grant_type" => "custom_grant",
                             "CustomGrant" => $user->mobile,
-                            "client_id" => "3",
+                            "client_id" => $client_id,
                         ]
                     );
 

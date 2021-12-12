@@ -10,6 +10,7 @@ trait QueryParams
     public $order;
     public $page;
     public $limit;
+    protected $queryStrings  = [];
 
     public function setQuerySort(Request $request)
     {

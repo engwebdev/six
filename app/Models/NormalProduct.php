@@ -115,7 +115,7 @@ class NormalProduct extends Model {
      */
     public function normalProductImages()
     {
-        return $this->morphMany( ProductImage::class, 'product_imageable', 'NormalProduct');
+        return $this->morphMany( ProductsImage::class, 'products_imageable', 'products_imageable_type');
     }
 
     /**

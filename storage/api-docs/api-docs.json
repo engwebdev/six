@@ -232,7 +232,8 @@
                         "multipart/form-data": {
                             "schema": {
                                 "required": [
-                                    "verify_code"
+                                    "verify_code",
+                                    "client_type"
                                 ],
                                 "properties": {
                                     "verify_code": {
@@ -252,6 +253,12 @@
                                         "type": "integer",
                                         "format": "number",
                                         "example": "9361230099"
+                                    },
+                                    "client_type": {
+                                        "description": "shop for shopkeeper and customer for user",
+                                        "type": "string",
+                                        "format": "",
+                                        "example": "shop"
                                     }
                                 },
                                 "type": "object"
@@ -260,7 +267,8 @@
                         "application/json": {
                             "schema": {
                                 "required": [
-                                    "verify_code"
+                                    "verify_code",
+                                    "client_type"
                                 ],
                                 "properties": {
                                     "verify_code": {
@@ -280,6 +288,12 @@
                                         "type": "integer",
                                         "format": "number",
                                         "example": "9361230099"
+                                    },
+                                    "client_type": {
+                                        "description": "shop for shopkeeper and customer for user",
+                                        "type": "string",
+                                        "format": "",
+                                        "example": "shop"
                                     }
                                 },
                                 "type": "object"

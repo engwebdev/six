@@ -351,8 +351,8 @@ namespace LaravelIdea\Helper\App\Models {
     use App\Models\NormalService;
     use App\Models\ProductCategory;
     use App\Models\ProductCustomerComments;
-    use App\Models\ProductImage;
     use App\Models\ProductPriceHistory;
+    use App\Models\ProductsImage;
     use App\Models\ProductTag;
     use App\Models\RolesShopsUsers;
     use App\Models\Shop;
@@ -1223,61 +1223,6 @@ namespace LaravelIdea\Helper\App\Models {
     class _IH_ProductCustomerComments_QB extends _BaseBuilder {}
     
     /**
-     * @method ProductImage shift(int $count = 1)
-     * @method ProductImage pop(int $count = 1)
-     * @method ProductImage get($key, $default = null)
-     * @method ProductImage pull($key, $default = null)
-     * @method ProductImage first(callable $callback = null, $default = null)
-     * @method ProductImage firstWhere(string $key, $operator = null, $value = null)
-     * @method ProductImage find($key, $default = null)
-     * @method ProductImage[] all()
-     * @method ProductImage last(callable $callback = null, $default = null)
-     */
-    class _IH_ProductImage_C extends _BaseCollection {
-        /**
-         * @param int $size
-         * @return ProductImage[][]
-         */
-        public function chunk($size)
-        {
-            return [];
-        }
-    }
-    
-    /**
-     * @method ProductImage baseSole(array|string $columns = ['*'])
-     * @method ProductImage create(array $attributes = [])
-     * @method _IH_ProductImage_C|ProductImage[] cursor()
-     * @method ProductImage|null find($id, array $columns = ['*'])
-     * @method _IH_ProductImage_C|ProductImage[] findMany(array|Arrayable $ids, array $columns = ['*'])
-     * @method ProductImage findOrFail($id, array $columns = ['*'])
-     * @method ProductImage findOrNew($id, array $columns = ['*'])
-     * @method ProductImage first(array|string $columns = ['*'])
-     * @method ProductImage firstOr(array|\Closure $columns = ['*'], \Closure $callback = null)
-     * @method ProductImage firstOrCreate(array $attributes = [], array $values = [])
-     * @method ProductImage firstOrFail(array $columns = ['*'])
-     * @method ProductImage firstOrNew(array $attributes = [], array $values = [])
-     * @method ProductImage firstWhere(array|\Closure|Expression|string $column, $operator = null, $value = null, string $boolean = 'and')
-     * @method ProductImage forceCreate(array $attributes)
-     * @method _IH_ProductImage_C|ProductImage[] fromQuery(string $query, array $bindings = [])
-     * @method _IH_ProductImage_C|ProductImage[] get(array|string $columns = ['*'])
-     * @method ProductImage getModel()
-     * @method ProductImage[] getModels(array|string $columns = ['*'])
-     * @method _IH_ProductImage_C|ProductImage[] hydrate(array $items)
-     * @method ProductImage make(array $attributes = [])
-     * @method ProductImage newModelInstance(array $attributes = [])
-     * @method LengthAwarePaginator|ProductImage[]|_IH_ProductImage_C paginate(int|null $perPage = null, array $columns = ['*'], string $pageName = 'page', int|null $page = null)
-     * @method Paginator|ProductImage[]|_IH_ProductImage_C simplePaginate(int|null $perPage = null, array $columns = ['*'], string $pageName = 'page', int|null $page = null)
-     * @method ProductImage sole(array|string $columns = ['*'])
-     * @method ProductImage updateOrCreate(array $attributes, array $values = [])
-     * @method _IH_ProductImage_QB withTrashed()
-     * @method _IH_ProductImage_QB onlyTrashed()
-     * @method _IH_ProductImage_QB withoutTrashed()
-     * @method _IH_ProductImage_QB restore()
-     */
-    class _IH_ProductImage_QB extends _BaseBuilder {}
-    
-    /**
      * @method ProductPriceHistory shift(int $count = 1)
      * @method ProductPriceHistory pop(int $count = 1)
      * @method ProductPriceHistory get($key, $default = null)
@@ -1396,6 +1341,80 @@ namespace LaravelIdea\Helper\App\Models {
      * @method _IH_ProductTag_QB restore()
      */
     class _IH_ProductTag_QB extends _BaseBuilder {}
+    
+    /**
+     * @method ProductsImage shift(int $count = 1)
+     * @method ProductsImage pop(int $count = 1)
+     * @method ProductsImage get($key, $default = null)
+     * @method ProductsImage pull($key, $default = null)
+     * @method ProductsImage first(callable $callback = null, $default = null)
+     * @method ProductsImage firstWhere(string $key, $operator = null, $value = null)
+     * @method ProductsImage find($key, $default = null)
+     * @method ProductsImage[] all()
+     * @method ProductsImage last(callable $callback = null, $default = null)
+     */
+    class _IH_ProductsImage_C extends _BaseCollection {
+        /**
+         * @param int $size
+         * @return ProductsImage[][]
+         */
+        public function chunk($size)
+        {
+            return [];
+        }
+    }
+    
+    /**
+     * @method _IH_ProductsImage_QB whereId($value)
+     * @method _IH_ProductsImage_QB whereProductsImageableId($value)
+     * @method _IH_ProductsImage_QB whereProductsImageableType($value)
+     * @method _IH_ProductsImage_QB whereImageUrl($value)
+     * @method _IH_ProductsImage_QB whereImageThumbnailUrl($value)
+     * @method _IH_ProductsImage_QB whereImageIndexParam($value)
+     * @method _IH_ProductsImage_QB whereImageType($value)
+     * @method _IH_ProductsImage_QB whereImageFormat($value)
+     * @method _IH_ProductsImage_QB whereImageSize($value)
+     * @method _IH_ProductsImage_QB whereImageResolution($value)
+     * @method _IH_ProductsImage_QB whereFileName($value)
+     * @method _IH_ProductsImage_QB whereUploaderUserId($value)
+     * @method _IH_ProductsImage_QB whereUploaderUserDate($value)
+     * @method _IH_ProductsImage_QB whereActivateStatus($value)
+     * @method _IH_ProductsImage_QB whereAcceptStatus($value)
+     * @method _IH_ProductsImage_QB wherePublishStatus($value)
+     * @method _IH_ProductsImage_QB whereDeletedAt($value)
+     * @method _IH_ProductsImage_QB whereCreatedAt($value)
+     * @method _IH_ProductsImage_QB whereUpdatedAt($value)
+     * @method ProductsImage baseSole(array|string $columns = ['*'])
+     * @method ProductsImage create(array $attributes = [])
+     * @method _IH_ProductsImage_C|ProductsImage[] cursor()
+     * @method ProductsImage|null find($id, array $columns = ['*'])
+     * @method _IH_ProductsImage_C|ProductsImage[] findMany(array|Arrayable $ids, array $columns = ['*'])
+     * @method ProductsImage findOrFail($id, array $columns = ['*'])
+     * @method ProductsImage findOrNew($id, array $columns = ['*'])
+     * @method ProductsImage first(array|string $columns = ['*'])
+     * @method ProductsImage firstOr(array|\Closure $columns = ['*'], \Closure $callback = null)
+     * @method ProductsImage firstOrCreate(array $attributes = [], array $values = [])
+     * @method ProductsImage firstOrFail(array $columns = ['*'])
+     * @method ProductsImage firstOrNew(array $attributes = [], array $values = [])
+     * @method ProductsImage firstWhere(array|\Closure|Expression|string $column, $operator = null, $value = null, string $boolean = 'and')
+     * @method ProductsImage forceCreate(array $attributes)
+     * @method _IH_ProductsImage_C|ProductsImage[] fromQuery(string $query, array $bindings = [])
+     * @method _IH_ProductsImage_C|ProductsImage[] get(array|string $columns = ['*'])
+     * @method ProductsImage getModel()
+     * @method ProductsImage[] getModels(array|string $columns = ['*'])
+     * @method _IH_ProductsImage_C|ProductsImage[] hydrate(array $items)
+     * @method ProductsImage make(array $attributes = [])
+     * @method ProductsImage newModelInstance(array $attributes = [])
+     * @method LengthAwarePaginator|ProductsImage[]|_IH_ProductsImage_C paginate(int|null $perPage = null, array $columns = ['*'], string $pageName = 'page', int|null $page = null)
+     * @method Paginator|ProductsImage[]|_IH_ProductsImage_C simplePaginate(int|null $perPage = null, array $columns = ['*'], string $pageName = 'page', int|null $page = null)
+     * @method ProductsImage sole(array|string $columns = ['*'])
+     * @method ProductsImage updateOrCreate(array $attributes, array $values = [])
+     * @method _IH_ProductsImage_QB withTrashed()
+     * @method _IH_ProductsImage_QB onlyTrashed()
+     * @method _IH_ProductsImage_QB withoutTrashed()
+     * @method _IH_ProductsImage_QB restore()
+     */
+    class _IH_ProductsImage_QB extends _BaseBuilder {}
     
     /**
      * @method RolesShopsUsers shift(int $count = 1)
