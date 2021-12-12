@@ -361,6 +361,7 @@ namespace LaravelIdea\Helper\App\Models {
     use App\Models\Task;
     use App\Models\Team;
     use App\Models\TeamInvitation;
+    use App\Models\TopModel;
     use App\Models\User;
     use Illuminate\Contracts\Support\Arrayable;
     use Illuminate\Database\Query\Expression;
@@ -435,6 +436,9 @@ namespace LaravelIdea\Helper\App\Models {
      * @method _IH_AttributeValue_QB onlyTrashed()
      * @method _IH_AttributeValue_QB withoutTrashed()
      * @method _IH_AttributeValue_QB restore()
+     * @method _IH_AttributeValue_QB customFilter($filter)
+     * @method _IH_AttributeValue_QB customPagination($pagination)
+     * @method _IH_AttributeValue_QB customSort($sort)
      */
     class _IH_AttributeValue_QB extends _BaseBuilder {}
     
@@ -499,6 +503,9 @@ namespace LaravelIdea\Helper\App\Models {
      * @method _IH_Attribute_QB onlyTrashed()
      * @method _IH_Attribute_QB withoutTrashed()
      * @method _IH_Attribute_QB restore()
+     * @method _IH_Attribute_QB customFilter($filter)
+     * @method _IH_Attribute_QB customPagination($pagination)
+     * @method _IH_Attribute_QB customSort($sort)
      */
     class _IH_Attribute_QB extends _BaseBuilder {}
     
@@ -567,6 +574,9 @@ namespace LaravelIdea\Helper\App\Models {
      * @method _IH_Category_QB onlyTrashed()
      * @method _IH_Category_QB withoutTrashed()
      * @method _IH_Category_QB restore()
+     * @method _IH_Category_QB customFilter($filter)
+     * @method _IH_Category_QB customPagination($pagination)
+     * @method _IH_Category_QB customSort($sort)
      */
     class _IH_Category_QB extends _BaseBuilder {}
     
@@ -622,6 +632,9 @@ namespace LaravelIdea\Helper\App\Models {
      * @method _IH_ConfirmComment_QB onlyTrashed()
      * @method _IH_ConfirmComment_QB withoutTrashed()
      * @method _IH_ConfirmComment_QB restore()
+     * @method _IH_ConfirmComment_QB customFilter($filter)
+     * @method _IH_ConfirmComment_QB customPagination($pagination)
+     * @method _IH_ConfirmComment_QB customSort($sort)
      */
     class _IH_ConfirmComment_QB extends _BaseBuilder {}
     
@@ -708,6 +721,9 @@ namespace LaravelIdea\Helper\App\Models {
      * @method _IH_CustomProduct_QB onlyTrashed()
      * @method _IH_CustomProduct_QB withoutTrashed()
      * @method _IH_CustomProduct_QB restore()
+     * @method _IH_CustomProduct_QB customFilter($filter)
+     * @method _IH_CustomProduct_QB customPagination($pagination)
+     * @method _IH_CustomProduct_QB customSort($sort)
      */
     class _IH_CustomProduct_QB extends _BaseBuilder {}
     
@@ -793,6 +809,9 @@ namespace LaravelIdea\Helper\App\Models {
      * @method _IH_CustomService_QB onlyTrashed()
      * @method _IH_CustomService_QB withoutTrashed()
      * @method _IH_CustomService_QB restore()
+     * @method _IH_CustomService_QB customFilter($filter)
+     * @method _IH_CustomService_QB customPagination($pagination)
+     * @method _IH_CustomService_QB customSort($sort)
      */
     class _IH_CustomService_QB extends _BaseBuilder {}
     
@@ -862,6 +881,9 @@ namespace LaravelIdea\Helper\App\Models {
      * @method _IH_Detail_QB onlyTrashed()
      * @method _IH_Detail_QB withoutTrashed()
      * @method _IH_Detail_QB restore()
+     * @method _IH_Detail_QB customFilter($filter)
+     * @method _IH_Detail_QB customPagination($pagination)
+     * @method _IH_Detail_QB customSort($sort)
      */
     class _IH_Detail_QB extends _BaseBuilder {}
     
@@ -999,6 +1021,9 @@ namespace LaravelIdea\Helper\App\Models {
      * @method _IH_NormalProduct_QB onlyTrashed()
      * @method _IH_NormalProduct_QB withoutTrashed()
      * @method _IH_NormalProduct_QB restore()
+     * @method _IH_NormalProduct_QB customFilter($filter)
+     * @method _IH_NormalProduct_QB customPagination($pagination)
+     * @method _IH_NormalProduct_QB customSort($sort)
      */
     class _IH_NormalProduct_QB extends _BaseBuilder {}
     
@@ -1080,6 +1105,9 @@ namespace LaravelIdea\Helper\App\Models {
      * @method _IH_NormalService_QB onlyTrashed()
      * @method _IH_NormalService_QB withoutTrashed()
      * @method _IH_NormalService_QB restore()
+     * @method _IH_NormalService_QB customFilter($filter)
+     * @method _IH_NormalService_QB customPagination($pagination)
+     * @method _IH_NormalService_QB customSort($sort)
      */
     class _IH_NormalService_QB extends _BaseBuilder {}
     
@@ -1149,6 +1177,9 @@ namespace LaravelIdea\Helper\App\Models {
      * @method _IH_ProductCategory_QB onlyTrashed()
      * @method _IH_ProductCategory_QB withoutTrashed()
      * @method _IH_ProductCategory_QB restore()
+     * @method _IH_ProductCategory_QB customFilter($filter)
+     * @method _IH_ProductCategory_QB customPagination($pagination)
+     * @method _IH_ProductCategory_QB customSort($sort)
      */
     class _IH_ProductCategory_QB extends _BaseBuilder {}
     
@@ -1219,6 +1250,9 @@ namespace LaravelIdea\Helper\App\Models {
      * @method _IH_ProductCustomerComments_QB onlyTrashed()
      * @method _IH_ProductCustomerComments_QB withoutTrashed()
      * @method _IH_ProductCustomerComments_QB restore()
+     * @method _IH_ProductCustomerComments_QB customFilter($filter)
+     * @method _IH_ProductCustomerComments_QB customPagination($pagination)
+     * @method _IH_ProductCustomerComments_QB customSort($sort)
      */
     class _IH_ProductCustomerComments_QB extends _BaseBuilder {}
     
@@ -1274,6 +1308,9 @@ namespace LaravelIdea\Helper\App\Models {
      * @method _IH_ProductPriceHistory_QB onlyTrashed()
      * @method _IH_ProductPriceHistory_QB withoutTrashed()
      * @method _IH_ProductPriceHistory_QB restore()
+     * @method _IH_ProductPriceHistory_QB customFilter($filter)
+     * @method _IH_ProductPriceHistory_QB customPagination($pagination)
+     * @method _IH_ProductPriceHistory_QB customSort($sort)
      */
     class _IH_ProductPriceHistory_QB extends _BaseBuilder {}
     
@@ -1339,6 +1376,9 @@ namespace LaravelIdea\Helper\App\Models {
      * @method _IH_ProductTag_QB onlyTrashed()
      * @method _IH_ProductTag_QB withoutTrashed()
      * @method _IH_ProductTag_QB restore()
+     * @method _IH_ProductTag_QB customFilter($filter)
+     * @method _IH_ProductTag_QB customPagination($pagination)
+     * @method _IH_ProductTag_QB customSort($sort)
      */
     class _IH_ProductTag_QB extends _BaseBuilder {}
     
@@ -1413,6 +1453,9 @@ namespace LaravelIdea\Helper\App\Models {
      * @method _IH_ProductsImage_QB onlyTrashed()
      * @method _IH_ProductsImage_QB withoutTrashed()
      * @method _IH_ProductsImage_QB restore()
+     * @method _IH_ProductsImage_QB customFilter($filter)
+     * @method _IH_ProductsImage_QB customPagination($pagination)
+     * @method _IH_ProductsImage_QB customSort($sort)
      */
     class _IH_ProductsImage_QB extends _BaseBuilder {}
     
@@ -1473,6 +1516,9 @@ namespace LaravelIdea\Helper\App\Models {
      * @method _IH_RolesShopsUsers_QB onlyTrashed()
      * @method _IH_RolesShopsUsers_QB withoutTrashed()
      * @method _IH_RolesShopsUsers_QB restore()
+     * @method _IH_RolesShopsUsers_QB customFilter($filter)
+     * @method _IH_RolesShopsUsers_QB customPagination($pagination)
+     * @method _IH_RolesShopsUsers_QB customSort($sort)
      */
     class _IH_RolesShopsUsers_QB extends _BaseBuilder {}
     
@@ -1547,6 +1593,9 @@ namespace LaravelIdea\Helper\App\Models {
      * @method _IH_ShopImages_QB onlyTrashed()
      * @method _IH_ShopImages_QB withoutTrashed()
      * @method _IH_ShopImages_QB restore()
+     * @method _IH_ShopImages_QB customFilter($filter)
+     * @method _IH_ShopImages_QB customPagination($pagination)
+     * @method _IH_ShopImages_QB customSort($sort)
      */
     class _IH_ShopImages_QB extends _BaseBuilder {}
     
@@ -1625,6 +1674,9 @@ namespace LaravelIdea\Helper\App\Models {
      * @method _IH_Shop_QB onlyTrashed()
      * @method _IH_Shop_QB withoutTrashed()
      * @method _IH_Shop_QB restore()
+     * @method _IH_Shop_QB customFilter($filter)
+     * @method _IH_Shop_QB customPagination($pagination)
+     * @method _IH_Shop_QB customSort($sort)
      * @method _IH_Shop_QB order($sort, $order)
      * @method _IH_Shop_QB shopAcceptStatus($status)
      * @method _IH_Shop_QB shopAccepted()
@@ -1694,6 +1746,9 @@ namespace LaravelIdea\Helper\App\Models {
      * @method _IH_Tag_QB onlyTrashed()
      * @method _IH_Tag_QB withoutTrashed()
      * @method _IH_Tag_QB restore()
+     * @method _IH_Tag_QB customFilter($filter)
+     * @method _IH_Tag_QB customPagination($pagination)
+     * @method _IH_Tag_QB customSort($sort)
      */
     class _IH_Tag_QB extends _BaseBuilder {}
     
@@ -1782,6 +1837,9 @@ namespace LaravelIdea\Helper\App\Models {
      * @method _IH_Task_QB onlyTrashed()
      * @method _IH_Task_QB withoutTrashed()
      * @method _IH_Task_QB restore()
+     * @method _IH_Task_QB customFilter($filter)
+     * @method _IH_Task_QB customPagination($pagination)
+     * @method _IH_Task_QB customSort($sort)
      */
     class _IH_Task_QB extends _BaseBuilder {}
     
@@ -1888,6 +1946,60 @@ namespace LaravelIdea\Helper\App\Models {
     class _IH_Team_QB extends _BaseBuilder {}
     
     /**
+     * @method TopModel shift(int $count = 1)
+     * @method TopModel pop(int $count = 1)
+     * @method TopModel get($key, $default = null)
+     * @method TopModel pull($key, $default = null)
+     * @method TopModel first(callable $callback = null, $default = null)
+     * @method TopModel firstWhere(string $key, $operator = null, $value = null)
+     * @method TopModel find($key, $default = null)
+     * @method TopModel[] all()
+     * @method TopModel last(callable $callback = null, $default = null)
+     */
+    class _IH_TopModel_C extends _BaseCollection {
+        /**
+         * @param int $size
+         * @return TopModel[][]
+         */
+        public function chunk($size)
+        {
+            return [];
+        }
+    }
+    
+    /**
+     * @method TopModel baseSole(array|string $columns = ['*'])
+     * @method TopModel create(array $attributes = [])
+     * @method _IH_TopModel_C|TopModel[] cursor()
+     * @method TopModel|null find($id, array $columns = ['*'])
+     * @method _IH_TopModel_C|TopModel[] findMany(array|Arrayable $ids, array $columns = ['*'])
+     * @method TopModel findOrFail($id, array $columns = ['*'])
+     * @method TopModel findOrNew($id, array $columns = ['*'])
+     * @method TopModel first(array|string $columns = ['*'])
+     * @method TopModel firstOr(array|\Closure $columns = ['*'], \Closure $callback = null)
+     * @method TopModel firstOrCreate(array $attributes = [], array $values = [])
+     * @method TopModel firstOrFail(array $columns = ['*'])
+     * @method TopModel firstOrNew(array $attributes = [], array $values = [])
+     * @method TopModel firstWhere(array|\Closure|Expression|string $column, $operator = null, $value = null, string $boolean = 'and')
+     * @method TopModel forceCreate(array $attributes)
+     * @method _IH_TopModel_C|TopModel[] fromQuery(string $query, array $bindings = [])
+     * @method _IH_TopModel_C|TopModel[] get(array|string $columns = ['*'])
+     * @method TopModel getModel()
+     * @method TopModel[] getModels(array|string $columns = ['*'])
+     * @method _IH_TopModel_C|TopModel[] hydrate(array $items)
+     * @method TopModel make(array $attributes = [])
+     * @method TopModel newModelInstance(array $attributes = [])
+     * @method LengthAwarePaginator|TopModel[]|_IH_TopModel_C paginate(int|null $perPage = null, array $columns = ['*'], string $pageName = 'page', int|null $page = null)
+     * @method Paginator|TopModel[]|_IH_TopModel_C simplePaginate(int|null $perPage = null, array $columns = ['*'], string $pageName = 'page', int|null $page = null)
+     * @method TopModel sole(array|string $columns = ['*'])
+     * @method TopModel updateOrCreate(array $attributes, array $values = [])
+     * @method _IH_TopModel_QB customFilter($filter)
+     * @method _IH_TopModel_QB customPagination($pagination)
+     * @method _IH_TopModel_QB customSort($sort)
+     */
+    class _IH_TopModel_QB extends _BaseBuilder {}
+    
+    /**
      * @method User shift(int $count = 1)
      * @method User pop(int $count = 1)
      * @method User get($key, $default = null)
@@ -1961,6 +2073,9 @@ namespace LaravelIdea\Helper\App\Models {
      * @method _IH_User_QB onlyTrashed()
      * @method _IH_User_QB withoutTrashed()
      * @method _IH_User_QB restore()
+     * @method _IH_User_QB customFilter($filter)
+     * @method _IH_User_QB customPagination($pagination)
+     * @method _IH_User_QB customSort($sort)
      * @method _IH_User_QB permission(array|Collection|Permission|string $permissions)
      * @method _IH_User_QB role(array|Collection|Role|string $roles, string $guard = null)
      */

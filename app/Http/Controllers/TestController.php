@@ -20,7 +20,7 @@ class TestController extends Controller
      */
     public function index(TestFilter $filter, TestSort $sort, Pagination $pagination)
     {
-        $users = User::filter($filter)->customSort($sort)->customPagination($pagination)->toSql();
+        $users = User::customFilter($filter)->customSort($sort)->customPagination($pagination)->toSql();
         dd($users);
     }
 

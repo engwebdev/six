@@ -49,8 +49,6 @@ namespace App\Models {
     use LaravelIdea\Helper\App\Models\_IH_ProductCategory_QB;
     use LaravelIdea\Helper\App\Models\_IH_ProductCustomerComments_C;
     use LaravelIdea\Helper\App\Models\_IH_ProductCustomerComments_QB;
-    use LaravelIdea\Helper\App\Models\_IH_ProductImage_C;
-    use LaravelIdea\Helper\App\Models\_IH_ProductImage_QB;
     use LaravelIdea\Helper\App\Models\_IH_ProductPriceHistory_C;
     use LaravelIdea\Helper\App\Models\_IH_ProductPriceHistory_QB;
     use LaravelIdea\Helper\App\Models\_IH_ProductsImage_C;
@@ -71,6 +69,8 @@ namespace App\Models {
     use LaravelIdea\Helper\App\Models\_IH_TeamInvitation_QB;
     use LaravelIdea\Helper\App\Models\_IH_Team_C;
     use LaravelIdea\Helper\App\Models\_IH_Team_QB;
+    use LaravelIdea\Helper\App\Models\_IH_TopModel_C;
+    use LaravelIdea\Helper\App\Models\_IH_TopModel_QB;
     use LaravelIdea\Helper\App\Models\_IH_User_C;
     use LaravelIdea\Helper\App\Models\_IH_User_QB;
     use LaravelIdea\Helper\Illuminate\Notifications\_IH_DatabaseNotification_C;
@@ -224,6 +224,9 @@ namespace App\Models {
      * @method static _IH_Attribute_QB withTrashed()
      * @method static _IH_Attribute_QB onlyTrashed()
      * @method static _IH_Attribute_QB withoutTrashed()
+     * @method static _IH_Attribute_QB customFilter($filter)
+     * @method static _IH_Attribute_QB customPagination($pagination)
+     * @method static _IH_Attribute_QB customSort($sort)
      */
     class Attribute extends Model {}
     
@@ -371,6 +374,9 @@ namespace App\Models {
      * @method static _IH_AttributeValue_QB withTrashed()
      * @method static _IH_AttributeValue_QB onlyTrashed()
      * @method static _IH_AttributeValue_QB withoutTrashed()
+     * @method static _IH_AttributeValue_QB customFilter($filter)
+     * @method static _IH_AttributeValue_QB customPagination($pagination)
+     * @method static _IH_AttributeValue_QB customSort($sort)
      */
     class AttributeValue extends Model {}
     
@@ -525,6 +531,9 @@ namespace App\Models {
      * @method static _IH_Category_QB withTrashed()
      * @method static _IH_Category_QB onlyTrashed()
      * @method static _IH_Category_QB withoutTrashed()
+     * @method static _IH_Category_QB customFilter($filter)
+     * @method static _IH_Category_QB customPagination($pagination)
+     * @method static _IH_Category_QB customSort($sort)
      * @method static CategoryFactory factory(...$parameters)
      */
     class Category extends Model {}
@@ -653,6 +662,9 @@ namespace App\Models {
      * @method static _IH_ConfirmComment_QB withTrashed()
      * @method static _IH_ConfirmComment_QB onlyTrashed()
      * @method static _IH_ConfirmComment_QB withoutTrashed()
+     * @method static _IH_ConfirmComment_QB customFilter($filter)
+     * @method static _IH_ConfirmComment_QB customPagination($pagination)
+     * @method static _IH_ConfirmComment_QB customSort($sort)
      */
     class ConfirmComment extends Model {}
     
@@ -693,9 +705,6 @@ namespace App\Models {
      * @property _IH_ProductCustomerComments_C|ProductCustomerComments[] $customProductCustomerComments
      * @property-read int $custom_product_customer_comments_count
      * @method MorphToMany|_IH_ProductCustomerComments_QB customProductCustomerComments()
-     * @property _IH_ProductImage_C|ProductImage[] $customProductImages
-     * @property-read int $custom_product_images_count
-     * @method MorphToMany|_IH_ProductImage_QB customProductImages()
      * @property _IH_ProductPriceHistory_C|ProductPriceHistory[] $customProductPrices
      * @property-read int $custom_product_prices_count
      * @method MorphToMany|_IH_ProductPriceHistory_QB customProductPrices()
@@ -866,6 +875,9 @@ namespace App\Models {
      * @method static _IH_CustomProduct_QB withTrashed()
      * @method static _IH_CustomProduct_QB onlyTrashed()
      * @method static _IH_CustomProduct_QB withoutTrashed()
+     * @method static _IH_CustomProduct_QB customFilter($filter)
+     * @method static _IH_CustomProduct_QB customPagination($pagination)
+     * @method static _IH_CustomProduct_QB customSort($sort)
      */
     class CustomProduct extends Model {}
     
@@ -905,9 +917,6 @@ namespace App\Models {
      * @property _IH_ProductCustomerComments_C|ProductCustomerComments[] $customServiceCustomerComments
      * @property-read int $custom_service_customer_comments_count
      * @method MorphToMany|_IH_ProductCustomerComments_QB customServiceCustomerComments()
-     * @property _IH_ProductImage_C|ProductImage[] $customServiceImages
-     * @property-read int $custom_service_images_count
-     * @method MorphToMany|_IH_ProductImage_QB customServiceImages()
      * @property _IH_ProductPriceHistory_C|ProductPriceHistory[] $customServicePrices
      * @property-read int $custom_service_prices_count
      * @method MorphToMany|_IH_ProductPriceHistory_QB customServicePrices()
@@ -1077,6 +1086,9 @@ namespace App\Models {
      * @method static _IH_CustomService_QB withTrashed()
      * @method static _IH_CustomService_QB onlyTrashed()
      * @method static _IH_CustomService_QB withoutTrashed()
+     * @method static _IH_CustomService_QB customFilter($filter)
+     * @method static _IH_CustomService_QB customPagination($pagination)
+     * @method static _IH_CustomService_QB customSort($sort)
      */
     class CustomService extends Model {}
     
@@ -1232,6 +1244,9 @@ namespace App\Models {
      * @method static _IH_Detail_QB withTrashed()
      * @method static _IH_Detail_QB onlyTrashed()
      * @method static _IH_Detail_QB withoutTrashed()
+     * @method static _IH_Detail_QB customFilter($filter)
+     * @method static _IH_Detail_QB customPagination($pagination)
+     * @method static _IH_Detail_QB customSort($sort)
      */
     class Detail extends Model {}
     
@@ -1397,9 +1412,9 @@ namespace App\Models {
      * @property _IH_Detail_C|Detail[] $normalProductDetails
      * @property-read int $normal_product_details_count
      * @method MorphToMany|_IH_Detail_QB normalProductDetails()
-     * @property _IH_ProductImage_C|ProductImage[] $normalProductImages
+     * @property _IH_ProductsImage_C|ProductsImage[] $normalProductImages
      * @property-read int $normal_product_images_count
-     * @method MorphToMany|_IH_ProductImage_QB normalProductImages()
+     * @method MorphToMany|_IH_ProductsImage_QB normalProductImages()
      * @property _IH_ProductPriceHistory_C|ProductPriceHistory[] $normalProductPrices
      * @property-read int $normal_product_prices_count
      * @method MorphToMany|_IH_ProductPriceHistory_QB normalProductPrices()
@@ -1567,6 +1582,9 @@ namespace App\Models {
      * @method static _IH_NormalProduct_QB withTrashed()
      * @method static _IH_NormalProduct_QB onlyTrashed()
      * @method static _IH_NormalProduct_QB withoutTrashed()
+     * @method static _IH_NormalProduct_QB customFilter($filter)
+     * @method static _IH_NormalProduct_QB customPagination($pagination)
+     * @method static _IH_NormalProduct_QB customSort($sort)
      */
     class NormalProduct extends Model {}
     
@@ -1602,9 +1620,6 @@ namespace App\Models {
      * @property _IH_ProductCustomerComments_C|ProductCustomerComments[] $customProductCustomerComments
      * @property-read int $custom_product_customer_comments_count
      * @method MorphToMany|_IH_ProductCustomerComments_QB customProductCustomerComments()
-     * @property _IH_ProductImage_C|ProductImage[] $customProductImages
-     * @property-read int $custom_product_images_count
-     * @method MorphToMany|_IH_ProductImage_QB customProductImages()
      * @property _IH_ProductPriceHistory_C|ProductPriceHistory[] $customProductPrices
      * @property-read int $custom_product_prices_count
      * @method MorphToMany|_IH_ProductPriceHistory_QB customProductPrices()
@@ -1770,6 +1785,9 @@ namespace App\Models {
      * @method static _IH_NormalService_QB withTrashed()
      * @method static _IH_NormalService_QB onlyTrashed()
      * @method static _IH_NormalService_QB withoutTrashed()
+     * @method static _IH_NormalService_QB customFilter($filter)
+     * @method static _IH_NormalService_QB customPagination($pagination)
+     * @method static _IH_NormalService_QB customSort($sort)
      */
     class NormalService extends Model {}
     
@@ -1948,6 +1966,9 @@ namespace App\Models {
      * @method static _IH_ProductCategory_QB withTrashed()
      * @method static _IH_ProductCategory_QB onlyTrashed()
      * @method static _IH_ProductCategory_QB withoutTrashed()
+     * @method static _IH_ProductCategory_QB customFilter($filter)
+     * @method static _IH_ProductCategory_QB customPagination($pagination)
+     * @method static _IH_ProductCategory_QB customSort($sort)
      */
     class ProductCategory extends Model {}
     
@@ -2105,6 +2126,9 @@ namespace App\Models {
      * @method static _IH_ProductCustomerComments_QB withTrashed()
      * @method static _IH_ProductCustomerComments_QB onlyTrashed()
      * @method static _IH_ProductCustomerComments_QB withoutTrashed()
+     * @method static _IH_ProductCustomerComments_QB customFilter($filter)
+     * @method static _IH_ProductCustomerComments_QB customPagination($pagination)
+     * @method static _IH_ProductCustomerComments_QB customSort($sort)
      */
     class ProductCustomerComments extends Model {}
     
@@ -2232,6 +2256,9 @@ namespace App\Models {
      * @method static _IH_ProductPriceHistory_QB withTrashed()
      * @method static _IH_ProductPriceHistory_QB onlyTrashed()
      * @method static _IH_ProductPriceHistory_QB withoutTrashed()
+     * @method static _IH_ProductPriceHistory_QB customFilter($filter)
+     * @method static _IH_ProductPriceHistory_QB customPagination($pagination)
+     * @method static _IH_ProductPriceHistory_QB customSort($sort)
      */
     class ProductPriceHistory extends Model {}
     
@@ -2394,6 +2421,9 @@ namespace App\Models {
      * @method static _IH_ProductTag_QB withTrashed()
      * @method static _IH_ProductTag_QB onlyTrashed()
      * @method static _IH_ProductTag_QB withoutTrashed()
+     * @method static _IH_ProductTag_QB customFilter($filter)
+     * @method static _IH_ProductTag_QB customPagination($pagination)
+     * @method static _IH_ProductTag_QB customSort($sort)
      */
     class ProductTag extends Model {}
     
@@ -2559,6 +2589,9 @@ namespace App\Models {
      * @method static _IH_ProductsImage_QB withTrashed()
      * @method static _IH_ProductsImage_QB onlyTrashed()
      * @method static _IH_ProductsImage_QB withoutTrashed()
+     * @method static _IH_ProductsImage_QB customFilter($filter)
+     * @method static _IH_ProductsImage_QB customPagination($pagination)
+     * @method static _IH_ProductsImage_QB customSort($sort)
      */
     class ProductsImage extends Model {}
     
@@ -2702,6 +2735,9 @@ namespace App\Models {
      * @method static _IH_RolesShopsUsers_QB withTrashed()
      * @method static _IH_RolesShopsUsers_QB onlyTrashed()
      * @method static _IH_RolesShopsUsers_QB withoutTrashed()
+     * @method static _IH_RolesShopsUsers_QB customFilter($filter)
+     * @method static _IH_RolesShopsUsers_QB customPagination($pagination)
+     * @method static _IH_RolesShopsUsers_QB customSort($sort)
      */
     class RolesShopsUsers extends Model {}
     
@@ -2913,6 +2949,9 @@ namespace App\Models {
      * @method static _IH_Shop_QB withTrashed()
      * @method static _IH_Shop_QB onlyTrashed()
      * @method static _IH_Shop_QB withoutTrashed()
+     * @method static _IH_Shop_QB customFilter($filter)
+     * @method static _IH_Shop_QB customPagination($pagination)
+     * @method static _IH_Shop_QB customSort($sort)
      * @method static _IH_Shop_QB order($sort, $order)
      * @method static _IH_Shop_QB shopAcceptStatus($status)
      * @method static _IH_Shop_QB shopAccepted()
@@ -3085,6 +3124,9 @@ namespace App\Models {
      * @method static _IH_ShopImages_QB withTrashed()
      * @method static _IH_ShopImages_QB onlyTrashed()
      * @method static _IH_ShopImages_QB withoutTrashed()
+     * @method static _IH_ShopImages_QB customFilter($filter)
+     * @method static _IH_ShopImages_QB customPagination($pagination)
+     * @method static _IH_ShopImages_QB customSort($sort)
      */
     class ShopImages extends Model {}
     
@@ -3236,6 +3278,9 @@ namespace App\Models {
      * @method static _IH_Tag_QB withTrashed()
      * @method static _IH_Tag_QB onlyTrashed()
      * @method static _IH_Tag_QB withoutTrashed()
+     * @method static _IH_Tag_QB customFilter($filter)
+     * @method static _IH_Tag_QB customPagination($pagination)
+     * @method static _IH_Tag_QB customSort($sort)
      * @method static TagFactory factory(...$parameters)
      */
     class Tag extends Model {}
@@ -3428,6 +3473,9 @@ namespace App\Models {
      * @method static _IH_Task_QB withTrashed()
      * @method static _IH_Task_QB onlyTrashed()
      * @method static _IH_Task_QB withoutTrashed()
+     * @method static _IH_Task_QB customFilter($filter)
+     * @method static _IH_Task_QB customPagination($pagination)
+     * @method static _IH_Task_QB customSort($sort)
      */
     class Task extends Model {}
     
@@ -3677,6 +3725,131 @@ namespace App\Models {
     class TeamInvitation extends Model {}
     
     /**
+     * @method _IH_TopModel_QB newModelQuery()
+     * @method _IH_TopModel_QB newQuery()
+     * @method static _IH_TopModel_QB query()
+     * @method static _IH_TopModel_C|TopModel[] all()
+     * @method static TopModel baseSole(array|string $columns = ['*'])
+     * @method static bool chunk(int $count, callable $callback)
+     * @method static bool chunkById(int $count, callable $callback, null|string $column = null, null|string $alias = null)
+     * @method static int count(string $columns = '*')
+     * @method static TopModel create(array $attributes = [])
+     * @method static _IH_TopModel_QB crossJoin(string $table, \Closure|null|string $first = null, null|string $operator = null, null|string $second = null)
+     * @method static _IH_TopModel_C|TopModel[] cursor()
+     * @method static int decrement(Expression|string $column, float|int $amount = 1, array $extra = [])
+     * @method static _IH_TopModel_QB distinct()
+     * @method static bool doesntExist()
+     * @method static _IH_TopModel_QB each(callable $callback, int $count = 1000)
+     * @method static bool eachById(callable $callback, int $count = 1000, null|string $column = null, null|string $alias = null)
+     * @method static bool exists()
+     * @method static TopModel|null find($id, array $columns = ['*'])
+     * @method static _IH_TopModel_C|TopModel[] findMany(array|Arrayable $ids, array $columns = ['*'])
+     * @method static TopModel findOrFail($id, array $columns = ['*'])
+     * @method static TopModel findOrNew($id, array $columns = ['*'])
+     * @method static TopModel first(array|string $columns = ['*'])
+     * @method static TopModel firstOr(array|\Closure $columns = ['*'], \Closure $callback = null)
+     * @method static TopModel firstOrCreate(array $attributes = [], array $values = [])
+     * @method static TopModel firstOrFail(array $columns = ['*'])
+     * @method static TopModel firstOrNew(array $attributes = [], array $values = [])
+     * @method static TopModel firstWhere(array|\Closure|Expression|string $column, $operator = null, $value = null, string $boolean = 'and')
+     * @method static TopModel forceCreate(array $attributes)
+     * @method static _IH_TopModel_C|TopModel[] fromQuery(string $query, array $bindings = [])
+     * @method static _IH_TopModel_C|TopModel[] get(array|string $columns = ['*'])
+     * @method static int getCountForPagination(array $columns = ['*'])
+     * @method static TopModel getModel()
+     * @method static TopModel[] getModels(array|string $columns = ['*'])
+     * @method static _IH_TopModel_QB getQuery()
+     * @method static _IH_TopModel_QB groupBy(...$groups)
+     * @method static bool hasGlobalMacro(string $name)
+     * @method static bool hasMacro(string $name)
+     * @method static bool hasNamedScope(string $scope)
+     * @method static _IH_TopModel_C|TopModel[] hydrate(array $items)
+     * @method static _IH_TopModel_QB inRandomOrder(string $seed = '')
+     * @method static int increment(Expression|string $column, float|int $amount = 1, array $extra = [])
+     * @method static bool insert(array $values)
+     * @method static int insertGetId(array $values, null|string $sequence = null)
+     * @method static int insertOrIgnore(array $values)
+     * @method static int insertUsing(array $columns, \Closure|\Illuminate\Database\Query\Builder|string $query)
+     * @method static _IH_TopModel_QB join(string $table, \Closure|string $first, null|string $operator = null, null|string $second = null, string $type = 'inner', bool $where = false)
+     * @method static _IH_TopModel_QB latest(Expression|string $column = null)
+     * @method static _IH_TopModel_QB leftJoin(string $table, \Closure|string $first, null|string $operator = null, null|string $second = null)
+     * @method static _IH_TopModel_QB limit(int $value)
+     * @method static TopModel make(array $attributes = [])
+     * @method static TopModel newModelInstance(array $attributes = [])
+     * @method static int numericAggregate(string $function, array $columns = ['*'])
+     * @method static _IH_TopModel_QB offset(int $value)
+     * @method static _IH_TopModel_QB oldest(Expression|string $column = null)
+     * @method static _IH_TopModel_QB orderBy(\Closure|\Illuminate\Database\Query\Builder|Expression|string $column, string $direction = 'asc')
+     * @method static _IH_TopModel_QB orderByDesc(\Closure|\Illuminate\Database\Query\Builder|Expression|string $column)
+     * @method static _IH_TopModel_QB orderByRaw(string $sql, array $bindings = [])
+     * @method static LengthAwarePaginator|TopModel[]|_IH_TopModel_C paginate(int|null $perPage = null, array $columns = ['*'], string $pageName = 'page', int|null $page = null)
+     * @method static _IH_TopModel_QB rightJoin(string $table, \Closure|string $first, null|string $operator = null, null|string $second = null)
+     * @method static _IH_TopModel_QB select(array|mixed $columns = ['*'])
+     * @method static _IH_TopModel_QB setQuery(\Illuminate\Database\Query\Builder $query)
+     * @method static Paginator|TopModel[]|_IH_TopModel_C simplePaginate(int|null $perPage = null, array $columns = ['*'], string $pageName = 'page', int|null $page = null)
+     * @method static _IH_TopModel_QB skip(int $value)
+     * @method static TopModel sole(array|string $columns = ['*'])
+     * @method static _IH_TopModel_QB take(int $value)
+     * @method static _IH_TopModel_QB tap(callable $callback)
+     * @method static _IH_TopModel_QB truncate()
+     * @method static _IH_TopModel_QB unless($value, callable $callback, callable|null $default = null)
+     * @method static int update(array $values)
+     * @method static TopModel updateOrCreate(array $attributes, array $values = [])
+     * @method static bool updateOrInsert(array $attributes, array $values = [])
+     * @method static int upsert(array $values, array|string $uniqueBy, array|null $update = null)
+     * @method static _IH_TopModel_QB when($value, callable $callback, callable|null $default = null)
+     * @method static _IH_TopModel_QB where(array|\Closure|Expression|string $column, $operator = null, $value = null, string $boolean = 'and')
+     * @method static _IH_TopModel_QB whereBetween(Expression|string $column, array $values, string $boolean = 'and', bool $not = false)
+     * @method static _IH_TopModel_QB whereBetweenColumns(string $column, array $values, string $boolean = 'and', bool $not = false)
+     * @method static _IH_TopModel_QB whereColumn(array|string $first, null|string $operator = null, null|string $second = null, null|string $boolean = 'and')
+     * @method static _IH_TopModel_QB whereDate(string $column, string $operator, \DateTimeInterface|null|string $value = null, string $boolean = 'and')
+     * @method static _IH_TopModel_QB whereDay(string $column, string $operator, \DateTimeInterface|null|string $value = null, string $boolean = 'and')
+     * @method static _IH_TopModel_QB whereDoesntHave(string $relation, \Closure $callback = null)
+     * @method static _IH_TopModel_QB whereDoesntHaveMorph(MorphTo|string $relation, array|string $types, \Closure $callback = null)
+     * @method static _IH_TopModel_QB whereExists(\Closure $callback, string $boolean = 'and', bool $not = false)
+     * @method static _IH_TopModel_QB whereHas(string $relation, \Closure $callback = null, string $operator = '>=', int $count = 1)
+     * @method static _IH_TopModel_QB whereHasMorph(MorphTo|string $relation, array|string $types, \Closure $callback = null, string $operator = '>=', int $count = 1)
+     * @method static _IH_TopModel_QB whereIn(string $column, $values, string $boolean = 'and', bool $not = false)
+     * @method static _IH_TopModel_QB whereIntegerInRaw(string $column, array|Arrayable $values, string $boolean = 'and', bool $not = false)
+     * @method static _IH_TopModel_QB whereIntegerNotInRaw(string $column, array|Arrayable $values, string $boolean = 'and')
+     * @method static _IH_TopModel_QB whereJsonContains(string $column, $value, string $boolean = 'and', bool $not = false)
+     * @method static _IH_TopModel_QB whereJsonDoesntContain(string $column, $value, string $boolean = 'and')
+     * @method static _IH_TopModel_QB whereJsonLength(string $column, $operator, $value = null, string $boolean = 'and')
+     * @method static _IH_TopModel_QB whereKey($id)
+     * @method static _IH_TopModel_QB whereKeyNot($id)
+     * @method static _IH_TopModel_QB whereMonth(string $column, string $operator, \DateTimeInterface|null|string $value = null, string $boolean = 'and')
+     * @method static _IH_TopModel_QB whereNested(\Closure $callback, string $boolean = 'and')
+     * @method static _IH_TopModel_QB whereNotBetween(string $column, array $values, string $boolean = 'and')
+     * @method static _IH_TopModel_QB whereNotBetweenColumns(string $column, array $values, string $boolean = 'and')
+     * @method static _IH_TopModel_QB whereNotExists(\Closure $callback, string $boolean = 'and')
+     * @method static _IH_TopModel_QB whereNotIn(string $column, $values, string $boolean = 'and')
+     * @method static _IH_TopModel_QB whereNotNull(array|string $columns, string $boolean = 'and')
+     * @method static _IH_TopModel_QB whereNull(array|string $columns, string $boolean = 'and', bool $not = false)
+     * @method static _IH_TopModel_QB whereRaw(string $sql, $bindings = [], string $boolean = 'and')
+     * @method static _IH_TopModel_QB whereRowValues(array $columns, string $operator, array $values, string $boolean = 'and')
+     * @method static _IH_TopModel_QB whereTime(string $column, string $operator, \DateTimeInterface|null|string $value = null, string $boolean = 'and')
+     * @method static _IH_TopModel_QB whereYear(string $column, string $operator, \DateTimeInterface|int|null|string $value = null, string $boolean = 'and')
+     * @method static _IH_TopModel_QB with(array|string $relations, \Closure|null|string $callback = null)
+     * @method static _IH_TopModel_QB withAggregate($relations, string $column, string $function = null)
+     * @method static _IH_TopModel_QB withAvg(array|string $relation, string $column)
+     * @method static _IH_TopModel_QB withCasts(array $casts)
+     * @method static _IH_TopModel_QB withCount($relations)
+     * @method static _IH_TopModel_QB withExists(array|string $relation)
+     * @method static _IH_TopModel_QB withGlobalScope(string $identifier, \Closure|Scope $scope)
+     * @method static _IH_TopModel_QB withMax(array|string $relation, string $column)
+     * @method static _IH_TopModel_QB withMin(array|string $relation, string $column)
+     * @method static _IH_TopModel_QB withOnly($relations)
+     * @method static _IH_TopModel_QB withSum(array|string $relation, string $column)
+     * @method static _IH_TopModel_QB without($relations)
+     * @method static _IH_TopModel_QB withoutGlobalScope(Scope|string $scope)
+     * @method static _IH_TopModel_QB withoutGlobalScopes(array $scopes = null)
+     * @method static _IH_TopModel_QB customFilter($filter)
+     * @method static _IH_TopModel_QB customPagination($pagination)
+     * @method static _IH_TopModel_QB customSort($sort)
+     */
+    class TopModel extends Model {}
+    
+    /**
      * @property int $id
      * @property string|null $name
      * @property string|null $email
@@ -3902,6 +4075,9 @@ namespace App\Models {
      * @method static _IH_User_QB withTrashed()
      * @method static _IH_User_QB onlyTrashed()
      * @method static _IH_User_QB withoutTrashed()
+     * @method static _IH_User_QB customFilter($filter)
+     * @method static _IH_User_QB customPagination($pagination)
+     * @method static _IH_User_QB customSort($sort)
      * @method static _IH_User_QB permission(array|Collection|Permission1|string $permissions)
      * @method static _IH_User_QB role(array|Collection|Role1|string $roles, string $guard = null)
      * @method static UserFactory factory(...$parameters)

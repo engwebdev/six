@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\QueryStringParam;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -26,6 +27,7 @@ class User extends Authenticatable {
     use Notifiable;
     use TwoFactorAuthenticatable;
     use HasRoles;
+    use QueryStringParam;
 
     /**
      * The attributes that are mass assignable.
@@ -236,21 +238,6 @@ class User extends Authenticatable {
         // Check verification code is valid.
         // return \App\Code::where('mobile', $this->mobile)->where('code', '=', $verificationCode)->where('expired_at', '>', now()->toDatetimeString())->exists();
         return true;
-    }
-
-
-    public function scopeFilter($query, $filter){
-//        dd('000', $query, $filter);
-        return $filter->apply($query);
-    }
-
-
-    public function scopeCustomSort($query, $sort){
-        return $sort->apply($query);
-    }
-
-    public function scopeCustomPagination($query, $pagination){
-        return $pagination->apply($query);
     }
 
 }
