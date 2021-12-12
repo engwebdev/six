@@ -11,7 +11,7 @@ trait QueryStringParam {
     }
 
 
-    public function scopeCustomSort($query, $sort){
+    public function scopeCustomOrder($query, $sort){
         return $sort->apply($query);
     }
 

@@ -225,8 +225,8 @@ namespace App\Models {
      * @method static _IH_Attribute_QB onlyTrashed()
      * @method static _IH_Attribute_QB withoutTrashed()
      * @method static _IH_Attribute_QB customFilter($filter)
+     * @method static _IH_Attribute_QB customOrder($sort)
      * @method static _IH_Attribute_QB customPagination($pagination)
-     * @method static _IH_Attribute_QB customSort($sort)
      */
     class Attribute extends Model {}
     
@@ -375,8 +375,8 @@ namespace App\Models {
      * @method static _IH_AttributeValue_QB onlyTrashed()
      * @method static _IH_AttributeValue_QB withoutTrashed()
      * @method static _IH_AttributeValue_QB customFilter($filter)
+     * @method static _IH_AttributeValue_QB customOrder($sort)
      * @method static _IH_AttributeValue_QB customPagination($pagination)
-     * @method static _IH_AttributeValue_QB customSort($sort)
      */
     class AttributeValue extends Model {}
     
@@ -532,8 +532,8 @@ namespace App\Models {
      * @method static _IH_Category_QB onlyTrashed()
      * @method static _IH_Category_QB withoutTrashed()
      * @method static _IH_Category_QB customFilter($filter)
+     * @method static _IH_Category_QB customOrder($sort)
      * @method static _IH_Category_QB customPagination($pagination)
-     * @method static _IH_Category_QB customSort($sort)
      * @method static CategoryFactory factory(...$parameters)
      */
     class Category extends Model {}
@@ -663,8 +663,8 @@ namespace App\Models {
      * @method static _IH_ConfirmComment_QB onlyTrashed()
      * @method static _IH_ConfirmComment_QB withoutTrashed()
      * @method static _IH_ConfirmComment_QB customFilter($filter)
+     * @method static _IH_ConfirmComment_QB customOrder($sort)
      * @method static _IH_ConfirmComment_QB customPagination($pagination)
-     * @method static _IH_ConfirmComment_QB customSort($sort)
      */
     class ConfirmComment extends Model {}
     
@@ -876,8 +876,8 @@ namespace App\Models {
      * @method static _IH_CustomProduct_QB onlyTrashed()
      * @method static _IH_CustomProduct_QB withoutTrashed()
      * @method static _IH_CustomProduct_QB customFilter($filter)
+     * @method static _IH_CustomProduct_QB customOrder($sort)
      * @method static _IH_CustomProduct_QB customPagination($pagination)
-     * @method static _IH_CustomProduct_QB customSort($sort)
      */
     class CustomProduct extends Model {}
     
@@ -1087,8 +1087,8 @@ namespace App\Models {
      * @method static _IH_CustomService_QB onlyTrashed()
      * @method static _IH_CustomService_QB withoutTrashed()
      * @method static _IH_CustomService_QB customFilter($filter)
+     * @method static _IH_CustomService_QB customOrder($sort)
      * @method static _IH_CustomService_QB customPagination($pagination)
-     * @method static _IH_CustomService_QB customSort($sort)
      */
     class CustomService extends Model {}
     
@@ -1245,8 +1245,8 @@ namespace App\Models {
      * @method static _IH_Detail_QB onlyTrashed()
      * @method static _IH_Detail_QB withoutTrashed()
      * @method static _IH_Detail_QB customFilter($filter)
+     * @method static _IH_Detail_QB customOrder($sort)
      * @method static _IH_Detail_QB customPagination($pagination)
-     * @method static _IH_Detail_QB customSort($sort)
      */
     class Detail extends Model {}
     
@@ -1583,8 +1583,8 @@ namespace App\Models {
      * @method static _IH_NormalProduct_QB onlyTrashed()
      * @method static _IH_NormalProduct_QB withoutTrashed()
      * @method static _IH_NormalProduct_QB customFilter($filter)
+     * @method static _IH_NormalProduct_QB customOrder($sort)
      * @method static _IH_NormalProduct_QB customPagination($pagination)
-     * @method static _IH_NormalProduct_QB customSort($sort)
      */
     class NormalProduct extends Model {}
     
@@ -1786,8 +1786,8 @@ namespace App\Models {
      * @method static _IH_NormalService_QB onlyTrashed()
      * @method static _IH_NormalService_QB withoutTrashed()
      * @method static _IH_NormalService_QB customFilter($filter)
+     * @method static _IH_NormalService_QB customOrder($sort)
      * @method static _IH_NormalService_QB customPagination($pagination)
-     * @method static _IH_NormalService_QB customSort($sort)
      */
     class NormalService extends Model {}
     
@@ -1967,8 +1967,8 @@ namespace App\Models {
      * @method static _IH_ProductCategory_QB onlyTrashed()
      * @method static _IH_ProductCategory_QB withoutTrashed()
      * @method static _IH_ProductCategory_QB customFilter($filter)
+     * @method static _IH_ProductCategory_QB customOrder($sort)
      * @method static _IH_ProductCategory_QB customPagination($pagination)
-     * @method static _IH_ProductCategory_QB customSort($sort)
      */
     class ProductCategory extends Model {}
     
@@ -2127,8 +2127,8 @@ namespace App\Models {
      * @method static _IH_ProductCustomerComments_QB onlyTrashed()
      * @method static _IH_ProductCustomerComments_QB withoutTrashed()
      * @method static _IH_ProductCustomerComments_QB customFilter($filter)
+     * @method static _IH_ProductCustomerComments_QB customOrder($sort)
      * @method static _IH_ProductCustomerComments_QB customPagination($pagination)
-     * @method static _IH_ProductCustomerComments_QB customSort($sort)
      */
     class ProductCustomerComments extends Model {}
     
@@ -2257,8 +2257,8 @@ namespace App\Models {
      * @method static _IH_ProductPriceHistory_QB onlyTrashed()
      * @method static _IH_ProductPriceHistory_QB withoutTrashed()
      * @method static _IH_ProductPriceHistory_QB customFilter($filter)
+     * @method static _IH_ProductPriceHistory_QB customOrder($sort)
      * @method static _IH_ProductPriceHistory_QB customPagination($pagination)
-     * @method static _IH_ProductPriceHistory_QB customSort($sort)
      */
     class ProductPriceHistory extends Model {}
     
@@ -2422,8 +2422,8 @@ namespace App\Models {
      * @method static _IH_ProductTag_QB onlyTrashed()
      * @method static _IH_ProductTag_QB withoutTrashed()
      * @method static _IH_ProductTag_QB customFilter($filter)
+     * @method static _IH_ProductTag_QB customOrder($sort)
      * @method static _IH_ProductTag_QB customPagination($pagination)
-     * @method static _IH_ProductTag_QB customSort($sort)
      */
     class ProductTag extends Model {}
     
@@ -2590,8 +2590,8 @@ namespace App\Models {
      * @method static _IH_ProductsImage_QB onlyTrashed()
      * @method static _IH_ProductsImage_QB withoutTrashed()
      * @method static _IH_ProductsImage_QB customFilter($filter)
+     * @method static _IH_ProductsImage_QB customOrder($sort)
      * @method static _IH_ProductsImage_QB customPagination($pagination)
-     * @method static _IH_ProductsImage_QB customSort($sort)
      */
     class ProductsImage extends Model {}
     
@@ -2736,8 +2736,8 @@ namespace App\Models {
      * @method static _IH_RolesShopsUsers_QB onlyTrashed()
      * @method static _IH_RolesShopsUsers_QB withoutTrashed()
      * @method static _IH_RolesShopsUsers_QB customFilter($filter)
+     * @method static _IH_RolesShopsUsers_QB customOrder($sort)
      * @method static _IH_RolesShopsUsers_QB customPagination($pagination)
-     * @method static _IH_RolesShopsUsers_QB customSort($sort)
      */
     class RolesShopsUsers extends Model {}
     
@@ -2950,8 +2950,8 @@ namespace App\Models {
      * @method static _IH_Shop_QB onlyTrashed()
      * @method static _IH_Shop_QB withoutTrashed()
      * @method static _IH_Shop_QB customFilter($filter)
+     * @method static _IH_Shop_QB customOrder($sort)
      * @method static _IH_Shop_QB customPagination($pagination)
-     * @method static _IH_Shop_QB customSort($sort)
      * @method static _IH_Shop_QB order($sort, $order)
      * @method static _IH_Shop_QB shopAcceptStatus($status)
      * @method static _IH_Shop_QB shopAccepted()
@@ -3125,8 +3125,8 @@ namespace App\Models {
      * @method static _IH_ShopImages_QB onlyTrashed()
      * @method static _IH_ShopImages_QB withoutTrashed()
      * @method static _IH_ShopImages_QB customFilter($filter)
+     * @method static _IH_ShopImages_QB customOrder($sort)
      * @method static _IH_ShopImages_QB customPagination($pagination)
-     * @method static _IH_ShopImages_QB customSort($sort)
      */
     class ShopImages extends Model {}
     
@@ -3279,8 +3279,8 @@ namespace App\Models {
      * @method static _IH_Tag_QB onlyTrashed()
      * @method static _IH_Tag_QB withoutTrashed()
      * @method static _IH_Tag_QB customFilter($filter)
+     * @method static _IH_Tag_QB customOrder($sort)
      * @method static _IH_Tag_QB customPagination($pagination)
-     * @method static _IH_Tag_QB customSort($sort)
      * @method static TagFactory factory(...$parameters)
      */
     class Tag extends Model {}
@@ -3474,8 +3474,8 @@ namespace App\Models {
      * @method static _IH_Task_QB onlyTrashed()
      * @method static _IH_Task_QB withoutTrashed()
      * @method static _IH_Task_QB customFilter($filter)
+     * @method static _IH_Task_QB customOrder($sort)
      * @method static _IH_Task_QB customPagination($pagination)
-     * @method static _IH_Task_QB customSort($sort)
      */
     class Task extends Model {}
     
@@ -3844,8 +3844,8 @@ namespace App\Models {
      * @method static _IH_TopModel_QB withoutGlobalScope(Scope|string $scope)
      * @method static _IH_TopModel_QB withoutGlobalScopes(array $scopes = null)
      * @method static _IH_TopModel_QB customFilter($filter)
+     * @method static _IH_TopModel_QB customOrder($sort)
      * @method static _IH_TopModel_QB customPagination($pagination)
-     * @method static _IH_TopModel_QB customSort($sort)
      */
     class TopModel extends Model {}
     
@@ -4076,8 +4076,8 @@ namespace App\Models {
      * @method static _IH_User_QB onlyTrashed()
      * @method static _IH_User_QB withoutTrashed()
      * @method static _IH_User_QB customFilter($filter)
+     * @method static _IH_User_QB customOrder($sort)
      * @method static _IH_User_QB customPagination($pagination)
-     * @method static _IH_User_QB customSort($sort)
      * @method static _IH_User_QB permission(array|Collection|Permission1|string $permissions)
      * @method static _IH_User_QB role(array|Collection|Role1|string $roles, string $guard = null)
      * @method static UserFactory factory(...$parameters)

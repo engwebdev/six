@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Query\Sort;
+namespace App\Query\Order;
 
-class TestSort extends Sort {
+class TestOrder extends Order {
 
     protected $fillable = ["first_name", "last_name", "created_at"];
 

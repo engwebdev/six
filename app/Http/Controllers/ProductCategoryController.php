@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Exceptions\MyException;
 use App\Http\Resources\ProductCategoryCollection;
 use App\Http\Resources\ProductCategoryResource;
 use App\Models\ProductCategory;
-use App\Traits\QueryParams;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use App\Exceptions\MyException;
 use Illuminate\Support\Facades\DB;
+use App\Traits\QueryParams;
 
 class ProductCategoryController extends Controller {
     use QueryParams;
@@ -23,10 +23,12 @@ class ProductCategoryController extends Controller {
      */
     public function index(Request $request)
     {
-        dd($request);
         $user = auth()->user();
         $user_id = $user->id;
-        $this->checkQueryParams( $request );
+//        $this->checkQueryParams( $request );
+
+        dd( ProductCategory::customPagination( new \App\Query\Pagination\Pagination( $request ) )->customOrder( new \App\Query\Order\TestOrder( $request ) )->toSql() );
+
 
         $productCategories = ProductCategory::orderBy( $this->sort, $this->order )
             ->when( $user->hasRole( 'system', 'api' ), function ($query) use ($user_id) {
@@ -162,7 +164,7 @@ class ProductCategoryController extends Controller {
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @param int                      $id
+     * @param int     $id
      * @return JsonResponse
      */
     public function update(Request $request, $id)
@@ -187,22 +189,22 @@ class ProductCategoryController extends Controller {
 //                    'product_category_additional_user_id' => ['required', 'string'],
                 ] );
 
-            $productCategory = ProductCategory::findOrFail($id);
-            $productCategory->parent_id = $request->post('parent_id');
-            $productCategory->product_category_name = $request->post('product_category_name');
-            $productCategory->product_category_accept_status = $request->post('product_category_accept_status');
-            $productCategory->product_category_show_status = $request->post('product_category_show_status');
+            $productCategory = ProductCategory::findOrFail( $id );
+            $productCategory->parent_id = $request->post( 'parent_id' );
+            $productCategory->product_category_name = $request->post( 'product_category_name' );
+            $productCategory->product_category_accept_status = $request->post( 'product_category_accept_status' );
+            $productCategory->product_category_show_status = $request->post( 'product_category_show_status' );
             $productCategory->product_category_show_status = true;
             $productCategory->save();
 
             return response()->json(
                 [
                     'data' => new ProductCategoryResource
-                        ($productCategory),
-                    'message' => 'Old Product Category '. $id .' Updated',
+                    ( $productCategory ),
+                    'message' => 'Old Product Category ' . $id . ' Updated',
                     'success' => 'Old Product Category Updated',
-                    'NotificationsEnServer' => 'Old Product Category by id '. $id .' Updated',
-                    'NotificationsFaServer' => 'دسته بندی محصولات با شناسه '. $id .' بروزرسانی شد',
+                    'NotificationsEnServer' => 'Old Product Category by id ' . $id . ' Updated',
+                    'NotificationsFaServer' => 'دسته بندی محصولات با شناسه ' . $id . ' بروزرسانی شد',
                 ], 201
             );
         }

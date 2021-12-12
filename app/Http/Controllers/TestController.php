@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Query\Filter\TestFilter;
 use App\Query\Pagination\Pagination;
-use App\Query\Sort\TestSort;
+use App\Query\Order\TestOrder;
 use Illuminate\Http\Request;
 
 class TestController extends Controller
@@ -13,14 +13,14 @@ class TestController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param TestFilter     $filter
-     * @param TestSort       $sort
+     * @param TestFilter $filter
+     * @param TestOrder  $order
      * @param Pagination $pagination
      * @return void
      */
-    public function index(TestFilter $filter, TestSort $sort, Pagination $pagination)
+    public function index(TestFilter $filter, TestOrder $order, Pagination $pagination)
     {
-        $users = User::customFilter($filter)->customSort($sort)->customPagination($pagination)->toSql();
+        $users = User::customFilter($filter)->customOrder($order)->customPagination($pagination)->toSql();
         dd($users);
     }
 
