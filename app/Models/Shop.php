@@ -62,7 +62,7 @@ class Shop extends Model
      */
     public function parent()
     {
-        return $this->belongsTo(Shop::class, 'id', 'parent_id');
+        return $this->belongsTo(Shop::class, 'shop_id', 'id');
     }
 
     /*****************************/

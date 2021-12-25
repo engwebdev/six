@@ -2,14 +2,29 @@
 
 namespace App\Http\Resources;
 
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * @property mixed id
+ * @property mixed tag_name
+ * @property mixed tag_image_url
+ * @property mixed tag_publish_status
+ * @property mixed tag_accept_status
+ * @property mixed tag_accept_status_use
+ * @property mixed tag_additional_type
+ * @property mixed tag_additional_user_id
+ * @property mixed shop_id
+ *
+ */
 class UltraTagShopStatusResource extends JsonResource
 {
     /**
+     *
+     *
      * Transform the resource into an array.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  Request  $request
      * @return array
      */
     public function toArray($request)

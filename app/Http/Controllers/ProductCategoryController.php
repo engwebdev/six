@@ -25,40 +25,42 @@ class ProductCategoryController extends Controller {
     {
         $user = auth()->user();
         $user_id = $user->id;
-//        $this->checkQueryParams( $request );
+//        $this->checkQueryParams($request);
 
-        dd( ProductCategory::customPagination( new \App\Query\Pagination\Pagination( $request ) )->customOrder( new \App\Query\Order\TestOrder( $request ) )->toSql() );
+//        dd(ProductCategory::customPagination(new \App\Query\Pagination\Pagination($request))->customOrder(new \App\Query\Order\TestOrder($request))->toSql());
 
-
-        $productCategories = ProductCategory::orderBy( $this->sort, $this->order )
-            ->when( $user->hasRole( 'system', 'api' ), function ($query) use ($user_id) {
+        $productCategories = ProductCategory::
+        customOrder(new \App\Query\Order\TestOrder($request))
+//        orderBy($this->sort, $this->order)
+            ->when($user->hasRole('system', 'api'), function ($query) use ($user_id) {
                 return $query
-                    ->where( 'product_category_accept_status', 1 )
-                    ->orWhere( 'product_category_accept_status', 0 )
-                    ->orWhereNull( 'product_category_accept_status' );
-            } )
-            ->when( $user->hasRole( 'shopkeeper', 'api' ), function ($query) use ($user_id) {
+                    ->where('product_category_accept_status', 1)
+                    ->orWhere('product_category_accept_status', 0)
+                    ->orWhereNull('product_category_accept_status');
+            })
+            ->when($user->hasRole('shopkeeper', 'api'), function ($query) use ($user_id) {
                 return $query
-                    ->where( 'product_category_accept_status', 1 )
-                    ->orWhere( function ($subQuery) use ($user_id) {
+                    ->where('product_category_accept_status', 1)
+                    ->orWhere(function ($subQuery) use ($user_id) {
                         $subQuery
-                            ->where( 'product_category_accept_status', 0 )
-                            ->Where( 'product_category_additional_user_id', $user_id );
-                    } );
-            } )
-            ->when( $user->hasRole( 'user', 'api' ), function ($query) use ($user_id) {
+                            ->where('product_category_accept_status', 0)
+                            ->Where('product_category_additional_user_id', $user_id);
+                    });
+            })
+            ->when($user->hasRole('user', 'api'), function ($query) use ($user_id) {
                 return $query
 //                    ->select()
-                    ->where( 'product_category_accept_status', 1 )
-                    ->where( 'product_category_publish_status', 1 );
-            } )
-            ->paginate( $this->limit, '*', 'page', $this->page );
+                    ->where('product_category_accept_status', 1)
+                    ->where('product_category_publish_status', 1);
+            })
+            ->paginate($this->limit, '*', 'page', $this->page); // this have meta
+//            ->customPagination(new \App\Query\Pagination\Pagination($request))->get(); // this have not meta
 
-//        ProductCategoryResource::collection( $productCategories );
         return response()->json(
+//            ProductCategoryResource::collection($productCategories)
             new ProductCategoryCollection
-            ( $productCategories ),
-            200
+            ($productCategories)
+            , 200
         );
     }
 
@@ -76,11 +78,11 @@ class ProductCategoryController extends Controller {
         $user->guard_name = 'api';
         $roles = $user->getRoleNames();
 
-        if ($roles->contains( 'shopkeeper' ))
+        if ($roles->contains('shopkeeper'))
         {
             $product_category_additional_user_type = 'shopkeeper';
         }
-        elseif ($roles->contains( 'system' ))
+        elseif ($roles->contains('system'))
         {
             $product_category_additional_user_type = 'system';
         }
@@ -98,7 +100,7 @@ class ProductCategoryController extends Controller {
 //                'product_category_accept_status' => ['nullable', 'boolean'],
 //                'product_category_publish_status' => ['nullable', 'boolean'],
 //                'product_category_show_status' => ['nullable', 'boolean'],
-            ] );
+            ]);
 // change
 
         try
@@ -116,11 +118,11 @@ class ProductCategoryController extends Controller {
                         );*/
 
             $productCategory = new ProductCategory();
-            if (isset( $validated->parent_id ))
+            if (isset($validated->parent_id))
             {
-                $productCategory->parent_id = $request->post( 'parent_id' );
+                $productCategory->parent_id = $request->post('parent_id');
             }
-            $productCategory->product_category_name = $request->post( 'product_category_name' );
+            $productCategory->product_category_name = $request->post('product_category_name');
             $productCategory->product_category_additional_user_id = $user_id;
             $productCategory->product_category_additional_user_type = $product_category_additional_user_type;
             $productCategory->product_category_accept_status = false;
@@ -146,7 +148,7 @@ class ProductCategoryController extends Controller {
         {
 
         }
-        dd( 222 );
+        dd(222);
     }
 
     /**
@@ -172,7 +174,7 @@ class ProductCategoryController extends Controller {
 //        dd($request->post());
         $user = auth()->user();
         $user_id = $user->id;
-        if ($user->hasRole( 'system', 'api' ))
+        if ($user->hasRole('system', 'api'))
 //        if (1==1)
         {
 //            if ($user->hasPermissionTo()) {}
@@ -187,20 +189,20 @@ class ProductCategoryController extends Controller {
 //                    'product_category_publish_status' => ['nullable', 'boolean'],
 //                    'product_category_additional_user_type' => ['required', 'string'],
 //                    'product_category_additional_user_id' => ['required', 'string'],
-                ] );
+                ]);
 
-            $productCategory = ProductCategory::findOrFail( $id );
-            $productCategory->parent_id = $request->post( 'parent_id' );
-            $productCategory->product_category_name = $request->post( 'product_category_name' );
-            $productCategory->product_category_accept_status = $request->post( 'product_category_accept_status' );
-            $productCategory->product_category_show_status = $request->post( 'product_category_show_status' );
+            $productCategory = ProductCategory::findOrFail($id);
+            $productCategory->parent_id = $request->post('parent_id');
+            $productCategory->product_category_name = $request->post('product_category_name');
+            $productCategory->product_category_accept_status = $request->post('product_category_accept_status');
+            $productCategory->product_category_show_status = $request->post('product_category_show_status');
             $productCategory->product_category_show_status = true;
             $productCategory->save();
 
             return response()->json(
                 [
                     'data' => new ProductCategoryResource
-                    ( $productCategory ),
+                    ($productCategory),
                     'message' => 'Old Product Category ' . $id . ' Updated',
                     'success' => 'Old Product Category Updated',
                     'NotificationsEnServer' => 'Old Product Category by id ' . $id . ' Updated',

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\NormalProductCollection;
 use App\Http\Resources\ShopCollection;
+use App\Http\Resources\UltraNormalProductIndexCollection;
 use App\Models\NormalProduct;
 use App\Models\RolesShopsUsers;
 use App\Models\Shop;
@@ -49,34 +50,40 @@ class NormalProductController extends Controller {
         $user = auth()->user();
         $user_id = $user->id;
 
-        $this->checkQueryParams( $request );
+        $this->checkQueryParams($request);
 
         // todo get shops of this user if he is shopkeeper
         // todo two way first solution => use product_registry_shopkeeper_id field ---4> sub shops not work
         // todo two way second solution => use product_shop_id field ---> need to auth for shops and sub shops
 
-        $normalProducts = NormalProduct::orderBy( $this->sort, $this->order )
-            ->when( $user->hasRole( 'system', 'api' ), function ($query) use ($user_id) {
+        $normalProducts = NormalProduct::orderBy($this->sort, $this->order)
+            ->when($user->hasRole('system', 'api'), function ($query) use ($user_id) {
                 return $query
-                    ->where( 'product_status_accept', 1 )
-                    ->orWhere( 'product_status_accept', 0 )
-                    ->orWhereNull( 'product_status_accept' )
-                    ->with( 'confirm_comment' );
-            } )
-            ->when( $user->hasRole( 'shopkeeper', 'api' ), function ($query) use ($user_id, $user) {
+                    ->where('product_status_accept', 1)
+                    ->orWhere('product_status_accept', 0)
+                    ->orWhereNull('product_status_accept')
+                    ->with(['normalProductStatuses' => function ($subQuery) {
+                        return $subQuery
+                            ->whereNull('parent_id')
+                            ->with('replies')->get();
+                    }]);
+//                    ->with('normalProductStatuses.replies');
+            })
+            ->when($user->hasRole('shopkeeper', 'api'), function ($query) use ($user_id, $user) {
                 return $query
 //                    ->when($user->hasPermissionTo('edit this products'), function ($query) use ($user_id, $user) { return $query->where();})
-                    ->with( 'confirm_comment' )
-                    ->where( 'product_status_accept', 1 )
-                    ->orWhere( function ($subQuery) use ($user_id) {
+//                    ->with('normalProductStatuses')
+                    ->where('product_status_accept', 1)
+                    ->orWhereNull('product_status_accept')
+                    ->orWhere(function ($subQuery) use ($user_id) {
                         $subQuery
-                            ->where( 'product_status_accept', false )
-                            ->Where( 'product_registry_shopkeeper_id', $user_id );
-                    } );
-            } )
-            ->when( $user->hasRole( 'user', 'api' ), function ($query) use ($user_id) {
+                            ->where('product_status_accept', false)
+                            ->Where('product_registry_shopkeeper_id', $user_id);
+                    });
+            })
+            ->when($user->hasRole('user', 'api'), function ($query) use ($user_id) {
                 return $query
-                    ->select( 'id',
+                    ->select('id',
                         'product_name',
                         'product_description',
                         'product_info',
@@ -97,17 +104,18 @@ class NormalProductController extends Controller {
                         'product_number_comments',
                         'product_total_points',
                         'product_average_points',
-                        'product_last_point' )
-                    ->with( 'products_images' )
-                    ->with( 'product_price_history' )
-                    ->where( 'product_status_accept', 1 )
-                    ->where( 'product_status_publish', 1 );
-            } )
-            ->paginate( $this->limit, '*', 'page', $this->page );
+                        'product_last_point')
+                    ->with('products_images')
+                    ->with('product_price_history')
+                    ->where('product_status_accept', 1)
+                    ->where('product_status_publish', 1);
+            })
+            ->paginate($this->limit, '*', 'page', $this->page);
 
+//        return $normalProducts;
         return response()->json(
-            new NormalProductCollection
-            ( $normalProducts )
+            new UltraNormalProductIndexCollection
+            ($normalProducts)
             , 200
         );
     }
@@ -122,13 +130,13 @@ class NormalProductController extends Controller {
     {
         $user = auth()->user();
 
-        $access_token = $request->header( 'Authorization' );
-        $auth_header = explode( ' ', $access_token );
+        $access_token = $request->header('Authorization');
+        $auth_header = explode(' ', $access_token);
         $token = $auth_header[1];
-        $token_parts = explode( '.', $token );
+        $token_parts = explode('.', $token);
         $token_header = $token_parts[1];
-        $token_header_json = base64_decode( $token_header );
-        $token_header_array = json_decode( $token_header_json, true );
+        $token_header_json = base64_decode($token_header);
+        $token_header_array = json_decode($token_header_json, true);
         $token_aud = $token_header_array['aud'];
         $token_id = $token_header_array['jti'];
         $token_iat = $token_header_array['iat'];
@@ -184,36 +192,36 @@ class NormalProductController extends Controller {
         );
 
         // todo shopkeeper have shop
-        $shopsAndRolesFromPivot = RolesShopsUsers::where( 'user_id', $user_id )->where( 'shop_id', $validated['product_shop_id'] )->get();
-        $shopsAndRolesFromPivot->filter( function ($value, $key) {
-            $role = Role::where( 'id', $value->role_id )->where( 'guard_name', 'api' )->first();
+        $shopsAndRolesFromPivot = RolesShopsUsers::where('user_id', $user_id)->where('shop_id', $validated['product_shop_id'])->get();
+        $shopsAndRolesFromPivot->filter(function ($value, $key) {
+            $role = Role::where('id', $value->role_id)->where('guard_name', 'api')->first();
             if (!$role->name == 'shopkeeper')
             {
-                dd( 'ee' );
+                dd('ee');
             }
-        } );
+        });
 
-        $normalProduct = NormalProduct::create( $validated );
+        $normalProduct = NormalProduct::create($validated);
 
         // todo normalProductImages
         $normalProduct_id = $normalProduct->id;
-        if (isset( $validated['product_images'] ))
+        if (isset($validated['product_images']))
         {
             $i = 1;
             foreach ($validated['product_images'] as $key => $image_file)
             {
                 $normal_product_image_name = $image_file->getClientOriginalName();
-                $format = (explode( '.', $normal_product_image_name ));
+                $format = (explode('.', $normal_product_image_name));
                 $file_name_is = $format[0];
-                $file_format_is = end( $format );
-                $name_in_store = $file_name_is . '-' . date( 'Y-m-d-H-m', strtotime( Carbon::now() ) ) . '.' . $file_format_is;
+                $file_format_is = end($format);
+                $name_in_store = $file_name_is . '-' . date('Y-m-d-H-m', strtotime(Carbon::now())) . '.' . $file_format_is;
 
-                $image_file_url = $image_file->storeAs( 'shop_id/' . $validated['product_shop_id'] . '_normal_product_id_' . $normalProduct_id . '_normal_product_name_' . $validated['product_name'], $name_in_store );
+                $image_file_url = $image_file->storeAs('shop_id/' . $validated['product_shop_id'] . '_normal_product_id_' . $normalProduct_id . '_normal_product_name_' . $validated['product_name'], $name_in_store);
                 $normalProduct_image_url = 'shop/' . $image_file_url;
 
 
-                    $normalProduct->product_index_image_url = $normalProduct_image_url;
-                    $normalProduct->save();
+                $normalProduct->product_index_image_url = $normalProduct_image_url;
+                $normalProduct->save();
 
                 $normalProduct->normalProductImages()->create(
                     [
@@ -226,11 +234,11 @@ class NormalProductController extends Controller {
                         'image_size' => $image_file->getSize(),
                         'file_name' => $image_file->getClientOriginalName(),
                         'uploader_user_id' => $user_id,
-                        'uploader_user_date' => date( 'Y-m-d', strtotime( Carbon::now() ) ),
+                        'uploader_user_date' => date('Y-m-d', strtotime(Carbon::now())),
                         'activate_status' => 0,
                         'accept_status' => 0,
                         'publish_status' => 1,
-                    ] );
+                    ]);
                 $i = $i + 1;
             }
             unset($i);

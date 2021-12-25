@@ -31,6 +31,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
  * @property mixed roleOfRolesShopsUsers
  *
  * @property mixed data
+ * @method relationLoaded(string $string)
  */
 class ShopResource extends JsonResource {
     /**

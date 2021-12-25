@@ -163,9 +163,9 @@ class ShopController extends Controller {
         ) AS distance FROM shops HAVING distance < 50 ORDER BY distance');
         */
 
-        $this->checkQueryParams( $request );
+        $this->checkQueryParams($request);
 
-        if ($request->query( 'longitude' ) and $request->query( 'latitude' ))
+        if ($request->query('longitude') and $request->query('latitude'))
         {
             $validated_location_center = $request->validate(
                 [
@@ -201,7 +201,7 @@ class ShopController extends Controller {
             $center_latitude = $validated_location_center['latitude'];
             $center_longitude = $validated_location_center['longitude'];
 
-            if ($request->query( 'NWLongitude' ) or $request->query( 'NWLatitude' ))
+            if ($request->query('NWLongitude') or $request->query('NWLatitude'))
             {
 
                 $validated_location_corner = $request->validate(
@@ -219,26 +219,26 @@ class ShopController extends Controller {
                 $bottom = $center_latitude + ($center_latitude - $top);
                 $right = $center_longitude + ($center_longitude - $left);
 
-                $shops = Shop::orderBy( $this->sort, $this->order )
+                $shops = Shop::orderBy($this->sort, $this->order)
 //                    ->whereBetween( 'lat_location', [$top, $bottom] )
 //                    ->whereBetween( 'long_location', [$left, $right] )
 //                    ->where('shop_accept_status', '=', 1)
 //                    ->where('shop_Priority', '<=', $zoom) // todo (notice : mehdi) top level number small, low level number biggest, shop_Priority = 'اولویت'
-                    ->where( 'lat_location', '<=', $top )
-                    ->where( 'lat_location', '>=', $bottom )
-                    ->where( 'long_location', '<=', $left )
-                    ->where( 'long_location', '>=', $right )
-                    ->paginate( $this->limit, '*', 'page', $this->page );
+                    ->where('lat_location', '<=', $top)
+                    ->where('lat_location', '>=', $bottom)
+                    ->where('long_location', '<=', $left)
+                    ->where('long_location', '>=', $right)
+                    ->paginate($this->limit, '*', 'page', $this->page);
 
-                $ShopCollection = (new ShopCollection( $shops ));
+                $ShopCollection = (new ShopCollection($shops));
                 $ShopCollection->toJson();
-                $Response = $ShopCollection->toResponse( $request );
-                $Response->setStatusCode( 200 );
+                $Response = $ShopCollection->toResponse($request);
+                $Response->setStatusCode(200);
 
                 return $Response;
 
             }
-            elseif ($request->query( 'radius' ))
+            elseif ($request->query('radius'))
             {
                 $validated_radius = $request->validate(
                     [
@@ -257,26 +257,26 @@ class ShopController extends Controller {
                         cos(radians(?)) * cos(radians(lat_location)) * cos(radians(long_location) - radians(?)
                     ) + sin(radians(?)) * sin(radians(lat_location))
                 )
-            ) AS distance', [$center_latitude, $center_longitude, $center_latitude] )
+            ) AS distance', [$center_latitude, $center_longitude, $center_latitude])
 //            ->where('shop_accept_status', '=', 1)
 //            ->where('shop_level_in_map', '>', 12) // todo zoom > value => shops -> more
-                    ->having( "distance", "<", $radius ) // $radius meter
-                    ->orderBy( 'distance', 'asc' )
-                    ->limit( $this->limit )
+                    ->having("distance", "<", $radius) // $radius meter
+                    ->orderBy('distance', 'asc')
+                    ->limit($this->limit)
 //                    ->offset(0)
 //                    ->get();
 //                    ->toSql();
-                    ->paginate( $this->limit, '*', 'page', $this->page );
+                    ->paginate($this->limit, '*', 'page', $this->page);
 
 
 //                $query = DB::getQueryLog();
 //                $query = end($query);
 //                dd($query);
 
-                $ShopCollection = (new ShopCollection( $shop ));
+                $ShopCollection = (new ShopCollection($shop));
                 $ShopCollection->toJson();
-                $Response = $ShopCollection->toResponse( $request );
-                $Response->setStatusCode( 200 );
+                $Response = $ShopCollection->toResponse($request);
+                $Response->setStatusCode(200);
                 return $Response;
             }
             else
@@ -299,17 +299,14 @@ class ShopController extends Controller {
         }
         else
         {
-            $shops = Shop::orderBy( $this->sort, $this->order )
+            $shops = Shop::orderBy($this->sort, $this->order)
 //                ->where( 'shop_accept_status', '=', 1 )
-                ->paginate( $this->limit, '*', 'page', $this->page );
+                ->paginate($this->limit, '*', 'page', $this->page);
 
-            $ShopCollection = (new ShopCollection( $shops ));
-            $ShopCollection->toJson();
-
-            $Response = $ShopCollection->toResponse( $request );
-            $Response->setStatusCode( 200 );
-
-            return $Response;
+            return response()->json(
+                new ShopCollection
+                ($shops)
+                , 200);
         }
 //        ShopResource::collection( $shops );
 ////        $collection = new ShopCollection($shops);
@@ -580,14 +577,13 @@ class ShopController extends Controller {
      */
     public function store(Request $request)
     {
-//        dd($request);
 //  need add identify ID look like telegram nullable and generation uniq number for add to parent
         try
         {
             $shopkeeper_id = auth()->id();
             if (auth()->user()->disable_at != null)
             {
-                return response()->json( [
+                return response()->json([
                     "message" => "Forbidden",
                     "errors" => [
                         "problem" => [
@@ -596,11 +592,11 @@ class ShopController extends Controller {
                         'NotificationsEnServer' => "Your account has been deactivated. You are not allowed to register a shop.",
                         'NotificationsFaServer' => "اکانت شما غیرفعال شده است. شما اجازه ثبت فروشگاه ندارید.",
                     ],
-                ], 403 );
+                ], 403);
             }
             else if (auth()->user()->deleted_at != null)
             {
-                return response()->json( [
+                return response()->json([
                     "message" => "Resource Not Found",
                     "errors" => [
                         "problem" => [
@@ -609,7 +605,7 @@ class ShopController extends Controller {
                         'NotificationsEnServer' => "No account with this profile was found.",
                         'NotificationsFaServer' => "اکانتی با این مشخصات پیدا نشد.",
                     ],
-                ], 404 );
+                ], 404);
             }// mobile_verified_at,
 
             // todo added   ' shop_Priority '   default 17 => بی اهمیت
@@ -642,17 +638,17 @@ class ShopController extends Controller {
              *
              * @var array $validator
              */
-            $validator = Validator::make( $validated, [
+            $validator = Validator::make($validated, [
                 'lat_location' => ['required_unless:type_location,false'],
                 'long_location' => ['required_unless:type_location,false'],
-            ] );
+            ]);
             if ($validator->fails())
             {
                 $exception = $validator->messages();
-                return response()->json( [
+                return response()->json([
                     "message" => "The given data was invalid.",
                     "errors" => $validator->messages(),
-                ], 422 );
+                ], 422);
             }
 
             /**
@@ -667,7 +663,7 @@ class ShopController extends Controller {
                     'name' => $request->name,
                     'category_id' => $request->category_id,
                     'description' => $request->description,
-                    'shop_accept_status' => false,
+                    'shop_accept_status' => null,
 //                    'shop_photo_url' => $request->shop_photo,
                     'type_location' => $request->type_location,
                     'lat_location' => $request->lat_location,
@@ -686,21 +682,21 @@ class ShopController extends Controller {
 
 //            model has role
             $success['id'] = $shop->id;
-            if ($request->input( 'shop_photo' ))
+            if ($request->input('shop_photo'))
             {
                 $file = $validated['shop_photo'];
-                $shop_photo_name = $request->file( 'shop_photo' )->getClientOriginalName();
-                $format = (explode( '.', $shop_photo_name ));
+                $shop_photo_name = $request->file('shop_photo')->getClientOriginalName();
+                $format = (explode('.', $shop_photo_name));
                 $file_name_is = $format[0];
-                $file_format_is = end( $format );
-                $name_in_store = $file_name_is . '-' . date( 'Y-m-d', strtotime( Carbon::now() ) ) . '.' . $file_format_is;
+                $file_format_is = end($format);
+                $name_in_store = $file_name_is . '-' . date('Y-m-d', strtotime(Carbon::now())) . '.' . $file_format_is;
 
-                $shop_photo_path = $request->file( 'shop_photo' )
-                    ->storeAs( 'shop_id/' . $shop->id . '_shop_name_' . $shop->name, $name_in_store );
+                $shop_photo_path = $request->file('shop_photo')
+                    ->storeAs('shop_id/' . $shop->id . '_shop_name_' . $shop->name, $name_in_store);
 
                 $shop->shop_photo_url = 'shop/' . $shop_photo_path;
                 $shop->save();
-                $resolution = getimagesize( $file )[3];
+                $resolution = getimagesize($file)[3];
 
                 $image = ShopImages::create(
                     [
@@ -723,10 +719,10 @@ class ShopController extends Controller {
                 );
             }
             // todo $shop->id and $tag_ids insert to pivot table
-            if (isset( $validated['tag_ids'] ))
+            if (isset($validated['tag_ids']))
             {
                 $tag_ids = $validated['tag_ids'];
-                $shop->tags()->attach( $tag_ids, ['tag_accept_status' => 0] );
+                $shop->tags()->attach($tag_ids, ['tag_accept_status' => 0]);
             }
 //            $shop->tags()->sync($tag_ids, ['tag_accept_status' => 0]);
 
@@ -735,30 +731,30 @@ class ShopController extends Controller {
 
             if (!$validated)
             {
-                return response()->json( [
+                return response()->json([
                     "message" => "Unknown server problem",
                     "errors" => [
                         "problem" => [
                             "Unknown server problem",
                         ],
                     ],
-                ], 503 );
+                ], 503);
             }
             auth()->user()->guard_name = 'api';
-            auth()->user()->assignRole( 'shopkeeper' );
-            $shop->userOfRolesShopsUsers()->attach( $shopkeeper_id, ['shop_type' => 'child', 'role_id' => 1] );
+            auth()->user()->assignRole('shopkeeper');
+            $shop->userOfRolesShopsUsers()->attach($shopkeeper_id, ['shop_type' => 'child', 'role_id' => 1]);
 
             $responseCode = 201;
             $message = 'New Shop Created';
             $notifications_En_Server = 'New Shop Created';
             $notifications_Fa_Server = 'فروشگاه جدید ایجاد شد. و منتظر تایید مدیر میباشد.';
 
-            return response()->json( [
+            return response()->json([
                 'message' => $message,
                 'success' => $success,
                 'NotificationsEnServer' => $notifications_En_Server,
                 'NotificationsFaServer' => $notifications_Fa_Server,
-            ], $responseCode );
+            ], $responseCode);
 
         }
         catch (MyException $exception)
@@ -815,7 +811,7 @@ class ShopController extends Controller {
 //        auth::guard('api');
         DB::enableQueryLog();
         $shopkeeper_id = auth()->id();
-        $shop = new ShopResource( $shops->getByShopId( $id ) );
+        $shop = new ShopResource($shops->getByShopId($id));
 
         return $shop;
 //        return response()->json( [
@@ -1130,13 +1126,13 @@ class ShopController extends Controller {
         if ($validate_id->fails())
         {
             $exception = $validate_id->messages();
-            return response()->json( [
+            return response()->json([
                 "message" => "The given data was invalid.",
                 "errors" => $validate_id->messages(),
-            ], 422 );
+            ], 422);
         }
 
-        $shop = Shop::findOrFail( $id );
+        $shop = Shop::findOrFail($id);
 
         $validated = $request->validate(
             [
@@ -1161,7 +1157,7 @@ class ShopController extends Controller {
             ]
         );
 
-        $validator = Validator::make( $request->all()
+        $validator = Validator::make($request->all()
 //            [
 //                'lat_location' => $request->lat_location,
 //                'long_location' => $request->lat_location,
@@ -1176,10 +1172,10 @@ class ShopController extends Controller {
         if ($validator->fails())
         {
             $exception = $validator->messages();
-            return response()->json( [
+            return response()->json([
                 "message" => "The given data was invalid.",
                 "errors" => $validator->messages(),
-            ], 422 );
+            ], 422);
         }
 
         $shop->parent_id = $request->parent_id;
@@ -1206,21 +1202,21 @@ class ShopController extends Controller {
         if ($file = $request->shop_photo)
         {
             $shop_photo_name =
-                $request->file( 'shop_photo' )->getClientOriginalName();
-            $format = (explode( '.', $shop_photo_name ));
+                $request->file('shop_photo')->getClientOriginalName();
+            $format = (explode('.', $shop_photo_name));
             $file_name_is = $format[0];
-            $file_format_is = end( $format );
-            $name_in_store = $file_name_is . '-' . date( 'Y-m-d', strtotime( Carbon::now() ) ) . '.' . $file_format_is;
+            $file_format_is = end($format);
+            $name_in_store = $file_name_is . '-' . date('Y-m-d', strtotime(Carbon::now())) . '.' . $file_format_is;
 
-            $shop_photo_path = $request->file( 'shop_photo' )
-                ->storeAs( 'shop_id/' . $shop->id . '_shop_name_' . $shop->name, $name_in_store );
+            $shop_photo_path = $request->file('shop_photo')
+                ->storeAs('shop_id/' . $shop->id . '_shop_name_' . $shop->name, $name_in_store);
 
             $shop->shop_photo_url = 'shop/' . $shop_photo_path;
-            $resolution = getimagesize( $file )[3];
+            $resolution = getimagesize($file)[3];
 
-            $oldImagePoint = ShopImages::select( ['shop_image_index_point', 'shop_image_url'] )
-                ->orderBy( 'shop_image_index_point', 'desc' )
-                ->where( 'shop_id', '=', $id )
+            $oldImagePoint = ShopImages::select(['shop_image_index_point', 'shop_image_url'])
+                ->orderBy('shop_image_index_point', 'desc')
+                ->where('shop_id', '=', $id)
                 ->first();
 //            dd( $oldImagePoint );
             $imagePoint = $oldImagePoint;
@@ -1250,34 +1246,34 @@ class ShopController extends Controller {
             $shop->save();
         }
 
-        if (isset( $request->tag_ids ))
+        if (isset($request->tag_ids))
         {
             $tag_ids = $request->tag_ids;
             try
             {
-                $shop->tags()->attach( $tag_ids, ['tag_accept_status' => 0] );
+                $shop->tags()->attach($tag_ids, ['tag_accept_status' => 0]);
             }
             catch (QueryException $e)
             { // addd foregin key todo necessary
                 $errorCode = $e->errorInfo[1];
                 if ($errorCode == 1062)
                 {
-                    return response()->json( [
+                    return response()->json([
                         'message' => 'shop updated. and tags are Duplicate entry',
                         'error' => [
                             'Duplicate entry. tags already inserted.',
                             $e->errorInfo[2],
                         ],
                         'data' => $shop,
-                    ], 200 );
+                    ], 200);
                 }
             }
         }
 
-        return response()->json( [
+        return response()->json([
             'message' => 'shop updated.',
             'data' => $shop,
-        ], 200 );
+        ], 200);
 
 
     }
@@ -1332,11 +1328,11 @@ class ShopController extends Controller {
     {
         $shopkeeper_id = auth()->id();
 //        dd($shopkeeper_id);
-        $shop = Shop::whereHas( 'userOfRolesShopsUsers', function ($query) use ($shopkeeper_id) {
-            $query->where( 'roles_shops_users.user_id', '=', $shopkeeper_id );
-        } )
-            ->with( 'userOfRolesShopsUsers' )
-            ->with( 'roleOfRolesShopsUsers' )
+        $shop = Shop::whereHas('userOfRolesShopsUsers', function ($query) use ($shopkeeper_id) {
+            $query->where('roles_shops_users.user_id', '=', $shopkeeper_id);
+        })
+            ->with('userOfRolesShopsUsers')
+            ->with('roleOfRolesShopsUsers')
             ->get();
     }
 
@@ -1386,7 +1382,7 @@ class ShopController extends Controller {
     {
         // get shop image by id
         // validation id
-        $shop = Shop::findOrFail( $id );
+        $shop = Shop::findOrFail($id);
         $filePath = public_path() . '/' . $shop->shop_photo_url;
 
         /*        $content = file_get_contents( $filePath );
@@ -1399,26 +1395,26 @@ class ShopController extends Controller {
                         'Access-Control-Allow-Headers', 'Content-Type, Accept, Authorization, X-Requested-With, Application'
                     );*/
 
-        if (file_exists( $filePath ))
+        if (file_exists($filePath))
         {
-            $type = File::mimeType( $filePath );
-            $content = file_get_contents( $filePath );
-            $response = response( $content, 200, [
+            $type = File::mimeType($filePath);
+            $content = file_get_contents($filePath);
+            $response = response($content, 200, [
                 'Content-Type' => $type,
                 'Content-Disposition' => 'attachment; filename="' . $shop->name . '.jpeg"',
-            ] );
+            ]);
             return $response;
         }
         else
         {
-            return response()->json( [
+            return response()->json([
                 "message" => "Unknown server problem",
                 "errors" => [
                     "problem" => [
                         "Unknown server problem",
                     ],
                 ],
-            ], 503 );
+            ], 503);
         }
 
     }
@@ -1492,7 +1488,7 @@ class ShopController extends Controller {
 //        if (($user->hasRole( 'admin', 'api' )) or ($user->hasRole( 'system', 'api' )))
         {
 
-            if ($request->query( 'accept' ) == null)
+            if ($request->query('accept') == null)
             {
                 $when = false;
             }
@@ -1500,37 +1496,37 @@ class ShopController extends Controller {
             {
                 $when = true;
             }
-            $acceptStatus = filter_var( $request->query( 'accept' ), FILTER_VALIDATE_BOOLEAN );
+            $acceptStatus = filter_var($request->query('accept'), FILTER_VALIDATE_BOOLEAN);
 
 //            dd($request->query( 'accept' ),$acceptStatus, $when);
-            $tags = Tag::whereHas( 'shops', function ($query) use ($id, $request, $acceptStatus, $when) {
-                $query->whereIn( 'shops_tags.shop_id', [$id] );
-                $query->when( $when, function ($query) use ($acceptStatus) {
-                    $query->where( 'shops_tags.tag_accept_status', (int) $acceptStatus );
-                } );
-            } )
-                ->with( 'shops:id' )
+            $tags = Tag::whereHas('shops', function ($query) use ($id, $request, $acceptStatus, $when) {
+                $query->whereIn('shops_tags.shop_id', [$id]);
+                $query->when($when, function ($query) use ($acceptStatus) {
+                    $query->where('shops_tags.tag_accept_status', (int) $acceptStatus);
+                });
+            })
+                ->with('shops:id')
                 ->get();
 
             /**
              *
-             * @var integer $item->shop_id
-             * @property integer $item->shop_id
+             * @var integer      $item ->shop_id
+             * @property integer $item ->shop_id
              * @type mixed   tag_accept_status_use
              */
-            $val = $tags->map( function ($item) {
+            $val = $tags->map(function ($item) {
                 /**
-                 * @property integer $item->shop_id
-                 * @var mixed $item->shop_id
+                 * @property integer $item ->shop_id
+                 * @var mixed        $item ->shop_id
                  */
                 $item->shop_id = $item->shops[0]->id;
                 $item->tag_accept_status_use = $item->shops[0]->pivot->tag_accept_status;
-                unset( $item->shops );
+                unset($item->shops);
 
                 return $item;
-            } );
+            });
 
-            return new UltraTagShopStatusCollection( $val );
+            return new UltraTagShopStatusCollection($val);
         }
         else
         {

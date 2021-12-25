@@ -14,8 +14,8 @@ class AddCategoryNameFiledToNormalProductsTable extends Migration
     public function up()
     {
         Schema::table('normal_products', function (Blueprint $table) {
-            $table->string( 'product_category_name' )
-                ->after( 'product_category_id' )
+            $table->string('product_category_name' )
+                ->after('product_category_id' )
                 ->nullable();
         });
     }

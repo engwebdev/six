@@ -83,6 +83,17 @@ Route::post( '/customIssueToken', [CustomAccessTokenController::class, 'customIs
 //    Route::get('/save', [CategoryController::class, 'create'])->name('save');
 //});
 Route::prefix( 'v1' )->middleware( ['auth:api', 'SwaggerRequest'] )->group( function () {
+
+    Route::get( 'shops', [ShopController::class, 'index'] )->name( 'shops.index' );
+    Route::post( 'shops', [ShopController::class, 'store'] )->name( 'shops.store' );
+    Route::get( 'shops/{id}', [ShopController::class, 'show'] )->name( 'shops.show' );
+    Route::put( 'shops/{id}', [ShopController::class, 'update'] )->name( 'shops.update' );
+    Route::delete( 'shops/{id}', [ShopController::class, 'destroy'] )->name( 'shops.destroy' );
+    Route::get( 'shops/self', [ShopController::class, 'getSelfShop'] )->name( 'shops.getSelfShop' );
+
+//    Route::get('shops/shopImage/{id}', [ShopController::class, 'shopImage'])->name('shop.shopImage');
+    Route::get( 'tagsShop/{id}', [ShopController::class, 'tagsShopById'] )->name( 'tagsShop.show' );
+
     Route::prefix( 'shop' )->group( function () {
         Route::get( 'categories', [CategoryController::class, 'findAll'] )->name( 'categories.index' );
         Route::post( 'categories', [CategoryController::class, 'create'] )->name( 'categories.store' );
@@ -99,17 +110,6 @@ Route::prefix( 'v1' )->middleware( ['auth:api', 'SwaggerRequest'] )->group( func
         Route::put( 'tags/{id}', [TagController::class, 'update'] )->name( 'tags.update' );
         Route::delete( 'tags/{id}', [TagController::class, 'destroy'] )->name( 'tags.destroy' );
     } );
-
-    Route::get( 'shops', [ShopController::class, 'index'] )->name( 'shops.index' );
-    Route::post( 'shops', [ShopController::class, 'store'] )->name( 'shops.store' );
-    Route::get( 'shops/{id}', [ShopController::class, 'show'] )->name( 'shops.show' );
-    Route::put( 'shops/{id}', [ShopController::class, 'update'] )->name( 'shops.update' );
-    Route::delete( 'shops/{id}', [ShopController::class, 'destroy'] )->name( 'shops.destroy' );
-    Route::get( 'shops/self', [ShopController::class, 'getSelfShop'] )->name( 'shops.getSelfShop' );
-
-//    Route::get('shops/shopImage/{id}', [ShopController::class, 'shopImage'])->name('shop.shopImage');
-    Route::get( 'tagsShop/{id}', [ShopController::class, 'tagsShopById'] )->name( 'tagsShop.show' );
-
 
     Route::get( 'normal-products', [NormalProductController::class, 'index'] )->name( 'normal-products.index' );
     Route::post( 'normal-products', [NormalProductController::class, 'store'] )->name( 'normal-products.store' );

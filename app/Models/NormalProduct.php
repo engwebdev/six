@@ -3,11 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 //use Illuminate\Database\Eloquent\Model;
 use App\Models\TopModel as Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class NormalProduct extends Model {
     use HasFactory;
@@ -86,7 +88,7 @@ class NormalProduct extends Model {
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return BelongsToMany
      */
     public function normalProductTags()
     {
@@ -104,7 +106,7 @@ class NormalProduct extends Model {
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     * @return MorphMany
      */
     public function normalProductPrices()
     {
@@ -112,7 +114,7 @@ class NormalProduct extends Model {
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     * @return MorphMany
      */
     public function normalProductImages()
     {
@@ -120,7 +122,7 @@ class NormalProduct extends Model {
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     * @return MorphMany
      */
     public function normalProductCustomerComments()
     {
@@ -128,16 +130,17 @@ class NormalProduct extends Model {
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     * @return MorphMany
      */
     // todo tree in child tbl rel with 'product_status_confirm_user_id' && 'product_status_confirm_user_comment'
     public function normalProductStatuses()
     {
-        return $this->morphMany( ConfirmComment::class, 'confirm_commentable', 'NormalProduct');
+//        return $this->hasMany(ConfirmComment::class, 'id', 'confirm_commentable_id');
+        return $this->morphMany( ConfirmComment::class, 'confirm_commentable', 'confirm_commentable_type', 'confirm_commentable_id', 'id');
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     * @return MorphMany
      */
     // todo complex relational
     public function normalProductDetails()
