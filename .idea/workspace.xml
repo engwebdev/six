@@ -4,26 +4,59 @@
     <option name="SPLITTER_PROPORTION" value="0.6052632" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d343e4e-b2a9-4dd0-8969-d76dec06ab9f" name="Default Changelist" comment="">
+    <list default="true" id="4d343e4e-b2a9-4dd0-8969-d76dec06ab9f" name="Default Changelist" comment="43">
+      <change afterPath="$PROJECT_DIR$/database/migrations/2021_08_15_063613_create_shops_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2021_11_06_082845_product_tag_tags.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phing-latest.phar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/blade.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/blade.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/8481ddbd-2220-4d0c-a0cb-a9ad61d43b1c.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/8481ddbd-2220-4d0c-a0cb-a9ad61d43b1c.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/six.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/six.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/NormalProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/NormalProductController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProductCategoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProductCategoryController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ShopController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ShopController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/ConfirmCommentResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/ConfirmCommentResource.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/NormalProductResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/NormalProductResource.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/ShopResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/ShopResource.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/UltraNormalProductIndexResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/UltraNormalProductIndexResource.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/UltraTagShopStatusResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/UltraTagShopStatusResource.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/ConfirmComment.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ConfirmComment.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/NormalProduct.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/NormalProduct.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Shop.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Shop.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Query/Pagination/Pagination.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Query/Pagination/Pagination.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_11_07_154403_add_category_name_filed_to_normal_products_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_11_07_154403_add_category_name_filed_to_normal_products_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_08_15_063613_create_edit_tables.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_08_30_075242_edit_user_name_column_default_value_nullable.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_08_30_080440_edit_user_password_column_default_value_nullable.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_08_30_095804_edit_user_mobile_verified_code_column_type_to_string.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_09_19_120513_create_categories_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_09_19_120513_create_categories_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_09_19_140339_add_category_id_to_shops_table.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_09_19_154656_add_foreign_key_shops_table.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_09_25_091209_create_tags_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_09_25_091209_create_tags_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_09_25_091345_create_shops_tags_pivot_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_09_25_091345_create_shops_tags_pivot_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_09_29_163435_add_another_colmun_shops_table.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_10_30_092843_add_shop_priority_to_shops_table.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_10_30_104751_create_normal_products_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_10_30_104751_create_normal_products_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_10_30_104817_create_custom_products_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_10_30_104817_create_custom_products_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_10_30_104852_create_normal_services_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_10_30_104852_create_normal_services_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_10_30_104911_create_custom_services_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_10_30_104911_create_custom_services_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_10_30_185244_create_details_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_10_30_185244_create_details_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_10_30_190039_create_attributes_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_10_30_190039_create_attributes_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_10_30_190510_create_attribute_values_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_10_30_190510_create_attribute_values_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_11_06_074835_add_detiles_type.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_11_06_075434_add_detiles_price.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_11_06_080734_change_attributes_colmun.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_11_06_082815_product_tags.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_11_06_082815_product_tags.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_11_06_082845_product_tag_stags.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_11_06_161255_create_tasks_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_11_06_161255_create_tasks_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_11_06_182741_create_confirm_comment_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_11_06_182741_create_confirm_comment_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_11_06_184646_create_product_price_history_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_11_06_184646_create_product_price_history_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_11_07_080255_create_product_categories_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_11_07_080255_create_product_categories_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_11_07_154403_add_category_name_filed_to_normal_products_table.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_11_07_171459_add_foreign_relation.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_11_09_101704_rename_child_id_to_parent_id_confrim_comment_table.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_11_14_131239_add_firt_last_user_table.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_11_14_143742_edit_product_category.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_11_14_145859_edit_categories_table_add_column.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_11_16_180305_edit_tags_table_add_column.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_12_05_090256_change_product_category_image_url_table_product_categories.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/logs/laravel.log" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/laravel.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_static.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/package-versions-deprecated/src/PackageVersions/Versions.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/package-versions-deprecated/src/PackageVersions/Versions.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_facades.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_facades.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_macro.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_macro.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_macro_static.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_macro_static.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_model_builders.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_model_builders.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_models.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_models.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,6 +105,15 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="PhpDebugGeneral" listening_started="true" />
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP 7.4.23">
     <include_path>
       <path value="$PROJECT_DIR$/vendor/mockery/mockery" />
@@ -230,12 +272,12 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
@@ -243,11 +285,12 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/public" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.PHP" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\PhpStorm 2019.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
+    <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -577,6 +620,7 @@
       </list>
     </option>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="project-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration>C:\Users\m.mohamadi.SEPEHRNET\AppData\Roaming\Subversion</configuration>
   </component>
@@ -640,6 +684,13 @@
       <workItem from="1638331342980" duration="147014000" />
       <workItem from="1639549447051" duration="36000" />
       <workItem from="1640405075007" duration="545000" />
+      <workItem from="1640419625019" duration="3721000" />
+      <workItem from="1640425092701" duration="170000" />
+      <workItem from="1640425273225" duration="185000" />
+      <workItem from="1640425496742" duration="35000" />
+      <workItem from="1640425583219" duration="15534000" />
+      <workItem from="1640514925051" duration="10743000" />
+      <workItem from="1640534960080" duration="1076000" />
     </task>
     <task id="LOCAL-00001" summary="1">
       <created>1628849277468</created>
@@ -939,24 +990,32 @@
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ID_ORDER">
+      <list>
+        <option value="Default.Root" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+        <option value="Default.Subject" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="17" />
     <MESSAGE value="18" />
     <MESSAGE value="19" />
     <MESSAGE value="20" />
@@ -981,197 +1040,7 @@
     <MESSAGE value="39" />
     <MESSAGE value="40" />
     <MESSAGE value="41" />
-    <option name="LAST_COMMIT_MESSAGE" value="41" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="309" y="37" key="#CLI_Interpreters" timestamp="1630122390985">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="309" y="37" key="#CLI_Interpreters/0.0.1366.728@0.0.1366.728" timestamp="1630122390985" />
-    <state x="-1278" y="26" key="#Inspections" timestamp="1639312115084">
-      <screen x="-1600" y="0" width="1600" height="860" />
-    </state>
-    <state x="275" y="22" key="#Inspections/0.0.1366.728@0.0.1366.728" timestamp="1630868118902" />
-    <state x="-1278" y="26" key="#Inspections/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1639312115084" />
-    <state x="-1278" y="0" width="816" height="728" key="#Intentions" timestamp="1639311532021">
-      <screen x="-1600" y="0" width="1600" height="860" />
-    </state>
-    <state x="275" y="0" width="816" height="728" key="#Intentions/0.0.1366.728@0.0.1366.728" timestamp="1630680305180" />
-    <state x="-1278" y="0" key="#Intentions/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1639311532021" />
-    <state x="392" y="88" key="#Notifications" timestamp="1632550976684">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state x="392" y="88" key="#Notifications/0.0.1600.860/-1600.0.1600.860@0.0.1600.860" timestamp="1632550976684" />
-    <state x="-1255" y="61" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1636987450182">
-      <screen x="-1600" y="0" width="1600" height="860" />
-    </state>
-    <state x="-1255" y="61" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1636987450182" />
-    <state x="-1028" y="93" key="#com.intellij.ide.util.MemberChooser" timestamp="1635594674147">
-      <screen x="-1600" y="0" width="1600" height="860" />
-    </state>
-    <state x="488" y="79" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1630870568974" />
-    <state x="-1028" y="93" key="#com.intellij.ide.util.MemberChooser/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1635594674147" />
-    <state x="572" y="93" key="#com.intellij.ide.util.MemberChooser/0.0.1600.860/-1600.0.1600.860@0.0.1600.860" timestamp="1632052504821" />
-    <state x="-1280" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1639289119008">
-      <screen x="-1600" y="0" width="1600" height="860" />
-    </state>
-    <state x="-1280" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1639289119008" />
-    <state x="320" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1600.860/-1600.0.1600.860@0.0.1600.860" timestamp="1632044322559" />
-    <state x="-1117" y="139" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1639316640141">
-      <screen x="-1600" y="0" width="1600" height="860" />
-    </state>
-    <state x="412" y="118" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.728@0.0.1366.728" timestamp="1630870909333" />
-    <state x="-1117" y="139" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1639316640141" />
-    <state x="483" y="139" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1600.860/-1600.0.1600.860@0.0.1600.860" timestamp="1633530495382" />
-    <state x="483" y="139" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1600.860@0.0.1600.860" timestamp="1631108677772" />
-    <state x="580" y="355" key="#com.jetbrains.php.lang.intentions.PhpImportClassDialog#" timestamp="1631084876737">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state x="580" y="355" key="#com.jetbrains.php.lang.intentions.PhpImportClassDialog#/0.0.1600.860@0.0.1600.860" timestamp="1631084876737" />
-    <state x="-749" y="168" key="#com.jetbrains.php.refactoring.pullPush.pullUp.PhpPullUpDialog#1" timestamp="1639232214430">
-      <screen x="-1600" y="0" width="1600" height="860" />
-    </state>
-    <state x="-749" y="168" key="#com.jetbrains.php.refactoring.pullPush.pullUp.PhpPullUpDialog#1/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1639232214430" />
-    <state x="558" y="291" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1632051667685">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state x="558" y="291" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1600.860/-1600.0.1600.860@0.0.1600.860" timestamp="1632051667685" />
-    <state x="-1274" y="0" key="CommitChangelistDialog2" timestamp="1639291660510">
-      <screen x="-1600" y="0" width="1600" height="860" />
-    </state>
-    <state x="-1274" y="0" key="CommitChangelistDialog2/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1639291660510" />
-    <state x="326" y="0" key="CommitChangelistDialog2/0.0.1600.860/-1600.0.1600.860@0.0.1600.860" timestamp="1632893075732" />
-    <state x="326" y="0" key="CommitChangelistDialog2/0.0.1600.860@0.0.1600.860" timestamp="1631528617231" />
-    <state x="645" y="336" key="Create Controller" timestamp="1632051413628">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state x="645" y="336" key="Create Controller/0.0.1600.860/-1600.0.1600.860@0.0.1600.860" timestamp="1632051413628" />
-    <state x="673" y="325" key="Create Database Class Factory" timestamp="1632550874092">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state x="673" y="325" key="Create Database Class Factory/0.0.1600.860/-1600.0.1600.860@0.0.1600.860" timestamp="1632550874092" />
-    <state x="674" y="281" key="Create Database Migration" timestamp="1632053507041">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state x="674" y="281" key="Create Database Migration/0.0.1600.860/-1600.0.1600.860@0.0.1600.860" timestamp="1632053507041" />
-    <state x="645" y="308" key="Create Resource Controller" timestamp="1632052205023">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state x="645" y="308" key="Create Resource Controller/0.0.1600.860/-1600.0.1600.860@0.0.1600.860" timestamp="1632052205023" />
-    <state x="-1508" y="92" width="1416" height="676" key="DiffContextDialog" timestamp="1639291743892">
-      <screen x="-1600" y="0" width="1600" height="860" />
-    </state>
-    <state x="79" y="78" width="1209" height="573" key="DiffContextDialog/0.0.1366.728@0.0.1366.728" timestamp="1630870745263" />
-    <state x="-1508" y="92" width="1416" height="676" key="DiffContextDialog/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1639291743892" />
-    <state x="92" y="92" width="1416" height="676" key="DiffContextDialog/0.0.1600.860@0.0.1600.860" timestamp="1630905855701" />
-    <state x="-996" y="108" key="FileChooserDialogImpl" timestamp="1635863330270">
-      <screen x="-1600" y="0" width="1600" height="860" />
-    </state>
-    <state x="516" y="91" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1630867836717" />
-    <state x="-996" y="108" key="FileChooserDialogImpl/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1635863330269" />
-    <state x="-1045" y="330" key="Generate Helper Code" timestamp="1639291622656">
-      <screen x="-1600" y="0" width="1600" height="860" />
-    </state>
-    <state x="-1045" y="330" key="Generate Helper Code/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1639291622656" />
-    <state x="555" y="330" key="Generate Helper Code/0.0.1600.860/-1600.0.1600.860@0.0.1600.860" timestamp="1632562602706" />
-    <state width="1260" height="275" key="GridCell.Tab.0.bottom" timestamp="1635923901293">
-      <screen x="-1600" y="0" width="1600" height="860" />
-    </state>
-    <state width="1260" height="275" key="GridCell.Tab.0.bottom/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1635923901293" />
-    <state width="1260" height="276" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1629725152472" />
-    <state width="1260" height="275" key="GridCell.Tab.0.center" timestamp="1635923901293">
-      <screen x="-1600" y="0" width="1600" height="860" />
-    </state>
-    <state width="1260" height="275" key="GridCell.Tab.0.center/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1635923901293" />
-    <state width="1260" height="276" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1629725152472" />
-    <state width="1260" height="275" key="GridCell.Tab.0.left" timestamp="1635923901293">
-      <screen x="-1600" y="0" width="1600" height="860" />
-    </state>
-    <state width="1260" height="275" key="GridCell.Tab.0.left/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1635923901293" />
-    <state width="1260" height="276" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1629725152471" />
-    <state width="1260" height="275" key="GridCell.Tab.0.right" timestamp="1635923901293">
-      <screen x="-1600" y="0" width="1600" height="860" />
-    </state>
-    <state width="1260" height="275" key="GridCell.Tab.0.right/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1635923901293" />
-    <state width="1260" height="276" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1629725152472" />
-    <state x="-859" y="159" key="NewPhpClassDialog" timestamp="1639289253274">
-      <screen x="-1600" y="0" width="1600" height="860" />
-    </state>
-    <state x="-859" y="159" key="NewPhpClassDialog/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1639289253274" />
-    <state x="555" y="210" key="NewPhpClassDialog/0.0.1600.860@0.0.1600.860" timestamp="1631085325918" />
-    <state x="-966" y="353" key="NewPhpFileDialog" timestamp="1639225308954">
-      <screen x="-1600" y="0" width="1600" height="860" />
-    </state>
-    <state x="-966" y="353" key="NewPhpFileDialog/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1639225308954" />
-    <state x="634" y="353" key="NewPhpFileDialog/0.0.1600.860@0.0.1600.860" timestamp="1630468086867" />
-    <state x="-955" y="140" key="RollbackChangesDialog" timestamp="1639225375994">
-      <screen x="-1600" y="0" width="1600" height="860" />
-    </state>
-    <state x="-955" y="140" key="RollbackChangesDialog/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1639225375994" />
-    <state x="-1217" y="0" key="SettingsEditor" timestamp="1639292138059">
-      <screen x="-1600" y="0" width="1600" height="860" />
-    </state>
-    <state x="186" y="12" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1630870103801" />
-    <state x="-1217" y="0" key="SettingsEditor/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1639292138059" />
-    <state x="383" y="0" key="SettingsEditor/0.0.1600.860/-1600.0.1600.860@0.0.1600.860" timestamp="1632923792469" />
-    <state x="383" y="0" key="SettingsEditor/0.0.1600.860@0.0.1600.860" timestamp="1631517688705" />
-    <state x="647" y="345" key="VCS.ChangelistChooser" timestamp="1631688745258">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state x="647" y="345" key="VCS.ChangelistChooser/0.0.1600.860@0.0.1600.860" timestamp="1631688745258" />
-    <state x="-1278" y="100" key="Vcs.Push.Dialog.v2" timestamp="1639291666636">
-      <screen x="-1600" y="0" width="1600" height="860" />
-    </state>
-    <state x="-1278" y="100" key="Vcs.Push.Dialog.v2/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1639291666636" />
-    <state x="322" y="100" key="Vcs.Push.Dialog.v2/0.0.1600.860/-1600.0.1600.860@0.0.1600.860" timestamp="1632893079429" />
-    <state x="322" y="100" key="Vcs.Push.Dialog.v2/0.0.1600.860@0.0.1600.860" timestamp="1631528623715" />
-    <state x="-1508" y="92" width="1416" height="676" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1638970981354">
-      <screen x="-1600" y="0" width="1600" height="860" />
-    </state>
-    <state x="79" y="78" width="1209" height="573" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog/0.0.1366.728@0.0.1366.728" timestamp="1630870745263" />
-    <state x="-1508" y="92" width="1416" height="676" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1638970981354" />
-    <state x="92" y="92" width="1416" height="676" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog/0.0.1600.860@0.0.1600.860" timestamp="1630905855701" />
-    <state x="-1434" y="55" width="1384" height="643" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1639236107805">
-      <screen x="-1600" y="0" width="1600" height="860" />
-    </state>
-    <state x="92" y="92" width="1182" height="544" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1366.728@0.0.1366.728" timestamp="1630762974164" />
-    <state x="-1434" y="55" width="1384" height="643" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1639236107805" />
-    <state x="108" y="109" width="1385" height="643" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1600.860/-1600.0.1600.860@0.0.1600.860" timestamp="1634625611418" />
-    <state x="108" y="109" width="1385" height="643" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1600.860@0.0.1600.860" timestamp="1630496170965" />
-    <state x="-1508" y="92" width="1416" height="676" key="com.intellij.history.integration.ui.views.SelectionHistoryDialog" timestamp="1636522789144">
-      <screen x="-1600" y="0" width="1600" height="860" />
-    </state>
-    <state x="-1508" y="92" width="1416" height="676" key="com.intellij.history.integration.ui.views.SelectionHistoryDialog/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1636522789144" />
-    <state x="496" y="253" key="com.intellij.ide.util.TipDialog" timestamp="1631517348748">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state x="423" y="214" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1630870122857" />
-    <state x="496" y="253" key="com.intellij.ide.util.TipDialog/0.0.1600.860@0.0.1600.860" timestamp="1631517348748" />
-    <state x="-999" y="221" key="git4idea.merge.GitMergeDialog" timestamp="1638967745051">
-      <screen x="-1600" y="0" width="1600" height="860" />
-    </state>
-    <state x="-999" y="221" key="git4idea.merge.GitMergeDialog/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1638967745051" />
-    <state width="885" height="247" key="javadoc.popup.new" timestamp="1637477240947">
-      <screen x="-1600" y="0" width="1600" height="860" />
-    </state>
-    <state width="885" height="247" key="javadoc.popup.new/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1637477240947" />
-    <state x="541" y="72" key="refactoring.ChangeSignatureDialog" timestamp="1631083219967">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state x="541" y="72" key="refactoring.ChangeSignatureDialog/0.0.1600.860@0.0.1600.860" timestamp="1631083219967" />
-    <state x="-1144" y="195" width="672" height="677" key="run.anything.popup" timestamp="1639291593571">
-      <screen x="-1600" y="0" width="1600" height="860" />
-    </state>
-    <state x="389" y="165" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1634291576703" />
-    <state x="-1144" y="195" width="672" height="677" key="run.anything.popup/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1639291593571" />
-    <state x="456" y="195" key="run.anything.popup/0.0.1600.860/-1600.0.1600.860@0.0.1600.860" timestamp="1632575086550" />
-    <state x="456" y="195" key="run.anything.popup/0.0.1600.860@0.0.1600.860" timestamp="1634552182017" />
-    <state x="-1167" y="80" width="789" height="801" key="search.everywhere.popup" timestamp="1639297384576">
-      <screen x="-1600" y="0" width="1600" height="860" />
-    </state>
-    <state x="346" y="49" width="674" height="679" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1630868229466" />
-    <state x="-1167" y="80" width="789" height="801" key="search.everywhere.popup/0.0.1600.860/-1600.0.1600.860@-1600.0.1600.860" timestamp="1639297384576" />
-    <state x="433" y="80" width="789" height="801" key="search.everywhere.popup/0.0.1600.860/-1600.0.1600.860@0.0.1600.860" timestamp="1634651197246" />
-    <state x="433" y="80" width="789" height="801" key="search.everywhere.popup/0.0.1600.860@0.0.1600.860" timestamp="1631690428665" />
+    <MESSAGE value="43" />
+    <option name="LAST_COMMIT_MESSAGE" value="43" />
   </component>
 </project>

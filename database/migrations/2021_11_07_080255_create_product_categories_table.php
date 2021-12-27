@@ -15,8 +15,9 @@ class CreateProductCategoriesTable extends Migration
     {
         Schema::create('product_categories', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('parent_id')->nullable();
             $table->string('product_category_name')->nullable();
-            $table->string('product_category_image_url');
+            $table->string('product_category_image_url')->nullable();
 
             $table->unsignedBigInteger('product_categoryable_id')->nullable()->comment('ای دی محصول مورد تایی');
             $table->string('product_categoryable_type')->nullable()->comment('نوع موجودیت محصول');
@@ -29,6 +30,84 @@ class CreateProductCategoriesTable extends Migration
 
             $table->softDeletes();
             $table->timestamps();
+
+            $table->foreign('parent_id')
+                ->references('id')
+                ->on('product_categories')
+                ->onDelete('no action')
+                ->onUpdate('cascade');
+
+            $table->foreign('product_category_additional_user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('no action')
+                ->onUpdate('cascade');
+        });
+
+        Schema::create('normal_products', function (Blueprint $table) {
+            $table->foreign('normal_product_category_id')
+                ->references('id')
+                ->on('product_categories')
+                ->onDelete('no action')
+                ->onUpdate('cascade');
+        });
+
+        Schema::create('custom_products', function (Blueprint $table) {
+            $table->foreign('custom_product_category_id')
+                ->references('id')
+                ->on('product_categories')
+                ->onDelete('no action')
+                ->onUpdate('cascade');
+        });
+
+        Schema::create('normal_services', function (Blueprint $table) {
+            $table->foreign('normal_service_category_id')
+                ->references('id')
+                ->on('product_categories')
+                ->onDelete('no action')
+                ->onUpdate('cascade');
+        });
+
+        Schema::create('custom_services', function (Blueprint $table) {
+            $table->foreign('custom_service_category_id')
+                ->references('id')
+                ->on('product_categories')
+                ->onDelete('no action')
+                ->onUpdate('cascade');
+        });
+
+//        Schema::create('freelancers', function (Blueprint $table) {
+//            $table->foreign('freelancer_category_id')
+//                ->references('id')
+//                ->on('product_categories')
+//                ->onDelete('no action')
+//                ->onUpdate('cascade');
+//        });
+//
+//        Schema::create('events', function (Blueprint $table) {
+//            $table->foreign('event_category_id')
+//                ->references('id')
+//                ->on('product_categories')
+//                ->onDelete('no action')
+//                ->onUpdate('cascade');
+//        });
+
+        /*
+        //        Schema::create('details', function (Blueprint $table) {
+        //            $table->foreign('detail_category_id')
+        //                ->references('id')
+        //                ->on('product_categories')
+        //                ->onDelete('no action')
+        //                ->onUpdate('cascade');
+        //        });
+        */
+
+        Schema::create('tasks', function (Blueprint $table) {
+            $table->foreign('task_category_id')
+                ->references('id')
+                ->on('product_categories')
+                ->onDelete('no action')
+                ->onUpdate('cascade');
         });
     }
 

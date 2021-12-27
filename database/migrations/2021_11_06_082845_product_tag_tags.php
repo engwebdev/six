@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateShopsTagsPivotTable extends Migration
+class ProductTagsTags extends Migration
 {
     /**
      * Run the migrations.
@@ -13,23 +13,25 @@ class CreateShopsTagsPivotTable extends Migration
      */
     public function up()
     {
-        Schema::create('shop_has_shop_tags', function (Blueprint $table) {
+        Schema::create('product_tags_tags', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('shop_id')->nullable();
-            $table->unsignedBigInteger('tag_id')->nullable();
-            $table->boolean('tag_accept_status')->nullable();
+            $table->unsignedBigInteger('product_tags_id')->nullable();
+            $table->unsignedBigInteger('productable_id')->nullable();
+            $table->string('productable_type')->nullable();
+            $table->unsignedBigInteger('product_tags_tags_confirm_user_id')->nullable();
+            $table->boolean('product_tags_tags_status')->nullable();
             $table->softDeletes();
             $table->timestamps();
 
-            $table->foreign('shop_id')
+            $table->foreign('product_tags_id')
                 ->references('id')
-                ->on('shops')
+                ->on('product_tags')
                 ->onDelete('no action')
                 ->onUpdate('cascade');
 
-            $table->foreign('tag_id')
+            $table->foreign('product_tags_tags_confirm_user_id')
                 ->references('id')
-                ->on('shop_tags')
+                ->on('users')
                 ->onDelete('no action')
                 ->onUpdate('cascade');
         });
@@ -42,6 +44,7 @@ class CreateShopsTagsPivotTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('shops_tags');
+        Schema::drop('product_tags_tags');
+
     }
 }

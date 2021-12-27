@@ -15,14 +15,19 @@ class ProductTags extends Migration
     {
         Schema::create('product_tags', function (Blueprint $table) {
             $table->id();
-            $table->string('product_tag_name');
-            $table->string('product_tag_image_url');
-            $table->boolean('product_tag_publish_status');
-            $table->boolean('product_tag_accept_status');
-            $table->boolean('product_tag_additional_type');
-            $table->unsignedBigInteger('product_tag_additional_user_id');
+            $table->string('product_tag_name')->nullable();
+            $table->string('product_tag_image_url')->nullable();
+            $table->boolean('product_tag_publish_status')->nullable();
+            $table->boolean('product_tag_accept_status')->nullable();
+            $table->unsignedBigInteger('product_tag_additional_user_id')->nullable();
             $table->softDeletes();
             $table->timestamps();
+
+            $table->foreign('product_tag_additional_user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('no action')
+                ->onUpdate('cascade');
         });
     }
 

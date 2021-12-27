@@ -17,14 +17,14 @@ namespace Illuminate\Contracts\View {
 namespace Illuminate\Http {
     
     /**
-     * @method void banner($message)
-     * @method void dangerBanner($message)
+     * @method RedirectResponse banner($message)
+     * @method RedirectResponse dangerBanner($message)
      */
     class RedirectResponse {}
     
     /**
      * @method array validate(array $rules, ...$params)
-     * @method void validateWithBag(string $errorBag, array $rules, ...$params)
+     * @method array validateWithBag(string $errorBag, array $rules, ...$params)
      * @method bool hasValidSignature($absolute = true)
      * @method bool hasValidRelativeSignature()
      */

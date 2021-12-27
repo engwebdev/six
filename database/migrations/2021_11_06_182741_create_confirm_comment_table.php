@@ -15,7 +15,7 @@ class CreateConfirmCommentTable extends Migration
     {
         Schema::create('confirm_comment', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('child_id')->nullable();
+            $table->unsignedBigInteger('parent_id')->nullable();
             $table->unsignedBigInteger('system_user_id')->nullable();
             $table->string('system_user_comment')->nullable();
             $table->boolean('confirm_comment_value')->nullable()->comment('مقداری که در جدول محصول برای استاتوس رد و تایید وارد میشود');
@@ -26,6 +26,19 @@ class CreateConfirmCommentTable extends Migration
 
             $table->softDeletes();
             $table->timestamps();
+
+
+            $table->foreign('parent_id')
+                ->references('id')
+                ->on('confirm_comment')
+                ->onDelete('no action')
+                ->onUpdate('cascade');
+
+            $table->foreign('system_user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('no action')
+                ->onUpdate('cascade');
         });
     }
 

@@ -15,15 +15,40 @@ class CreateDetailsTable extends Migration
     {
         Schema::create('details', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger( 'normal_product_id' )->nullable();
-            $table->string( 'normal_product_name' )->nullable();
-            $table->unsignedBigInteger( 'normal_product_attribute_name_id' )->nullable();
-            $table->string( 'normal_product_attribute_name' )->nullable();
-            $table->unsignedBigInteger( 'normal_product_attribute_value_id' )->nullable();
-            $table->string( 'normal_product_attribute_value' )->nullable();
+            $table->unsignedBigInteger( 'productable_id' )->nullable();
+            $table->string('productable_type')->nullable();
+            $table->string( 'product_name' )->nullable();
+            $table->unsignedBigInteger( 'product_attribute_name_id' )->nullable();
+            $table->string( 'product_attribute_name' )->nullable();
+            $table->unsignedBigInteger( 'product_attribute_value_id' )->nullable();
+            $table->string( 'product_attribute_value' )->nullable();
+            $table->unsignedInteger('price_id')->nullable();
+            $table->float('price_value', 20, 2)->nullable();
+            $table->enum('type', ['normalProduct', 'customizeProduct', 'task'])->nullable();
 
             $table->softDeletes();
             $table->timestamps();
+
+            // when 'attributes' table making
+//            $table->foreign('product_attribute_name_id')
+//                ->references('id')
+//                ->on('attributes')
+//                ->onDelete('no action')
+//                ->onUpdate('cascade');
+
+            // when 'attribute_values' table making
+//            $table->foreign('product_attribute_value_id')
+//                ->references('id')
+//                ->on('attribute_values')
+//                ->onDelete('no action')
+//                ->onUpdate('cascade');
+
+            // when 'product_price_history' table making
+//            $table->foreign('price_id')
+//                ->references('id')
+//                ->on('product_price_history')
+//                ->onDelete('no action')
+//                ->onUpdate('cascade');
         });
     }
 

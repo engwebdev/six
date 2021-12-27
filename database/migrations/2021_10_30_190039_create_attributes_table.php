@@ -15,14 +15,29 @@ class CreateAttributesTable extends Migration
     {
         Schema::create('attributes', function (Blueprint $table) {
             $table->id();
-            $table->string( 'attribute_name' )->nullable();
-            $table->string( 'attribute_additional_type' )->nullable();
-            $table->string( 'attribute_additional_user' )->nullable();
-            $table->string( 'attribute_publish_status' )->nullable();
-            $table->string( 'attribute_status_accept' )->nullable();
+            $table->string('attribute_name')->nullable();
+            $table->string('attribute_additional_user_id')->nullable();
+            $table->string('attribute_additional_type')->nullable();
+            $table->boolean('attribute_status_accept')->nullable();
+            $table->boolean('attribute_publish_status')->nullable();
 
             $table->softDeletes();
             $table->timestamps();
+
+            $table->foreign('attribute_additional_user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('no action')
+                ->onUpdate('cascade');
+        });
+
+        // moved from details table to here
+        Schema::create('details', function (Blueprint $table) {
+            $table->foreign('product_attribute_name_id')
+                ->references('id')
+                ->on('attributes')
+                ->onDelete('no action')
+                ->onUpdate('cascade');
         });
     }
 
