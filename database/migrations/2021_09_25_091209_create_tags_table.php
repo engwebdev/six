@@ -14,7 +14,7 @@ class CreateTagsTable extends Migration
     public function up()
     {
         Schema::create('shop_tags', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements();
             $table->string('shop_tag_name')->nullable();
             $table->string('shop_tag_image_url')->nullable();
             $table->boolean('shop_tag_accept_status')->nullable();

@@ -13,8 +13,8 @@ class CreateShopsTagsPivotTable extends Migration
      */
     public function up()
     {
-        Schema::create('shop_has_shop_tags', function (Blueprint $table) {
-            $table->id();
+        Schema::create('shop_shop_tags', function (Blueprint $table) {
+            $table->bigIncrements();
             $table->unsignedBigInteger('shop_id')->nullable();
             $table->unsignedBigInteger('tag_id')->nullable();
             $table->boolean('tag_accept_status')->nullable();

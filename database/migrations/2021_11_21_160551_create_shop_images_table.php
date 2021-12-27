@@ -14,7 +14,7 @@ class CreateShopImagesTable extends Migration
     public function up()
     {
         Schema::create('shop_images', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements();
             $table->unsignedBigInteger('shop_id')->nullable();
             $table->integer('shop_image_index_point')->nullable();
             $table->string('shop_image_url')->nullable();
@@ -34,15 +34,17 @@ class CreateShopImagesTable extends Migration
             $table->softDeletes();
             $table->timestamps();
 
-            $table->foreign('shop_image_uploader_user_id')
-                ->references('id')
-                ->on('users')
-                ->onDelete('set null');
-
             $table->foreign('shop_id')
                 ->references('id')
                 ->on('shops')
-                ->onDelete('set null');
+                ->onDelete('no action')
+                ->onUpdate('cascade');
+
+            $table->foreign('shop_image_uploader_user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('no action')
+                ->onUpdate('cascade');
         });
     }
 

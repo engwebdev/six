@@ -13,12 +13,13 @@ class AddShopParentableColumn extends Migration
      */
     public function up()
     {
-        Schema::create('shops_owen_shops', function(Blueprint $table)
-        {
-            $table->id();
+        Schema::create('shops_owen_shops', function (Blueprint $table) {
+            $table->bigIncrements();
+            $table->string('type_shop_top');
             $table->unsignedBigInteger('top_shop_id');
-            $table->string('type_shop_owner');
+            $table->string('type_shop_bottom');
             $table->unsignedBigInteger('bottom_shop_id');
+            $table->string('type_top_between_bottom');
             $table->softDeletes();
             $table->timestamps();
 
@@ -26,21 +27,13 @@ class AddShopParentableColumn extends Migration
                 ->references('id')
                 ->on('shops')
                 ->onDelete('NO ACTION')
-                ->onUpdate( 'restrict' );
+                ->onUpdate('restrict');
 
             $table->foreign('bottom_shop_id')
                 ->references('id')
                 ->on('shops')
                 ->onDelete('NO ACTION')
-                ->onUpdate( 'restrict' );
-        });
-
-
-
-        Schema::table('shops', function(Blueprint $table) {
-            $table->string('parentable')
-                ->after('parent_id')
-                ->nullable();
+                ->onUpdate('restrict');
         });
     }
 

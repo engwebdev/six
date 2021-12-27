@@ -14,7 +14,7 @@ class CreateProductCustomerCommentsTable extends Migration
     public function up()
     {
         Schema::create('product_customer_comments', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements();
             $table->string('product_customer_comment')->nullable();
             $table->tinyInteger ('product_customer_rate')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();

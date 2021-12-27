@@ -14,7 +14,7 @@ class CreateCustomServicesTable extends Migration
     public function up()
     {
         Schema::create('custom_services', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements();
             $table->string('custom_services_name')->nullable();
             $table->string('custom_services_description')->nullable();
             $table->string('custom_services_info')->nullable();

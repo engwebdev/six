@@ -14,7 +14,7 @@ class CreateProductCategoryAndProductsAndShops extends Migration
     public function up()
     {
         Schema::create('categories_products_shops', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements();
 
             $table->unsignedBigInteger('shop_id')->nullable();
             $table->unsignedBigInteger('product_category_id')->nullable();
@@ -31,12 +31,14 @@ class CreateProductCategoryAndProductsAndShops extends Migration
             $table->foreign('shop_id')
                 ->references('id')
                 ->on('shops')
-                ->onDelete('set null');
+                ->onDelete('no action')
+                ->onUpdate('cascade');
 
             $table->foreign('product_category_id')
                 ->references('id')
                 ->on('product_categories')
-                ->onDelete('set null');
+                ->onDelete('no action')
+                ->onUpdate('cascade');
 
             $table->index(['productable_id', 'productable_type']);
         });

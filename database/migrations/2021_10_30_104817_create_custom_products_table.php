@@ -14,7 +14,7 @@ class CreateCustomProductsTable extends Migration
     public function up()
     {
         Schema::create('custom_products', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements();
             $table->string('custom_product_name')->nullable();
             $table->string('custom_product_description')->nullable();
             $table->string('custom_product_info')->nullable();

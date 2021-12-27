@@ -14,14 +14,14 @@ class CreateConfirmCommentTable extends Migration
     public function up()
     {
         Schema::create('confirm_comment', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements();
             $table->unsignedBigInteger('parent_id')->nullable();
+            $table->unsignedBigInteger('confirm_commentable_id')->nullable()->comment('ای دی محصول مورد تایی');
+            $table->string('confirm_commentable_type')->nullable()->comment('نوع موجودیت محصول');
             $table->unsignedBigInteger('system_user_id')->nullable();
             $table->string('system_user_comment')->nullable();
             $table->boolean('confirm_comment_value')->nullable()->comment('مقداری که در جدول محصول برای استاتوس رد و تایید وارد میشود');
             $table->boolean('type_review')->nullable()->comment('مقدار برای انتشار شده / انتتشار نشده');
-            $table->unsignedBigInteger('confirm_commentable_id')->nullable()->comment('ای دی محصول مورد تایی');
-            $table->string('confirm_commentable_type')->nullable()->comment('نوع موجودیت محصول');
             $table->enum('type_status', ['open', 'close'])->nullable();
 
             $table->softDeletes();

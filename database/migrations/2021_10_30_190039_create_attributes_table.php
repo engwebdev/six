@@ -14,7 +14,7 @@ class CreateAttributesTable extends Migration
     public function up()
     {
         Schema::create('attributes', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements();
             $table->string('attribute_name')->nullable();
             $table->string('attribute_additional_user_id')->nullable();
             $table->string('attribute_additional_type')->nullable();

@@ -14,7 +14,7 @@ class CreateNormalProductsTable extends Migration
     public function up()
     {
         Schema::create('normal_products', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements();
             $table->string('normal_product_name')->nullable();
             $table->string('normal_product_description')->nullable();
             $table->string('normal_product_info')->nullable();

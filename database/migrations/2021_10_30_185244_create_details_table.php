@@ -14,7 +14,7 @@ class CreateDetailsTable extends Migration
     public function up()
     {
         Schema::create('details', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements();
             $table->unsignedBigInteger( 'productable_id' )->nullable();
             $table->string('productable_type')->nullable();
             $table->string( 'product_name' )->nullable();

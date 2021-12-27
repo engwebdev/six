@@ -14,7 +14,7 @@ class CreateProductsImagesTable extends Migration
     public function up()
     {
         Schema::create('products_images', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements();
             $table->unsignedBigInteger('products_imageable_id')->nullable()->comment('ای دی محصولی ک قیمت دارد');
             $table->string('products_imageable_type')->nullable()->comment('نوع موجودیت محصول');
             $table->string('image_url')->nullable()->comment('');

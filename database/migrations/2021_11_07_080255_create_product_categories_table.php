@@ -14,7 +14,7 @@ class CreateProductCategoriesTable extends Migration
     public function up()
     {
         Schema::create('product_categories', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements();
             $table->unsignedBigInteger('parent_id')->nullable();
             $table->string('product_category_name')->nullable();
             $table->string('product_category_image_url')->nullable();
@@ -76,30 +76,30 @@ class CreateProductCategoriesTable extends Migration
                 ->onUpdate('cascade');
         });
 
-//        Schema::create('freelancers', function (Blueprint $table) {
-//            $table->foreign('freelancer_category_id')
-//                ->references('id')
-//                ->on('product_categories')
-//                ->onDelete('no action')
-//                ->onUpdate('cascade');
-//        });
-//
-//        Schema::create('events', function (Blueprint $table) {
-//            $table->foreign('event_category_id')
-//                ->references('id')
-//                ->on('product_categories')
-//                ->onDelete('no action')
-//                ->onUpdate('cascade');
-//        });
+        Schema::create('freelancers', function (Blueprint $table) {
+            $table->foreign('freelancer_category_id')
+                ->references('id')
+                ->on('product_categories')
+                ->onDelete('no action')
+                ->onUpdate('cascade');
+        });
+
+        Schema::create('events', function (Blueprint $table) {
+            $table->foreign('event_category_id')
+                ->references('id')
+                ->on('product_categories')
+                ->onDelete('no action')
+                ->onUpdate('cascade');
+        });
 
         /*
-        //        Schema::create('details', function (Blueprint $table) {
-        //            $table->foreign('detail_category_id')
-        //                ->references('id')
-        //                ->on('product_categories')
-        //                ->onDelete('no action')
-        //                ->onUpdate('cascade');
-        //        });
+        //Schema::create('details', function (Blueprint $table) {
+        //    $table->foreign('detail_category_id')
+        //        ->references('id')
+        //        ->on('product_categories')
+        //        ->onDelete('no action')
+        //        ->onUpdate('cascade');
+        //});
         */
 
         Schema::create('tasks', function (Blueprint $table) {

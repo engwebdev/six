@@ -35,16 +35,9 @@ class CreateShopsTable extends Migration
             $table->string('shop_number')->nullable();
             $table->string('shop_postal_code')->nullable();
             $table->string('shop_main_phone_number')->nullable();
-            $table->string('shop_number')->nullable();
 
             $table->softDeletes();
             $table->timestamps();
-
-            $table->foreign('shop_id')
-                ->references('id')
-                ->on('shops')
-                ->onDelete('no action')
-                ->onUpdate('cascade');
 
             $table->foreign('parent_id')
                 ->references('id')

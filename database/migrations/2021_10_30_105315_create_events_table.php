@@ -11,15 +11,15 @@ class CreateEventsTable extends Migration
      *
      * @return void
      */
-//    public function up()
-//    {
-//        Schema::create('events', function (Blueprint $table) {
-//            $table->id();
-//
-//            $table->softDeletes();
-//            $table->timestamps();
-//        });
-//    }
+    public function up()
+    {
+        Schema::create('events', function (Blueprint $table) {
+            $table->bigIncrements();
+
+            $table->softDeletes();
+            $table->timestamps();
+        });
+    }
 
     /**
      * Reverse the migrations.
