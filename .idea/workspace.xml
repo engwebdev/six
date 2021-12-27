@@ -4,60 +4,7 @@
     <option name="SPLITTER_PROPORTION" value="0.6052632" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d343e4e-b2a9-4dd0-8969-d76dec06ab9f" name="Default Changelist" comment="43">
-      <change afterPath="$PROJECT_DIR$/database/migrations/2021_08_15_063613_create_shops_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2021_11_06_082845_product_tag_tags.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phing-latest.phar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/blade.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/blade.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/8481ddbd-2220-4d0c-a0cb-a9ad61d43b1c.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/8481ddbd-2220-4d0c-a0cb-a9ad61d43b1c.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/six.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/six.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_08_15_063613_create_edit_tables.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_08_30_075242_edit_user_name_column_default_value_nullable.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_08_30_080440_edit_user_password_column_default_value_nullable.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_08_30_095804_edit_user_mobile_verified_code_column_type_to_string.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_09_19_120513_create_categories_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_09_19_120513_create_categories_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_09_19_140339_add_category_id_to_shops_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_09_19_154656_add_foreign_key_shops_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_09_25_091209_create_tags_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_09_25_091209_create_tags_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_09_25_091345_create_shops_tags_pivot_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_09_25_091345_create_shops_tags_pivot_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_09_29_163435_add_another_colmun_shops_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_10_30_092843_add_shop_priority_to_shops_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_10_30_104751_create_normal_products_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_10_30_104751_create_normal_products_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_10_30_104817_create_custom_products_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_10_30_104817_create_custom_products_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_10_30_104852_create_normal_services_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_10_30_104852_create_normal_services_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_10_30_104911_create_custom_services_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_10_30_104911_create_custom_services_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_10_30_185244_create_details_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_10_30_185244_create_details_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_10_30_190039_create_attributes_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_10_30_190039_create_attributes_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_10_30_190510_create_attribute_values_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_10_30_190510_create_attribute_values_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_11_06_074835_add_detiles_type.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_11_06_075434_add_detiles_price.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_11_06_080734_change_attributes_colmun.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_11_06_082815_product_tags.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_11_06_082815_product_tags.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_11_06_082845_product_tag_stags.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_11_06_161255_create_tasks_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_11_06_161255_create_tasks_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_11_06_182741_create_confirm_comment_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_11_06_182741_create_confirm_comment_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_11_06_184646_create_product_price_history_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_11_06_184646_create_product_price_history_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_11_07_080255_create_product_categories_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_11_07_080255_create_product_categories_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_11_07_154403_add_category_name_filed_to_normal_products_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_11_07_171459_add_foreign_relation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_11_09_101704_rename_child_id_to_parent_id_confrim_comment_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_11_14_131239_add_firt_last_user_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_11_14_143742_edit_product_category.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_11_14_145859_edit_categories_table_add_column.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_11_16_180305_edit_tags_table_add_column.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_12_05_090256_change_product_category_image_url_table_product_categories.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/logs/laravel.log" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/laravel.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_facades.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_facades.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_macro.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_macro.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_macro_static.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_macro_static.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_model_builders.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_model_builders.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_models.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_models.php" afterDir="false" />
-    </list>
+    <list default="true" id="4d343e4e-b2a9-4dd0-8969-d76dec06ab9f" name="Default Changelist" comment="44" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -690,7 +637,7 @@
       <workItem from="1640425496742" duration="35000" />
       <workItem from="1640425583219" duration="15534000" />
       <workItem from="1640514925051" duration="10743000" />
-      <workItem from="1640534960080" duration="1076000" />
+      <workItem from="1640534960080" duration="2037000" />
     </task>
     <task id="LOCAL-00001" summary="1">
       <created>1628849277468</created>
@@ -986,7 +933,21 @@
       <option name="project" value="LOCAL" />
       <updated>1639291662844</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="43">
+      <created>1640577147484</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1640577147484</updated>
+    </task>
+    <task id="LOCAL-00044" summary="44">
+      <created>1640577417879</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1640577417879</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1016,7 +977,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="18" />
     <MESSAGE value="19" />
     <MESSAGE value="20" />
     <MESSAGE value="21" />
@@ -1041,6 +1001,7 @@
     <MESSAGE value="40" />
     <MESSAGE value="41" />
     <MESSAGE value="43" />
-    <option name="LAST_COMMIT_MESSAGE" value="43" />
+    <MESSAGE value="44" />
+    <option name="LAST_COMMIT_MESSAGE" value="44" />
   </component>
 </project>
