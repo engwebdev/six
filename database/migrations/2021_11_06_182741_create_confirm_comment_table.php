@@ -14,7 +14,7 @@ class CreateConfirmCommentTable extends Migration
     public function up()
     {
         Schema::create('confirm_comment', function (Blueprint $table) {
-            $table->bigIncrements();
+            $table->bigIncrements('id');
             $table->unsignedBigInteger('parent_id')->nullable();
             $table->unsignedBigInteger('confirm_commentable_id')->nullable()->comment('ای دی محصول مورد تایی');
             $table->string('confirm_commentable_type')->nullable()->comment('نوع موجودیت محصول');

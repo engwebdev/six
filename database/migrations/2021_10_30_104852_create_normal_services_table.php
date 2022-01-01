@@ -14,7 +14,7 @@ class CreateNormalServicesTable extends Migration
     public function up()
     {
         Schema::create('normal_services', function (Blueprint $table) {
-            $table->bigIncrements();
+            $table->bigIncrements('id');
             $table->string('normal_service_name')->nullable();
             $table->string('normal_service_description')->nullable();
             $table->bigInteger('normal_service_timespan_by_minutes')->nullable();

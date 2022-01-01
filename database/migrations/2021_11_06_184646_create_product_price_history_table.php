@@ -14,7 +14,7 @@ class CreateProductPriceHistoryTable extends Migration
     public function up()
     {
         Schema::create('product_price_history', function (Blueprint $table) {
-            $table->bigIncrements();
+            $table->bigIncrements('id');
             $table->unsignedBigInteger('product_price_historiable_id')->nullable()->comment('ای دی محصولی ک قیمت دارد');
             $table->string('product_price_historiable_type')->nullable()->comment('نوع موجودیت محصول');
             $table->unsignedBigInteger('attribute_value_id')->nullable();

@@ -14,7 +14,7 @@ class ProductTags extends Migration
     public function up()
     {
         Schema::create('product_tags', function (Blueprint $table) {
-            $table->bigIncrements();
+            $table->bigIncrements('id');
             $table->string('product_tag_name')->nullable();
             $table->string('product_tag_image_url')->nullable();
             $table->boolean('product_tag_publish_status')->nullable();

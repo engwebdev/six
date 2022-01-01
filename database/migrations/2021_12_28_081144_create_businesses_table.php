@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFreelancersTable extends Migration
+class CreateBusinessesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,8 @@ class CreateFreelancersTable extends Migration
      */
     public function up()
     {
-        Schema::create('freelancers', function (Blueprint $table) {
+        Schema::create('businesses', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('freelancer_category_id')->nullable()->comment('ای دی دسته بندی محصول از دسته بندی های محصولات');
-
             $table->softDeletes();
             $table->timestamps();
         });
@@ -29,6 +27,6 @@ class CreateFreelancersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('freelancers');
+        Schema::dropIfExists('businesses');
     }
 }

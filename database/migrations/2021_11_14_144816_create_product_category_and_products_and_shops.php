@@ -14,7 +14,7 @@ class CreateProductCategoryAndProductsAndShops extends Migration
     public function up()
     {
         Schema::create('categories_products_shops', function (Blueprint $table) {
-            $table->bigIncrements();
+            $table->bigIncrements('id');
 
             $table->unsignedBigInteger('shop_id')->nullable();
             $table->unsignedBigInteger('product_category_id')->nullable();

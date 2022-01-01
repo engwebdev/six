@@ -14,9 +14,9 @@ class CreateAttributesTable extends Migration
     public function up()
     {
         Schema::create('attributes', function (Blueprint $table) {
-            $table->bigIncrements();
+            $table->bigIncrements('id');
             $table->string('attribute_name')->nullable();
-            $table->string('attribute_additional_user_id')->nullable();
+            $table->unsignedBigInteger('attribute_additional_user_id')->nullable();
             $table->string('attribute_additional_type')->nullable();
             $table->boolean('attribute_status_accept')->nullable();
             $table->boolean('attribute_publish_status')->nullable();
@@ -32,7 +32,7 @@ class CreateAttributesTable extends Migration
         });
 
         // moved from details table to here
-        Schema::create('details', function (Blueprint $table) {
+        Schema::table('details', function (Blueprint $table) {
             $table->foreign('product_attribute_name_id')
                 ->references('id')
                 ->on('attributes')

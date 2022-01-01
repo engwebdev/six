@@ -14,17 +14,19 @@ class CreateDetailsTable extends Migration
     public function up()
     {
         Schema::create('details', function (Blueprint $table) {
-            $table->bigIncrements();
-            $table->unsignedBigInteger( 'productable_id' )->nullable();
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('productable_id')->nullable();
             $table->string('productable_type')->nullable();
-            $table->string( 'product_name' )->nullable();
-            $table->unsignedBigInteger( 'product_attribute_name_id' )->nullable();
-            $table->string( 'product_attribute_name' )->nullable();
-            $table->unsignedBigInteger( 'product_attribute_value_id' )->nullable();
-            $table->string( 'product_attribute_value' )->nullable();
+            $table->string('product_name')->nullable();
+            $table->unsignedBigInteger('product_attribute_name_id')->nullable();
+            $table->string('product_attribute_name')->nullable();
+            $table->unsignedBigInteger('product_attribute_value_id')->nullable();
+            $table->string('product_attribute_value')->nullable();
+            $table->string('priceable')->nullable();
+            $table->string('price_type')->nullable();
             $table->unsignedInteger('price_id')->nullable();
             $table->float('price_value', 20, 2)->nullable();
-            $table->enum('type', ['normalProduct', 'customizeProduct', 'task'])->nullable();
+            $table->enum('detail_type', ['normalProduct', 'customizeProduct', 'task'])->nullable();
 
             $table->softDeletes();
             $table->timestamps();

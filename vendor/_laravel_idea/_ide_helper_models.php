@@ -79,7 +79,7 @@ namespace App\Models {
     /**
      * @property int $id
      * @property string|null $attribute_name
-     * @property string|null $attribute_additional_user_id
+     * @property int|null $attribute_additional_user_id
      * @property string|null $attribute_additional_type
      * @property bool|null $attribute_status_accept
      * @property bool|null $attribute_publish_status
@@ -102,7 +102,7 @@ namespace App\Models {
      * @property int|null $attribute_id
      * @property string|null $attribute_name
      * @property string|null $attribute_value_name
-     * @property string|null $attribute_value_additional_user_id
+     * @property int|null $attribute_value_additional_user_id
      * @property string|null $attribute_value_additional_type
      * @property bool|null $attribute_value_status_accept
      * @property bool|null $attribute_value_publish_status
@@ -139,12 +139,12 @@ namespace App\Models {
     /**
      * @property int $id
      * @property int|null $parent_id
+     * @property int|null $confirm_commentable_id
+     * @property string|null $confirm_commentable_type
      * @property int|null $system_user_id
      * @property string|null $system_user_comment
      * @property bool|null $confirm_comment_value
      * @property bool|null $type_review
-     * @property int|null $confirm_commentable_id
-     * @property string|null $confirm_commentable_type
      * @property string|null $type_status
      * @property Carbon|null $deleted_at
      * @property Carbon|null $created_at
@@ -677,7 +677,6 @@ namespace App\Models {
      * @property Carbon|null $deleted_at
      * @property Carbon|null $created_at
      * @property Carbon|null $updated_at
-     * @property string|null $parentable
      * @property Category $categories
      * @method BelongsTo|_IH_Category_QB categories()
      * @property _IH_Shop_C|Shop[] $child

@@ -14,7 +14,7 @@ class CreateProductCategoriesTable extends Migration
     public function up()
     {
         Schema::create('product_categories', function (Blueprint $table) {
-            $table->bigIncrements();
+            $table->bigIncrements('id');
             $table->unsignedBigInteger('parent_id')->nullable();
             $table->string('product_category_name')->nullable();
             $table->string('product_category_image_url')->nullable();
@@ -44,7 +44,7 @@ class CreateProductCategoriesTable extends Migration
                 ->onUpdate('cascade');
         });
 
-        Schema::create('normal_products', function (Blueprint $table) {
+        Schema::table('normal_products', function (Blueprint $table) {
             $table->foreign('normal_product_category_id')
                 ->references('id')
                 ->on('product_categories')
@@ -52,7 +52,7 @@ class CreateProductCategoriesTable extends Migration
                 ->onUpdate('cascade');
         });
 
-        Schema::create('custom_products', function (Blueprint $table) {
+        Schema::table('custom_products', function (Blueprint $table) {
             $table->foreign('custom_product_category_id')
                 ->references('id')
                 ->on('product_categories')
@@ -60,7 +60,7 @@ class CreateProductCategoriesTable extends Migration
                 ->onUpdate('cascade');
         });
 
-        Schema::create('normal_services', function (Blueprint $table) {
+        Schema::table('normal_services', function (Blueprint $table) {
             $table->foreign('normal_service_category_id')
                 ->references('id')
                 ->on('product_categories')
@@ -68,7 +68,7 @@ class CreateProductCategoriesTable extends Migration
                 ->onUpdate('cascade');
         });
 
-        Schema::create('custom_services', function (Blueprint $table) {
+        Schema::table('custom_services', function (Blueprint $table) {
             $table->foreign('custom_service_category_id')
                 ->references('id')
                 ->on('product_categories')
@@ -76,7 +76,7 @@ class CreateProductCategoriesTable extends Migration
                 ->onUpdate('cascade');
         });
 
-        Schema::create('freelancers', function (Blueprint $table) {
+        Schema::table('freelancers', function (Blueprint $table) {
             $table->foreign('freelancer_category_id')
                 ->references('id')
                 ->on('product_categories')
@@ -84,7 +84,7 @@ class CreateProductCategoriesTable extends Migration
                 ->onUpdate('cascade');
         });
 
-        Schema::create('events', function (Blueprint $table) {
+        Schema::table('events', function (Blueprint $table) {
             $table->foreign('event_category_id')
                 ->references('id')
                 ->on('product_categories')
@@ -93,7 +93,7 @@ class CreateProductCategoriesTable extends Migration
         });
 
         /*
-        //Schema::create('details', function (Blueprint $table) {
+        //Schema::table('details', function (Blueprint $table) {
         //    $table->foreign('detail_category_id')
         //        ->references('id')
         //        ->on('product_categories')
@@ -102,7 +102,7 @@ class CreateProductCategoriesTable extends Migration
         //});
         */
 
-        Schema::create('tasks', function (Blueprint $table) {
+        Schema::table('tasks', function (Blueprint $table) {
             $table->foreign('task_category_id')
                 ->references('id')
                 ->on('product_categories')

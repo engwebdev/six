@@ -14,7 +14,8 @@ class CreateEventsTable extends Migration
     public function up()
     {
         Schema::create('events', function (Blueprint $table) {
-            $table->bigIncrements();
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('event_category_id')->nullable()->comment('ای دی دسته بندی محصول از دسته بندی های محصولات');
 
             $table->softDeletes();
             $table->timestamps();

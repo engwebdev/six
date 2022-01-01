@@ -14,7 +14,7 @@ class CreateShopImagesTable extends Migration
     public function up()
     {
         Schema::create('shop_images', function (Blueprint $table) {
-            $table->bigIncrements();
+            $table->bigIncrements('id');
             $table->unsignedBigInteger('shop_id')->nullable();
             $table->integer('shop_image_index_point')->nullable();
             $table->string('shop_image_url')->nullable();

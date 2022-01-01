@@ -14,11 +14,64 @@
     },
     "servers": [
         {
-            "url": "http://127.0.0.1:8001",
+            "url": "http://127.0.0.1:8000",
             "description": "Documentation API Server"
         }
     ],
     "paths": {
+        "/api/v1/account": {
+            "post": {
+                "tags": [
+                    "Account"
+                ],
+                "summary": "create new account. => only for shopkeeper",
+                "description": "create new account",
+                "operationId": "newAccount",
+                "responses": {
+                    "200": {
+                        "description": "New account Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "New account Created"
+                                        },
+                                        "success": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string",
+                                                    "format": "string",
+                                                    "example": "12"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "NotificationsEnServer": {
+                                            "type": "string",
+                                            "format": "string",
+                                            "example": "New Shop Created"
+                                        },
+                                        "NotificationsFaServer": {
+                                            "type": "string",
+                                            "format": "string",
+                                            "example": "فروشگاه جدید ایجاد شد. و منتظر تایید مدیر میباشد."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
         "/api/userRegister": {
             "post": {
                 "tags": [
@@ -3732,9 +3785,9 @@
                 "scheme": "https",
                 "flows": {
                     "password": {
-                        "authorizationUrl": "http://127.0.0.1:8001/api/v1/authorize",
-                        "tokenUrl": "http://127.0.0.1:8001/api/v1/token",
-                        "refreshUrl": "http://127.0.0.1:8001/api/v1/token/refresh",
+                        "authorizationUrl": "http://127.0.0.1:8000/api/v1/authorize",
+                        "tokenUrl": "http://127.0.0.1:8000/api/v1/token",
+                        "refreshUrl": "http://127.0.0.1:8000/api/v1/token/refresh",
                         "scopes": []
                     }
                 }
@@ -3753,6 +3806,9 @@
         },
         {
             "name": "Profile"
+        },
+        {
+            "name": "Account"
         },
         {
             "name": "Category for shops",

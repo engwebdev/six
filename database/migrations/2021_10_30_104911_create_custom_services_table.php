@@ -14,7 +14,7 @@ class CreateCustomServicesTable extends Migration
     public function up()
     {
         Schema::create('custom_services', function (Blueprint $table) {
-            $table->bigIncrements();
+            $table->bigIncrements('id');
             $table->string('custom_services_name')->nullable();
             $table->string('custom_services_description')->nullable();
             $table->string('custom_services_info')->nullable();
@@ -27,7 +27,7 @@ class CreateCustomServicesTable extends Migration
             $table->string('custom_services_last_price_discount_type')->nullable()->comment('نوع تخفیف');
             $table->string('custom_services_index_image_url')->nullable()->comment('ادرس تصویر شاخص از جدول تصاویر');
 
-            $table->unsignedBigInteger('custom_services_category_id')->nullable()->comment('ای دی دسته بندی محصول از دسته بندی های محصولات');
+            $table->unsignedBigInteger('custom_service_category_id')->nullable()->comment('ای دی دسته بندی محصول از دسته بندی های محصولات');
             $table->string('custom_services_category_name')->nullable()->comment('نام دسته بندی سرویس سفارشی از دسته بندی های سروریسهای سفارشات');
 
             $table->unsignedBigInteger('custom_services_shop_id')->nullable();

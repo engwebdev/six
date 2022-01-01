@@ -14,11 +14,11 @@ class CreateAttributeValuesTable extends Migration
     public function up()
     {
         Schema::create('attribute_values', function (Blueprint $table) {
-            $table->bigIncrements();
+            $table->bigIncrements('id');
             $table->unsignedBigInteger('attribute_id')->nullable();
             $table->string('attribute_name')->nullable();
             $table->string( 'attribute_value_name' )->nullable();
-            $table->string( 'attribute_value_additional_user_id' )->nullable();
+            $table->unsignedBigInteger( 'attribute_value_additional_user_id' )->nullable();
             $table->string( 'attribute_value_additional_type' )->nullable();
             $table->boolean( 'attribute_value_status_accept' )->nullable();
             $table->boolean( 'attribute_value_publish_status' )->nullable();
@@ -40,7 +40,7 @@ class CreateAttributeValuesTable extends Migration
         });
 
         // moved from details table to here
-        Schema::create('details', function (Blueprint $table) {
+        Schema::table('details', function (Blueprint $table) {
             $table->foreign('product_attribute_value_id')
                 ->references('id')
                 ->on('attribute_values')

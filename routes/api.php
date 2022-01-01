@@ -4,6 +4,7 @@ use App\Exceptions\MyException as MyExceptionAlias;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Grant\CustomAccessTokenController;
 use App\Http\Controllers\Grant\CustomGrantController;
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\ShopController;
@@ -82,7 +83,14 @@ Route::post( '/customIssueToken', [CustomAccessTokenController::class, 'customIs
 //Route::prefix('/category')->group(['middleware' => ['auth:api']], function () {
 //    Route::get('/save', [CategoryController::class, 'create'])->name('save');
 //});
-Route::prefix( 'v1' )->middleware( ['auth:api', 'SwaggerRequest'] )->group( function () {
+Route::prefix( 'v1' )->group( function () {
+
+    Route::get( 'accounts', [AccountController::class, 'index'] )->name( 'accounts.index' );
+    Route::post( 'accounts', [AccountController::class, 'store'] )->name( 'accounts.store' );
+    Route::get( 'accounts/{id}', [AccountController::class, 'show'] )->name( 'accounts.show' );
+    Route::put( 'accounts/{id}', [AccountController::class, 'update'] )->name( 'accounts.update' );
+    Route::delete( 'accounts/{id}', [AccountController::class, 'destroy'] )->name( 'accounts.destroy' );
+
 
     Route::get( 'shops', [ShopController::class, 'index'] )->name( 'shops.index' );
     Route::post( 'shops', [ShopController::class, 'store'] )->name( 'shops.store' );

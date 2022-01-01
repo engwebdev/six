@@ -38,15 +38,24 @@ class Controller extends BaseController
      * @OA\Tag(
      *   name="Authorization By Token",
      * ),
+     *
      * @OA\Tag(
      *   name="Register",
      * ),
+     *
      * @OA\Tag(
      *   name="User Authorization",
      * ),
+     *
      * @OA\Tag(
      *   name="Profile",
      * ),
+     *
+     *
+     * @OA\Tag(
+     *   name="Account",
+     * ),
+     *
      * @OA\Tag(
      *   name="Category for shops",
      *   description="API Endpoints of Category"

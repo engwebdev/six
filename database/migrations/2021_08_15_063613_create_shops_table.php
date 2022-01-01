@@ -53,46 +53,7 @@ class CreateShopsTable extends Migration
 //                ->onUpdate('cascade');
         });
 
-        Schema::create('accounts', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('account_name')->unique()->nullable();
-            $table->unsignedBigInteger('business_id')->nullable();
-            $table->unsignedBigInteger('shop_id')->nullable();
-            $table->unsignedBigInteger('user_id')->nullable();
-            $table->unsignedBigInteger('role_id')->nullable();
-            $table->enum('account_type', ['parent', 'child', 'owner', 'servants'])->nullable();
-            $table->uuid('account_unique_value')->nullable();
-            $table->string('account_status')->nullable();
-            $table->string('account_active_at')->nullable();
-            $table->softDeletes();
-            $table->timestamps();
 
-            $table->foreign('business_id')
-                ->references('id')
-                ->on('shops')
-                ->onDelete('no action')
-                ->onUpdate('cascade');
-
-            $table->foreign('shop_id')
-                ->references('id')
-                ->on('shops')
-                ->onDelete('no action')
-                ->onUpdate('cascade');
-
-            $table->foreign('user_id')
-                ->references('id')
-                ->on('users')
-                ->onDelete('no action')
-                ->onUpdate('cascade');
-
-            $table->foreign('role_id')
-                ->references('id')
-                ->on('roles')
-                ->onDelete('no action')
-                ->onUpdate('cascade');
-
-
-        });
     }
 
     /**
@@ -103,6 +64,5 @@ class CreateShopsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('shops');
-        Schema::dropIfExists('accounts');
     }
 }

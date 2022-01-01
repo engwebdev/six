@@ -14,7 +14,7 @@ class AddShopParentableColumn extends Migration
     public function up()
     {
         Schema::create('shops_owen_shops', function (Blueprint $table) {
-            $table->bigIncrements();
+            $table->bigIncrements('id');
             $table->string('type_shop_top');
             $table->unsignedBigInteger('top_shop_id');
             $table->string('type_shop_bottom');
