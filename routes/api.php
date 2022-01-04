@@ -26,142 +26,126 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware( 'auth:sanctum' )->get( '/v1/user', function (Request $request) {
+Route::middleware('auth:sanctum')->get('/v1/user', function (Request $request) {
     return $request->user();
 }
 );
-Route::get( '/v1/testUser', function (Request $request) {
-//        return 11;
-//        return User::all();
-//        dd(auth()->user());
-//        return $request;
+Route::get('/v1/testUser', function (Request $request) {
     return auth()->user();
 }
 );
-Route::prefix( 'v1' )->middleware( ['auth:api'] )->group( function () {
-    Route::get( 'makeRole', function () {
-//        dd( config( 'auth.defaults.guard' ) );
-//        $role = \Spatie\Permission\Models\Role::create( ['name' => 'shopkeeper'] );
-//    $role = \Spatie\Permission\Models\Role::create(['name' => 'shopkeeper']);
-//        return $role;
-
-    }
-    );
-} );
+Route::prefix('v1')->middleware(['auth:api'])->group(function () {
+    Route::get('makeRole', function () {
+    });
+});
 
 //Route::get( '/v1/shops/{id}', function (Request $request) {return 1;} )->name( 'shops.show' );
 
+Route::post('/userRegister', [AuthController::class, 'userRegister'])->name('userRegister');
+Route::post('/userLogin', [AuthController::class, 'userLogin'])->name('userLogin');
+Route::post('/userNewToken', [AuthController::class, 'userNewToken'])->name('userNewToken');
 
-Route::post( '/userRegister', [AuthController::class, 'userRegister'] )->name( 'userRegister' );
-Route::post( '/userLogin', [AuthController::class, 'userLogin'] )->name( 'userLogin' );
-Route::post( '/userNewToken', [AuthController::class, 'userNewToken'] )->name( 'userNewToken' );
+Route::group(['middleware' => ['auth:api']], function () {
+    Route::get('/userLogout', [AuthController::class, 'userLogout'])->name('userLogout');
+    Route::prefix('v1')->group(function () {
+        Route::post('/userAccount', [AuthController::class, 'userAccount'])->name('userAccount');
+        Route::put('/userUpdate/{id}', [AuthController::class, 'update'])->name('userUpdate');
 
-Route::group( ['middleware' => ['auth:api']], function () {
-    Route::get( '/userLogout', [AuthController::class, 'userLogout'] )->name( 'userLogout' );
-    Route::prefix( 'v1' )->group( function () {
-        Route::post( '/userAccount', [AuthController::class, 'userAccount'] )->name( 'userAccount' );
-        Route::put( '/userUpdate/{id}', [AuthController::class, 'update'] )->name( 'userUpdate' );
+    });
+});
 
-    } );
-} );
-
-Route::post( '/customGrantToken', [CustomGrantController::class, 'customGrantToken'] )->name( 'customGrantToken' );
-Route::middleware( ['auth:api', 'SwaggerRequest'] )->post( '/newTokenByRefreshToken', [CustomGrantController::class, 'newTokenByRefreshToken'] )->name( 'newTokenByRefreshToken' );
+Route::post('/customGrantToken', [CustomGrantController::class, 'customGrantToken'])->name('customGrantToken');
+Route::middleware(['auth:api', 'SwaggerRequest'])->post('/newTokenByRefreshToken', [CustomGrantController::class, 'newTokenByRefreshToken'])->name('newTokenByRefreshToken');
 //Route::post('/newTokenByRefreshToken', [CustomGrantController::class, 'newTokenByRefreshToken'])->name('newTokenByRefreshToken');
 //Route::middleware(['SwaggerRequest'])->post('/newTokenByRefreshToken',
 //        function (Request $request) {
 //            return response(["e" => $request, "auth" => [$request->request->all(), $request->headers->all(), $request->attributes->all()]]);
 //        }
 //    )->name('newTokenByRefreshToken');
-Route::post( '/newTokenByOldToken', [CustomGrantController::class, 'newTokenByOldToken'] )->name( 'newTokenByOldToken' );
+Route::post('/newTokenByOldToken', [CustomGrantController::class, 'newTokenByOldToken'])->name('newTokenByOldToken');
 //Route::middleware(['middleware' => 'throttle'])->post('/customGrantToken', [CustomGrantController::class, 'customGrantToken'])->name('customGrantToken');
-Route::post( '/customIssueToken', [CustomAccessTokenController::class, 'customIssueToken'] )->name( 'customIssueToken' );
+Route::post('/customIssueToken', [CustomAccessTokenController::class, 'customIssueToken'])->name('customIssueToken');
 
-//////////////////////////////////////////////
+Route::prefix('v1')->group(function () {
 
-//Route::prefix('/category')->group(['middleware' => ['auth:api']], function () {
-//    Route::get('/save', [CategoryController::class, 'create'])->name('save');
-//});
-Route::prefix( 'v1' )->group( function () {
-
-    Route::get( 'accounts', [AccountController::class, 'index'] )->name( 'accounts.index' );
-    Route::post( 'accounts', [AccountController::class, 'store'] )->name( 'accounts.store' );
-    Route::get( 'accounts/{id}', [AccountController::class, 'show'] )->name( 'accounts.show' );
-    Route::put( 'accounts/{id}', [AccountController::class, 'update'] )->name( 'accounts.update' );
-    Route::delete( 'accounts/{id}', [AccountController::class, 'destroy'] )->name( 'accounts.destroy' );
+    Route::get('accounts', [AccountController::class, 'index'])->name('accounts.index');
+    Route::post('accounts', [AccountController::class, 'store'])->name('accounts.store');
+    Route::get('accounts/{id}', [AccountController::class, 'show'])->name('accounts.show');
+    Route::put('accounts/{id}', [AccountController::class, 'update'])->name('accounts.update');
+    Route::delete('accounts/{id}', [AccountController::class, 'destroy'])->name('accounts.destroy');
 
 
-    Route::get( 'shops', [ShopController::class, 'index'] )->name( 'shops.index' );
-    Route::post( 'shops', [ShopController::class, 'store'] )->name( 'shops.store' );
-    Route::get( 'shops/{id}', [ShopController::class, 'show'] )->name( 'shops.show' );
-    Route::put( 'shops/{id}', [ShopController::class, 'update'] )->name( 'shops.update' );
-    Route::delete( 'shops/{id}', [ShopController::class, 'destroy'] )->name( 'shops.destroy' );
-    Route::get( 'shops/self', [ShopController::class, 'getSelfShop'] )->name( 'shops.getSelfShop' );
+    Route::get('shops', [ShopController::class, 'index'])->name('shops.index');
+    Route::post('shops', [ShopController::class, 'store'])->name('shops.store');
+    Route::get('shops/{id}', [ShopController::class, 'show'])->name('shops.show');
+    Route::put('shops/{id}', [ShopController::class, 'update'])->name('shops.update');
+    Route::delete('shops/{id}', [ShopController::class, 'destroy'])->name('shops.destroy');
+    Route::get('shops/self', [ShopController::class, 'getSelfShop'])->name('shops.getSelfShop');
 
 //    Route::get('shops/shopImage/{id}', [ShopController::class, 'shopImage'])->name('shop.shopImage');
-    Route::get( 'tagsShop/{id}', [ShopController::class, 'tagsShopById'] )->name( 'tagsShop.show' );
+    Route::get('tagsShop/{id}', [ShopController::class, 'tagsShopById'])->name('tagsShop.show');
 
-    Route::prefix( 'shop' )->group( function () {
-        Route::get( 'categories', [CategoryController::class, 'findAll'] )->name( 'categories.index' );
-        Route::post( 'categories', [CategoryController::class, 'create'] )->name( 'categories.store' );
-        Route::get( 'categories/{id}', [CategoryController::class, 'findById'] )->name( 'categories.show' );
-        Route::put( 'categories/{id}', [CategoryController::class, 'update'] )->name( 'categories.update' );
-        Route::delete( 'categories/{id}', [CategoryController::class, 'destroy'] )->name( 'categories.destroy' );
+    Route::prefix('shop')->group(function () {
+        Route::get('categories', [CategoryController::class, 'findAll'])->name('categories.index');
+        Route::post('categories', [CategoryController::class, 'create'])->name('categories.store');
+        Route::get('categories/{id}', [CategoryController::class, 'findById'])->name('categories.show');
+        Route::put('categories/{id}', [CategoryController::class, 'update'])->name('categories.update');
+        Route::delete('categories/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
 
-    } );
+    });
 
-    Route::prefix( 'shop' )->group( function () {
-        Route::get( 'tags', [TagController::class, 'index'] )->name( 'tags.index' );
-        Route::post( 'tags', [TagController::class, 'store'] )->name( 'tags.store' );
-        Route::get( 'tags/{id}', [TagController::class, 'show'] )->name( 'tags.show' );
-        Route::put( 'tags/{id}', [TagController::class, 'update'] )->name( 'tags.update' );
-        Route::delete( 'tags/{id}', [TagController::class, 'destroy'] )->name( 'tags.destroy' );
-    } );
+    Route::prefix('shop')->group(function () {
+        Route::get('tags', [TagController::class, 'index'])->name('tags.index');
+        Route::post('tags', [TagController::class, 'store'])->name('tags.store');
+        Route::get('tags/{id}', [TagController::class, 'show'])->name('tags.show');
+        Route::put('tags/{id}', [TagController::class, 'update'])->name('tags.update');
+        Route::delete('tags/{id}', [TagController::class, 'destroy'])->name('tags.destroy');
+    });
 
-    Route::get( 'normal-products', [NormalProductController::class, 'index'] )->name( 'normal-products.index' );
-    Route::post( 'normal-products', [NormalProductController::class, 'store'] )->name( 'normal-products.store' );
-    Route::get( 'normal-products/{id}', [NormalProductController::class, 'show'] )->name( 'normal-products.show' );
-    Route::put( 'normal-products/{id}', [NormalProductController::class, 'update'] )->name( 'normal-products.update' );
-    Route::delete( 'normal-products/{id}', [NormalProductController::class, 'destroy'] )->name( 'normal-products.destroy' );
+    Route::get('normal-products', [NormalProductController::class, 'index'])->name('normal-products.index');
+    Route::post('normal-products', [NormalProductController::class, 'store'])->name('normal-products.store');
+    Route::get('normal-products/{id}', [NormalProductController::class, 'show'])->name('normal-products.show');
+    Route::put('normal-products/{id}', [NormalProductController::class, 'update'])->name('normal-products.update');
+    Route::delete('normal-products/{id}', [NormalProductController::class, 'destroy'])->name('normal-products.destroy');
 
-    Route::get( 'product-category', [ProductCategoryController::class, 'index'] )->name( 'product-category.index' );
-    Route::post( 'product-category', [ProductCategoryController::class, 'store'] )->name( 'product-category.store' );
-    Route::get( 'product-category/{id}', [ProductCategoryController::class, 'show'] )->name( 'product-category.show' );
-    Route::put( 'product-category/{id}', [ProductCategoryController::class, 'update'] )->name( 'product-category.update' );
-    Route::delete( 'product-category/{id}', [ProductCategoryController::class, 'destroy'] )->name( 'product-category.destroy' );
+    Route::get('product-category', [ProductCategoryController::class, 'index'])->name('product-category.index');
+    Route::post('product-category', [ProductCategoryController::class, 'store'])->name('product-category.store');
+    Route::get('product-category/{id}', [ProductCategoryController::class, 'show'])->name('product-category.show');
+    Route::put('product-category/{id}', [ProductCategoryController::class, 'update'])->name('product-category.update');
+    Route::delete('product-category/{id}', [ProductCategoryController::class, 'destroy'])->name('product-category.destroy');
 
-} );
+});
 
-Route::prefix( 'v1' )->middleware( ['auth:api', 'SwaggerRequest'] )->group( function () {
-    Route::get( 'shopImage/{id}', [ShopController::class, 'image'] )->name( 'shop.image' );
-} );
+Route::prefix('v1')->middleware(['auth:api', 'SwaggerRequest'])->group(function () {
+    Route::get('shopImage/{id}', [ShopController::class, 'image'])->name('shop.image');
+});
 
 //////////////////////////////////////////////////////////////
-Route::get( '/v1/current', function (Request $request) {
-    return auth()->guard( 'api' )->user()->email;
-} );
+Route::get('/v1/current', function (Request $request) {
+    return auth()->guard('api')->user()->email;
+});
 
-Route::get( '/v1/exception', function (Request $request) {
+Route::get('/v1/exception', function (Request $request) {
     try
     {
-        throw new MyExceptionAlias( ' MY Exception; ' );
+        throw new MyExceptionAlias(' MY Exception; ');
     }
     catch (MyExceptionAlias $ex)
     {
-        report( $ex );
+        report($ex);
     }
     return 'get';
-} );
+});
 
-Route::middleware( ['auth:api', 'activeUser'] )->get( '/v1/user/{id}', function (Request $request, $id) {
+Route::middleware(['auth:api', 'activeUser'])->get('/v1/user/{id}', function (Request $request, $id) {
 //    $a = 5/0;
 //    return auth()->user();
 //    return 2;
-    $user = User::findOrFail( $id );
+    $user = User::findOrFail($id);
 
 //    $user = User::query()->findOrFail($id);
 
     return $user;
-} )->name( 'user by id' );
+})->name('user by id');
 
 
