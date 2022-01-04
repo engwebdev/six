@@ -488,6 +488,7 @@ class AuthController extends Controller {
 
                     $tokenRequest = $request->create( '/api/v1/token', 'POST', $request->all() );
                     $response = app()->handle( $tokenRequest );
+
                     /*
                                         return response()->json(
                                             [

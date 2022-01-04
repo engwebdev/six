@@ -15,12 +15,12 @@ class CreateShopAccountsTable extends Migration
     {
         Schema::create('accounts', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('account_name')->unique()->nullable();
-            $table->unsignedBigInteger('accountable_id')->nullable();
-            $table->string('accountable_type')->nullable();
+            $table->string('account_name')->unique()->nullable()->comment('نام اینتیتی');
+            $table->unsignedBigInteger('accountable_id')->nullable()->comment('ای دی اینتیتی بیزینس یا شاپ ارتباط با مدل مورف');
+            $table->string('accountable_type')->nullable()->comment('مدل اینتیتی بیزینس یا شاپ ارتباط با مدل مورف');
             $table->unsignedBigInteger('user_id')->nullable();
             $table->unsignedBigInteger('role_id')->nullable();
-            $table->enum('shop_account_size', ['business', 'branch'])->nullable();
+            $table->enum('shop_account_size', ['business', 'branch', 'single'])->nullable();
             $table->enum('shop_account_type', ['market', 'visiting'])->nullable();
             $table->enum('account_type', ['parent', 'child', 'owner', 'servants', 'store'])->nullable();
             $table->uuid('account_unique_value')->nullable();

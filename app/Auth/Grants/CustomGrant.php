@@ -173,7 +173,7 @@ class CustomGrant extends AbstractGrant
         {
             $RequestEvent = new RequestEvent( RequestEvent::USER_AUTHENTICATION_FAILED, $request );
             $this->getEmitter()->emit( $RequestEvent );
-//            throw OAuthServerException::invalidCredentials();
+            throw OAuthServerException::invalidCredentials();
         }
 
         return $user;

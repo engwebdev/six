@@ -48,7 +48,6 @@ class CreateTasksTable extends Migration
             $table->softDeletes();
             $table->timestamps();
 
-
             $table->foreign('task_status_confirm_user_id')
                 ->references('id')
                 ->on('users')

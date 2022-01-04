@@ -243,7 +243,7 @@ namespace App\Models {
      * @property float|null $custom_services_last_price_discount_percentage
      * @property string|null $custom_services_last_price_discount_type
      * @property string|null $custom_services_index_image_url
-     * @property int|null $custom_services_category_id
+     * @property int|null $custom_service_category_id
      * @property string|null $custom_services_category_name
      * @property int|null $custom_services_shop_id
      * @property int|null $custom_services_registry_user_id
@@ -305,9 +305,11 @@ namespace App\Models {
      * @property string|null $product_attribute_name
      * @property int|null $product_attribute_value_id
      * @property string|null $product_attribute_value
+     * @property string|null $priceable
+     * @property string|null $price_type
      * @property int|null $price_id
      * @property float|null $price_value
-     * @property string|null $type
+     * @property string|null $detail_type
      * @property Carbon|null $deleted_at
      * @property Carbon|null $created_at
      * @property Carbon|null $updated_at
@@ -657,6 +659,8 @@ namespace App\Models {
      * @property int|null $parent_id
      * @property string|null $parent_type
      * @property int|null $shop_category_id
+     * @property string|null $shop_category_name
+     * @property string|null $shop_category_type
      * @property string $name
      * @property string|null $description
      * @property string|null $shop_accept_status
@@ -674,6 +678,11 @@ namespace App\Models {
      * @property string|null $shop_number
      * @property string|null $shop_postal_code
      * @property string|null $shop_main_phone_number
+     * @property int|null $normal_product_number_points
+     * @property float|null $normal_product_total_points
+     * @property float|null $normal_product_average_points
+     * @property float|null $normal_product_last_point
+     * @property int|null $normal_product_number_likes
      * @property Carbon|null $deleted_at
      * @property Carbon|null $created_at
      * @property Carbon|null $updated_at

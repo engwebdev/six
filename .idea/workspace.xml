@@ -7,52 +7,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d343e4e-b2a9-4dd0-8969-d76dec06ab9f" name="Default Changelist" comment="48">
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/AccountController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2021_12_28_075137_create_shop_accounts_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2021_12_28_081144_create_businesses_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+    <list default="true" id="4d343e4e-b2a9-4dd0-8969-d76dec06ab9f" name="Default Changelist" comment="49">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ShopController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ShopController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Auth/Grants/CustomGrant.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Auth/Grants/CustomGrant.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Exceptions/CustomGrantException.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Exceptions/CustomGrantException.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Exceptions/MyException.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Exceptions/MyException.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/AuthController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Category.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Category.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Shop.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Shop.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Tag.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Tag.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_08_19_000000_create_failed_jobs_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_08_19_000000_create_failed_jobs_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_08_07_081203_create_permission_tables.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_08_07_081203_create_permission_tables.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/migrations/2021_08_15_063613_create_shops_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_08_15_063613_create_shops_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_09_19_120513_create_categories_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_09_19_120513_create_categories_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_09_25_091209_create_tags_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_09_25_091209_create_tags_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_09_25_091345_create_shops_tags_pivot_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_09_25_091345_create_shops_tags_pivot_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_10_30_104751_create_normal_products_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_10_30_104751_create_normal_products_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_10_30_104817_create_custom_products_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_10_30_104817_create_custom_products_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_10_30_104852_create_normal_services_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_10_30_104852_create_normal_services_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_10_30_104911_create_custom_services_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_10_30_104911_create_custom_services_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_10_30_105157_create_freelancers_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_10_30_105157_create_freelancers_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_10_30_105315_create_events_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_10_30_105315_create_events_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_10_30_185244_create_details_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_10_30_185244_create_details_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_10_30_190039_create_attributes_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_10_30_190039_create_attributes_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_10_30_190510_create_attribute_values_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_10_30_190510_create_attribute_values_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_11_06_082815_product_tags.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_11_06_082815_product_tags.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_11_06_082845_product_tag_tags.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_11_06_082845_product_tag_tags.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/migrations/2021_11_06_161255_create_tasks_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_11_06_161255_create_tasks_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_11_06_182741_create_confirm_comment_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_11_06_182741_create_confirm_comment_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_11_06_184646_create_product_price_history_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_11_06_184646_create_product_price_history_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_11_06_185638_create_products_images_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_11_06_185638_create_products_images_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_11_07_080255_create_product_categories_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_11_07_080255_create_product_categories_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_11_07_081104_create_product_customer_comments_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_11_07_081104_create_product_customer_comments_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_11_14_144816_create_product_category_and_products_and_shops.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_11_14_144816_create_product_category_and_products_and_shops.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_11_21_160551_create_shop_images_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_11_21_160551_create_shop_images_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_12_12_185850_add_shop_parentable_column.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_12_12_185850_add_shop_parentable_column.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/api-docs/api-docs.json" beforeDir="false" afterPath="$PROJECT_DIR$/storage/api-docs/api-docs.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_12_28_075137_create_shop_accounts_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_12_28_075137_create_shop_accounts_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/logs/laravel.log" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/laravel.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_facades.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_facades.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_model_builders.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_model_builders.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_models.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_models.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/ClassLoader.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/ClassLoader.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_static.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/package-versions-deprecated/src/PackageVersions/Versions.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/package-versions-deprecated/src/PackageVersions/Versions.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/platform_check.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/platform_check.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/laravel/passport/src/Http/Controllers/AccessTokenController.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/laravel/passport/src/Http/Controllers/AccessTokenController.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,6 +71,11 @@
     <favorites_list name="six" />
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitSEFilterConfiguration">
@@ -114,7 +91,7 @@
       <server host="http://127.0.0.1" id="2e90b300-109a-435c-b8c2-3442c42f2298" name="127.0.0.1" port="8000" />
     </servers>
   </component>
-  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP 7.4.23">
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP 7.4">
     <include_path>
       <path value="$PROJECT_DIR$/vendor/mockery/mockery" />
       <path value="$PROJECT_DIR$/vendor/egulias/email-validator" />
@@ -285,10 +262,11 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="codeWithMe.voiceChat.enabledByDefault" value="false" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/JetBrains.Trial.Reset.v2.2.2/JetBrains.Trial.Reset.v2.2.2/ide-eval-resetter-2.2.2.jar" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="settings.php.debug.servers" />
+    <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
     <property name="settings.editor.splitter.proportion" value="0.25967413" />
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\PhpStorm 2019.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
     <property name="vue.rearranger.settings.migration" value="true" />
@@ -688,7 +666,20 @@
       <workItem from="1640774011399" duration="3339000" />
       <workItem from="1641010576118" duration="560000" />
       <workItem from="1641011304855" duration="484000" />
-      <workItem from="1641011805951" duration="5705000" />
+      <workItem from="1641011805951" duration="21408000" />
+      <workItem from="1641121002426" duration="54000" />
+      <workItem from="1641121088483" duration="803000" />
+      <workItem from="1641129068481" duration="1214000" />
+      <workItem from="1641130382349" duration="212000" />
+      <workItem from="1641130911258" duration="40000" />
+      <workItem from="1641130978851" duration="64000" />
+      <workItem from="1641131520382" duration="7767000" />
+      <workItem from="1641268741893" duration="21000" />
+      <workItem from="1641268815040" duration="3524000" />
+      <workItem from="1641279262342" duration="16000" />
+      <workItem from="1641279371774" duration="17000" />
+      <workItem from="1641279744985" duration="2279000" />
+      <workItem from="1641289653889" duration="429000" />
     </task>
     <task id="LOCAL-00001" summary="1">
       <created>1628849277468</created>
@@ -1019,7 +1010,14 @@
       <option name="project" value="LOCAL" />
       <updated>1640584005461</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="48">
+      <created>1641023864932</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1641023864932</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1049,7 +1047,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="23" />
     <MESSAGE value="24" />
     <MESSAGE value="25" />
     <MESSAGE value="26" />
@@ -1074,6 +1071,11 @@
     <MESSAGE value="46" />
     <MESSAGE value="47" />
     <MESSAGE value="48" />
-    <option name="LAST_COMMIT_MESSAGE" value="48" />
+    <MESSAGE value="49" />
+    <option name="LAST_COMMIT_MESSAGE" value="49" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
