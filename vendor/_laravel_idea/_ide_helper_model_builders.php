@@ -27,10 +27,10 @@ namespace LaravelIdea\Helper {
      * @method $this joinWhere(string $table, \Closure|string $first, string $operator, string $second, string $type = 'inner')
      * @see \Illuminate\Database\Query\Builder::orWhereJsonContains
      * @method $this orWhereJsonContains(string $column, $value)
-     * @see \Illuminate\Database\Query\Builder::orderBy
-     * @method $this orderBy(\Closure|\Illuminate\Database\Query\Builder|Expression|string $column, string $direction = 'asc')
      * @see \Illuminate\Database\Query\Builder::raw
      * @method Expression raw($value)
+     * @see \Illuminate\Database\Query\Builder::orderBy
+     * @method $this orderBy(\Closure|\Illuminate\Database\Query\Builder|Expression|string $column, string $direction = 'asc')
      * @see \Illuminate\Database\Concerns\BuildsQueries::each
      * @method $this each(callable $callback, int $count = 1000)
      * @see \Illuminate\Database\Query\Builder::setBindings
@@ -39,10 +39,10 @@ namespace LaravelIdea\Helper {
      * @method $this orWhereJsonLength(string $column, $operator, $value = null)
      * @see \Illuminate\Database\Query\Builder::whereRowValues
      * @method $this whereRowValues(array $columns, string $operator, array $values, string $boolean = 'and')
-     * @see \Illuminate\Database\Query\Builder::orWhereNotExists
-     * @method $this orWhereNotExists(\Closure $callback)
      * @see \Illuminate\Database\Query\Builder::orWhereIntegerInRaw
      * @method $this orWhereIntegerInRaw(string $column, array|Arrayable $values)
+     * @see \Illuminate\Database\Query\Builder::orWhereNotExists
+     * @method $this orWhereNotExists(\Closure $callback)
      * @see \Illuminate\Database\Query\Builder::newQuery
      * @method $this newQuery()
      * @see \Illuminate\Database\Query\Builder::rightJoinSub
@@ -54,15 +54,15 @@ namespace LaravelIdea\Helper {
      * @see \Illuminate\Database\Query\Builder::existsOr
      * @method $this existsOr(\Closure $callback)
      * @see \Illuminate\Database\Query\Builder::sum
-     * @method int|mixed sum(string $column)
+     * @method mixed sum(string $column)
      * @see \Illuminate\Database\Query\Builder::havingRaw
      * @method $this havingRaw(string $sql, array $bindings = [], string $boolean = 'and')
      * @see \Illuminate\Database\Concerns\BuildsQueries::chunkMap
      * @method $this chunkMap(callable $callback, int $count = 1000)
-     * @see \Illuminate\Database\Query\Builder::getRawBindings
-     * @method $this getRawBindings()
      * @see \Illuminate\Database\Query\Builder::orWhereColumn
      * @method $this orWhereColumn(array|string $first, null|string $operator = null, null|string $second = null)
+     * @see \Illuminate\Database\Query\Builder::getRawBindings
+     * @method $this getRawBindings()
      * @see \Illuminate\Database\Query\Builder::min
      * @method mixed min(string $column)
      * @see \Illuminate\Support\Traits\Conditionable::unless
@@ -89,10 +89,10 @@ namespace LaravelIdea\Helper {
      * @method $this selectSub(\Closure|Builder|\Illuminate\Database\Query\Builder|string $query, string $as)
      * @see \Illuminate\Database\Query\Builder::dd
      * @method void dd()
-     * @see \Illuminate\Database\Query\Builder::whereNull
-     * @method $this whereNull(array|string $columns, string $boolean = 'and', bool $not = false)
      * @see \Illuminate\Database\Query\Builder::prepareValueAndOperator
      * @method $this prepareValueAndOperator(string $value, string $operator, bool $useDefault = false)
+     * @see \Illuminate\Database\Query\Builder::whereNull
+     * @method $this whereNull(array|string $columns, string $boolean = 'and', bool $not = false)
      * @see \Illuminate\Database\Query\Builder::whereIntegerNotInRaw
      * @method $this whereIntegerNotInRaw(string $column, array|Arrayable $values, string $boolean = 'and')
      * @see \Illuminate\Database\Query\Builder::orWhereRaw
@@ -165,10 +165,10 @@ namespace LaravelIdea\Helper {
      * @method $this addSelect(array|mixed $column)
      * @see \Illuminate\Support\Traits\Conditionable::when
      * @method $this when($value, callable $callback, callable|null $default = null)
-     * @see \Illuminate\Database\Query\Builder::whereJsonLength
-     * @method $this whereJsonLength(string $column, $operator, $value = null, string $boolean = 'and')
      * @see \Illuminate\Database\Query\Builder::orWhereExists
      * @method $this orWhereExists(\Closure $callback, bool $not = false)
+     * @see \Illuminate\Database\Query\Builder::whereJsonLength
+     * @method $this whereJsonLength(string $column, $operator, $value = null, string $boolean = 'and')
      * @see \Illuminate\Database\Query\Builder::beforeQuery
      * @method $this beforeQuery(callable $callback)
      * @see \Illuminate\Database\Query\Builder::truncate
@@ -211,10 +211,10 @@ namespace LaravelIdea\Helper {
      * @method $this whereDay(string $column, string $operator, \DateTimeInterface|null|string $value = null, string $boolean = 'and')
      * @see \Illuminate\Database\Query\Builder::forNestedWhere
      * @method $this forNestedWhere()
-     * @see \Illuminate\Database\Query\Builder::max
-     * @method mixed max(string $column)
      * @see \Illuminate\Database\Query\Builder::whereExists
      * @method $this whereExists(\Closure $callback, string $boolean = 'and', bool $not = false)
+     * @see \Illuminate\Database\Query\Builder::max
+     * @method mixed max(string $column)
      * @see \Illuminate\Database\Query\Builder::inRandomOrder
      * @method $this inRandomOrder(string $seed = '')
      * @see \Illuminate\Database\Query\Builder::havingBetween
@@ -285,14 +285,14 @@ namespace LaravelIdea\Helper {
      * @method $this whereYear(string $column, string $operator, \DateTimeInterface|int|null|string $value = null, string $boolean = 'and')
      * @see \Illuminate\Database\Query\Builder::getCountForPagination
      * @method $this getCountForPagination(array $columns = ['*'])
-     * @see \Illuminate\Database\Query\Builder::groupByRaw
-     * @method $this groupByRaw(string $sql, array $bindings = [])
      * @see \Illuminate\Database\Query\Builder::orWhereIntegerNotInRaw
      * @method $this orWhereIntegerNotInRaw(string $column, array|Arrayable $values)
+     * @see \Illuminate\Database\Query\Builder::groupByRaw
+     * @method $this groupByRaw(string $sql, array $bindings = [])
      * @see \Illuminate\Database\Query\Builder::aggregate
      * @method $this aggregate(string $function, array $columns = ['*'])
      * @see \Illuminate\Database\Query\Builder::dump
-     * @method \Illuminate\Database\Query\Builder dump()
+     * @method void dump()
      * @see \Illuminate\Database\Query\Builder::implode
      * @method $this implode(string $column, string $glue = '')
      * @see \Illuminate\Database\Query\Builder::addWhereExistsQuery
@@ -317,7 +317,7 @@ namespace LaravelIdea\Helper {
     /**
      * @method \Illuminate\Support\Collection mapSpread(callable $callback)
      * @method \Illuminate\Support\Collection mapWithKeys(callable $callback)
-     * @method \Illuminate\Support\Collection zip(array $items)
+     * @method \Illuminate\Support\Collection zip($items)
      * @method \Illuminate\Support\Collection partition(callable|string $key, $operator = null, $value = null)
      * @method \Illuminate\Support\Collection mapInto(string $class)
      * @method \Illuminate\Support\Collection mapToGroups(callable $callback)
@@ -374,16 +374,15 @@ namespace LaravelIdea\Helper\App\Models {
     use Spatie\Permission\Contracts\Role;
     
     /**
-     * @method AttributeValue|$this shift(int $count = 1)
-     * @method AttributeValue|$this pop(int $count = 1)
-     * @method AttributeValue|null get($key, $default = null)
-     * @method AttributeValue|null pull($key, $default = null)
-     * @method AttributeValue|null first(callable $callback = null, $default = null)
-     * @method AttributeValue|null firstWhere(string $key, $operator = null, $value = null)
-     * @method AttributeValue|null find($key, $default = null)
+     * @method AttributeValue shift(int $count = 1)
+     * @method AttributeValue pop(int $count = 1)
+     * @method AttributeValue get($key, $default = null)
+     * @method AttributeValue pull($key, $default = null)
+     * @method AttributeValue first(callable $callback = null, $default = null)
+     * @method AttributeValue firstWhere(string $key, $operator = null, $value = null)
+     * @method AttributeValue find($key, $default = null)
      * @method AttributeValue[] all()
-     * @method AttributeValue|null last(callable $callback = null, $default = null)
-     * @method AttributeValue|null sole($key = null, $operator = null, $value = null)
+     * @method AttributeValue last(callable $callback = null, $default = null)
      */
     class _IH_AttributeValue_C extends _BaseCollection {
         /**
@@ -411,10 +410,10 @@ namespace LaravelIdea\Helper\App\Models {
      * @method AttributeValue baseSole(array|string $columns = ['*'])
      * @method AttributeValue create(array $attributes = [])
      * @method _IH_AttributeValue_C|AttributeValue[] cursor()
-     * @method AttributeValue|null|_IH_AttributeValue_C|AttributeValue[] find($id, array $columns = ['*'])
+     * @method AttributeValue|null find($id, array $columns = ['*'])
      * @method _IH_AttributeValue_C|AttributeValue[] findMany(array|Arrayable $ids, array $columns = ['*'])
-     * @method AttributeValue|_IH_AttributeValue_C|AttributeValue[] findOrFail($id, array $columns = ['*'])
-     * @method AttributeValue|_IH_AttributeValue_C|AttributeValue[] findOrNew($id, array $columns = ['*'])
+     * @method AttributeValue findOrFail($id, array $columns = ['*'])
+     * @method AttributeValue findOrNew($id, array $columns = ['*'])
      * @method AttributeValue first(array|string $columns = ['*'])
      * @method AttributeValue firstOr(array|\Closure $columns = ['*'], \Closure $callback = null)
      * @method AttributeValue firstOrCreate(array $attributes = [], array $values = [])
@@ -444,16 +443,15 @@ namespace LaravelIdea\Helper\App\Models {
     class _IH_AttributeValue_QB extends _BaseBuilder {}
     
     /**
-     * @method Attribute|$this shift(int $count = 1)
-     * @method Attribute|$this pop(int $count = 1)
-     * @method Attribute|null get($key, $default = null)
-     * @method Attribute|null pull($key, $default = null)
-     * @method Attribute|null first(callable $callback = null, $default = null)
-     * @method Attribute|null firstWhere(string $key, $operator = null, $value = null)
-     * @method Attribute|null find($key, $default = null)
+     * @method Attribute shift(int $count = 1)
+     * @method Attribute pop(int $count = 1)
+     * @method Attribute get($key, $default = null)
+     * @method Attribute pull($key, $default = null)
+     * @method Attribute first(callable $callback = null, $default = null)
+     * @method Attribute firstWhere(string $key, $operator = null, $value = null)
+     * @method Attribute find($key, $default = null)
      * @method Attribute[] all()
-     * @method Attribute|null last(callable $callback = null, $default = null)
-     * @method Attribute|null sole($key = null, $operator = null, $value = null)
+     * @method Attribute last(callable $callback = null, $default = null)
      */
     class _IH_Attribute_C extends _BaseCollection {
         /**
@@ -479,10 +477,10 @@ namespace LaravelIdea\Helper\App\Models {
      * @method Attribute baseSole(array|string $columns = ['*'])
      * @method Attribute create(array $attributes = [])
      * @method _IH_Attribute_C|Attribute[] cursor()
-     * @method Attribute|null|_IH_Attribute_C|Attribute[] find($id, array $columns = ['*'])
+     * @method Attribute|null find($id, array $columns = ['*'])
      * @method _IH_Attribute_C|Attribute[] findMany(array|Arrayable $ids, array $columns = ['*'])
-     * @method Attribute|_IH_Attribute_C|Attribute[] findOrFail($id, array $columns = ['*'])
-     * @method Attribute|_IH_Attribute_C|Attribute[] findOrNew($id, array $columns = ['*'])
+     * @method Attribute findOrFail($id, array $columns = ['*'])
+     * @method Attribute findOrNew($id, array $columns = ['*'])
      * @method Attribute first(array|string $columns = ['*'])
      * @method Attribute firstOr(array|\Closure $columns = ['*'], \Closure $callback = null)
      * @method Attribute firstOrCreate(array $attributes = [], array $values = [])
@@ -512,16 +510,15 @@ namespace LaravelIdea\Helper\App\Models {
     class _IH_Attribute_QB extends _BaseBuilder {}
     
     /**
-     * @method Category|$this shift(int $count = 1)
-     * @method Category|$this pop(int $count = 1)
-     * @method Category|null get($key, $default = null)
-     * @method Category|null pull($key, $default = null)
-     * @method Category|null first(callable $callback = null, $default = null)
-     * @method Category|null firstWhere(string $key, $operator = null, $value = null)
-     * @method Category|null find($key, $default = null)
+     * @method Category shift(int $count = 1)
+     * @method Category pop(int $count = 1)
+     * @method Category get($key, $default = null)
+     * @method Category pull($key, $default = null)
+     * @method Category first(callable $callback = null, $default = null)
+     * @method Category firstWhere(string $key, $operator = null, $value = null)
+     * @method Category find($key, $default = null)
      * @method Category[] all()
-     * @method Category|null last(callable $callback = null, $default = null)
-     * @method Category|null sole($key = null, $operator = null, $value = null)
+     * @method Category last(callable $callback = null, $default = null)
      */
     class _IH_Category_C extends _BaseCollection {
         /**
@@ -538,10 +535,10 @@ namespace LaravelIdea\Helper\App\Models {
      * @method Category baseSole(array|string $columns = ['*'])
      * @method Category create(array $attributes = [])
      * @method _IH_Category_C|Category[] cursor()
-     * @method Category|null|_IH_Category_C|Category[] find($id, array $columns = ['*'])
+     * @method Category|null find($id, array $columns = ['*'])
      * @method _IH_Category_C|Category[] findMany(array|Arrayable $ids, array $columns = ['*'])
-     * @method Category|_IH_Category_C|Category[] findOrFail($id, array $columns = ['*'])
-     * @method Category|_IH_Category_C|Category[] findOrNew($id, array $columns = ['*'])
+     * @method Category findOrFail($id, array $columns = ['*'])
+     * @method Category findOrNew($id, array $columns = ['*'])
      * @method Category first(array|string $columns = ['*'])
      * @method Category firstOr(array|\Closure $columns = ['*'], \Closure $callback = null)
      * @method Category firstOrCreate(array $attributes = [], array $values = [])
@@ -571,16 +568,15 @@ namespace LaravelIdea\Helper\App\Models {
     class _IH_Category_QB extends _BaseBuilder {}
     
     /**
-     * @method ConfirmComment|$this shift(int $count = 1)
-     * @method ConfirmComment|$this pop(int $count = 1)
-     * @method ConfirmComment|null get($key, $default = null)
-     * @method ConfirmComment|null pull($key, $default = null)
-     * @method ConfirmComment|null first(callable $callback = null, $default = null)
-     * @method ConfirmComment|null firstWhere(string $key, $operator = null, $value = null)
-     * @method ConfirmComment|null find($key, $default = null)
+     * @method ConfirmComment shift(int $count = 1)
+     * @method ConfirmComment pop(int $count = 1)
+     * @method ConfirmComment get($key, $default = null)
+     * @method ConfirmComment pull($key, $default = null)
+     * @method ConfirmComment first(callable $callback = null, $default = null)
+     * @method ConfirmComment firstWhere(string $key, $operator = null, $value = null)
+     * @method ConfirmComment find($key, $default = null)
      * @method ConfirmComment[] all()
-     * @method ConfirmComment|null last(callable $callback = null, $default = null)
-     * @method ConfirmComment|null sole($key = null, $operator = null, $value = null)
+     * @method ConfirmComment last(callable $callback = null, $default = null)
      */
     class _IH_ConfirmComment_C extends _BaseCollection {
         /**
@@ -609,10 +605,10 @@ namespace LaravelIdea\Helper\App\Models {
      * @method ConfirmComment baseSole(array|string $columns = ['*'])
      * @method ConfirmComment create(array $attributes = [])
      * @method _IH_ConfirmComment_C|ConfirmComment[] cursor()
-     * @method ConfirmComment|null|_IH_ConfirmComment_C|ConfirmComment[] find($id, array $columns = ['*'])
+     * @method ConfirmComment|null find($id, array $columns = ['*'])
      * @method _IH_ConfirmComment_C|ConfirmComment[] findMany(array|Arrayable $ids, array $columns = ['*'])
-     * @method ConfirmComment|_IH_ConfirmComment_C|ConfirmComment[] findOrFail($id, array $columns = ['*'])
-     * @method ConfirmComment|_IH_ConfirmComment_C|ConfirmComment[] findOrNew($id, array $columns = ['*'])
+     * @method ConfirmComment findOrFail($id, array $columns = ['*'])
+     * @method ConfirmComment findOrNew($id, array $columns = ['*'])
      * @method ConfirmComment first(array|string $columns = ['*'])
      * @method ConfirmComment firstOr(array|\Closure $columns = ['*'], \Closure $callback = null)
      * @method ConfirmComment firstOrCreate(array $attributes = [], array $values = [])
@@ -642,16 +638,15 @@ namespace LaravelIdea\Helper\App\Models {
     class _IH_ConfirmComment_QB extends _BaseBuilder {}
     
     /**
-     * @method CustomProduct|$this shift(int $count = 1)
-     * @method CustomProduct|$this pop(int $count = 1)
-     * @method CustomProduct|null get($key, $default = null)
-     * @method CustomProduct|null pull($key, $default = null)
-     * @method CustomProduct|null first(callable $callback = null, $default = null)
-     * @method CustomProduct|null firstWhere(string $key, $operator = null, $value = null)
-     * @method CustomProduct|null find($key, $default = null)
+     * @method CustomProduct shift(int $count = 1)
+     * @method CustomProduct pop(int $count = 1)
+     * @method CustomProduct get($key, $default = null)
+     * @method CustomProduct pull($key, $default = null)
+     * @method CustomProduct first(callable $callback = null, $default = null)
+     * @method CustomProduct firstWhere(string $key, $operator = null, $value = null)
+     * @method CustomProduct find($key, $default = null)
      * @method CustomProduct[] all()
-     * @method CustomProduct|null last(callable $callback = null, $default = null)
-     * @method CustomProduct|null sole($key = null, $operator = null, $value = null)
+     * @method CustomProduct last(callable $callback = null, $default = null)
      */
     class _IH_CustomProduct_C extends _BaseCollection {
         /**
@@ -699,10 +694,10 @@ namespace LaravelIdea\Helper\App\Models {
      * @method CustomProduct baseSole(array|string $columns = ['*'])
      * @method CustomProduct create(array $attributes = [])
      * @method _IH_CustomProduct_C|CustomProduct[] cursor()
-     * @method CustomProduct|null|_IH_CustomProduct_C|CustomProduct[] find($id, array $columns = ['*'])
+     * @method CustomProduct|null find($id, array $columns = ['*'])
      * @method _IH_CustomProduct_C|CustomProduct[] findMany(array|Arrayable $ids, array $columns = ['*'])
-     * @method CustomProduct|_IH_CustomProduct_C|CustomProduct[] findOrFail($id, array $columns = ['*'])
-     * @method CustomProduct|_IH_CustomProduct_C|CustomProduct[] findOrNew($id, array $columns = ['*'])
+     * @method CustomProduct findOrFail($id, array $columns = ['*'])
+     * @method CustomProduct findOrNew($id, array $columns = ['*'])
      * @method CustomProduct first(array|string $columns = ['*'])
      * @method CustomProduct firstOr(array|\Closure $columns = ['*'], \Closure $callback = null)
      * @method CustomProduct firstOrCreate(array $attributes = [], array $values = [])
@@ -732,16 +727,15 @@ namespace LaravelIdea\Helper\App\Models {
     class _IH_CustomProduct_QB extends _BaseBuilder {}
     
     /**
-     * @method CustomService|$this shift(int $count = 1)
-     * @method CustomService|$this pop(int $count = 1)
-     * @method CustomService|null get($key, $default = null)
-     * @method CustomService|null pull($key, $default = null)
-     * @method CustomService|null first(callable $callback = null, $default = null)
-     * @method CustomService|null firstWhere(string $key, $operator = null, $value = null)
-     * @method CustomService|null find($key, $default = null)
+     * @method CustomService shift(int $count = 1)
+     * @method CustomService pop(int $count = 1)
+     * @method CustomService get($key, $default = null)
+     * @method CustomService pull($key, $default = null)
+     * @method CustomService first(callable $callback = null, $default = null)
+     * @method CustomService firstWhere(string $key, $operator = null, $value = null)
+     * @method CustomService find($key, $default = null)
      * @method CustomService[] all()
-     * @method CustomService|null last(callable $callback = null, $default = null)
-     * @method CustomService|null sole($key = null, $operator = null, $value = null)
+     * @method CustomService last(callable $callback = null, $default = null)
      */
     class _IH_CustomService_C extends _BaseCollection {
         /**
@@ -788,10 +782,10 @@ namespace LaravelIdea\Helper\App\Models {
      * @method CustomService baseSole(array|string $columns = ['*'])
      * @method CustomService create(array $attributes = [])
      * @method _IH_CustomService_C|CustomService[] cursor()
-     * @method CustomService|null|_IH_CustomService_C|CustomService[] find($id, array $columns = ['*'])
+     * @method CustomService|null find($id, array $columns = ['*'])
      * @method _IH_CustomService_C|CustomService[] findMany(array|Arrayable $ids, array $columns = ['*'])
-     * @method CustomService|_IH_CustomService_C|CustomService[] findOrFail($id, array $columns = ['*'])
-     * @method CustomService|_IH_CustomService_C|CustomService[] findOrNew($id, array $columns = ['*'])
+     * @method CustomService findOrFail($id, array $columns = ['*'])
+     * @method CustomService findOrNew($id, array $columns = ['*'])
      * @method CustomService first(array|string $columns = ['*'])
      * @method CustomService firstOr(array|\Closure $columns = ['*'], \Closure $callback = null)
      * @method CustomService firstOrCreate(array $attributes = [], array $values = [])
@@ -821,16 +815,15 @@ namespace LaravelIdea\Helper\App\Models {
     class _IH_CustomService_QB extends _BaseBuilder {}
     
     /**
-     * @method Detail|$this shift(int $count = 1)
-     * @method Detail|$this pop(int $count = 1)
-     * @method Detail|null get($key, $default = null)
-     * @method Detail|null pull($key, $default = null)
-     * @method Detail|null first(callable $callback = null, $default = null)
-     * @method Detail|null firstWhere(string $key, $operator = null, $value = null)
-     * @method Detail|null find($key, $default = null)
+     * @method Detail shift(int $count = 1)
+     * @method Detail pop(int $count = 1)
+     * @method Detail get($key, $default = null)
+     * @method Detail pull($key, $default = null)
+     * @method Detail first(callable $callback = null, $default = null)
+     * @method Detail firstWhere(string $key, $operator = null, $value = null)
+     * @method Detail find($key, $default = null)
      * @method Detail[] all()
-     * @method Detail|null last(callable $callback = null, $default = null)
-     * @method Detail|null sole($key = null, $operator = null, $value = null)
+     * @method Detail last(callable $callback = null, $default = null)
      */
     class _IH_Detail_C extends _BaseCollection {
         /**
@@ -863,10 +856,10 @@ namespace LaravelIdea\Helper\App\Models {
      * @method Detail baseSole(array|string $columns = ['*'])
      * @method Detail create(array $attributes = [])
      * @method _IH_Detail_C|Detail[] cursor()
-     * @method Detail|null|_IH_Detail_C|Detail[] find($id, array $columns = ['*'])
+     * @method Detail|null find($id, array $columns = ['*'])
      * @method _IH_Detail_C|Detail[] findMany(array|Arrayable $ids, array $columns = ['*'])
-     * @method Detail|_IH_Detail_C|Detail[] findOrFail($id, array $columns = ['*'])
-     * @method Detail|_IH_Detail_C|Detail[] findOrNew($id, array $columns = ['*'])
+     * @method Detail findOrFail($id, array $columns = ['*'])
+     * @method Detail findOrNew($id, array $columns = ['*'])
      * @method Detail first(array|string $columns = ['*'])
      * @method Detail firstOr(array|\Closure $columns = ['*'], \Closure $callback = null)
      * @method Detail firstOrCreate(array $attributes = [], array $values = [])
@@ -896,16 +889,15 @@ namespace LaravelIdea\Helper\App\Models {
     class _IH_Detail_QB extends _BaseBuilder {}
     
     /**
-     * @method Membership|$this shift(int $count = 1)
-     * @method Membership|$this pop(int $count = 1)
-     * @method Membership|null get($key, $default = null)
-     * @method Membership|null pull($key, $default = null)
-     * @method Membership|null first(callable $callback = null, $default = null)
-     * @method Membership|null firstWhere(string $key, $operator = null, $value = null)
-     * @method Membership|null find($key, $default = null)
+     * @method Membership shift(int $count = 1)
+     * @method Membership pop(int $count = 1)
+     * @method Membership get($key, $default = null)
+     * @method Membership pull($key, $default = null)
+     * @method Membership first(callable $callback = null, $default = null)
+     * @method Membership firstWhere(string $key, $operator = null, $value = null)
+     * @method Membership find($key, $default = null)
      * @method Membership[] all()
-     * @method Membership|null last(callable $callback = null, $default = null)
-     * @method Membership|null sole($key = null, $operator = null, $value = null)
+     * @method Membership last(callable $callback = null, $default = null)
      */
     class _IH_Membership_C extends _BaseCollection {
         /**
@@ -922,10 +914,10 @@ namespace LaravelIdea\Helper\App\Models {
      * @method Membership baseSole(array|string $columns = ['*'])
      * @method Membership create(array $attributes = [])
      * @method _IH_Membership_C|Membership[] cursor()
-     * @method Membership|null|_IH_Membership_C|Membership[] find($id, array $columns = ['*'])
+     * @method Membership|null find($id, array $columns = ['*'])
      * @method _IH_Membership_C|Membership[] findMany(array|Arrayable $ids, array $columns = ['*'])
-     * @method Membership|_IH_Membership_C|Membership[] findOrFail($id, array $columns = ['*'])
-     * @method Membership|_IH_Membership_C|Membership[] findOrNew($id, array $columns = ['*'])
+     * @method Membership findOrFail($id, array $columns = ['*'])
+     * @method Membership findOrNew($id, array $columns = ['*'])
      * @method Membership first(array|string $columns = ['*'])
      * @method Membership firstOr(array|\Closure $columns = ['*'], \Closure $callback = null)
      * @method Membership firstOrCreate(array $attributes = [], array $values = [])
@@ -948,16 +940,15 @@ namespace LaravelIdea\Helper\App\Models {
     class _IH_Membership_QB extends _BaseBuilder {}
     
     /**
-     * @method NormalProduct|$this shift(int $count = 1)
-     * @method NormalProduct|$this pop(int $count = 1)
-     * @method NormalProduct|null get($key, $default = null)
-     * @method NormalProduct|null pull($key, $default = null)
-     * @method NormalProduct|null first(callable $callback = null, $default = null)
-     * @method NormalProduct|null firstWhere(string $key, $operator = null, $value = null)
-     * @method NormalProduct|null find($key, $default = null)
+     * @method NormalProduct shift(int $count = 1)
+     * @method NormalProduct pop(int $count = 1)
+     * @method NormalProduct get($key, $default = null)
+     * @method NormalProduct pull($key, $default = null)
+     * @method NormalProduct first(callable $callback = null, $default = null)
+     * @method NormalProduct firstWhere(string $key, $operator = null, $value = null)
+     * @method NormalProduct find($key, $default = null)
      * @method NormalProduct[] all()
-     * @method NormalProduct|null last(callable $callback = null, $default = null)
-     * @method NormalProduct|null sole($key = null, $operator = null, $value = null)
+     * @method NormalProduct last(callable $callback = null, $default = null)
      */
     class _IH_NormalProduct_C extends _BaseCollection {
         /**
@@ -1005,10 +996,10 @@ namespace LaravelIdea\Helper\App\Models {
      * @method NormalProduct baseSole(array|string $columns = ['*'])
      * @method NormalProduct create(array $attributes = [])
      * @method _IH_NormalProduct_C|NormalProduct[] cursor()
-     * @method NormalProduct|null|_IH_NormalProduct_C|NormalProduct[] find($id, array $columns = ['*'])
+     * @method NormalProduct|null find($id, array $columns = ['*'])
      * @method _IH_NormalProduct_C|NormalProduct[] findMany(array|Arrayable $ids, array $columns = ['*'])
-     * @method NormalProduct|_IH_NormalProduct_C|NormalProduct[] findOrFail($id, array $columns = ['*'])
-     * @method NormalProduct|_IH_NormalProduct_C|NormalProduct[] findOrNew($id, array $columns = ['*'])
+     * @method NormalProduct findOrFail($id, array $columns = ['*'])
+     * @method NormalProduct findOrNew($id, array $columns = ['*'])
      * @method NormalProduct first(array|string $columns = ['*'])
      * @method NormalProduct firstOr(array|\Closure $columns = ['*'], \Closure $callback = null)
      * @method NormalProduct firstOrCreate(array $attributes = [], array $values = [])
@@ -1038,16 +1029,15 @@ namespace LaravelIdea\Helper\App\Models {
     class _IH_NormalProduct_QB extends _BaseBuilder {}
     
     /**
-     * @method NormalService|$this shift(int $count = 1)
-     * @method NormalService|$this pop(int $count = 1)
-     * @method NormalService|null get($key, $default = null)
-     * @method NormalService|null pull($key, $default = null)
-     * @method NormalService|null first(callable $callback = null, $default = null)
-     * @method NormalService|null firstWhere(string $key, $operator = null, $value = null)
-     * @method NormalService|null find($key, $default = null)
+     * @method NormalService shift(int $count = 1)
+     * @method NormalService pop(int $count = 1)
+     * @method NormalService get($key, $default = null)
+     * @method NormalService pull($key, $default = null)
+     * @method NormalService first(callable $callback = null, $default = null)
+     * @method NormalService firstWhere(string $key, $operator = null, $value = null)
+     * @method NormalService find($key, $default = null)
      * @method NormalService[] all()
-     * @method NormalService|null last(callable $callback = null, $default = null)
-     * @method NormalService|null sole($key = null, $operator = null, $value = null)
+     * @method NormalService last(callable $callback = null, $default = null)
      */
     class _IH_NormalService_C extends _BaseCollection {
         /**
@@ -1091,10 +1081,10 @@ namespace LaravelIdea\Helper\App\Models {
      * @method NormalService baseSole(array|string $columns = ['*'])
      * @method NormalService create(array $attributes = [])
      * @method _IH_NormalService_C|NormalService[] cursor()
-     * @method NormalService|null|_IH_NormalService_C|NormalService[] find($id, array $columns = ['*'])
+     * @method NormalService|null find($id, array $columns = ['*'])
      * @method _IH_NormalService_C|NormalService[] findMany(array|Arrayable $ids, array $columns = ['*'])
-     * @method NormalService|_IH_NormalService_C|NormalService[] findOrFail($id, array $columns = ['*'])
-     * @method NormalService|_IH_NormalService_C|NormalService[] findOrNew($id, array $columns = ['*'])
+     * @method NormalService findOrFail($id, array $columns = ['*'])
+     * @method NormalService findOrNew($id, array $columns = ['*'])
      * @method NormalService first(array|string $columns = ['*'])
      * @method NormalService firstOr(array|\Closure $columns = ['*'], \Closure $callback = null)
      * @method NormalService firstOrCreate(array $attributes = [], array $values = [])
@@ -1124,16 +1114,15 @@ namespace LaravelIdea\Helper\App\Models {
     class _IH_NormalService_QB extends _BaseBuilder {}
     
     /**
-     * @method ProductCategory|$this shift(int $count = 1)
-     * @method ProductCategory|$this pop(int $count = 1)
-     * @method ProductCategory|null get($key, $default = null)
-     * @method ProductCategory|null pull($key, $default = null)
-     * @method ProductCategory|null first(callable $callback = null, $default = null)
-     * @method ProductCategory|null firstWhere(string $key, $operator = null, $value = null)
-     * @method ProductCategory|null find($key, $default = null)
+     * @method ProductCategory shift(int $count = 1)
+     * @method ProductCategory pop(int $count = 1)
+     * @method ProductCategory get($key, $default = null)
+     * @method ProductCategory pull($key, $default = null)
+     * @method ProductCategory first(callable $callback = null, $default = null)
+     * @method ProductCategory firstWhere(string $key, $operator = null, $value = null)
+     * @method ProductCategory find($key, $default = null)
      * @method ProductCategory[] all()
-     * @method ProductCategory|null last(callable $callback = null, $default = null)
-     * @method ProductCategory|null sole($key = null, $operator = null, $value = null)
+     * @method ProductCategory last(callable $callback = null, $default = null)
      */
     class _IH_ProductCategory_C extends _BaseCollection {
         /**
@@ -1164,10 +1153,10 @@ namespace LaravelIdea\Helper\App\Models {
      * @method ProductCategory baseSole(array|string $columns = ['*'])
      * @method ProductCategory create(array $attributes = [])
      * @method _IH_ProductCategory_C|ProductCategory[] cursor()
-     * @method ProductCategory|null|_IH_ProductCategory_C|ProductCategory[] find($id, array $columns = ['*'])
+     * @method ProductCategory|null find($id, array $columns = ['*'])
      * @method _IH_ProductCategory_C|ProductCategory[] findMany(array|Arrayable $ids, array $columns = ['*'])
-     * @method ProductCategory|_IH_ProductCategory_C|ProductCategory[] findOrFail($id, array $columns = ['*'])
-     * @method ProductCategory|_IH_ProductCategory_C|ProductCategory[] findOrNew($id, array $columns = ['*'])
+     * @method ProductCategory findOrFail($id, array $columns = ['*'])
+     * @method ProductCategory findOrNew($id, array $columns = ['*'])
      * @method ProductCategory first(array|string $columns = ['*'])
      * @method ProductCategory firstOr(array|\Closure $columns = ['*'], \Closure $callback = null)
      * @method ProductCategory firstOrCreate(array $attributes = [], array $values = [])
@@ -1197,16 +1186,15 @@ namespace LaravelIdea\Helper\App\Models {
     class _IH_ProductCategory_QB extends _BaseBuilder {}
     
     /**
-     * @method ProductCustomerComments|$this shift(int $count = 1)
-     * @method ProductCustomerComments|$this pop(int $count = 1)
-     * @method ProductCustomerComments|null get($key, $default = null)
-     * @method ProductCustomerComments|null pull($key, $default = null)
-     * @method ProductCustomerComments|null first(callable $callback = null, $default = null)
-     * @method ProductCustomerComments|null firstWhere(string $key, $operator = null, $value = null)
-     * @method ProductCustomerComments|null find($key, $default = null)
+     * @method ProductCustomerComments shift(int $count = 1)
+     * @method ProductCustomerComments pop(int $count = 1)
+     * @method ProductCustomerComments get($key, $default = null)
+     * @method ProductCustomerComments pull($key, $default = null)
+     * @method ProductCustomerComments first(callable $callback = null, $default = null)
+     * @method ProductCustomerComments firstWhere(string $key, $operator = null, $value = null)
+     * @method ProductCustomerComments find($key, $default = null)
      * @method ProductCustomerComments[] all()
-     * @method ProductCustomerComments|null last(callable $callback = null, $default = null)
-     * @method ProductCustomerComments|null sole($key = null, $operator = null, $value = null)
+     * @method ProductCustomerComments last(callable $callback = null, $default = null)
      */
     class _IH_ProductCustomerComments_C extends _BaseCollection {
         /**
@@ -1238,10 +1226,10 @@ namespace LaravelIdea\Helper\App\Models {
      * @method ProductCustomerComments baseSole(array|string $columns = ['*'])
      * @method ProductCustomerComments create(array $attributes = [])
      * @method _IH_ProductCustomerComments_C|ProductCustomerComments[] cursor()
-     * @method ProductCustomerComments|null|_IH_ProductCustomerComments_C|ProductCustomerComments[] find($id, array $columns = ['*'])
+     * @method ProductCustomerComments|null find($id, array $columns = ['*'])
      * @method _IH_ProductCustomerComments_C|ProductCustomerComments[] findMany(array|Arrayable $ids, array $columns = ['*'])
-     * @method ProductCustomerComments|_IH_ProductCustomerComments_C|ProductCustomerComments[] findOrFail($id, array $columns = ['*'])
-     * @method ProductCustomerComments|_IH_ProductCustomerComments_C|ProductCustomerComments[] findOrNew($id, array $columns = ['*'])
+     * @method ProductCustomerComments findOrFail($id, array $columns = ['*'])
+     * @method ProductCustomerComments findOrNew($id, array $columns = ['*'])
      * @method ProductCustomerComments first(array|string $columns = ['*'])
      * @method ProductCustomerComments firstOr(array|\Closure $columns = ['*'], \Closure $callback = null)
      * @method ProductCustomerComments firstOrCreate(array $attributes = [], array $values = [])
@@ -1271,16 +1259,15 @@ namespace LaravelIdea\Helper\App\Models {
     class _IH_ProductCustomerComments_QB extends _BaseBuilder {}
     
     /**
-     * @method ProductPriceHistory|$this shift(int $count = 1)
-     * @method ProductPriceHistory|$this pop(int $count = 1)
-     * @method ProductPriceHistory|null get($key, $default = null)
-     * @method ProductPriceHistory|null pull($key, $default = null)
-     * @method ProductPriceHistory|null first(callable $callback = null, $default = null)
-     * @method ProductPriceHistory|null firstWhere(string $key, $operator = null, $value = null)
-     * @method ProductPriceHistory|null find($key, $default = null)
+     * @method ProductPriceHistory shift(int $count = 1)
+     * @method ProductPriceHistory pop(int $count = 1)
+     * @method ProductPriceHistory get($key, $default = null)
+     * @method ProductPriceHistory pull($key, $default = null)
+     * @method ProductPriceHistory first(callable $callback = null, $default = null)
+     * @method ProductPriceHistory firstWhere(string $key, $operator = null, $value = null)
+     * @method ProductPriceHistory find($key, $default = null)
      * @method ProductPriceHistory[] all()
-     * @method ProductPriceHistory|null last(callable $callback = null, $default = null)
-     * @method ProductPriceHistory|null sole($key = null, $operator = null, $value = null)
+     * @method ProductPriceHistory last(callable $callback = null, $default = null)
      */
     class _IH_ProductPriceHistory_C extends _BaseCollection {
         /**
@@ -1297,10 +1284,10 @@ namespace LaravelIdea\Helper\App\Models {
      * @method ProductPriceHistory baseSole(array|string $columns = ['*'])
      * @method ProductPriceHistory create(array $attributes = [])
      * @method _IH_ProductPriceHistory_C|ProductPriceHistory[] cursor()
-     * @method ProductPriceHistory|null|_IH_ProductPriceHistory_C|ProductPriceHistory[] find($id, array $columns = ['*'])
+     * @method ProductPriceHistory|null find($id, array $columns = ['*'])
      * @method _IH_ProductPriceHistory_C|ProductPriceHistory[] findMany(array|Arrayable $ids, array $columns = ['*'])
-     * @method ProductPriceHistory|_IH_ProductPriceHistory_C|ProductPriceHistory[] findOrFail($id, array $columns = ['*'])
-     * @method ProductPriceHistory|_IH_ProductPriceHistory_C|ProductPriceHistory[] findOrNew($id, array $columns = ['*'])
+     * @method ProductPriceHistory findOrFail($id, array $columns = ['*'])
+     * @method ProductPriceHistory findOrNew($id, array $columns = ['*'])
      * @method ProductPriceHistory first(array|string $columns = ['*'])
      * @method ProductPriceHistory firstOr(array|\Closure $columns = ['*'], \Closure $callback = null)
      * @method ProductPriceHistory firstOrCreate(array $attributes = [], array $values = [])
@@ -1330,16 +1317,15 @@ namespace LaravelIdea\Helper\App\Models {
     class _IH_ProductPriceHistory_QB extends _BaseBuilder {}
     
     /**
-     * @method ProductTag|$this shift(int $count = 1)
-     * @method ProductTag|$this pop(int $count = 1)
-     * @method ProductTag|null get($key, $default = null)
-     * @method ProductTag|null pull($key, $default = null)
-     * @method ProductTag|null first(callable $callback = null, $default = null)
-     * @method ProductTag|null firstWhere(string $key, $operator = null, $value = null)
-     * @method ProductTag|null find($key, $default = null)
+     * @method ProductTag shift(int $count = 1)
+     * @method ProductTag pop(int $count = 1)
+     * @method ProductTag get($key, $default = null)
+     * @method ProductTag pull($key, $default = null)
+     * @method ProductTag first(callable $callback = null, $default = null)
+     * @method ProductTag firstWhere(string $key, $operator = null, $value = null)
+     * @method ProductTag find($key, $default = null)
      * @method ProductTag[] all()
-     * @method ProductTag|null last(callable $callback = null, $default = null)
-     * @method ProductTag|null sole($key = null, $operator = null, $value = null)
+     * @method ProductTag last(callable $callback = null, $default = null)
      */
     class _IH_ProductTag_C extends _BaseCollection {
         /**
@@ -1365,10 +1351,10 @@ namespace LaravelIdea\Helper\App\Models {
      * @method ProductTag baseSole(array|string $columns = ['*'])
      * @method ProductTag create(array $attributes = [])
      * @method _IH_ProductTag_C|ProductTag[] cursor()
-     * @method ProductTag|null|_IH_ProductTag_C|ProductTag[] find($id, array $columns = ['*'])
+     * @method ProductTag|null find($id, array $columns = ['*'])
      * @method _IH_ProductTag_C|ProductTag[] findMany(array|Arrayable $ids, array $columns = ['*'])
-     * @method ProductTag|_IH_ProductTag_C|ProductTag[] findOrFail($id, array $columns = ['*'])
-     * @method ProductTag|_IH_ProductTag_C|ProductTag[] findOrNew($id, array $columns = ['*'])
+     * @method ProductTag findOrFail($id, array $columns = ['*'])
+     * @method ProductTag findOrNew($id, array $columns = ['*'])
      * @method ProductTag first(array|string $columns = ['*'])
      * @method ProductTag firstOr(array|\Closure $columns = ['*'], \Closure $callback = null)
      * @method ProductTag firstOrCreate(array $attributes = [], array $values = [])
@@ -1398,16 +1384,15 @@ namespace LaravelIdea\Helper\App\Models {
     class _IH_ProductTag_QB extends _BaseBuilder {}
     
     /**
-     * @method ProductsImage|$this shift(int $count = 1)
-     * @method ProductsImage|$this pop(int $count = 1)
-     * @method ProductsImage|null get($key, $default = null)
-     * @method ProductsImage|null pull($key, $default = null)
-     * @method ProductsImage|null first(callable $callback = null, $default = null)
-     * @method ProductsImage|null firstWhere(string $key, $operator = null, $value = null)
-     * @method ProductsImage|null find($key, $default = null)
+     * @method ProductsImage shift(int $count = 1)
+     * @method ProductsImage pop(int $count = 1)
+     * @method ProductsImage get($key, $default = null)
+     * @method ProductsImage pull($key, $default = null)
+     * @method ProductsImage first(callable $callback = null, $default = null)
+     * @method ProductsImage firstWhere(string $key, $operator = null, $value = null)
+     * @method ProductsImage find($key, $default = null)
      * @method ProductsImage[] all()
-     * @method ProductsImage|null last(callable $callback = null, $default = null)
-     * @method ProductsImage|null sole($key = null, $operator = null, $value = null)
+     * @method ProductsImage last(callable $callback = null, $default = null)
      */
     class _IH_ProductsImage_C extends _BaseCollection {
         /**
@@ -1443,10 +1428,10 @@ namespace LaravelIdea\Helper\App\Models {
      * @method ProductsImage baseSole(array|string $columns = ['*'])
      * @method ProductsImage create(array $attributes = [])
      * @method _IH_ProductsImage_C|ProductsImage[] cursor()
-     * @method ProductsImage|null|_IH_ProductsImage_C|ProductsImage[] find($id, array $columns = ['*'])
+     * @method ProductsImage|null find($id, array $columns = ['*'])
      * @method _IH_ProductsImage_C|ProductsImage[] findMany(array|Arrayable $ids, array $columns = ['*'])
-     * @method ProductsImage|_IH_ProductsImage_C|ProductsImage[] findOrFail($id, array $columns = ['*'])
-     * @method ProductsImage|_IH_ProductsImage_C|ProductsImage[] findOrNew($id, array $columns = ['*'])
+     * @method ProductsImage findOrFail($id, array $columns = ['*'])
+     * @method ProductsImage findOrNew($id, array $columns = ['*'])
      * @method ProductsImage first(array|string $columns = ['*'])
      * @method ProductsImage firstOr(array|\Closure $columns = ['*'], \Closure $callback = null)
      * @method ProductsImage firstOrCreate(array $attributes = [], array $values = [])
@@ -1476,16 +1461,15 @@ namespace LaravelIdea\Helper\App\Models {
     class _IH_ProductsImage_QB extends _BaseBuilder {}
     
     /**
-     * @method RolesShopsUsers|$this shift(int $count = 1)
-     * @method RolesShopsUsers|$this pop(int $count = 1)
-     * @method RolesShopsUsers|null get($key, $default = null)
-     * @method RolesShopsUsers|null pull($key, $default = null)
-     * @method RolesShopsUsers|null first(callable $callback = null, $default = null)
-     * @method RolesShopsUsers|null firstWhere(string $key, $operator = null, $value = null)
-     * @method RolesShopsUsers|null find($key, $default = null)
+     * @method RolesShopsUsers shift(int $count = 1)
+     * @method RolesShopsUsers pop(int $count = 1)
+     * @method RolesShopsUsers get($key, $default = null)
+     * @method RolesShopsUsers pull($key, $default = null)
+     * @method RolesShopsUsers first(callable $callback = null, $default = null)
+     * @method RolesShopsUsers firstWhere(string $key, $operator = null, $value = null)
+     * @method RolesShopsUsers find($key, $default = null)
      * @method RolesShopsUsers[] all()
-     * @method RolesShopsUsers|null last(callable $callback = null, $default = null)
-     * @method RolesShopsUsers|null sole($key = null, $operator = null, $value = null)
+     * @method RolesShopsUsers last(callable $callback = null, $default = null)
      */
     class _IH_RolesShopsUsers_C extends _BaseCollection {
         /**
@@ -1502,10 +1486,10 @@ namespace LaravelIdea\Helper\App\Models {
      * @method RolesShopsUsers baseSole(array|string $columns = ['*'])
      * @method RolesShopsUsers create(array $attributes = [])
      * @method _IH_RolesShopsUsers_C|RolesShopsUsers[] cursor()
-     * @method RolesShopsUsers|null|_IH_RolesShopsUsers_C|RolesShopsUsers[] find($id, array $columns = ['*'])
+     * @method RolesShopsUsers|null find($id, array $columns = ['*'])
      * @method _IH_RolesShopsUsers_C|RolesShopsUsers[] findMany(array|Arrayable $ids, array $columns = ['*'])
-     * @method RolesShopsUsers|_IH_RolesShopsUsers_C|RolesShopsUsers[] findOrFail($id, array $columns = ['*'])
-     * @method RolesShopsUsers|_IH_RolesShopsUsers_C|RolesShopsUsers[] findOrNew($id, array $columns = ['*'])
+     * @method RolesShopsUsers findOrFail($id, array $columns = ['*'])
+     * @method RolesShopsUsers findOrNew($id, array $columns = ['*'])
      * @method RolesShopsUsers first(array|string $columns = ['*'])
      * @method RolesShopsUsers firstOr(array|\Closure $columns = ['*'], \Closure $callback = null)
      * @method RolesShopsUsers firstOrCreate(array $attributes = [], array $values = [])
@@ -1535,16 +1519,15 @@ namespace LaravelIdea\Helper\App\Models {
     class _IH_RolesShopsUsers_QB extends _BaseBuilder {}
     
     /**
-     * @method ShopImages|$this shift(int $count = 1)
-     * @method ShopImages|$this pop(int $count = 1)
-     * @method ShopImages|null get($key, $default = null)
-     * @method ShopImages|null pull($key, $default = null)
-     * @method ShopImages|null first(callable $callback = null, $default = null)
-     * @method ShopImages|null firstWhere(string $key, $operator = null, $value = null)
-     * @method ShopImages|null find($key, $default = null)
+     * @method ShopImages shift(int $count = 1)
+     * @method ShopImages pop(int $count = 1)
+     * @method ShopImages get($key, $default = null)
+     * @method ShopImages pull($key, $default = null)
+     * @method ShopImages first(callable $callback = null, $default = null)
+     * @method ShopImages firstWhere(string $key, $operator = null, $value = null)
+     * @method ShopImages find($key, $default = null)
      * @method ShopImages[] all()
-     * @method ShopImages|null last(callable $callback = null, $default = null)
-     * @method ShopImages|null sole($key = null, $operator = null, $value = null)
+     * @method ShopImages last(callable $callback = null, $default = null)
      */
     class _IH_ShopImages_C extends _BaseCollection {
         /**
@@ -1580,10 +1563,10 @@ namespace LaravelIdea\Helper\App\Models {
      * @method ShopImages baseSole(array|string $columns = ['*'])
      * @method ShopImages create(array $attributes = [])
      * @method _IH_ShopImages_C|ShopImages[] cursor()
-     * @method ShopImages|null|_IH_ShopImages_C|ShopImages[] find($id, array $columns = ['*'])
+     * @method ShopImages|null find($id, array $columns = ['*'])
      * @method _IH_ShopImages_C|ShopImages[] findMany(array|Arrayable $ids, array $columns = ['*'])
-     * @method ShopImages|_IH_ShopImages_C|ShopImages[] findOrFail($id, array $columns = ['*'])
-     * @method ShopImages|_IH_ShopImages_C|ShopImages[] findOrNew($id, array $columns = ['*'])
+     * @method ShopImages findOrFail($id, array $columns = ['*'])
+     * @method ShopImages findOrNew($id, array $columns = ['*'])
      * @method ShopImages first(array|string $columns = ['*'])
      * @method ShopImages firstOr(array|\Closure $columns = ['*'], \Closure $callback = null)
      * @method ShopImages firstOrCreate(array $attributes = [], array $values = [])
@@ -1613,16 +1596,15 @@ namespace LaravelIdea\Helper\App\Models {
     class _IH_ShopImages_QB extends _BaseBuilder {}
     
     /**
-     * @method Shop|$this shift(int $count = 1)
-     * @method Shop|$this pop(int $count = 1)
-     * @method Shop|null get($key, $default = null)
-     * @method Shop|null pull($key, $default = null)
-     * @method Shop|null first(callable $callback = null, $default = null)
-     * @method Shop|null firstWhere(string $key, $operator = null, $value = null)
-     * @method Shop|null find($key, $default = null)
+     * @method Shop shift(int $count = 1)
+     * @method Shop pop(int $count = 1)
+     * @method Shop get($key, $default = null)
+     * @method Shop pull($key, $default = null)
+     * @method Shop first(callable $callback = null, $default = null)
+     * @method Shop firstWhere(string $key, $operator = null, $value = null)
+     * @method Shop find($key, $default = null)
      * @method Shop[] all()
-     * @method Shop|null last(callable $callback = null, $default = null)
-     * @method Shop|null sole($key = null, $operator = null, $value = null)
+     * @method Shop last(callable $callback = null, $default = null)
      */
     class _IH_Shop_C extends _BaseCollection {
         /**
@@ -1659,10 +1641,10 @@ namespace LaravelIdea\Helper\App\Models {
      * @method _IH_Shop_QB whereShopNumber($value)
      * @method _IH_Shop_QB whereShopPostalCode($value)
      * @method _IH_Shop_QB whereShopMainPhoneNumber($value)
-     * @method _IH_Shop_QB whereNormalProductNumberPoints($value)
-     * @method _IH_Shop_QB whereNormalProductTotalPoints($value)
-     * @method _IH_Shop_QB whereNormalProductAveragePoints($value)
-     * @method _IH_Shop_QB whereNormalProductLastPoint($value)
+     * @method _IH_Shop_QB whereShopNumberPoints($value)
+     * @method _IH_Shop_QB whereShopTotalPoints($value)
+     * @method _IH_Shop_QB whereShopAveragePoints($value)
+     * @method _IH_Shop_QB whereShopLastPoint($value)
      * @method _IH_Shop_QB whereNormalProductNumberLikes($value)
      * @method _IH_Shop_QB whereDeletedAt($value)
      * @method _IH_Shop_QB whereCreatedAt($value)
@@ -1670,10 +1652,10 @@ namespace LaravelIdea\Helper\App\Models {
      * @method Shop baseSole(array|string $columns = ['*'])
      * @method Shop create(array $attributes = [])
      * @method _IH_Shop_C|Shop[] cursor()
-     * @method Shop|null|_IH_Shop_C|Shop[] find($id, array $columns = ['*'])
+     * @method Shop|null find($id, array $columns = ['*'])
      * @method _IH_Shop_C|Shop[] findMany(array|Arrayable $ids, array $columns = ['*'])
-     * @method Shop|_IH_Shop_C|Shop[] findOrFail($id, array $columns = ['*'])
-     * @method Shop|_IH_Shop_C|Shop[] findOrNew($id, array $columns = ['*'])
+     * @method Shop findOrFail($id, array $columns = ['*'])
+     * @method Shop findOrNew($id, array $columns = ['*'])
      * @method Shop first(array|string $columns = ['*'])
      * @method Shop firstOr(array|\Closure $columns = ['*'], \Closure $callback = null)
      * @method Shop firstOrCreate(array $attributes = [], array $values = [])
@@ -1707,16 +1689,15 @@ namespace LaravelIdea\Helper\App\Models {
     class _IH_Shop_QB extends _BaseBuilder {}
     
     /**
-     * @method Tag|$this shift(int $count = 1)
-     * @method Tag|$this pop(int $count = 1)
-     * @method Tag|null get($key, $default = null)
-     * @method Tag|null pull($key, $default = null)
-     * @method Tag|null first(callable $callback = null, $default = null)
-     * @method Tag|null firstWhere(string $key, $operator = null, $value = null)
-     * @method Tag|null find($key, $default = null)
+     * @method Tag shift(int $count = 1)
+     * @method Tag pop(int $count = 1)
+     * @method Tag get($key, $default = null)
+     * @method Tag pull($key, $default = null)
+     * @method Tag first(callable $callback = null, $default = null)
+     * @method Tag firstWhere(string $key, $operator = null, $value = null)
+     * @method Tag find($key, $default = null)
      * @method Tag[] all()
-     * @method Tag|null last(callable $callback = null, $default = null)
-     * @method Tag|null sole($key = null, $operator = null, $value = null)
+     * @method Tag last(callable $callback = null, $default = null)
      */
     class _IH_Tag_C extends _BaseCollection {
         /**
@@ -1733,10 +1714,10 @@ namespace LaravelIdea\Helper\App\Models {
      * @method Tag baseSole(array|string $columns = ['*'])
      * @method Tag create(array $attributes = [])
      * @method _IH_Tag_C|Tag[] cursor()
-     * @method Tag|null|_IH_Tag_C|Tag[] find($id, array $columns = ['*'])
+     * @method Tag|null find($id, array $columns = ['*'])
      * @method _IH_Tag_C|Tag[] findMany(array|Arrayable $ids, array $columns = ['*'])
-     * @method Tag|_IH_Tag_C|Tag[] findOrFail($id, array $columns = ['*'])
-     * @method Tag|_IH_Tag_C|Tag[] findOrNew($id, array $columns = ['*'])
+     * @method Tag findOrFail($id, array $columns = ['*'])
+     * @method Tag findOrNew($id, array $columns = ['*'])
      * @method Tag first(array|string $columns = ['*'])
      * @method Tag firstOr(array|\Closure $columns = ['*'], \Closure $callback = null)
      * @method Tag firstOrCreate(array $attributes = [], array $values = [])
@@ -1766,16 +1747,15 @@ namespace LaravelIdea\Helper\App\Models {
     class _IH_Tag_QB extends _BaseBuilder {}
     
     /**
-     * @method Task|$this shift(int $count = 1)
-     * @method Task|$this pop(int $count = 1)
-     * @method Task|null get($key, $default = null)
-     * @method Task|null pull($key, $default = null)
-     * @method Task|null first(callable $callback = null, $default = null)
-     * @method Task|null firstWhere(string $key, $operator = null, $value = null)
-     * @method Task|null find($key, $default = null)
+     * @method Task shift(int $count = 1)
+     * @method Task pop(int $count = 1)
+     * @method Task get($key, $default = null)
+     * @method Task pull($key, $default = null)
+     * @method Task first(callable $callback = null, $default = null)
+     * @method Task firstWhere(string $key, $operator = null, $value = null)
+     * @method Task find($key, $default = null)
      * @method Task[] all()
-     * @method Task|null last(callable $callback = null, $default = null)
-     * @method Task|null sole($key = null, $operator = null, $value = null)
+     * @method Task last(callable $callback = null, $default = null)
      */
     class _IH_Task_C extends _BaseCollection {
         /**
@@ -1825,10 +1805,10 @@ namespace LaravelIdea\Helper\App\Models {
      * @method Task baseSole(array|string $columns = ['*'])
      * @method Task create(array $attributes = [])
      * @method _IH_Task_C|Task[] cursor()
-     * @method Task|null|_IH_Task_C|Task[] find($id, array $columns = ['*'])
+     * @method Task|null find($id, array $columns = ['*'])
      * @method _IH_Task_C|Task[] findMany(array|Arrayable $ids, array $columns = ['*'])
-     * @method Task|_IH_Task_C|Task[] findOrFail($id, array $columns = ['*'])
-     * @method Task|_IH_Task_C|Task[] findOrNew($id, array $columns = ['*'])
+     * @method Task findOrFail($id, array $columns = ['*'])
+     * @method Task findOrNew($id, array $columns = ['*'])
      * @method Task first(array|string $columns = ['*'])
      * @method Task firstOr(array|\Closure $columns = ['*'], \Closure $callback = null)
      * @method Task firstOrCreate(array $attributes = [], array $values = [])
@@ -1858,16 +1838,15 @@ namespace LaravelIdea\Helper\App\Models {
     class _IH_Task_QB extends _BaseBuilder {}
     
     /**
-     * @method TeamInvitation|$this shift(int $count = 1)
-     * @method TeamInvitation|$this pop(int $count = 1)
-     * @method TeamInvitation|null get($key, $default = null)
-     * @method TeamInvitation|null pull($key, $default = null)
-     * @method TeamInvitation|null first(callable $callback = null, $default = null)
-     * @method TeamInvitation|null firstWhere(string $key, $operator = null, $value = null)
-     * @method TeamInvitation|null find($key, $default = null)
+     * @method TeamInvitation shift(int $count = 1)
+     * @method TeamInvitation pop(int $count = 1)
+     * @method TeamInvitation get($key, $default = null)
+     * @method TeamInvitation pull($key, $default = null)
+     * @method TeamInvitation first(callable $callback = null, $default = null)
+     * @method TeamInvitation firstWhere(string $key, $operator = null, $value = null)
+     * @method TeamInvitation find($key, $default = null)
      * @method TeamInvitation[] all()
-     * @method TeamInvitation|null last(callable $callback = null, $default = null)
-     * @method TeamInvitation|null sole($key = null, $operator = null, $value = null)
+     * @method TeamInvitation last(callable $callback = null, $default = null)
      */
     class _IH_TeamInvitation_C extends _BaseCollection {
         /**
@@ -1884,10 +1863,10 @@ namespace LaravelIdea\Helper\App\Models {
      * @method TeamInvitation baseSole(array|string $columns = ['*'])
      * @method TeamInvitation create(array $attributes = [])
      * @method _IH_TeamInvitation_C|TeamInvitation[] cursor()
-     * @method TeamInvitation|null|_IH_TeamInvitation_C|TeamInvitation[] find($id, array $columns = ['*'])
+     * @method TeamInvitation|null find($id, array $columns = ['*'])
      * @method _IH_TeamInvitation_C|TeamInvitation[] findMany(array|Arrayable $ids, array $columns = ['*'])
-     * @method TeamInvitation|_IH_TeamInvitation_C|TeamInvitation[] findOrFail($id, array $columns = ['*'])
-     * @method TeamInvitation|_IH_TeamInvitation_C|TeamInvitation[] findOrNew($id, array $columns = ['*'])
+     * @method TeamInvitation findOrFail($id, array $columns = ['*'])
+     * @method TeamInvitation findOrNew($id, array $columns = ['*'])
      * @method TeamInvitation first(array|string $columns = ['*'])
      * @method TeamInvitation firstOr(array|\Closure $columns = ['*'], \Closure $callback = null)
      * @method TeamInvitation firstOrCreate(array $attributes = [], array $values = [])
@@ -1910,16 +1889,15 @@ namespace LaravelIdea\Helper\App\Models {
     class _IH_TeamInvitation_QB extends _BaseBuilder {}
     
     /**
-     * @method Team|$this shift(int $count = 1)
-     * @method Team|$this pop(int $count = 1)
-     * @method Team|null get($key, $default = null)
-     * @method Team|null pull($key, $default = null)
-     * @method Team|null first(callable $callback = null, $default = null)
-     * @method Team|null firstWhere(string $key, $operator = null, $value = null)
-     * @method Team|null find($key, $default = null)
+     * @method Team shift(int $count = 1)
+     * @method Team pop(int $count = 1)
+     * @method Team get($key, $default = null)
+     * @method Team pull($key, $default = null)
+     * @method Team first(callable $callback = null, $default = null)
+     * @method Team firstWhere(string $key, $operator = null, $value = null)
+     * @method Team find($key, $default = null)
      * @method Team[] all()
-     * @method Team|null last(callable $callback = null, $default = null)
-     * @method Team|null sole($key = null, $operator = null, $value = null)
+     * @method Team last(callable $callback = null, $default = null)
      */
     class _IH_Team_C extends _BaseCollection {
         /**
@@ -1936,10 +1914,10 @@ namespace LaravelIdea\Helper\App\Models {
      * @method Team baseSole(array|string $columns = ['*'])
      * @method Team create(array $attributes = [])
      * @method _IH_Team_C|Team[] cursor()
-     * @method Team|null|_IH_Team_C|Team[] find($id, array $columns = ['*'])
+     * @method Team|null find($id, array $columns = ['*'])
      * @method _IH_Team_C|Team[] findMany(array|Arrayable $ids, array $columns = ['*'])
-     * @method Team|_IH_Team_C|Team[] findOrFail($id, array $columns = ['*'])
-     * @method Team|_IH_Team_C|Team[] findOrNew($id, array $columns = ['*'])
+     * @method Team findOrFail($id, array $columns = ['*'])
+     * @method Team findOrNew($id, array $columns = ['*'])
      * @method Team first(array|string $columns = ['*'])
      * @method Team firstOr(array|\Closure $columns = ['*'], \Closure $callback = null)
      * @method Team firstOrCreate(array $attributes = [], array $values = [])
@@ -1962,16 +1940,15 @@ namespace LaravelIdea\Helper\App\Models {
     class _IH_Team_QB extends _BaseBuilder {}
     
     /**
-     * @method TopModel|$this shift(int $count = 1)
-     * @method TopModel|$this pop(int $count = 1)
-     * @method TopModel|null get($key, $default = null)
-     * @method TopModel|null pull($key, $default = null)
-     * @method TopModel|null first(callable $callback = null, $default = null)
-     * @method TopModel|null firstWhere(string $key, $operator = null, $value = null)
-     * @method TopModel|null find($key, $default = null)
+     * @method TopModel shift(int $count = 1)
+     * @method TopModel pop(int $count = 1)
+     * @method TopModel get($key, $default = null)
+     * @method TopModel pull($key, $default = null)
+     * @method TopModel first(callable $callback = null, $default = null)
+     * @method TopModel firstWhere(string $key, $operator = null, $value = null)
+     * @method TopModel find($key, $default = null)
      * @method TopModel[] all()
-     * @method TopModel|null last(callable $callback = null, $default = null)
-     * @method TopModel|null sole($key = null, $operator = null, $value = null)
+     * @method TopModel last(callable $callback = null, $default = null)
      */
     class _IH_TopModel_C extends _BaseCollection {
         /**
@@ -1988,10 +1965,10 @@ namespace LaravelIdea\Helper\App\Models {
      * @method TopModel baseSole(array|string $columns = ['*'])
      * @method TopModel create(array $attributes = [])
      * @method _IH_TopModel_C|TopModel[] cursor()
-     * @method TopModel|null|_IH_TopModel_C|TopModel[] find($id, array $columns = ['*'])
+     * @method TopModel|null find($id, array $columns = ['*'])
      * @method _IH_TopModel_C|TopModel[] findMany(array|Arrayable $ids, array $columns = ['*'])
-     * @method TopModel|_IH_TopModel_C|TopModel[] findOrFail($id, array $columns = ['*'])
-     * @method TopModel|_IH_TopModel_C|TopModel[] findOrNew($id, array $columns = ['*'])
+     * @method TopModel findOrFail($id, array $columns = ['*'])
+     * @method TopModel findOrNew($id, array $columns = ['*'])
      * @method TopModel first(array|string $columns = ['*'])
      * @method TopModel firstOr(array|\Closure $columns = ['*'], \Closure $callback = null)
      * @method TopModel firstOrCreate(array $attributes = [], array $values = [])
@@ -2017,16 +1994,15 @@ namespace LaravelIdea\Helper\App\Models {
     class _IH_TopModel_QB extends _BaseBuilder {}
     
     /**
-     * @method User|$this shift(int $count = 1)
-     * @method User|$this pop(int $count = 1)
-     * @method User|null get($key, $default = null)
-     * @method User|null pull($key, $default = null)
-     * @method User|null first(callable $callback = null, $default = null)
-     * @method User|null firstWhere(string $key, $operator = null, $value = null)
-     * @method User|null find($key, $default = null)
+     * @method User shift(int $count = 1)
+     * @method User pop(int $count = 1)
+     * @method User get($key, $default = null)
+     * @method User pull($key, $default = null)
+     * @method User first(callable $callback = null, $default = null)
+     * @method User firstWhere(string $key, $operator = null, $value = null)
+     * @method User find($key, $default = null)
      * @method User[] all()
-     * @method User|null last(callable $callback = null, $default = null)
-     * @method User|null sole($key = null, $operator = null, $value = null)
+     * @method User last(callable $callback = null, $default = null)
      */
     class _IH_User_C extends _BaseCollection {
         /**
@@ -2065,10 +2041,10 @@ namespace LaravelIdea\Helper\App\Models {
      * @method User baseSole(array|string $columns = ['*'])
      * @method User create(array $attributes = [])
      * @method _IH_User_C|User[] cursor()
-     * @method User|null|_IH_User_C|User[] find($id, array $columns = ['*'])
+     * @method User|null find($id, array $columns = ['*'])
      * @method _IH_User_C|User[] findMany(array|Arrayable $ids, array $columns = ['*'])
-     * @method User|_IH_User_C|User[] findOrFail($id, array $columns = ['*'])
-     * @method User|_IH_User_C|User[] findOrNew($id, array $columns = ['*'])
+     * @method User findOrFail($id, array $columns = ['*'])
+     * @method User findOrNew($id, array $columns = ['*'])
      * @method User first(array|string $columns = ['*'])
      * @method User firstOr(array|\Closure $columns = ['*'], \Closure $callback = null)
      * @method User firstOrCreate(array $attributes = [], array $values = [])
@@ -2112,16 +2088,15 @@ namespace LaravelIdea\Helper\Illuminate\Notifications {
     use LaravelIdea\Helper\_BaseCollection;
     
     /**
-     * @method DatabaseNotification|$this shift(int $count = 1)
-     * @method DatabaseNotification|$this pop(int $count = 1)
-     * @method DatabaseNotification|null get($key, $default = null)
-     * @method DatabaseNotification|null pull($key, $default = null)
-     * @method DatabaseNotification|null first(callable $callback = null, $default = null)
-     * @method DatabaseNotification|null firstWhere(string $key, $operator = null, $value = null)
-     * @method DatabaseNotification|null find($key, $default = null)
+     * @method DatabaseNotification shift(int $count = 1)
+     * @method DatabaseNotification pop(int $count = 1)
+     * @method DatabaseNotification get($key, $default = null)
+     * @method DatabaseNotification pull($key, $default = null)
+     * @method DatabaseNotification first(callable $callback = null, $default = null)
+     * @method DatabaseNotification firstWhere(string $key, $operator = null, $value = null)
+     * @method DatabaseNotification find($key, $default = null)
      * @method DatabaseNotification[] all()
-     * @method DatabaseNotification|null last(callable $callback = null, $default = null)
-     * @method DatabaseNotification|null sole($key = null, $operator = null, $value = null)
+     * @method DatabaseNotification last(callable $callback = null, $default = null)
      * @mixin DatabaseNotificationCollection
      */
     class _IH_DatabaseNotification_C extends _BaseCollection {
@@ -2139,10 +2114,10 @@ namespace LaravelIdea\Helper\Illuminate\Notifications {
      * @method DatabaseNotification baseSole(array|string $columns = ['*'])
      * @method DatabaseNotification create(array $attributes = [])
      * @method _IH_DatabaseNotification_C|DatabaseNotification[] cursor()
-     * @method DatabaseNotification|null|_IH_DatabaseNotification_C|DatabaseNotification[] find($id, array $columns = ['*'])
+     * @method DatabaseNotification|null find($id, array $columns = ['*'])
      * @method _IH_DatabaseNotification_C|DatabaseNotification[] findMany(array|Arrayable $ids, array $columns = ['*'])
-     * @method DatabaseNotification|_IH_DatabaseNotification_C|DatabaseNotification[] findOrFail($id, array $columns = ['*'])
-     * @method DatabaseNotification|_IH_DatabaseNotification_C|DatabaseNotification[] findOrNew($id, array $columns = ['*'])
+     * @method DatabaseNotification findOrFail($id, array $columns = ['*'])
+     * @method DatabaseNotification findOrNew($id, array $columns = ['*'])
      * @method DatabaseNotification first(array|string $columns = ['*'])
      * @method DatabaseNotification firstOr(array|\Closure $columns = ['*'], \Closure $callback = null)
      * @method DatabaseNotification firstOrCreate(array $attributes = [], array $values = [])
@@ -2178,16 +2153,15 @@ namespace LaravelIdea\Helper\Laravel\Jetstream {
     use LaravelIdea\Helper\_BaseCollection;
     
     /**
-     * @method TeamInvitation|$this shift(int $count = 1)
-     * @method TeamInvitation|$this pop(int $count = 1)
-     * @method TeamInvitation|null get($key, $default = null)
-     * @method TeamInvitation|null pull($key, $default = null)
-     * @method TeamInvitation|null first(callable $callback = null, $default = null)
-     * @method TeamInvitation|null firstWhere(string $key, $operator = null, $value = null)
-     * @method TeamInvitation|null find($key, $default = null)
+     * @method TeamInvitation shift(int $count = 1)
+     * @method TeamInvitation pop(int $count = 1)
+     * @method TeamInvitation get($key, $default = null)
+     * @method TeamInvitation pull($key, $default = null)
+     * @method TeamInvitation first(callable $callback = null, $default = null)
+     * @method TeamInvitation firstWhere(string $key, $operator = null, $value = null)
+     * @method TeamInvitation find($key, $default = null)
      * @method TeamInvitation[] all()
-     * @method TeamInvitation|null last(callable $callback = null, $default = null)
-     * @method TeamInvitation|null sole($key = null, $operator = null, $value = null)
+     * @method TeamInvitation last(callable $callback = null, $default = null)
      */
     class _IH_TeamInvitation_C extends _BaseCollection {
         /**
@@ -2204,10 +2178,10 @@ namespace LaravelIdea\Helper\Laravel\Jetstream {
      * @method TeamInvitation baseSole(array|string $columns = ['*'])
      * @method TeamInvitation create(array $attributes = [])
      * @method _IH_TeamInvitation_C|TeamInvitation[] cursor()
-     * @method TeamInvitation|null|_IH_TeamInvitation_C|TeamInvitation[] find($id, array $columns = ['*'])
+     * @method TeamInvitation|null find($id, array $columns = ['*'])
      * @method _IH_TeamInvitation_C|TeamInvitation[] findMany(array|Arrayable $ids, array $columns = ['*'])
-     * @method TeamInvitation|_IH_TeamInvitation_C|TeamInvitation[] findOrFail($id, array $columns = ['*'])
-     * @method TeamInvitation|_IH_TeamInvitation_C|TeamInvitation[] findOrNew($id, array $columns = ['*'])
+     * @method TeamInvitation findOrFail($id, array $columns = ['*'])
+     * @method TeamInvitation findOrNew($id, array $columns = ['*'])
      * @method TeamInvitation first(array|string $columns = ['*'])
      * @method TeamInvitation firstOr(array|\Closure $columns = ['*'], \Closure $callback = null)
      * @method TeamInvitation firstOrCreate(array $attributes = [], array $values = [])
@@ -2245,16 +2219,15 @@ namespace LaravelIdea\Helper\Laravel\Passport {
     use LaravelIdea\Helper\_BaseCollection;
     
     /**
-     * @method AuthCode|$this shift(int $count = 1)
-     * @method AuthCode|$this pop(int $count = 1)
-     * @method AuthCode|null get($key, $default = null)
-     * @method AuthCode|null pull($key, $default = null)
-     * @method AuthCode|null first(callable $callback = null, $default = null)
-     * @method AuthCode|null firstWhere(string $key, $operator = null, $value = null)
-     * @method AuthCode|null find($key, $default = null)
+     * @method AuthCode shift(int $count = 1)
+     * @method AuthCode pop(int $count = 1)
+     * @method AuthCode get($key, $default = null)
+     * @method AuthCode pull($key, $default = null)
+     * @method AuthCode first(callable $callback = null, $default = null)
+     * @method AuthCode firstWhere(string $key, $operator = null, $value = null)
+     * @method AuthCode find($key, $default = null)
      * @method AuthCode[] all()
-     * @method AuthCode|null last(callable $callback = null, $default = null)
-     * @method AuthCode|null sole($key = null, $operator = null, $value = null)
+     * @method AuthCode last(callable $callback = null, $default = null)
      */
     class _IH_AuthCode_C extends _BaseCollection {
         /**
@@ -2271,10 +2244,10 @@ namespace LaravelIdea\Helper\Laravel\Passport {
      * @method AuthCode baseSole(array|string $columns = ['*'])
      * @method AuthCode create(array $attributes = [])
      * @method _IH_AuthCode_C|AuthCode[] cursor()
-     * @method AuthCode|null|_IH_AuthCode_C|AuthCode[] find($id, array $columns = ['*'])
+     * @method AuthCode|null find($id, array $columns = ['*'])
      * @method _IH_AuthCode_C|AuthCode[] findMany(array|Arrayable $ids, array $columns = ['*'])
-     * @method AuthCode|_IH_AuthCode_C|AuthCode[] findOrFail($id, array $columns = ['*'])
-     * @method AuthCode|_IH_AuthCode_C|AuthCode[] findOrNew($id, array $columns = ['*'])
+     * @method AuthCode findOrFail($id, array $columns = ['*'])
+     * @method AuthCode findOrNew($id, array $columns = ['*'])
      * @method AuthCode first(array|string $columns = ['*'])
      * @method AuthCode firstOr(array|\Closure $columns = ['*'], \Closure $callback = null)
      * @method AuthCode firstOrCreate(array $attributes = [], array $values = [])
@@ -2297,16 +2270,15 @@ namespace LaravelIdea\Helper\Laravel\Passport {
     class _IH_AuthCode_QB extends _BaseBuilder {}
     
     /**
-     * @method Client|$this shift(int $count = 1)
-     * @method Client|$this pop(int $count = 1)
-     * @method Client|null get($key, $default = null)
-     * @method Client|null pull($key, $default = null)
-     * @method Client|null first(callable $callback = null, $default = null)
-     * @method Client|null firstWhere(string $key, $operator = null, $value = null)
-     * @method Client|null find($key, $default = null)
+     * @method Client shift(int $count = 1)
+     * @method Client pop(int $count = 1)
+     * @method Client get($key, $default = null)
+     * @method Client pull($key, $default = null)
+     * @method Client first(callable $callback = null, $default = null)
+     * @method Client firstWhere(string $key, $operator = null, $value = null)
+     * @method Client find($key, $default = null)
      * @method Client[] all()
-     * @method Client|null last(callable $callback = null, $default = null)
-     * @method Client|null sole($key = null, $operator = null, $value = null)
+     * @method Client last(callable $callback = null, $default = null)
      */
     class _IH_Client_C extends _BaseCollection {
         /**
@@ -2323,10 +2295,10 @@ namespace LaravelIdea\Helper\Laravel\Passport {
      * @method Client baseSole(array|string $columns = ['*'])
      * @method Client create(array $attributes = [])
      * @method _IH_Client_C|Client[] cursor()
-     * @method Client|null|_IH_Client_C|Client[] find($id, array $columns = ['*'])
+     * @method Client|null find($id, array $columns = ['*'])
      * @method _IH_Client_C|Client[] findMany(array|Arrayable $ids, array $columns = ['*'])
-     * @method Client|_IH_Client_C|Client[] findOrFail($id, array $columns = ['*'])
-     * @method Client|_IH_Client_C|Client[] findOrNew($id, array $columns = ['*'])
+     * @method Client findOrFail($id, array $columns = ['*'])
+     * @method Client findOrNew($id, array $columns = ['*'])
      * @method Client first(array|string $columns = ['*'])
      * @method Client firstOr(array|\Closure $columns = ['*'], \Closure $callback = null)
      * @method Client firstOrCreate(array $attributes = [], array $values = [])
@@ -2349,16 +2321,15 @@ namespace LaravelIdea\Helper\Laravel\Passport {
     class _IH_Client_QB extends _BaseBuilder {}
     
     /**
-     * @method PersonalAccessClient|$this shift(int $count = 1)
-     * @method PersonalAccessClient|$this pop(int $count = 1)
-     * @method PersonalAccessClient|null get($key, $default = null)
-     * @method PersonalAccessClient|null pull($key, $default = null)
-     * @method PersonalAccessClient|null first(callable $callback = null, $default = null)
-     * @method PersonalAccessClient|null firstWhere(string $key, $operator = null, $value = null)
-     * @method PersonalAccessClient|null find($key, $default = null)
+     * @method PersonalAccessClient shift(int $count = 1)
+     * @method PersonalAccessClient pop(int $count = 1)
+     * @method PersonalAccessClient get($key, $default = null)
+     * @method PersonalAccessClient pull($key, $default = null)
+     * @method PersonalAccessClient first(callable $callback = null, $default = null)
+     * @method PersonalAccessClient firstWhere(string $key, $operator = null, $value = null)
+     * @method PersonalAccessClient find($key, $default = null)
      * @method PersonalAccessClient[] all()
-     * @method PersonalAccessClient|null last(callable $callback = null, $default = null)
-     * @method PersonalAccessClient|null sole($key = null, $operator = null, $value = null)
+     * @method PersonalAccessClient last(callable $callback = null, $default = null)
      */
     class _IH_PersonalAccessClient_C extends _BaseCollection {
         /**
@@ -2375,10 +2346,10 @@ namespace LaravelIdea\Helper\Laravel\Passport {
      * @method PersonalAccessClient baseSole(array|string $columns = ['*'])
      * @method PersonalAccessClient create(array $attributes = [])
      * @method _IH_PersonalAccessClient_C|PersonalAccessClient[] cursor()
-     * @method PersonalAccessClient|null|_IH_PersonalAccessClient_C|PersonalAccessClient[] find($id, array $columns = ['*'])
+     * @method PersonalAccessClient|null find($id, array $columns = ['*'])
      * @method _IH_PersonalAccessClient_C|PersonalAccessClient[] findMany(array|Arrayable $ids, array $columns = ['*'])
-     * @method PersonalAccessClient|_IH_PersonalAccessClient_C|PersonalAccessClient[] findOrFail($id, array $columns = ['*'])
-     * @method PersonalAccessClient|_IH_PersonalAccessClient_C|PersonalAccessClient[] findOrNew($id, array $columns = ['*'])
+     * @method PersonalAccessClient findOrFail($id, array $columns = ['*'])
+     * @method PersonalAccessClient findOrNew($id, array $columns = ['*'])
      * @method PersonalAccessClient first(array|string $columns = ['*'])
      * @method PersonalAccessClient firstOr(array|\Closure $columns = ['*'], \Closure $callback = null)
      * @method PersonalAccessClient firstOrCreate(array $attributes = [], array $values = [])
@@ -2401,16 +2372,15 @@ namespace LaravelIdea\Helper\Laravel\Passport {
     class _IH_PersonalAccessClient_QB extends _BaseBuilder {}
     
     /**
-     * @method RefreshToken|$this shift(int $count = 1)
-     * @method RefreshToken|$this pop(int $count = 1)
-     * @method RefreshToken|null get($key, $default = null)
-     * @method RefreshToken|null pull($key, $default = null)
-     * @method RefreshToken|null first(callable $callback = null, $default = null)
-     * @method RefreshToken|null firstWhere(string $key, $operator = null, $value = null)
-     * @method RefreshToken|null find($key, $default = null)
+     * @method RefreshToken shift(int $count = 1)
+     * @method RefreshToken pop(int $count = 1)
+     * @method RefreshToken get($key, $default = null)
+     * @method RefreshToken pull($key, $default = null)
+     * @method RefreshToken first(callable $callback = null, $default = null)
+     * @method RefreshToken firstWhere(string $key, $operator = null, $value = null)
+     * @method RefreshToken find($key, $default = null)
      * @method RefreshToken[] all()
-     * @method RefreshToken|null last(callable $callback = null, $default = null)
-     * @method RefreshToken|null sole($key = null, $operator = null, $value = null)
+     * @method RefreshToken last(callable $callback = null, $default = null)
      */
     class _IH_RefreshToken_C extends _BaseCollection {
         /**
@@ -2427,10 +2397,10 @@ namespace LaravelIdea\Helper\Laravel\Passport {
      * @method RefreshToken baseSole(array|string $columns = ['*'])
      * @method RefreshToken create(array $attributes = [])
      * @method _IH_RefreshToken_C|RefreshToken[] cursor()
-     * @method RefreshToken|null|_IH_RefreshToken_C|RefreshToken[] find($id, array $columns = ['*'])
+     * @method RefreshToken|null find($id, array $columns = ['*'])
      * @method _IH_RefreshToken_C|RefreshToken[] findMany(array|Arrayable $ids, array $columns = ['*'])
-     * @method RefreshToken|_IH_RefreshToken_C|RefreshToken[] findOrFail($id, array $columns = ['*'])
-     * @method RefreshToken|_IH_RefreshToken_C|RefreshToken[] findOrNew($id, array $columns = ['*'])
+     * @method RefreshToken findOrFail($id, array $columns = ['*'])
+     * @method RefreshToken findOrNew($id, array $columns = ['*'])
      * @method RefreshToken first(array|string $columns = ['*'])
      * @method RefreshToken firstOr(array|\Closure $columns = ['*'], \Closure $callback = null)
      * @method RefreshToken firstOrCreate(array $attributes = [], array $values = [])
@@ -2453,16 +2423,15 @@ namespace LaravelIdea\Helper\Laravel\Passport {
     class _IH_RefreshToken_QB extends _BaseBuilder {}
     
     /**
-     * @method Token|$this shift(int $count = 1)
-     * @method Token|$this pop(int $count = 1)
-     * @method Token|null get($key, $default = null)
-     * @method Token|null pull($key, $default = null)
-     * @method Token|null first(callable $callback = null, $default = null)
-     * @method Token|null firstWhere(string $key, $operator = null, $value = null)
-     * @method Token|null find($key, $default = null)
+     * @method Token shift(int $count = 1)
+     * @method Token pop(int $count = 1)
+     * @method Token get($key, $default = null)
+     * @method Token pull($key, $default = null)
+     * @method Token first(callable $callback = null, $default = null)
+     * @method Token firstWhere(string $key, $operator = null, $value = null)
+     * @method Token find($key, $default = null)
      * @method Token[] all()
-     * @method Token|null last(callable $callback = null, $default = null)
-     * @method Token|null sole($key = null, $operator = null, $value = null)
+     * @method Token last(callable $callback = null, $default = null)
      */
     class _IH_Token_C extends _BaseCollection {
         /**
@@ -2479,10 +2448,10 @@ namespace LaravelIdea\Helper\Laravel\Passport {
      * @method Token baseSole(array|string $columns = ['*'])
      * @method Token create(array $attributes = [])
      * @method _IH_Token_C|Token[] cursor()
-     * @method Token|null|_IH_Token_C|Token[] find($id, array $columns = ['*'])
+     * @method Token|null find($id, array $columns = ['*'])
      * @method _IH_Token_C|Token[] findMany(array|Arrayable $ids, array $columns = ['*'])
-     * @method Token|_IH_Token_C|Token[] findOrFail($id, array $columns = ['*'])
-     * @method Token|_IH_Token_C|Token[] findOrNew($id, array $columns = ['*'])
+     * @method Token findOrFail($id, array $columns = ['*'])
+     * @method Token findOrNew($id, array $columns = ['*'])
      * @method Token first(array|string $columns = ['*'])
      * @method Token firstOr(array|\Closure $columns = ['*'], \Closure $callback = null)
      * @method Token firstOrCreate(array $attributes = [], array $values = [])
@@ -2516,16 +2485,15 @@ namespace LaravelIdea\Helper\Laravel\Sanctum {
     use LaravelIdea\Helper\_BaseCollection;
     
     /**
-     * @method PersonalAccessToken|$this shift(int $count = 1)
-     * @method PersonalAccessToken|$this pop(int $count = 1)
-     * @method PersonalAccessToken|null get($key, $default = null)
-     * @method PersonalAccessToken|null pull($key, $default = null)
-     * @method PersonalAccessToken|null first(callable $callback = null, $default = null)
-     * @method PersonalAccessToken|null firstWhere(string $key, $operator = null, $value = null)
-     * @method PersonalAccessToken|null find($key, $default = null)
+     * @method PersonalAccessToken shift(int $count = 1)
+     * @method PersonalAccessToken pop(int $count = 1)
+     * @method PersonalAccessToken get($key, $default = null)
+     * @method PersonalAccessToken pull($key, $default = null)
+     * @method PersonalAccessToken first(callable $callback = null, $default = null)
+     * @method PersonalAccessToken firstWhere(string $key, $operator = null, $value = null)
+     * @method PersonalAccessToken find($key, $default = null)
      * @method PersonalAccessToken[] all()
-     * @method PersonalAccessToken|null last(callable $callback = null, $default = null)
-     * @method PersonalAccessToken|null sole($key = null, $operator = null, $value = null)
+     * @method PersonalAccessToken last(callable $callback = null, $default = null)
      */
     class _IH_PersonalAccessToken_C extends _BaseCollection {
         /**
@@ -2551,10 +2519,10 @@ namespace LaravelIdea\Helper\Laravel\Sanctum {
      * @method PersonalAccessToken baseSole(array|string $columns = ['*'])
      * @method PersonalAccessToken create(array $attributes = [])
      * @method _IH_PersonalAccessToken_C|PersonalAccessToken[] cursor()
-     * @method PersonalAccessToken|null|_IH_PersonalAccessToken_C|PersonalAccessToken[] find($id, array $columns = ['*'])
+     * @method PersonalAccessToken|null find($id, array $columns = ['*'])
      * @method _IH_PersonalAccessToken_C|PersonalAccessToken[] findMany(array|Arrayable $ids, array $columns = ['*'])
-     * @method PersonalAccessToken|_IH_PersonalAccessToken_C|PersonalAccessToken[] findOrFail($id, array $columns = ['*'])
-     * @method PersonalAccessToken|_IH_PersonalAccessToken_C|PersonalAccessToken[] findOrNew($id, array $columns = ['*'])
+     * @method PersonalAccessToken findOrFail($id, array $columns = ['*'])
+     * @method PersonalAccessToken findOrNew($id, array $columns = ['*'])
      * @method PersonalAccessToken first(array|string $columns = ['*'])
      * @method PersonalAccessToken firstOr(array|\Closure $columns = ['*'], \Closure $callback = null)
      * @method PersonalAccessToken firstOrCreate(array $attributes = [], array $values = [])
@@ -2592,16 +2560,15 @@ namespace LaravelIdea\Helper\Spatie\Permission\Models {
     use Spatie\Permission\Models\Role as Role1;
     
     /**
-     * @method Permission|$this shift(int $count = 1)
-     * @method Permission|$this pop(int $count = 1)
-     * @method Permission|null get($key, $default = null)
-     * @method Permission|null pull($key, $default = null)
-     * @method Permission|null first(callable $callback = null, $default = null)
-     * @method Permission|null firstWhere(string $key, $operator = null, $value = null)
-     * @method Permission|null find($key, $default = null)
+     * @method Permission shift(int $count = 1)
+     * @method Permission pop(int $count = 1)
+     * @method Permission get($key, $default = null)
+     * @method Permission pull($key, $default = null)
+     * @method Permission first(callable $callback = null, $default = null)
+     * @method Permission firstWhere(string $key, $operator = null, $value = null)
+     * @method Permission find($key, $default = null)
      * @method Permission[] all()
-     * @method Permission|null last(callable $callback = null, $default = null)
-     * @method Permission|null sole($key = null, $operator = null, $value = null)
+     * @method Permission last(callable $callback = null, $default = null)
      */
     class _IH_Permission_C extends _BaseCollection {
         /**
@@ -2623,10 +2590,10 @@ namespace LaravelIdea\Helper\Spatie\Permission\Models {
      * @method Permission baseSole(array|string $columns = ['*'])
      * @method Permission create(array $attributes = [])
      * @method _IH_Permission_C|Permission[] cursor()
-     * @method Permission|null|_IH_Permission_C|Permission[] find($id, array $columns = ['*'])
+     * @method Permission|null find($id, array $columns = ['*'])
      * @method _IH_Permission_C|Permission[] findMany(array|Arrayable $ids, array $columns = ['*'])
-     * @method Permission|_IH_Permission_C|Permission[] findOrFail($id, array $columns = ['*'])
-     * @method Permission|_IH_Permission_C|Permission[] findOrNew($id, array $columns = ['*'])
+     * @method Permission findOrFail($id, array $columns = ['*'])
+     * @method Permission findOrNew($id, array $columns = ['*'])
      * @method Permission first(array|string $columns = ['*'])
      * @method Permission firstOr(array|\Closure $columns = ['*'], \Closure $callback = null)
      * @method Permission firstOrCreate(array $attributes = [], array $values = [])
@@ -2651,16 +2618,15 @@ namespace LaravelIdea\Helper\Spatie\Permission\Models {
     class _IH_Permission_QB extends _BaseBuilder {}
     
     /**
-     * @method Role1|$this shift(int $count = 1)
-     * @method Role1|$this pop(int $count = 1)
-     * @method Role1|null get($key, $default = null)
-     * @method Role1|null pull($key, $default = null)
-     * @method Role1|null first(callable $callback = null, $default = null)
-     * @method Role1|null firstWhere(string $key, $operator = null, $value = null)
-     * @method Role1|null find($key, $default = null)
+     * @method Role1 shift(int $count = 1)
+     * @method Role1 pop(int $count = 1)
+     * @method Role1 get($key, $default = null)
+     * @method Role1 pull($key, $default = null)
+     * @method Role1 first(callable $callback = null, $default = null)
+     * @method Role1 firstWhere(string $key, $operator = null, $value = null)
+     * @method Role1 find($key, $default = null)
      * @method Role1[] all()
-     * @method Role1|null last(callable $callback = null, $default = null)
-     * @method Role1|null sole($key = null, $operator = null, $value = null)
+     * @method Role1 last(callable $callback = null, $default = null)
      */
     class _IH_Role_C extends _BaseCollection {
         /**
@@ -2682,10 +2648,10 @@ namespace LaravelIdea\Helper\Spatie\Permission\Models {
      * @method Role1 baseSole(array|string $columns = ['*'])
      * @method Role1 create(array $attributes = [])
      * @method _IH_Role_C|Role1[] cursor()
-     * @method Role1|null|_IH_Role_C|Role1[] find($id, array $columns = ['*'])
+     * @method Role1|null find($id, array $columns = ['*'])
      * @method _IH_Role_C|Role1[] findMany(array|Arrayable $ids, array $columns = ['*'])
-     * @method Role1|_IH_Role_C|Role1[] findOrFail($id, array $columns = ['*'])
-     * @method Role1|_IH_Role_C|Role1[] findOrNew($id, array $columns = ['*'])
+     * @method Role1 findOrFail($id, array $columns = ['*'])
+     * @method Role1 findOrNew($id, array $columns = ['*'])
      * @method Role1 first(array|string $columns = ['*'])
      * @method Role1 firstOr(array|\Closure $columns = ['*'], \Closure $callback = null)
      * @method Role1 firstOrCreate(array $attributes = [], array $values = [])
