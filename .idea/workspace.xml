@@ -7,24 +7,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d343e4e-b2a9-4dd0-8969-d76dec06ab9f" name="Default Changelist" comment="49">
+    <list default="true" id="4d343e4e-b2a9-4dd0-8969-d76dec06ab9f" name="Default Changelist" comment="Merge remote-tracking branch 'origin/master'">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Auth/Grants/CustomGrant.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Auth/Grants/CustomGrant.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Exceptions/CustomGrantException.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Exceptions/CustomGrantException.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Exceptions/MyException.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Exceptions/MyException.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/AuthController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Category.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Category.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Shop.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Shop.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Tag.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Tag.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_08_07_081203_create_permission_tables.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_08_07_081203_create_permission_tables.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_08_15_063613_create_shops_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_08_15_063613_create_shops_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_11_06_161255_create_tasks_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_11_06_161255_create_tasks_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_12_28_075137_create_shop_accounts_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_12_28_075137_create_shop_accounts_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/logs/laravel.log" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/laravel.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_model_builders.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_model_builders.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_models.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_models.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/laravel/passport/src/Http/Controllers/AccessTokenController.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/laravel/passport/src/Http/Controllers/AccessTokenController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,6 +63,7 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitSEFilterConfiguration">
     <file-type-list>
@@ -680,27 +667,7 @@
       <workItem from="1641279371774" duration="17000" />
       <workItem from="1641279744985" duration="2279000" />
       <workItem from="1641289653889" duration="429000" />
-    </task>
-    <task id="LOCAL-00001" summary="1">
-      <created>1628849277468</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1628849277469</updated>
-    </task>
-    <task id="LOCAL-00002" summary="2">
-      <created>1628850840617</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1628850840617</updated>
-    </task>
-    <task id="LOCAL-00003" summary="3">
-      <created>1629887455817</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1629887455817</updated>
+      <workItem from="1641290723494" duration="2962000" />
     </task>
     <task id="LOCAL-00004" summary="4">
       <created>1629888674422</created>
@@ -1017,7 +984,35 @@
       <option name="project" value="LOCAL" />
       <updated>1641023864932</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="49">
+      <created>1641290836022</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1641290836022</updated>
+    </task>
+    <task id="LOCAL-00050" summary="49">
+      <created>1641290846336</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1641290846336</updated>
+    </task>
+    <task id="LOCAL-00051" summary="Merge remote-tracking branch 'origin/master'">
+      <created>1641290858273</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1641290858273</updated>
+    </task>
+    <task id="LOCAL-00052" summary="Merge remote-tracking branch 'origin/master'">
+      <created>1641290885362</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1641290885362</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1047,7 +1042,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="24" />
     <MESSAGE value="25" />
     <MESSAGE value="26" />
     <MESSAGE value="27" />
@@ -1072,7 +1066,8 @@
     <MESSAGE value="47" />
     <MESSAGE value="48" />
     <MESSAGE value="49" />
-    <option name="LAST_COMMIT_MESSAGE" value="49" />
+    <MESSAGE value="Merge remote-tracking branch 'origin/master'" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge remote-tracking branch 'origin/master'" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -27,7 +27,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware( 'auth:sanctum' )->get( '/v1/user', function (Request $request) {
-//    dd($request);
     return $request->user();
 }
 );
