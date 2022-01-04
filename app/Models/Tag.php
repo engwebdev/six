@@ -20,6 +20,7 @@ class Tag extends Model
         'tag_accept_status',
         'tag_additional_type',
         'tag_additional_user_id',
+        'deleted_at',
     ];
 
     /**

@@ -26,13 +26,14 @@ class Category extends Model
      */
     protected $fillable = [
         'id',
-        'category_name',
-        'category_image_url',
-        'category_additional_user_id',
-        'category_additional_user_type',
-        'category_accept_status',
-        'category_publish_status',
-        'category_show_status',
+        'parent_id',
+        'shop_category_name',
+        'shop_category_image_url',
+        'shop_category_accept_status',
+        'shop_category_publish_status',
+        'shop_category_show_status',
+        'shop_category_additional_user_id',
+        'deleted_at',
     ];
 
 

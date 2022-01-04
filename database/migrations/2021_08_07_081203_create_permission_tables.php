@@ -87,6 +87,21 @@ class CreatePermissionTables extends Migration
             $table->primary(['permission_id', 'role_id'], 'role_has_permissions_permission_id_role_id_primary');
         });
 
+        DB::table('roles')->insert([
+            ['id' => 1, 'name' => 'admin', 'guard_name' => 'api', 'created_at' => '2021-08-04 11:49:35', 'updated_at' => '2021-11-22 12:55:42'],
+            ['id' => 2, 'name' => 'system', 'guard_name' => 'api', 'created_at' => '2021-08-04 11:49:35', 'updated_at' => '2021-11-22 12:55:42'],
+            ['id' => 3, 'name' => 'business_man', 'guard_name' => 'api', 'created_at' => '2021-08-04 11:49:35', 'updated_at' => '2021-11-22 12:55:42'],
+            ['id' => 4, 'name' => 'shopkeeper', 'guard_name' => 'api', 'created_at' => '2021-08-04 11:49:35', 'updated_at' => '2021-11-22 12:55:42'],
+            ['id' => 5, 'name' => 'user', 'guard_name' => 'api', 'created_at' => '2021-08-04 11:49:35', 'updated_at' => '2021-11-22 12:55:42'],
+            ['id' => 6, 'name' => 'customer', 'guard_name' => 'api', 'created_at' => '2021-08-04 11:49:35', 'updated_at' => '2021-11-22 12:55:42'],
+        ]);
+
+        DB::table('oauth_clients')->insert([
+            ['id' => 1, 'user_id' => null, 'name' => 'Laravel Personal Access Client', 'secret' => 'zH7xs99FGvkxLfZOZpGaxxnO3N4w2bi3rnXx6LNl', 'provider' => null, 'redirect' => 'http://localhost', 'personal_access_client' => 1, 'password_client' => 0, 'revoked' => 0, 'created_at' => '2021-08-07 04:41:40', 'updated_at' => '2021-08-07 04:41:40'],
+            ['id' => 2, 'user_id' => null, 'name' => 'Laravel Password Grant Client', 'secret' => '5hCidhzkLl02h5SMTgBx4k3v8WP8aag79BILkysD', 'provider' => users, 'redirect' => 'http://localhost', 'personal_access_client' => 0, 'password_client' => 1, 'revoked' => 0, 'created_at' => '2021-08-07 04:41:40', 'updated_at' => '2021-08-07 04:41:40'],
+            ['id' => 3, 'user_id' => 1, 'name' => 'adminTest', 'secret' => null, 'provider' => null, 'redirect' => 'http://localhost/auth/callback', 'personal_access_client' => 0, 'password_client' => 0, 'revoked' => 0, 'created_at' => '2021-08-28 01:30:38', 'updated_at' => '2021-08-28 01:30:38'],
+        ]);
+
         app('cache')
             ->store(config('permission.cache.store') != 'default' ? config('permission.cache.store') : null)
             ->forget(config('permission.cache.key'));

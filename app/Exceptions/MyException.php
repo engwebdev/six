@@ -21,7 +21,10 @@ class MyException extends Exception
 //        dd(func_get_args());
 //    }
 
-    public function render( Request $request )
+    /**
+     * @param Request $request
+     */
+    public function render(Request $request )
     {
 
     }
