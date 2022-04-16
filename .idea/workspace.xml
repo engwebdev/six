@@ -7,45 +7,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d343e4e-b2a9-4dd0-8969-d76dec06ab9f" name="Default Changelist" comment="49-2">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/six.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/six.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ShopController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ShopController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/AttributeCollection.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/AttributeCollection.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/AttributeValueResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/AttributeValueResource.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/CategoryCollection.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/CategoryCollection.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/ConfirmCommentCollection.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/ConfirmCommentCollection.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/CustomProductCollection.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/CustomProductCollection.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/CustomProductResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/CustomProductResource.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/CustomServiceCollection.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/CustomServiceCollection.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/UserResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/UserResource.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bootstrap/cache/packages.php" beforeDir="false" afterPath="$PROJECT_DIR$/bootstrap/cache/packages.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bootstrap/cache/services.php" beforeDir="false" afterPath="$PROJECT_DIR$/bootstrap/cache/services.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/logs/laravel.log" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/laravel.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_facades.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_macro.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_macro_static.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_model_builders.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_model_collection_proxies.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_models.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/InstalledVersions.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/InstalledVersions.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_files.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_files.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_namespaces.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_namespaces.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_static.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/installed.json" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/installed.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/installed.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/installed.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/package-versions-deprecated/src/PackageVersions/Versions.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/package-versions-deprecated/src/PackageVersions/Versions.php" afterDir="false" />
-    </list>
+    <list default="true" id="4d343e4e-b2a9-4dd0-8969-d76dec06ab9f" name="Default Changelist" comment="50" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -733,14 +695,7 @@
       <workItem from="1649490573347" duration="2237000" />
       <workItem from="1649568330406" duration="1999000" />
       <workItem from="1649650534299" duration="452000" />
-      <workItem from="1649651001544" duration="1972000" />
-    </task>
-    <task id="LOCAL-00005" summary="5">
-      <created>1629889275395</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1629889275395</updated>
+      <workItem from="1649651001544" duration="2402000" />
     </task>
     <task id="LOCAL-00006" summary="6">
       <created>1629889639485</created>
@@ -1078,7 +1033,14 @@
       <option name="project" value="LOCAL" />
       <updated>1641297843709</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="50">
+      <created>1650083898101</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1650083898102</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1108,7 +1070,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="26" />
     <MESSAGE value="27" />
     <MESSAGE value="28" />
     <MESSAGE value="29" />
@@ -1133,7 +1094,8 @@
     <MESSAGE value="49" />
     <MESSAGE value="Merge remote-tracking branch 'origin/master'" />
     <MESSAGE value="51" />
-    <option name="LAST_COMMIT_MESSAGE" value="51" />
+    <MESSAGE value="50" />
+    <option name="LAST_COMMIT_MESSAGE" value="50" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
