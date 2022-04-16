@@ -13,6 +13,7 @@ use App\Models\Shop;
 //use Auth;
 use App\Models\ShopImages;
 use App\Models\Tag;
+use App\Models\User;
 use App\Repositories\ShopRepositories;
 use Carbon\Carbon;
 use DB;
@@ -24,7 +25,9 @@ use Illuminate\Support\Facades\Validator;
 use File;
 use App\Traits\QueryParams;
 
-
+/**
+ *
+ */
 class ShopController extends Controller {
 
     use QueryParams;
@@ -573,8 +576,9 @@ class ShopController extends Controller {
      * post
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * @param Request $request
+     * @return JsonResponse
+     *
      */
     public function store(Request $request)
     {
@@ -637,7 +641,6 @@ class ShopController extends Controller {
              * if type_location = false => location is dynamic
              * if type_location = true => location is static
              *
-             * @var array $validator
              */
             $validator = Validator::make($validated, [
                 'lat_location' => ['required_unless:type_location,false'],
@@ -657,6 +660,9 @@ class ShopController extends Controller {
              *
              * @var boolean $validated
              * @lang shop_accept_status
+             *
+             * @property mixed name
+             *
              */
             $shop = Shop::create(
                 [
@@ -805,7 +811,7 @@ class ShopController extends Controller {
      *
      * @param int              $id
      * @param ShopRepositories $shops
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function show($id, ShopRepositories $shops)
     {
@@ -1108,11 +1114,11 @@ class ShopController extends Controller {
      * PUT/PATCH /tags/{tag}
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param int                      $id
-     * @return \Illuminate\Http\JsonResponse
+     * @param Request $request
+     * @param int $id
+     * @return JsonResponse
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id): JsonResponse
     {
         $user_id = auth()->id();
         $validate_id = Validator::make(
@@ -1181,7 +1187,7 @@ class ShopController extends Controller {
 
         $shop->parent_id = $request->parent_id;
         $shop->name = $request->name;
-        $shop->category_id = $request->category_id;
+        $shop->shop_category_id = $request->category_id;
 
         $shop->description = $request->description;
 //        $shop->shop_photo_url = $request->shop_photo;

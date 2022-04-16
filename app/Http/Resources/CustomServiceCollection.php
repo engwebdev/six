@@ -2,15 +2,29 @@
 
 namespace App\Http\Resources;
 
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
+
+/**
+ * @method mixed currentPage()
+ * @method mixed lastPage()
+ * @method mixed perPage()
+ * @method mixed firstItem()
+ * @method mixed lastItem()
+ * @method mixed total()
+ * @method mixed count()
+ *
+ */
 
 class CustomServiceCollection extends ResourceCollection
 {
     /**
      * Transform the resource collection into an array.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  Request  $request
      * @return array
+     *
+     *
      */
     public function toArray($request)
     {

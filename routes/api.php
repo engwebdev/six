@@ -28,12 +28,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/v1/user', function (Request $request) {
     return $request->user();
-}
-);
+});
+
 Route::get('/v1/testUser', function (Request $request) {
     return auth()->user();
-}
-);
+});
+
 Route::prefix('v1')->middleware(['auth:api'])->group(function () {
     Route::get('makeRole', function () {
     });
@@ -66,7 +66,7 @@ Route::post('/newTokenByOldToken', [CustomGrantController::class, 'newTokenByOld
 //Route::middleware(['middleware' => 'throttle'])->post('/customGrantToken', [CustomGrantController::class, 'customGrantToken'])->name('customGrantToken');
 Route::post('/customIssueToken', [CustomAccessTokenController::class, 'customIssueToken'])->name('customIssueToken');
 
-Route::prefix('v1')->group(function () {
+Route::prefix('v1')->middleware(['auth:api', 'SwaggerRequest'])->group(function () {
 
     Route::get('accounts', [AccountController::class, 'index'])->name('accounts.index');
     Route::post('accounts', [AccountController::class, 'store'])->name('accounts.store');
@@ -138,6 +138,17 @@ Route::get('/v1/exception', function (Request $request) {
 });
 
 Route::middleware(['auth:api', 'activeUser'])->get('/v1/user/{id}', function (Request $request, $id) {
+
+    $twice = function($HOF, $var) {
+        return $HOF($HOF($var));
+    };
+
+    $HOF = function($var) {
+        return $var + 3;
+    };
+
+    echo($twice($HOF, 7)); // output 10
+
 //    $a = 5/0;
 //    return auth()->user();
 //    return 2;

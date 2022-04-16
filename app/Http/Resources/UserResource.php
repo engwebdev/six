@@ -10,6 +10,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
  * @property mixed last_name
  * @property mixed email
  * @property mixed mobile
+ * @property mixed username
  *
  *
  *
@@ -31,7 +32,7 @@ class UserResource extends JsonResource
             'last_name' => $this->last_name,
             'email' => $this->email,
             'mobile' => $this->mobile,
-//            'first_name' => $this->resource->category_name,
+            'username' => $this->username,
 //            'first_name' => $this->resource->category_name,
 //            'first_name' => $this->resource->category_name,
 //            'first_name' => $this->resource->category_name,

@@ -4,6 +4,17 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
+/**
+ * @method mixed currentPage()
+ * @method mixed lastPage()
+ * @method mixed perPage()
+ * @method mixed firstItem()
+ * @method mixed lastItem()
+ * @method mixed total()
+ * @method mixed count()
+ *
+ */
+
 class CustomProductCollection extends ResourceCollection
 {
     /**

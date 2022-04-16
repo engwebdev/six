@@ -11,6 +11,9 @@ class AttributeCollection extends ResourceCollection
      *
      * @param  \Illuminate\Http\Request  $request
      * @return array
+     *
+     * @property mixed
+     *
      */
     public function toArray($request)
     {
