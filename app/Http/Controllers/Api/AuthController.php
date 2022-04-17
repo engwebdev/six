@@ -510,7 +510,7 @@ class AuthController extends Controller {
                                                 ],
                                             ], 403 );
                     */
-                    $token = $user->createToken( 'CustomGrant' )->accessToken;
+//                    $token = $user->createToken( 'CustomGrant' )->accessToken;
                     $user->mobile_verified_at = Carbon::now();
                     $user->save();
                     return response()->json(

@@ -204,6 +204,7 @@ class AuthorizationServer implements EmitterAwareInterface
                 $this->getResponseType(),
                 $this->grantTypeAccessTokenTTL[$grantType->getIdentifier()]
             );
+//            dd($grantType);
 //            dd($tokenResponse, ' AuthorizationServer => respondToAccessTokenRequest ');
 
             if ($tokenResponse instanceof ResponseTypeInterface) {

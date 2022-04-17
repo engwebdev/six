@@ -56,6 +56,7 @@ class CustomGrant extends AbstractGrant
         $scopes = $this->scopeRepository->finalizeScopes( $scopes, $this->getIdentifier(), $client, $user->getIdentifier() );
 
         // Issue and persist new tokens
+//        dd();
         $accessToken = $this->issueAccessToken( $accessTokenTTL, $client, $user->getIdentifier(), $scopes );
         $refreshToken = $this->issueRefreshToken( $accessToken );
 

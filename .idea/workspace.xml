@@ -7,7 +7,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d343e4e-b2a9-4dd0-8969-d76dec06ab9f" name="Default Changelist" comment="50-2" />
+    <list default="true" id="4d343e4e-b2a9-4dd0-8969-d76dec06ab9f" name="Default Changelist" comment="50-3">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Auth/Grants/CustomGrant.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Auth/Grants/CustomGrant.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/AuthController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/logs/laravel.log" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/laravel.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/laravel/passport/src/Bridge/AccessTokenRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/laravel/passport/src/Bridge/AccessTokenRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/league/oauth2-server/src/AuthorizationServer.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/league/oauth2-server/src/AuthorizationServer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/league/oauth2-server/src/Grant/AbstractGrant.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/league/oauth2-server/src/Grant/AbstractGrant.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -695,14 +703,7 @@
       <workItem from="1649490573347" duration="2237000" />
       <workItem from="1649568330406" duration="1999000" />
       <workItem from="1649650534299" duration="452000" />
-      <workItem from="1649651001544" duration="2733000" />
-    </task>
-    <task id="LOCAL-00007" summary="7">
-      <created>1631527834832</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1631527834832</updated>
+      <workItem from="1649651001544" duration="11979000" />
     </task>
     <task id="LOCAL-00008" summary="8">
       <created>1631528620001</created>
@@ -1040,7 +1041,14 @@
       <option name="project" value="LOCAL" />
       <updated>1650084437810</updated>
     </task>
-    <option name="localTasksCounter" value="56" />
+    <task id="LOCAL-00056" summary="50-3">
+      <created>1650084791423</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1650084791423</updated>
+    </task>
+    <option name="localTasksCounter" value="57" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1070,7 +1078,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="28" />
     <MESSAGE value="29" />
     <MESSAGE value="30" />
     <MESSAGE value="31" />
@@ -1095,7 +1102,8 @@
     <MESSAGE value="51" />
     <MESSAGE value="50" />
     <MESSAGE value="50-2" />
-    <option name="LAST_COMMIT_MESSAGE" value="50-2" />
+    <MESSAGE value="50-3" />
+    <option name="LAST_COMMIT_MESSAGE" value="50-3" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
