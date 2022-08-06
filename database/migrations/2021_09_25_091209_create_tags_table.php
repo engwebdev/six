@@ -31,6 +31,18 @@ class CreateTagsTable extends Migration
                 ->onUpdate('cascade');
 
         });
+
+        DB::table('shop_tags')->insert([
+            ['id' => 1, 'shop_tag_name' => 'فروشگاه', 'shop_tag_image_url' => null, 'shop_tag_accept_status' => true, 'shop_tag_publish_status' => null, 'shop_tag_additional_user_id' => 1, 'created_at' => '2021-08-07 04:41:40', 'updated_at' => '2021-08-07 04:41:40'],
+            ['id' => 2, 'shop_tag_name' => 'تعمییرات', 'shop_tag_image_url' => null, 'shop_tag_accept_status' => true, 'shop_tag_publish_status' => null, 'shop_tag_additional_user_id' => 1, 'created_at' => '2021-08-07 04:41:40', 'updated_at' => '2021-08-07 04:41:40'],
+            ['id' => 3, 'shop_tag_name' => 'تجهیزات', 'shop_tag_image_url' => null, 'shop_tag_accept_status' => true, 'shop_tag_publish_status' => null, 'shop_tag_additional_user_id' => 1, 'created_at' => '2021-08-07 04:41:40', 'updated_at' => '2021-08-07 04:41:40'],
+            ['id' => 4, 'shop_tag_name' => 'لوازم', 'shop_tag_image_url' => null, 'shop_tag_accept_status' => true, 'shop_tag_publish_status' => null, 'shop_tag_additional_user_id' => 1, 'created_at' => '2021-08-07 04:41:40', 'updated_at' => '2021-08-07 04:41:40'],
+            ['id' => 5, 'shop_tag_name' => 'ادوات', 'shop_tag_image_url' => null, 'shop_tag_accept_status' => true, 'shop_tag_publish_status' => null, 'shop_tag_additional_user_id' => 1, 'created_at' => '2021-08-07 04:41:40', 'updated_at' => '2021-08-07 04:41:40'],
+            ['id' => 6, 'shop_tag_name' => 'ابزارالات', 'shop_tag_image_url' => null, 'shop_tag_accept_status' => true, 'shop_tag_publish_status' => null, 'shop_tag_additional_user_id' => 1, 'created_at' => '2021-08-07 04:41:40', 'updated_at' => '2021-08-07 04:41:40'],
+            ['id' => 7, 'shop_tag_name' => 'فروش تکی', 'shop_tag_image_url' => null, 'shop_tag_accept_status' => true, 'shop_tag_publish_status' => null, 'shop_tag_additional_user_id' => 1, 'created_at' => '2021-08-07 04:41:40', 'updated_at' => '2021-08-07 04:41:40'],
+            ['id' => 8, 'shop_tag_name' => 'فروش عمده', 'shop_tag_image_url' => null, 'shop_tag_accept_status' => true, 'shop_tag_publish_status' => null, 'shop_tag_additional_user_id' => 1, 'created_at' => '2021-08-07 04:41:40', 'updated_at' => '2021-08-07 04:41:40'],
+        ]);
+
     }
 
     /**

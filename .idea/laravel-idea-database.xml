@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DatabaseSettings">
-    <option name="databaseSourceId" value="8481ddbd-2220-4d0c-a0cb-a9ad61d43b1c" />
+    <option name="databaseSourceIds">
+      <set>
+        <option value="8481ddbd-2220-4d0c-a0cb-a9ad61d43b1c" />
+      </set>
+    </option>
   </component>
 </project>

@@ -32,14 +32,17 @@ class CategoryResource extends JsonResource {
 //        dd($this);
         return [
             'cat_id' => $this->resource->id,
-            'category_name' => $this->resource->category_name,
-            'category_image_url' => $this->resource->category_image_url,
-            'category_additional_user_id' => $this->resource->category_additional_user_id,
-            'category_additional_user_type' => $this->resource->category_additional_user_type,
-//            'category_accept_status' => $this->when( $param, $this->resource->category_accept_status ),
-            'category_accept_status' => $this->resource->category_accept_status,
-            'category_publish_status' => $this->resource->category_publish_status,
-            'category_show_status' => $this->resource->category_show_status,
+            'parent_id' => $this->resource->parent_id,
+            'category_name' => $this->resource->shop_category_name,
+            'category_image_url' => $this->resource->shop_category_image_url,
+            'category_additional_user_id' => $this->resource->shop_category_additional_user_id,
+//            'category_accept_status' => $this->when( $param, $this->resource->shop_category_accept_status ),
+            'category_accept_status' => $this->resource->shop_category_accept_status,
+            'category_publish_status' => $this->resource->shop_category_publish_status,
+            'category_show_status' => $this->resource->shop_category_show_status,
+            'category_confirm_user_id' => $this->resource->shop_category_confirm_user_id,
+            'category_confirm_comment_id' => $this->resource->shop_category_confirm_comment_id,
+            'category_confirm_comment_value' => $this->resource->shop_category_confirm_comment_value,
 
         ];
 //        return parent::toArray($request);

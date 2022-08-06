@@ -98,8 +98,14 @@ class CreatePermissionTables extends Migration
 
         DB::table('oauth_clients')->insert([
             ['id' => 1, 'user_id' => null, 'name' => 'Laravel Personal Access Client', 'secret' => 'zH7xs99FGvkxLfZOZpGaxxnO3N4w2bi3rnXx6LNl', 'provider' => null, 'redirect' => 'http://localhost', 'personal_access_client' => 1, 'password_client' => 0, 'revoked' => 0, 'created_at' => '2021-08-07 04:41:40', 'updated_at' => '2021-08-07 04:41:40'],
-            ['id' => 2, 'user_id' => null, 'name' => 'Laravel Password Grant Client', 'secret' => '5hCidhzkLl02h5SMTgBx4k3v8WP8aag79BILkysD', 'provider' => users, 'redirect' => 'http://localhost', 'personal_access_client' => 0, 'password_client' => 1, 'revoked' => 0, 'created_at' => '2021-08-07 04:41:40', 'updated_at' => '2021-08-07 04:41:40'],
+            ['id' => 2, 'user_id' => null, 'name' => 'Laravel Password Grant Client', 'secret' => '5hCidhzkLl02h5SMTgBx4k3v8WP8aag79BILkysD', 'provider' => 'users', 'redirect' => 'http://localhost', 'personal_access_client' => 0, 'password_client' => 1, 'revoked' => 0, 'created_at' => '2021-08-07 04:41:40', 'updated_at' => '2021-08-07 04:41:40'],
             ['id' => 3, 'user_id' => 1, 'name' => 'adminTest', 'secret' => null, 'provider' => null, 'redirect' => 'http://localhost/auth/callback', 'personal_access_client' => 0, 'password_client' => 0, 'revoked' => 0, 'created_at' => '2021-08-28 01:30:38', 'updated_at' => '2021-08-28 01:30:38'],
+        ]);
+
+        DB::table('model_has_roles')->insert([
+            ['role_id' => 2, 'model_type' => 'App\Models\User', 'model_id' => 1],
+            ['role_id' => 5, 'model_type' => 'App\Models\User', 'model_id' => 2],
+            ['role_id' => 4, 'model_type' => 'App\Models\User', 'model_id' => 3],
         ]);
 
         app('cache')

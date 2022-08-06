@@ -115,6 +115,16 @@ class Shop extends Model
     }
 
     /******************************/
+
+    /**
+     * Get the Shop that owns the Accounts.
+     * @return HasMany
+     */
+    public function account()
+    {
+        return $this->hasMany(Account::class, 'shop_id', 'id');
+    }
+    /******************************/
     // todo done many to many
     /**
      * Get the Shops for the Shop.

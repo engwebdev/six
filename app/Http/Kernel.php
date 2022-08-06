@@ -2,10 +2,12 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\AccountValidation;
 use App\Http\Middleware\ActiveUser;
 use App\Http\Middleware\Authenticate;
 use App\Http\Middleware\Cors;
 use App\Http\Middleware\EncryptCookies;
+use App\Http\Middleware\MerchantValidation;
 use App\Http\Middleware\PreventRequestsDuringMaintenance;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Middleware\SwaggerRequest;
@@ -95,5 +97,7 @@ class Kernel extends HttpKernel
         'activeUser' => ActiveUser::class,
         'cors' => Cors::class,
         'SwaggerRequest' => SwaggerRequest::class,
+        'AccountValidation' => AccountValidation::class,
+        'MerchantValidation' => MerchantValidation::class,
     ];
 }

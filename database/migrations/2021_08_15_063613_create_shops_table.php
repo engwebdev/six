@@ -17,9 +17,9 @@ class CreateShopsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('parent_id')->nullable();
             $table->string('parent_type')->nullable();
-            $table->unsignedBigInteger('shop_category_id')->nullable();
-            $table->string('shop_category_name')->nullable();
-            $table->enum('shop_category_type', ['shopping', 'freelancer', 'repair', 'presentation'])->nullable();
+//            $table->unsignedBigInteger('shop_category_id')->nullable();
+//            $table->string('shop_category_name')->nullable();
+//            $table->enum('shop_category_type', ['shopping', 'freelancer', 'repair', 'presentation'])->nullable();
             $table->string('name');
             $table->string('description')->nullable();
             $table->string('shop_accept_status')->nullable();
@@ -45,7 +45,7 @@ class CreateShopsTable extends Migration
             $table->float('shop_total_points', 16, 5)->nullable()->comment('مجموع امتیازها');
             $table->float('shop_average_points', 7, 5)->nullable()->comment('متوسط امتیازها');
             $table->float('shop_last_point', 6, 5)->nullable()->comment('اخرین امتیاز');
-            $table->float('shop_last_point', 6, 5)->nullable()->comment('اخرین امتیاز');
+//            $table->float('shop_last_point', 6, 5)->nullable()->comment('اخرین امتیاز');
 
             // need add new table likes // todo mehdi 22/01/01
             $table->integer('normal_product_number_likes')->nullable()->comment('تعداد لایک ها ارتباط با جدول کسانی ک لایک کردن');
@@ -67,6 +67,35 @@ class CreateShopsTable extends Migration
 //                ->onUpdate('cascade');
         });
 
+        DB::table('shops')->insert(
+            array(
+                [
+                    'parent_type' => null,
+                    'name' => 'test',
+                    'description' => 'test',
+                    'shop_accept_status' => true,
+                    'shop_priority' => 12,
+                    'shop_photo_url' => null,
+                    'type_location' => true,
+                    'lat_location' => null,
+                    'long_location' => null,
+                    'shop_country' => 'IR',
+                    'shop_province' => 'tehran',
+                    'shop_city' => 'tehran',
+                    'shop_local' => 'tehran',
+                    'shop_street' => 'tehran',
+                    'shop_alley' => 'tehran',
+                    'shop_number' => '25',
+                    'shop_postal_code' => '1234567899',
+                    'shop_main_phone_number' => '02120002000',
+                    'shop_number_points' => 0,
+                    'shop_total_points' => 0,
+                    'shop_average_points' => 0,
+                    'shop_last_point' => 0,
+                    'normal_product_number_likes' => 0,
+                ]
+            )
+        );
 
     }
 

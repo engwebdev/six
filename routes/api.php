@@ -69,13 +69,18 @@ Route::post('/customIssueToken', [CustomAccessTokenController::class, 'customIss
 Route::prefix('v1')->middleware(['auth:api', 'SwaggerRequest'])->group(function () {
 
     Route::get('accounts', [AccountController::class, 'index'])->name('accounts.index');
+//    Route::get('accounts/user/{id}', [AccountController::class, 'findAll'])->name('accounts.findAll');
     Route::post('accounts', [AccountController::class, 'store'])->name('accounts.store');
     Route::get('accounts/{id}', [AccountController::class, 'show'])->name('accounts.show');
     Route::put('accounts/{id}', [AccountController::class, 'update'])->name('accounts.update');
     Route::delete('accounts/{id}', [AccountController::class, 'destroy'])->name('accounts.destroy');
 
 
-    Route::get('shops', [ShopController::class, 'index'])->name('shops.index');
+    Route::middleware(['AccountValidation', 'MerchantValidation'])->group(function () {
+        Route::get('shops', [ShopController::class, 'index'])->name('shops.index');
+
+    });
+
     Route::post('shops', [ShopController::class, 'store'])->name('shops.store');
     Route::get('shops/{id}', [ShopController::class, 'show'])->name('shops.show');
     Route::put('shops/{id}', [ShopController::class, 'update'])->name('shops.update');
@@ -91,6 +96,8 @@ Route::prefix('v1')->middleware(['auth:api', 'SwaggerRequest'])->group(function 
         Route::get('categories/{id}', [CategoryController::class, 'findById'])->name('categories.show');
         Route::put('categories/{id}', [CategoryController::class, 'update'])->name('categories.update');
         Route::delete('categories/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
+
+        Route::get('category/{id}/subcategories', [CategoryController::class, 'findAllSub'])->name('categories.indexSub');
 
     });
 

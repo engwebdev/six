@@ -2,8 +2,10 @@
 
 namespace Spatie\Permission\Models;
 
+use App\Models\Account;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\Permission\Contracts\Role as RoleContract;
 use Spatie\Permission\Exceptions\GuardDoesNotMatch;
 use Spatie\Permission\Exceptions\RoleAlreadyExists;
@@ -156,5 +158,16 @@ class Role extends Model implements RoleContract
         }
 
         return $this->permissions->contains('id', $permission->id);
+    }
+
+    /**********************************/
+    //
+    /**
+     * Get the role that owns the Accounts.
+     * @return HasMany
+     */
+    public function account()
+    {
+        return $this->hasMany(Account::class, 'shop_id', 'id');
     }
 }

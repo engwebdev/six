@@ -19,6 +19,7 @@ class Category extends Model
     use HasFactory;
     use SoftDeletes;
 
+    protected $table = 'shop_categories';
     /**
      * The attributes that are mass assignable.
      *
@@ -33,6 +34,11 @@ class Category extends Model
         'shop_category_publish_status',
         'shop_category_show_status',
         'shop_category_additional_user_id',
+        'shop_category_confirm_user_id',
+        'shop_category_confirm_comment_id',
+        'shop_category_confirm_comment_value',
+        'created_at',
+        'updated_at',
         'deleted_at',
     ];
 

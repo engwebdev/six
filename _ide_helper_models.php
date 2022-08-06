@@ -91,7 +91,20 @@ namespace App\Models{
  * @package App\Models
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Shop[] $shops
  * @property-read int|null $shops_count
- * @method static \Illuminate\Database\Eloquent\Builder|TopModel customFilter($filter)
+ * @property int $id
+ * @property int|null $parent_id
+ * @property string|null $shop_category_name
+ * @property string|null $shop_category_image_url
+ * @property bool|null $shop_category_accept_status
+ * @property bool|null $shop_category_publish_status
+ * @property bool|null $shop_category_show_status
+ * @property int|null $shop_category_additional_user_id
+ * @property int|null $shop_category_confirm_user_id
+ * @property int|null $shop_category_confirm_comment_id
+ * @property string|null $shop_category_confirm_comment_value
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at * @method static \Illuminate\Database\Eloquent\Builder|TopModel customFilter($filter)
  * @method static \Illuminate\Database\Eloquent\Builder|TopModel customOrder($sort)
  * @method static \Illuminate\Database\Eloquent\Builder|TopModel customPagination($pagination)
  * @method static \Database\Factories\CategoryFactory factory(...$parameters)

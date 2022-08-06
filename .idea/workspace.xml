@@ -8,13 +8,66 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4d343e4e-b2a9-4dd0-8969-d76dec06ab9f" name="Default Changelist" comment="50-3">
+      <change afterPath="$PROJECT_DIR$/app/Http/Middleware/AccountValidation.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Middleware/MerchantValidation.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Resources/AccountCollection.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Resources/AccountResource.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/Account.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2022_08_03_123422_create_merchant_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2022_08_04_204431_create_work_nature_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2022_08_04_215338_create_accesses_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2022_08_04_222502_create_access_work_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_dispatches.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_facades.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_macro.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_macro_static.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_model_builders_12aac1fab1562a4f154b37332b9a4267.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_model_builders_6b417e4cd637ca91f27e0dc7e4059617.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_model_builders_76a5a1e066a6fb865b3628376050b5f0.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_model_builders_8161f1394f2cdfd0ffe6e4410b8439d2.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_model_builders_c92e48e297d1b927618a5b25e8e902fb.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_model_builders_de342d865611bd56675dc6d2f46abdd7.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_model_builders_fe6db5e13ae5cd6889d816d2a5f80cbb.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_model_factories_31b3300fd9a8ac57e2d70711a664ac0a.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_model_factories_690237dbaaf2e9215a86fd83804aab9d.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_models_14969027c5a3aaf41d23770a2a3dc05d.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_models_19aafbee7a84e2bae5699119b55c62ea.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_models_21cda72603cccf53a221ee11d8625f20.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_models_803cd2f4ce17ec5ee5ad8618c2370d5a.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_models_a5021b83d3779549c8acc7870134706d.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_models_fcbef240bab02b28bcdf663e7b60a935.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/blade.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/blade.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/laravel-idea-database.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/laravel-idea-database.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/laravel-idea.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/laravel-idea.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/six.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/six.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Auth/Grants/CustomGrant.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Auth/Grants/CustomGrant.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_ide_helper_models.php" beforeDir="false" afterPath="$PROJECT_DIR$/_ide_helper_models.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AccountController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AccountController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/AuthController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CategoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CategoryController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ShopController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ShopController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Kernel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/CategoryResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/CategoryResource.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Listeners/SaveSMSVerificationCode.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Listeners/SaveSMSVerificationCode.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Category.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Category.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Shop.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Shop.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/TopModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/TopModel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/factories/CategoryFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/CategoryFactory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_08_07_081203_create_permission_tables.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_08_07_081203_create_permission_tables.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_08_15_063613_create_shops_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_08_15_063613_create_shops_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_09_19_120513_create_categories_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_09_19_120513_create_categories_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_09_25_091209_create_tags_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_09_25_091209_create_tags_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_12_28_075137_create_shop_accounts_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_12_28_075137_create_shop_accounts_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/api-docs/api-docs.json" beforeDir="false" afterPath="$PROJECT_DIR$/storage/api-docs/api-docs.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/logs/laravel.log" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/laravel.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/laravel/passport/src/Bridge/AccessTokenRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/laravel/passport/src/Bridge/AccessTokenRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/league/oauth2-server/src/AuthorizationServer.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/league/oauth2-server/src/AuthorizationServer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/league/oauth2-server/src/Grant/AbstractGrant.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/league/oauth2-server/src/Grant/AbstractGrant.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/spatie/laravel-permission/src/Models/Role.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/spatie/laravel-permission/src/Models/Role.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,9 +110,6 @@
     </expand>
     <select />
   </component>
-  <component name="FavoritesManager">
-    <favorites_list name="six" />
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
@@ -76,6 +126,9 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="PhpServers">
     <servers>
@@ -241,6 +294,7 @@
       <path value="$PROJECT_DIR$/vendor/barryvdh/laravel-ide-helper" />
       <path value="$PROJECT_DIR$/vendor/react/promise" />
       <path value="$PROJECT_DIR$/vendor/justinrainbow/json-schema" />
+      <path value="$PROJECT_DIR$/vendor/_laravel_idea" />
     </include_path>
   </component>
   <component name="ProjectId" id="1tRYakquvj1jxAhAvBbZJXFBplR" />
@@ -248,7 +302,6 @@
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
-    <option name="showMembers" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
@@ -704,6 +757,12 @@
       <workItem from="1649568330406" duration="1999000" />
       <workItem from="1649650534299" duration="452000" />
       <workItem from="1649651001544" duration="11979000" />
+      <workItem from="1658228965740" duration="1296000" />
+      <workItem from="1658299775614" duration="640000" />
+      <workItem from="1658300613063" duration="1781000" />
+      <workItem from="1658314938223" duration="6465000" />
+      <workItem from="1658929929587" duration="18605000" />
+      <workItem from="1659432638536" duration="51848000" />
     </task>
     <task id="LOCAL-00008" summary="8">
       <created>1631528620001</created>
@@ -1074,7 +1133,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />

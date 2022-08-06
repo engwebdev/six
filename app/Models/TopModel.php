@@ -10,4 +10,8 @@ class TopModel extends Model
 {
     use HasFactory;
     use QueryStringParam;
+
+
+    protected $perPage = 500;
+
 }

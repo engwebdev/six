@@ -16,16 +16,20 @@ class CreateShopAccountsTable extends Migration
         Schema::create('accounts', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('account_name')->unique()->nullable()->comment('نام اینتیتی');
-            $table->unsignedBigInteger('accountable_id')->nullable()->comment('ای دی اینتیتی بیزینس یا شاپ ارتباط با مدل مورف');
-            $table->string('accountable_type')->nullable()->comment('مدل اینتیتی بیزینس یا شاپ ارتباط با مدل مورف');
+//            $table->unsignedBigInteger('accountable_id')->nullable()->comment('ای دی اینتیتی بیزینس یا شاپ ارتباط با مدل مورف');
+//            $table->string('accountable_type')->nullable()->comment('مدل اینتیتی بیزینس یا شاپ ارتباط با مدل مورف');
             $table->unsignedBigInteger('user_id')->nullable();
             $table->unsignedBigInteger('role_id')->nullable();
+            $table->unsignedBigInteger('shop_id')->nullable();
             $table->enum('shop_account_size', ['business', 'branch', 'single'])->nullable();
             $table->enum('shop_account_type', ['market', 'visiting'])->nullable();
             $table->enum('account_type', ['parent', 'child', 'owner', 'servants', 'store'])->nullable();
             $table->uuid('account_unique_value')->nullable();
             $table->unsignedBigInteger('account_confirm_user_id')->nullable();
-            $table->string('account_status')->nullable();
+            $table->string('account_status_confirm_user')->nullable();
+            $table->unsignedBigInteger('account_confirm_shopkeeper_id')->nullable();
+            $table->string('account_status_confirm_shopkeeper')->nullable();
+            $table->unsignedBigInteger('account_active_by_user_id')->nullable();
             $table->string('account_active_at')->nullable();
             $table->softDeletes();
             $table->timestamps();
@@ -42,7 +46,25 @@ class CreateShopAccountsTable extends Migration
                 ->onDelete('no action')
                 ->onUpdate('cascade');
 
+            $table->foreign('shop_id')
+                ->references('id')
+                ->on('shops')
+                ->onDelete('no action')
+                ->onUpdate('cascade');
+
             $table->foreign('account_confirm_user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('no action')
+                ->onUpdate('cascade');
+
+            $table->foreign('account_confirm_shopkeeper_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('no action')
+                ->onUpdate('cascade');
+
+            $table->foreign('account_active_by_user_id')
                 ->references('id')
                 ->on('users')
                 ->onDelete('no action')

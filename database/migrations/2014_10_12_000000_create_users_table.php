@@ -45,20 +45,54 @@ class CreateUsersTable extends Migration
 
         DB::table('users')->insert(
             array(
-                'name' => null,
-                'first_name' => 'admin',
-                'last_name' => 'system',
-                'username' => null,
-                'email' => 'admin@admin.com',
-                'mobile' => '+989390001000',
-                'mobile_verified_at' => '2021-08-04 11:49:35',
-                'mobile_verified_code' => null,
-                'mobile_verified_code_expire_time' => null,
-                'password' => '$2y$10$8R8YMQpBOAnsjZmxq7uwb.hGFCWH0UXH17uUvQHyBb2JCSIvJhDHq',
-                'disable_by' => 1,
-                'disable_at' => '2021-08-04 11:49:35',
-                'created_at' => '2021-08-04 11:49:35',
-                'updated_at' => '2021-11-22 12:55:42'
+                [
+                    'name' => null,
+                    'first_name' => 'admin',
+                    'last_name' => 'system',
+                    'username' => null,
+                    'email' => 'admin@admin.com',
+                    'mobile' => '+989390001000',
+                    'mobile_verified_at' => '2021-08-04 11:49:35',
+                    'mobile_verified_code' => null,
+                    'mobile_verified_code_expire_time' => null,
+                    'password' => '$2y$10$8R8YMQpBOAnsjZmxq7uwb.hGFCWH0UXH17uUvQHyBb2JCSIvJhDHq',
+                    'disable_by' => 1,
+                    'disable_at' => '2021-08-04 11:49:35',
+                    'created_at' => '2021-08-04 11:49:35',
+                    'updated_at' => '2021-11-22 12:55:42'
+                ],
+                [
+                    'name' => null,
+                    'first_name' => 'test',
+                    'last_name' => 'test',
+                    'username' => null,
+                    'email' => 'test@test.com',
+                    'mobile' => '+989390002000',
+                    'mobile_verified_at' => '2021-08-04 11:49:35',
+                    'mobile_verified_code' => null,
+                    'mobile_verified_code_expire_time' => null,
+                    'password' => '$2y$10$8R8YMQpBOAnsjZmxq7uwb.hGFCWH0UXH17uUvQHyBb2JCSIvJhDHq',
+                    'disable_by' => 1,
+                    'disable_at' => '2021-08-04 11:49:35',
+                    'created_at' => '2021-08-04 11:49:35',
+                    'updated_at' => '2021-11-22 12:55:42'
+                ],
+                [
+                    'name' => null,
+                    'first_name' => 'shopkeeper',
+                    'last_name' => 'shopkeeper',
+                    'username' => null,
+                    'email' => 'shopkeeper@shopkeeper.com',
+                    'mobile' => '+989390003000',
+                    'mobile_verified_at' => '2021-08-04 11:49:35',
+                    'mobile_verified_code' => null,
+                    'mobile_verified_code_expire_time' => null,
+                    'password' => '$2y$10$8R8YMQpBOAnsjZmxq7uwb.hGFCWH0UXH17uUvQHyBb2JCSIvJhDHq',
+                    'disable_by' => 1,
+                    'disable_at' => '2021-08-04 11:49:35',
+                    'created_at' => '2021-08-04 11:49:35',
+                    'updated_at' => '2021-11-22 12:55:42'
+                ]
             )
         );
     }

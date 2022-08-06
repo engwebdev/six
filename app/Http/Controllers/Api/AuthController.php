@@ -13,6 +13,7 @@ use Illuminate\Database\QueryException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 //use Hash;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 use App\Models\User;
@@ -25,8 +26,6 @@ use Psr\Http\Message\ServerRequestInterface;
 
 class AuthController extends Controller {
     use PassportToken;
-
-    //
 
     /**
      * @OA\Post(
@@ -175,7 +174,7 @@ class AuthController extends Controller {
                     'country_code' => ['required', 'string', 'min:2', 'max:4'],
                     // for performance unique time called from db, todo #db_optimizer
                     'mobile_phone_number' => ['required', 'numeric', 'digits:10'],
-                    'client_type' => ['required', 'string'],
+                    'merchant_id' => ['required', 'string'],
                 ]
 
             );
@@ -201,7 +200,6 @@ class AuthController extends Controller {
                 ]
             );
 
-//            dd($validator);
             if ($validator->fails())
             {
                 /** @var exception $exception */
@@ -209,7 +207,6 @@ class AuthController extends Controller {
 //                throw $exception;
             }
 
-//            dd($request->all(),$data,$valid);
 
         }
         catch (QueryException $e)
@@ -231,16 +228,20 @@ class AuthController extends Controller {
         {
             // update Or Create user
             $user = User::where( 'mobile', $validated['country_code'] . $validated['mobile_phone_number'] )->first();
+            // todo merchant check /
+            // 97541b55-f466-4fc1-bad7-489e2246a9ad
+            $merchant = DB::table('merchant')->where('merchant_id', $request->post( 'merchant_id' ))->first();
+
             if ($user !== null)
             {
                 $user->update( ['mobile' => $validated['country_code'] . $validated['mobile_phone_number']] );
-//                dd($user);
+                $user->assignRole('shopkeeper');
 //                $user->guard_name = 'api';
-                if ($request->post( 'client_type' ) == 'shop')
+                if ($merchant->merchant_type == 'shop')
                 {
                     $user->assignRole( 'shopkeeper');
                 }
-                elseif ($request->post( 'client_type' ) == 'customer')
+                elseif ($merchant->merchant_type == 'customer')
                 {
                     $user->assignRole( 'user' );
                 }
@@ -255,13 +256,12 @@ class AuthController extends Controller {
                     'mobile' => $validated['country_code'] . $validated['mobile_phone_number'],
                 ] );
 //                $user->guard_name = 'api';
-//                dd($user);
 
-                if ($request->post( 'client_type' ) == 'shop')
+                if ($merchant->merchant_type == 'shop')
                 {
                     $user->assignRole( 'shopkeeper' );
                 }
-                elseif ($request->post( 'client_type' ) == 'customer')
+                elseif ($merchant->merchant_type == 'customer')
                 {
                     $user->assignRole( 'user' );
                 }
@@ -270,15 +270,6 @@ class AuthController extends Controller {
                 $notifications_En_Server = 'The verification code was sent to the mobile number via SMS';
                 $notifications_Fa_Server = 'کد احراز هویت با پیامک به شماره موبایل ارسال شد';
             }
-
-//            $user = User::updateOrCreate(
-//                [
-//                    'mobile' => $validated['country_code'] . $validated['mobile_phone_number'],
-//                ],
-//                [
-//                    'mobile' => $validated['country_code'] . $validated['mobile_phone_number'],
-//                ]
-//            );
 
             event(
                 new RegisterUser( $user )
@@ -408,7 +399,7 @@ class AuthController extends Controller {
                 'verify_code' => ['required'],
                 'country_code' => ['string', 'nullable'],
                 'mobile_phone_number' => ['numeric', 'digits:10', 'nullable'],
-                'client_type' => ['required', 'string'],
+                'merchant_id' => ['required', 'string'],
 
 
 //                'mobile' => ['string', 'size:13',
@@ -444,6 +435,7 @@ class AuthController extends Controller {
             $user = User::where( 'mobile_verified_code', $validated['verify_code'] )
 //                ->where('mobile_verified_code_expire_time', '>', Carbon::now())
                 ->first();
+            $merchant = DB::table('merchant')->where('merchant_id', $request->post( 'merchant_id' ))->first();
 
             if (!$user)
             {
@@ -469,7 +461,7 @@ class AuthController extends Controller {
 
                     // call issueToken and get token
 
-                    if ($request->post( 'client_type' ) == 'shop')
+                    if ($merchant->merchant_type == 'shop')
                     {
                         $client_id = 3;
                     }
@@ -785,6 +777,7 @@ class AuthController extends Controller {
                 $user->last_name = $validated['lastName'];
             }
             $user->save();
+
             $data = [
                 "userId" => $user->id,
                 "firstName" => $user->first_name,
@@ -794,6 +787,7 @@ class AuthController extends Controller {
                 "username" => $user->username,
                 "email" => $user->email,
                 "profileImageUrl" => $user->profile_photo_path,
+                "role" => $user->roles,
             ];
 //dd($user);
 

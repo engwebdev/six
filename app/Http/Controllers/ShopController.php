@@ -128,6 +128,7 @@ class ShopController extends Controller {
      */
     public function index(Request $request)
     {
+//        return $request->attributes->all();
         // center => 35.7705959,51.1262078 // tehran
         // right => 35.6862143,54.2505103
         // left => 35.7629133,49.9820273

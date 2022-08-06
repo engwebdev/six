@@ -11,9 +11,11 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 use Spatie\Permission\Models\Role;
 
-class CategoryController extends Controller {
+class CategoryController extends Controller
+{
 
 
     /**
@@ -244,22 +246,16 @@ class CategoryController extends Controller {
      */
     public function findAll(Request $request)
     {
-        $page = $request->query( 'page' );
-        $limit = $request->query( 'limit' );
-        if ($request->query( 'sort' ))
-        {
-            $sort = $request->query( 'sort' );
-        }
-        else
-        {
+        $page = $request->query('page');
+        $limit = $request->query('limit');
+        if ($request->query('sort')) {
+            $sort = $request->query('sort');
+        } else {
             $sort = 'id';
         }
-        if ($request->query( 'order' ))
-        {
-            $order = $request->input( 'order' );
-        }
-        else
-        {
+        if ($request->query('order')) {
+            $order = $request->input('order');
+        } else {
             $order = 'asc';
         }
 
@@ -270,32 +266,40 @@ class CategoryController extends Controller {
         $user = auth()->user();
         $user_id = $user->id;
 
-        $category = Category::orderBy( $sort, $order )
-            ->when( $user->hasRole( 'system', 'api' ), function ($query) use ($user_id) {
-                return $query
-                    ->Where( 'category_accept_status', true )
-                    ->orWhere('category_accept_status', false);
-            } )
-            ->when( $user->hasRole( 'shopkeeper', 'api' ), function ($query) use ($user_id) {
-                return $query
-                    ->select( 'id', 'category_name', 'category_accept_status', 'category_publish_status', 'category_show_status', 'category_additional_user_id', 'category_additional_user_type' )
-                    ->Where( 'category_accept_status', true )
-                    ->orWhere( function ($subQuery) use ($user_id) {
-                        $subQuery
-                            ->where( 'category_accept_status', false )
-                            ->Where( 'category_additional_user_id', $user_id );
-                    } );
-            } )
-            ->when( $user->hasRole( 'user', 'api' ), function ($query) use ($user_id) {
-                return $query
-                    ->select( 'id', 'category_name' )
-                    ->Where( 'category_accept_status', true )
-                    ->where( 'category_publish_status', true )
-                    ->where( 'category_show_status', 'public' );
-            } )
-            ->paginate( $limit, '*', 'page', $page );
+//        return [$user->hasRole( 'shopkeeper', 'api' )];
+//        return [$user->hasRole( 'system', 'api' )];
 
-        $CategoryCollection = (new CategoryCollection( $category ));
+
+        $category = Category::orderBy($sort, $order)
+//            ->where('parent_id', '=', null)
+            ->when($user->hasRole('system', 'api'), function ($query) use ($user_id) {
+                return $query
+                    ->Where('shop_category_accept_status', true)
+                    ->orWhere('shop_category_accept_status', false)
+                    ->orWhere('shop_category_accept_status', null);
+            })
+            ->when($user->hasRole('shopkeeper', 'api'), function ($query) use ($user_id) {
+                return $query
+                    ->select('id', 'parent_id', 'shop_category_name', 'shop_category_accept_status', 'shop_category_publish_status', 'shop_category_show_status', 'shop_category_additional_user_id')
+                    ->Where('shop_category_accept_status', true)
+                    ->orWhere(function ($subQuery) use ($user_id) {
+                        $subQuery
+                            ->where('shop_category_accept_status', false)
+                            ->Where('shop_category_additional_user_id', $user_id)
+                            ->Where('shop_category_publish_status', true)
+                            ->orWhere('shop_category_publish_status', null);
+                    });
+            })
+            ->when($user->hasRole('user', 'api'), function ($query) use ($user_id) {
+                return $query
+                    ->select('id', 'shop_category_name')
+                    ->Where('shop_category_accept_status', true)
+                    ->where('shop_category_publish_status', true)
+                    ->where('shop_category_show_status', true);
+            })
+            ->paginate($limit, '*', 'page', $page);
+
+        $CategoryCollection = (new CategoryCollection($category));
         return response()->json(
             [
                 $CategoryCollection
@@ -503,20 +507,17 @@ class CategoryController extends Controller {
     {
         // todo mehdi category find by id
 //        dd($request, $id);
-        $category = Category::find( $id );
+        $category = Category::find($id);
 //        CategoryResource::collection( $category );
 
-        if ($category)
-        {
-            $Resource = new CategoryResource( $category );
+        if ($category) {
+            $Resource = new CategoryResource($category);
             $Resource->toJson();
-            $Response = $Resource->toResponse( $request );
-            $Response->setStatusCode( 200 );
+            $Response = $Resource->toResponse($request);
+            $Response->setStatusCode(200);
 
             return $Response;
-        }
-        else
-        {
+        } else {
 //            new Response(['error' => "Category Not Found!"], [404], [null]);
             return response()->json(
                 [
@@ -536,6 +537,223 @@ class CategoryController extends Controller {
                     ],
                     200
                 );*/
+    }
+
+    /**
+     * @OA\Get(
+     * path="/api/v1/shop/category/{id}/subcategories",
+     * operationId="get subcategories with category id",
+     * tags={"Category for shops"},
+     * summary="get SubCategory by id in url. => for shopkeeper and system admin",
+     * description="get SubCategory by id in patch 'url'",
+     *
+     *
+     *
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="id of Category",
+     *         required=true,
+     *         @OA\Schema(
+     *           type="string",
+     *         ),
+     *         example="2",
+     *     ),
+     *
+     *
+     *
+     *
+     *      @OA\Response(
+     *          response=200,
+     *          description="data of result",
+     *
+     *          @OA\JsonContent(
+     *              type="object",
+     *
+     *              @OA\Property(property="current_page", type="number", example="1"),
+     *              @OA\Property(
+     *                  property="data",
+     *                  type="array",
+     *                  @OA\Items(
+     *                      type="object",
+     *                      @OA\Property(
+     *                         property="category_name",
+     *                         type="string",
+     *                         example="category_name",
+     *                      ),
+     *                      @OA\Property(
+     *                         property="id",
+     *                         type="integer",
+     *                         example="11",
+     *                      ),
+     *                  ),
+     *
+     *                  @OA\Items(
+     *                      type="object",
+     *                      @OA\Property(
+     *                         property="category_name",
+     *                         type="string",
+     *                         example="category_name",
+     *                      ),
+     *                      @OA\Property(
+     *                         property="id",
+     *                         type="integer",
+     *                         example="12",
+     *                      ),
+     *                  ),
+     *
+     *              ),
+     *              @OA\Property(property="first_page_url", type="string", example="http://127.0.0.1:8001/api/v1/shop/categories?page=1"),
+     *              @OA\Property(property="last_page_url", type="string", example="http://127.0.0.1:8001/api/v1/shop/categories?page=5"),
+     *              @OA\Property(property="last_page", type="number", example="5"),
+     *              @OA\Property(property="from", type="number", example="1"),
+     *              @OA\Property(
+     *                  property="links",
+     *                  example="{'url': null,'label': '&laquo; Previous','active': false},{'url': 'http://127.0.0.1:8001/api/v1/shop/categories?page=1','label': '1','active': true},{'url': null,'label': 'Next &raquo;','active': false}",
+     *
+     *
+     *
+     *
+     *              ),
+     *              @OA\Property(property="next_page_url", type="string", example="http://127.0.0.1:8001/api/v1/shop/categories?page=2"),
+     *              @OA\Property(property="prev_page_url", type="string", example="null"),
+     *              @OA\Property(property="path", type="string", example="http://127.0.0.1:8001/api/v1/shop/categories"),
+     *              @OA\Property(property="per_page", type="string", example="'10'"),
+     *              @OA\Property(property="to", type="number", example="3"),
+     *              @OA\Property(property="total", type="number", example="13"),
+     *          ),
+     *      ),
+     *
+     *
+     *
+     *      @OA\Response(
+     *          response=201,
+     *          description="data of result",
+     *          description="data of result",
+     *
+     *          @OA\JsonContent(
+     *              type="object",
+     *
+     *              @OA\Property(property="current_page", type="number", example="1"),
+     *              @OA\Property(
+     *                  property="data",
+     *                  type="array",
+     *                  @OA\Items(
+     *                      type="object",
+     *                      @OA\Property(
+     *                         property="category_name",
+     *                         type="string",
+     *                         example="category_name",
+     *                      ),
+     *                      @OA\Property(
+     *                         property="id",
+     *                         type="integer",
+     *                         example="11",
+     *                      ),
+     *                  ),
+     *
+     *                  @OA\Items(
+     *                      type="object",
+     *                      @OA\Property(
+     *                         property="category_name",
+     *                         type="string",
+     *                         example="category_name",
+     *                      ),
+     *                      @OA\Property(
+     *                         property="id",
+     *                         type="integer",
+     *                         example="12",
+     *                      ),
+     *                  ),
+     *
+     *              ),
+     *              @OA\Property(property="first_page_url", type="string", example="http://127.0.0.1:8001/api/v1/shop/categories?page=1"),
+     *              @OA\Property(property="last_page_url", type="string", example="http://127.0.0.1:8001/api/v1/shop/categories?page=5"),
+     *              @OA\Property(property="last_page", type="number", example="5"),
+     *              @OA\Property(property="from", type="number", example="1"),
+     *              @OA\Property(
+     *                  property="links",
+     *                  example="{'url': null,'label': '&laquo; Previous','active': false},{'url': 'http://127.0.0.1:8001/api/v1/shop/categories?page=1','label': '1','active': true},{'url': null,'label': 'Next &raquo;','active': false}",
+     *
+     *
+     *
+     *
+     *              ),
+     *              @OA\Property(property="next_page_url", type="string", example="http://127.0.0.1:8001/api/v1/shop/categories?page=2"),
+     *              @OA\Property(property="prev_page_url", type="string", example="null"),
+     *              @OA\Property(property="path", type="string", example="http://127.0.0.1:8001/api/v1/shop/categories"),
+     *              @OA\Property(property="per_page", type="string", example="'10'"),
+     *              @OA\Property(property="to", type="number", example="3"),
+     *              @OA\Property(property="total", type="number", example="13"),
+     *          ),
+     *      ),
+     *
+     *
+     *
+     *
+     *      @OA\Response(response=400, description="Bad request"),
+     *      @OA\Response(response=401, description="Unauthorized"),
+     *      @OA\Response(response=403, description="Forbidden"),
+     *      @OA\Response(response=404, description="Resource Not Found"),
+     *      @OA\Response(response=405, description="Method Not Allowed"),
+     *      @OA\Response(response=406, description="Not Acceptable"),
+     *      @OA\Response(response=407, description="Proxy Authentication Required"),
+     *      @OA\Response(response=410, description="Resource Gone"),
+     *
+     *      @OA\Response(
+     *          response=422,
+     *          description="Unprocessable Entity",
+     *          @OA\JsonContent()
+     *       ),
+     *
+     *      @OA\Response(response=423, description="Resource Locked"),
+     *      @OA\Response(response=429, description="Too Many Requests"),
+     *      @OA\Response(response=451, description="Unavailable For Legal Reasons"),
+     *
+     *      @OA\Response(response=500, description="Internal Server"),
+     *      @OA\Response(response=502, description="Bad Gateway"),
+     *      @OA\Response(response=503, description="Service Unavailable"),
+     *      @OA\Response(response=504, description="Gateway Timeout"),
+     *      @OA\Response(response=505, description="HTTP Version Not Supported"),
+     *      @OA\Response(response=511, description="Network Authentication Required"),
+     *
+     *     security={
+     *         {"bearer": {}}
+     *     },
+     *
+     * ),
+     *
+     *
+     */
+    /**
+     * @param Request $request
+     * @param         $id
+     */
+    public function findAllSub(Request $request, $id)
+    {
+        $page = $request->query('page');
+        $limit = $request->query('limit');
+        if ($request->query('sort')) {
+            $sort = $request->query('sort');
+        } else {
+            $sort = 'id';
+        }
+        if ($request->query('order')) {
+            $order = $request->input('order');
+        } else {
+            $order = 'asc';
+        }
+
+        $category = Category::where("parent_id", "=", $id)
+            ->paginate($limit, '*', 'page', $page);
+
+        $CategoryCollection = (new CategoryCollection($category));
+
+        return response()->json(
+            [
+                $CategoryCollection
+            ],
+            200);
     }
 
     /**
@@ -678,11 +896,20 @@ class CategoryController extends Controller {
      */
     public function create(Request $request)
     {
-        try
-        {
+        try {
             $validated = $request->validate(
                 [
                     'category_name' => ['required', 'string', 'min:3'],
+                    'category_parent_id' =>
+                        [
+                            'required',
+                            'exists:shop_categories,parent_id',
+//                            Rule::exists('shop_categories.parent_id')
+//                                ->where(function ($que) use (category_parent_id) {
+//                                    return $que->where();
+//
+//                                })
+                        ],
                     'category_image_url' => ['string', 'nullable'],
 
                     'category_accept_status' => ['string', 'nullable'],
@@ -691,28 +918,24 @@ class CategoryController extends Controller {
                 ]
             );
 
-            if (!$validated)
-            {
-                return response()->json( [
+            if (!$validated) {
+                return response()->json([
                     "message" => "Unknown server problem",
                     "errors" => [
                         "problem" => [
                             "Unknown server problem",
                         ],
                     ],
-                ], 503 );
+                ], 503);
             }
 
-            if (isset( $validated['category_image_url'] ))
-            {
+            if (isset($validated['category_image_url'])) {
                 $category_image_url = $validated['category_image_url'];
-            }
-            else
-            {
+            } else {
                 $category_image_url = null;
             }
 
-            $user = User::find( auth()->id() );
+            $user = User::find(auth()->id());
             $user->guard_name = 'api'; // todo important
 
 //            $all_roles_in_database = Role::all()->pluck( 'name' );
@@ -763,17 +986,18 @@ class CategoryController extends Controller {
             */
 
 
-            $category_statuses = $this->category_status_result( $user );
-            $category = Category::create( [
-                'category_name' => $validated['category_name'],
-                'category_image_url' => $category_image_url,
-                'category_additional_user_id' => auth()->id(),
-                'category_additional_user_type' => $category_statuses['category_additional_user_type'],
-                'category_accept_status' => $category_statuses['category_accept_status'],
-                'category_publish_status' => $category_statuses['category_publish_status'],
-                'category_show_status' => $category_statuses['category_show_status'],
+            $category_statuses = $this->category_status_result($user);
+            $category = Category::create([
+                'shop_category_name' => $validated['category_name'],
+                'parent_id' => $validated['category_parent_id'],
+                'shop_category_image_url' => $category_image_url,
+                'shop_category_additional_user_id' => auth()->id(),
+                'shop_category_additional_user_type' => $category_statuses['category_additional_user_type'],
+                'shop_category_accept_status' => $category_statuses['category_accept_status'],
+                'shop_category_publish_status' => $category_statuses['category_publish_status'],
+                'shop_category_show_status' => $category_statuses['category_show_status'],
 
-            ] );
+            ]);
             $success['id'] = $category->id;
 
             $responseCode = 201;
@@ -781,16 +1005,14 @@ class CategoryController extends Controller {
             $notifications_En_Server = 'New Category Created';
             $notifications_Fa_Server = 'دسته بندی جدید ایجاد شد';
 
-            return response()->json( [
+            return response()->json([
                 'message' => $message,
                 'success' => $success,
                 'data' => $category,
                 'NotificationsEnServer' => $notifications_En_Server,
                 'NotificationsFaServer' => $notifications_Fa_Server,
-            ], $responseCode );
-        }
-        catch (MyException $exception)
-        {
+            ], $responseCode);
+        } catch (MyException $exception) {
 
         }
 
@@ -820,13 +1042,13 @@ class CategoryController extends Controller {
     {
         //
         $category = null;
-        return new CategoryResource( $category );
+        return new CategoryResource($category);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param Request  $request
+     * @param Request $request
      * @param Category $category
      * @return void
      */
@@ -961,42 +1183,43 @@ class CategoryController extends Controller {
 //        {
 //
 //        }
-        $user = User::find( auth()->id() );
+        $user = User::find(auth()->id());
         $user->guard_name = 'api'; // todo important
 
-        $category_statuses = $this->category_status_result( $user );
+        $category_statuses = $this->category_status_result($user);
 
         $validated = $request->validate(
             [
                 'category_name' => ['required', 'string', 'min:3'],
             ]
         );
-        $validator = Validator::make( $validated, [
-            'category_name' => ['string', 'unique:categories,category_name', 'min:3'],
-        ] );
-        if ($validator->fails())
-        {
+        $validator = Validator::make($validated, [
+            'category_name' => ['string', 'unique:shop_categories,shop_category_name', 'min:3'],
+//            'parent_id' => ['string', 'exists::shop_categories,parent_id', 'numeric'],
+        ]);
+        if ($validator->fails()) {
             $exception = $validator->messages();
 
-            return response()->json( [
+            return response()->json([
                 "message" => "Unknown server problem",
                 "errors" => $exception,
-            ], 503 );
+            ], 503);
         }
 
-        $category = Category::find( $id );
-        $category->category_name = $validated['category_name'];
-        $category->category_additional_user_id = $user->id;
-        $category->category_additional_user_type = $category_statuses['category_additional_user_type'];
-        $category->category_accept_status = $category_statuses['category_accept_status'];
-        $category->category_publish_status = $category_statuses['category_publish_status'];
-        $category->category_show_status = $category_statuses['category_show_status'];
+        $category = Category::find($id);
+
+//        $category->parent_id = $validated['parent_id'];
+        $category->shop_category_name = $validated['category_name'];
+        $category->shop_category_additional_user_id = $user->id;
+        $category->shop_category_accept_status = $category_statuses['category_accept_status'];
+        $category->shop_category_publish_status = $category_statuses['category_publish_status'];
+        $category->shop_category_show_status = $category_statuses['category_show_status'];
         $category->save();
-//        dd($category);
+//        $category->shop_category_additional_user_type = $category_statuses['category_additional_user_type'];
 
         return response()->json(
             [
-                'data' => (new CategoryResource( $category )),
+                'data' => (new CategoryResource($category)),
             ],
             200
         );
@@ -1109,11 +1332,10 @@ class CategoryController extends Controller {
     public function destroy(Category $category, $id)
     {
         // todo transaction for delete or update all sub entities
-        $category = Category::find( $id );
+        $category = Category::find($id);
 
 
-        if ($category)
-        {
+        if ($category) {
             $category->delete();
             $message = "Shop Category " . $id . " deleted.";
             $success = $id;
@@ -1128,9 +1350,7 @@ class CategoryController extends Controller {
                 ],
                 200 // 204 (No Content) - 202 (Accepted)
             );
-        }
-        else
-        {
+        } else {
             return response()->json(
                 [
                     "errors" => [
@@ -1146,40 +1366,32 @@ class CategoryController extends Controller {
     {
         $userGetRoleNames = $user->getRoleNames();
 
-        if ($userGetRoleNames->count() > 1)
-        {
+        if ($userGetRoleNames->count() > 1) {
 //                error
             $category_additional_user_type = 'unknown';
-        }
-        else
-        {
+        } else {
             $category_additional_user_type = $userGetRoleNames->toArray()[0];
         }
 
 
-        if ($user->hasRole( 'shopkeeper' ))
-        {
+        if ($user->hasRole('shopkeeper')) {
             $category_accept_status = false;
             $category_publish_status = false;
-            $category_show_status = 'private';
-        }
-        elseif ($user->hasRole( 'system' ))
-        {
+            $category_show_status = false;
+        } elseif ($user->hasRole('system')) {
             $category_accept_status = true;
             $category_publish_status = true;
-            $category_show_status = 'public';
+            $category_show_status = true;
 //            } elseif ($user->hasRole('user')) {
 //                $category_additional_user_type = 'user';
 //                $category_accept_status = false;
 //                $category_publish_status = false;
 //                $category_show_status = 'privet';
-        }
-        else
-        {
+        } else {
             $category_additional_user_type = 'unknown';
             $category_accept_status = false;
             $category_publish_status = false;
-            $category_show_status = 'privet';
+            $category_show_status = false;
         }
 
         return [
