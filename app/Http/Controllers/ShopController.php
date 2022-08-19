@@ -8,12 +8,15 @@ use App\Http\Resources\ShopResource;
 use App\Http\Resources\TagCollection;
 use App\Http\Resources\TagResource;
 use App\Http\Resources\UltraTagShopStatusCollection;
+use App\Models\RelationShop;
 use App\Models\RolesShopsUsers;
 use App\Models\Shop;
+
 //use Auth;
 use App\Models\ShopImages;
 use App\Models\Tag;
 use App\Models\User;
+use App\Models\Work;
 use App\Repositories\ShopRepositories;
 use Carbon\Carbon;
 use DB;
@@ -25,10 +28,15 @@ use Illuminate\Support\Facades\Validator;
 use File;
 use App\Traits\QueryParams;
 
+//use Faker\Provider\Image;
+//use Nette\Utils\Image;
+//use League\CommonMark\Extension\CommonMark\Node\Inline\Image;
+
 /**
  *
  */
-class ShopController extends Controller {
+class ShopController extends Controller
+{
 
     use QueryParams;
 
@@ -170,8 +178,7 @@ class ShopController extends Controller {
 
         $this->checkQueryParams($request);
 
-        if ($request->query('longitude') and $request->query('latitude'))
-        {
+        if ($request->query('longitude') and $request->query('latitude')) {
             $validated_location_center = $request->validate(
                 [
                     'latitude' => ['numeric', 'min:1'],
@@ -206,8 +213,7 @@ class ShopController extends Controller {
             $center_latitude = $validated_location_center['latitude'];
             $center_longitude = $validated_location_center['longitude'];
 
-            if ($request->query('NWLongitude') or $request->query('NWLatitude'))
-            {
+            if ($request->query('NWLongitude') or $request->query('NWLatitude')) {
 
                 $validated_location_corner = $request->validate(
                     [
@@ -219,8 +225,8 @@ class ShopController extends Controller {
 
                 $zoom = $validated_location_corner['zoom'];
 
-                $top = (float) $validated_location_corner['NWLatitude'];
-                $left = (float) $validated_location_corner['NWLongitude'];
+                $top = (float)$validated_location_corner['NWLatitude'];
+                $left = (float)$validated_location_corner['NWLongitude'];
                 $bottom = $center_latitude + ($center_latitude - $top);
                 $right = $center_longitude + ($center_longitude - $left);
 
@@ -243,8 +249,7 @@ class ShopController extends Controller {
                 return $Response;
 
             }
-            elseif ($request->query('radius'))
-            {
+            elseif ($request->query('radius')) {
                 $validated_radius = $request->validate(
                     [
                         'radius' => ['required', 'numeric', 'min:1'],
@@ -284,8 +289,7 @@ class ShopController extends Controller {
                 $Response->setStatusCode(200);
                 return $Response;
             }
-            else
-            {
+            else {
                 return response()->json(
                     [
                         'message' => 'The given data was invalid.',
@@ -302,8 +306,7 @@ class ShopController extends Controller {
                 );
             }
         }
-        else
-        {
+        else {
             $shops = Shop::orderBy($this->sort, $this->order)
 //                ->where( 'shop_accept_status', '=', 1 )
                 ->paginate($this->limit, '*', 'page', $this->page);
@@ -583,12 +586,19 @@ class ShopController extends Controller {
      */
     public function store(Request $request)
     {
+        /**
+         * @var array $attributes
+         * non-of-object
+         */
+        $attributes = $request->attributes->all();
+//        return $request;
+//        return $attributes;
+//        return $attributes['account_id'];
+
 //  need add identify ID look like telegram nullable and generation uniq number for add to parent
-        try
-        {
+        try {
             $shopkeeper_id = auth()->id();
-            if (auth()->user()->disable_at != null)
-            {
+            if (auth()->user()->disable_at != null) {
                 return response()->json([
                     "message" => "Forbidden",
                     "errors" => [
@@ -600,8 +610,7 @@ class ShopController extends Controller {
                     ],
                 ], 403);
             }
-            else if (auth()->user()->deleted_at != null)
-            {
+            else if (auth()->user()->deleted_at != null) {
                 return response()->json([
                     "message" => "Resource Not Found",
                     "errors" => [
@@ -609,51 +618,395 @@ class ShopController extends Controller {
                             "No account with this profile was found.",
                         ],
                         'NotificationsEnServer' => "No account with this profile was found.",
-                        'NotificationsFaServer' => "اکانتی با این مشخصات پیدا نشد.",
+                        'NotificationsFaServer' => "کاربری با این مشخصات پیدا نشد.",
                     ],
                 ], 404);
             }// mobile_verified_at,
 
-            // todo added   ' shop_Priority '   default 17 => بی اهمیت
+            // todo added   ' shop_Priority '   default 12 => بی اهمیت
             $validated = $request->validate(
                 [
+                    'registration_type' => ['required', 'string'],
                     'parent_id' => ['nullable', 'integer'],
+                    'account_id' => ['nullable', 'integer'],
                     'name' => ['required', 'string', 'min:3'],
-                    'category_id' => ['required', 'integer', 'exists:categories,id'],
-                    'tag_ids.*' => ['nullable', 'integer', 'exists:tags,id'],
                     'description' => ['required', 'string', 'min:5'],
-                    'shop_photo' => ['nullable', 'mimes:jpeg,png,jpg,webp,bmp'],
+
+                    'tag_ids' => ['nullable'],
+                    'shop_tag_ids.*' => ['nullable', 'integer', 'exists:tags,id'],
+
+                    'shop_work_ids.*' => ['required', 'integer', 'exists:shop_categories,id'],
+
+                    'shop_photo_ids.*' => ['nullable', 'integer'],
+                    'shop_Priority' => ['nullable', 'integer'],
+
                     'type_location' => ['required', 'boolean'],
-                    'lat_location' => ['nullable', 'string', 'min:8'],
-                    'long_location' => ['nullable', 'string', 'min:8'],
+                    'lat_location' => ['nullable', 'string', 'min:6'],
+                    'long_location' => ['nullable', 'string', 'min:6'],
+
+                    'locations' => ['nullable', 'array', 'min:3', 'max:5'],
+                    'locations.*' => ['nullable', 'array', 'size:2'],
+                    'locations.*.*' => ['nullable', 'string', 'min:6'],
+
                     'shop_country' => ['nullable', 'string', 'min:8'],
                     'shop_province' => ['nullable', 'string', 'min:8'],
                     'shop_city' => ['nullable', 'string', 'min:8'],
                     'shop_local' => ['nullable', 'string', 'min:8'],
-                    'shop_Street' => ['nullable', 'string', 'min:8'],
+                    'shop_street' => ['nullable', 'string', 'min:8'],
                     'shop_alley' => ['nullable', 'string', 'min:8'],
-                    'shop_number' => ['nullable', 'string', 'min:8'],
+                    'shop_number' => ['nullable', 'string'], // shomare pelak
                     'shop_postal_code' => ['required', 'digits:10'],
-                    'shop_main_phone_number' => ['required', 'string', 'min:10', 'max:11'], // 09876543210  9876543210 11 or 10
+                    'shop_main_phone_number' => ['required', 'string', 'min:10', 'max:11'], // 02176543210  2176543210 11 or 10
                 ]
             );
 
+            if ($validated['registration_type'] == "store") {
+                /*                $validator_registration = Validator::make($validated, [
+                                    'parent_id' => ['required', 'integer', 'required_unless:registration_type,search'],
+                                ]);
+                //                return $validator_registration->attributes()['account_id'];
+                //                return $validator_registration->parent_id;
+                //                return $validator_registration['parent_id'];
+
+                                $parent_shop_id = $validator_registration->attributes()['parent_id'];
+                                $parent_account_id = $validator_registration->attributes()['account_id'];
+
+                                $child_account_id = $attributes['account_id'];
+                                $child_user_id = $attributes['user_id'];
+                                $child_role_id = $attributes['role_id'];
+                                $child_shop_id = $attributes['shop_id'];
+                */
+                // normal
+
+                $parent_shop_id = null; // todo remove
+                $parent_account_id = null; // todo remove
+
+                $child_account_id = $attributes['account_id'];
+                $child_user_id = $attributes['user_id'];
+                $child_role_id = $attributes['role_id'];
+                $child_shop_id = $attributes['shop_id'];
+            }
+            elseif ($validated['registration_type'] == "search") {
+                $validator_registration = Validator::make($validated, [
+                    'parent_id' => [
+                        'required',
+                        'integer',
+                        'required_unless:registration_type,search',
+                        'exists:shops,id'
+                    ],
+                ]);
+
+                if ($validator_registration->fails()) {
+                    $exception = $validator_registration->messages();
+                    return response()->json([
+                        "message" => "The given data was invalid.",
+                        "errors" => $validator_registration->messages(),
+                    ], 422);
+                }
+
+                $parent_shop_id = $validator_registration->attributes()['parent_id'];
+//                $parent_account_id = $validator_registration->attributes()['account_id'];
+                $parent_account_id = null; // todo remove
+
+                $child_account_id = $attributes['account_id'];
+                $child_user_id = $attributes['user_id'];
+                $child_role_id = $attributes['role_id'];
+                $child_shop_id = $attributes['shop_id'];
+
+            }
+            elseif ($validated['registration_type'] == "qrcode") {
+                $validator_registration = Validator::make($validated, [
+                    'parent_id' => [
+                        'required',
+                        'integer',
+                        'required_unless:registration_type,search',
+                        'exists:shops,id'
+                    ],
+                    'account_id' => [
+                        'required',
+                        'integer',
+                        'required_unless:registration_type,qrcode',
+                        'exists:accounts,id',
+                        'not_in:' . $attributes['account_id']
+                    ],
+                ],
+                    [
+                        'account_id.not_in' => 'It is not possible to register yourself as your own subset.',
+                    ]
+                );
+
+                if ($validator_registration->fails()) {
+                    $exception = $validator_registration->messages();
+                    return response()->json([
+                        "message" => "The given data was invalid.",
+                        "errors" => $validator_registration->messages(),
+                    ], 422);
+                }
+
+                $parent_shop_id = $validator_registration->attributes()['parent_id'];
+                $parent_account_id = $validator_registration->attributes()['account_id'];
+
+                $child_account_id = $attributes['account_id'];
+                $child_user_id = $attributes['user_id'];
+                $child_role_id = $attributes['role_id'];
+                $child_shop_id = $attributes['shop_id']; // todo mehdi new insert
+
+            }
+            else {
+                // return exception // todo mehdi
+                return response()->json([
+                    "message" => "The given data was invalid.",
+                    "errors" => [
+                        "registration_type" => "registration_type is not valid!",
+//                        "messages" => $validated->messages(),
+
+                    ],
+                ], 422);
+            }
+
+            if (count(array_intersect([66, 68, 70, 72, 79, 81, 83, 85], $validated['shop_work_ids'])) === 0) {
+                // No values from array1 are in array 2
+                $shop_parent_able_request = false;
+                $shop_parent_able_status = false;
+            } else {
+                // There is at least one value from array1 present in array2
+                $shop_parent_able_request = true;
+                $shop_parent_able_status = true;
+            }
+
+            /*            return
+                            [
+                                $validator_registration->attributes(),
+                                'parent_shop_id' => $parent_shop_id,
+                                'child_shop_id' => $child_shop_id,
+                                'child_account_id' => $child_account_id,
+                                'parent_account_id' => $parent_account_id,
+                                'child_user_id' => $child_user_id,
+                                'child_role_id' => $child_role_id,
+                            ];*/
             /**
              * if type_location = false => location is dynamic
              * if type_location = true => location is static
              *
              */
-            $validator = Validator::make($validated, [
-                'lat_location' => ['required_unless:type_location,false'],
-                'long_location' => ['required_unless:type_location,false'],
-            ]);
-            if ($validator->fails())
-            {
-                $exception = $validator->messages();
-                return response()->json([
-                    "message" => "The given data was invalid.",
-                    "errors" => $validator->messages(),
-                ], 422);
+            if ($validated['type_location'] == true) {
+                $validator = Validator::make($validated, [
+                    'lat_location' => ['required_unless:type_location,false', 'min:6'],
+                    'long_location' => ['required_unless:type_location,false', 'min:6'],
+//                    'locations' => [ // todo mehdi not worked
+//                        'nullable',
+//                        'size:0',
+//                        'array'
+//                    ],
+
+                ]);
+
+                if ($validator->fails()) {
+                    $exception = $validator->messages();
+                    return response()->json([
+                        "message" => "The given data was invalid.",
+                        "errors" => $validator->messages(),
+                    ], 422);
+                }
+            }
+            elseif ($validated['type_location'] == false) {
+                $validator = Validator::make($validated, [
+                    'locations' => [
+                        'required',
+                        'required_unless:type_location,true',
+                        'min:3',
+                        'max:5',
+                    ],
+                ]);
+
+                if ($validator->fails()) {
+                    $exception = $validator->messages();
+                    return response()->json([
+                        "message" => "The given data was invalid.",
+                        "errors" => $validator->messages(),
+                    ], 422);
+                }
+            }
+
+            if (isset($validated['shop_priority'])) {
+                if ($validated['shop_priority'] == null) {
+                    $validated['shop_priority'] = 12;
+                }
+            }
+            else {
+                $validated['shop_priority'] = 12;
+            }
+
+            // after insert shop
+            if ($validated['shop_work_ids']) {
+                // select work and insert into shop works
+                // select work access and insert into access_shop shop multi_access
+
+                $works = work::whereIn('id', $validated['shop_work_ids'])
+                    ->with(['accesses' => function ($query) {
+                        $query->select(['id',
+                            'work_id',
+                            'work_name',
+                            'work_title',
+                            'access_id',
+                            'access_title']);
+                    }])
+                    ->select(['id', 'subcategory_id', 'subcategory_name', 'title AS work_title', 'type_location'])
+                    ->get();
+
+                $work_list = collect($works)->map(
+                    function ($items) {
+                        return collect($items)->except(['accesses']);
+                    }
+                )->toArray();
+
+
+                $accesses = collect($works)->map(
+                    function ($items) {
+                        return $items->accesses
+                            ->map(
+                                function ($item) {
+                                    return collect($item)->only('access_id', 'access_title');
+                                }
+                            );
+                    }
+                );
+                $access_list = $accesses->collapse()->unique('access_id');
+
+                // todo mehdi this business need to edit
+                // check if type location is false remove accesses "x" from access_lis
+//                foreach ($work_list as $work) {
+//                    if ($work['type_location'] == 0) {
+//                        return true;
+//                    }
+//                }
+            }
+
+            // todo mehdi this business need to edit
+            // check is dynamic false
+//            if (((($access_list)->whereIn('access_id', [4, 5, 6]))->all()) != null) {
+//                // is dynamic
+//                return true;
+//            }
+
+//            if () {
+//                // if shop work_list have 66, 68, 70, 72, 79, 81, 83, 85
+//            }
+
+            //////////////////////////////////////////////////
+            ///
+
+            /*            return [
+                            'resulte' => [
+                                'child_account_id' => $child_account_id,
+                                'child_user_id' => $child_user_id,
+                                'child_role_id' => $child_role_id,
+                                'child_shop_id' => $child_shop_id,
+                                'parent_shop_id' => $parent_shop_id,
+                                'parent_account_id' => $parent_account_id,
+                                'validated' => $validated,
+                                'works' => $works,
+                                'work_list' => $work_list,
+                                'accesses' => $accesses,
+                                'access_list' => $access_list,
+
+                            ],
+                        ];*/
+
+            $shop = Shop::create(
+                [
+                    "name" => $validated['name'],
+                    "description" => $validated['description'],
+                    "shop_priority" => $validated['shop_priority'],
+                    "shop_accept_status" => null,
+                    "shop_photo_url" => null,
+                    "type_location" => $validated['type_location'],
+                    "lat_location" => $validated['lat_location'],
+                    "long_location" => $validated['long_location'],
+                    "shop_country" => $validated['shop_country'],
+                    "shop_province" => $validated['shop_province'],
+                    "shop_city" => $validated['shop_city'],
+                    "shop_local" => $validated['shop_local'],
+                    "shop_street" => $validated['shop_street'],
+                    "shop_alley" => $validated['shop_alley'],
+                    "shop_number" => $validated['shop_number'],
+                    "shop_parent_able_status" => $shop_parent_able_status,
+                    "shop_parent_able_request" => $shop_parent_able_request,
+                    "shop_postal_code" => $validated['shop_postal_code'],
+                    "shop_main_phone_number" => $validated['shop_main_phone_number'],
+                    "additional_user_id" => $shopkeeper_id,
+                    "shop_number_likes" => 0,
+                    "normal_product_number_likes" => 0,
+                ]
+            );
+            // $shop->id;
+
+            $res_work = collect($work_list)->keyBy('id')->map(
+                function ($items) use ($shop) {
+                    return [
+                        'subcategory_id' => $items['subcategory_id'],
+                        'subcategory_name' => $items['subcategory_name'],
+                        'work_title' => $items['work_title'],
+                        'shop_id' => $shop->id,
+                        'shop_name' => $shop->name,
+                        'shops_works_accept_status' => null,
+                        'shops_works_publish_status' => null,
+                        'shops_works_show_status' => null,
+                        'shops_works_confirm_user_id' => null,
+                        'shops_works_confirm_comment_id' => null,
+                        'shops_works_confirm_comment_value' => null,
+                    ];
+                }
+            );
+            // insert into shop_multi_categories tbl => shop_work
+//                $shop->works()->sync($res);
+            $shop->works()->attach($res_work);
+
+            $res_access = collect($access_list)->keyBy('access_id')->map(
+                function ($items) use ($shop) {
+                    return [
+                        'access_id' => $items['access_id'],
+                        'access_title' => $items['access_title'],
+                        'shop_id' => $shop->id,
+                        'shop_name' => $shop->name,
+                        'start_access_time' => null,
+                        'end_access_time' => null,
+                        'length_access_time' => null,
+                        'history_of_activated_number' => 1,
+                        'access_shop_option_status' => null,
+                        'access_shop_accept_status' => null,
+                        'access_shop_publish_status' => null,
+                        'access_shop_show_status' => null,
+                        'access_shop_confirm_user_id' => null,
+                        'access_shop_confirm_comment_id' => null,
+                        'access_shop_confirm_comment_value' => null,
+                    ];
+                }
+            );
+//            return $res_access;
+            // insert into shop access tbl => access_shop // 4 5 6
+            $shop->access()->attach($res_access);
+
+            // after insert shop
+            if ($validated['shop_photo_ids']) {
+                $files = ShopImages::whereIn('id', $validated['shop_photo_ids'])
+                    ->get();
+                // update ShopImages -> shop_id
+                // shop_photo_url in tbl shop select first $files->shop_image_url
+
+
+//                 return $files;
+            }
+            $shop->images()->saveMany($files);
+
+            return $shop;
+            // after insert in shop tbl -> insert relation in relation tbl
+            if ($validated['parent_id']) {
+                $parentShop = RelationShop::create(
+                    [
+
+                    ]
+                );
             }
 
             /**
@@ -665,33 +1018,32 @@ class ShopController extends Controller {
              * @property mixed name
              *
              */
-            $shop = Shop::create(
-                [
-                    'parent_id' => null,
-                    'name' => $request->name,
-                    'category_id' => $request->category_id,
-                    'description' => $request->description,
-                    'shop_accept_status' => null,
-//                    'shop_photo_url' => $request->shop_photo,
-                    'type_location' => $request->type_location,
-                    'lat_location' => $request->lat_location,
-                    'long_location' => $request->long_location,
-                    'shop_country' => $request->shop_country,
-                    'shop_province' => $request->shop_province,
-                    'shop_city' => $request->shop_city,
-                    'shop_local' => $request->shop_local,
-                    'shop_Street' => $request->shop_Street,
-                    'shop_alley' => $request->shop_alley,
-                    'shop_number' => $request->shop_number,
-                    'shop_postal_code' => $request->shop_postal_code,
-                    'shop_main_phone_number' => $request->shop_main_phone_number,
-                ]
-            );
+//            $shop = Shop::create(
+//                [
+////                    'parent_id' => null,
+//                    'name' => $request->name,
+//                    'category_id' => $request->category_id,
+//                    'description' => $request->description,
+//                    'shop_accept_status' => null,
+////                    'shop_photo_url' => $request->shop_photo,
+//                    'type_location' => $request->type_location,
+//                    'lat_location' => $request->lat_location,
+//                    'long_location' => $request->long_location,
+//                    'shop_country' => $request->shop_country,
+//                    'shop_province' => $request->shop_province,
+//                    'shop_city' => $request->shop_city,
+//                    'shop_local' => $request->shop_local,
+//                    'shop_Street' => $request->shop_Street,
+//                    'shop_alley' => $request->shop_alley,
+//                    'shop_number' => $request->shop_number,
+//                    'shop_postal_code' => $request->shop_postal_code,
+//                    'shop_main_phone_number' => $request->shop_main_phone_number,
+//                ]
+//            );
 
 //            model has role
             $success['id'] = $shop->id;
-            if ($request->input('shop_photo'))
-            {
+            if ($request->input('shop_photo')) {
                 $file = $validated['shop_photo'];
                 $shop_photo_name = $request->file('shop_photo')->getClientOriginalName();
                 $format = (explode('.', $shop_photo_name));
@@ -727,8 +1079,7 @@ class ShopController extends Controller {
                 );
             }
             // todo $shop->id and $tag_ids insert to pivot table
-            if (isset($validated['tag_ids']))
-            {
+            if (isset($validated['tag_ids'])) {
                 $tag_ids = $validated['tag_ids'];
                 $shop->tags()->attach($tag_ids, ['tag_accept_status' => 0]);
             }
@@ -737,8 +1088,7 @@ class ShopController extends Controller {
             // user_id => ($shopkeeper_id), role_id => (shopkeeper), shop_id => ($shop->id), shop_type => (child)
             // $shop->tags()->attach($tag);
 
-            if (!$validated)
-            {
+            if (!$validated) {
                 return response()->json([
                     "message" => "Unknown server problem",
                     "errors" => [
@@ -765,8 +1115,7 @@ class ShopController extends Controller {
             ], $responseCode);
 
         }
-        catch (MyException $exception)
-//        catch (ShopStoreException $exception)
+        catch (MyException $exception) //        catch (ShopStoreException $exception)
         {
 
 
@@ -810,7 +1159,7 @@ class ShopController extends Controller {
      * get /tags/{tag}
      * Display the specified resource.
      *
-     * @param int              $id
+     * @param int $id
      * @param ShopRepositories $shops
      * @return JsonResponse
      */
@@ -1131,8 +1480,7 @@ class ShopController extends Controller {
             ]
         );
 
-        if ($validate_id->fails())
-        {
+        if ($validate_id->fails()) {
             $exception = $validate_id->messages();
             return response()->json([
                 "message" => "The given data was invalid.",
@@ -1177,8 +1525,7 @@ class ShopController extends Controller {
                 'long_location' => ['required_unless:type_location,false'],
             ]
         );
-        if ($validator->fails())
-        {
+        if ($validator->fails()) {
             $exception = $validator->messages();
             return response()->json([
                 "message" => "The given data was invalid.",
@@ -1207,8 +1554,7 @@ class ShopController extends Controller {
 
         $shop->save();
 
-        if ($file = $request->shop_photo)
-        {
+        if ($file = $request->shop_photo) {
             $shop_photo_name =
                 $request->file('shop_photo')->getClientOriginalName();
             $format = (explode('.', $shop_photo_name));
@@ -1254,18 +1600,14 @@ class ShopController extends Controller {
             $shop->save();
         }
 
-        if (isset($request->tag_ids))
-        {
+        if (isset($request->tag_ids)) {
             $tag_ids = $request->tag_ids;
-            try
-            {
+            try {
                 $shop->tags()->attach($tag_ids, ['tag_accept_status' => 0]);
             }
-            catch (QueryException $e)
-            { // addd foregin key todo necessary
+            catch (QueryException $e) { // addd foregin key todo necessary
                 $errorCode = $e->errorInfo[1];
-                if ($errorCode == 1062)
-                {
+                if ($errorCode == 1062) {
                     return response()->json([
                         'message' => 'shop updated. and tags are Duplicate entry',
                         'error' => [
@@ -1383,7 +1725,7 @@ class ShopController extends Controller {
      * Remove the specified resource from storage.
      *
      * @param Request $request
-     * @param int     $id
+     * @param int $id
      * @return \Illuminate\Http\JsonResponse
      */
     public function image(Request $request, $id)
@@ -1403,8 +1745,7 @@ class ShopController extends Controller {
                         'Access-Control-Allow-Headers', 'Content-Type, Accept, Authorization, X-Requested-With, Application'
                     );*/
 
-        if (file_exists($filePath))
-        {
+        if (file_exists($filePath)) {
             $type = File::mimeType($filePath);
             $content = file_get_contents($filePath);
             $response = response($content, 200, [
@@ -1413,8 +1754,7 @@ class ShopController extends Controller {
             ]);
             return $response;
         }
-        else
-        {
+        else {
             return response()->json([
                 "message" => "Unknown server problem",
                 "errors" => [
@@ -1425,6 +1765,53 @@ class ShopController extends Controller {
             ], 503);
         }
 
+    }
+
+    /**
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     */
+    public function shopFile(Request $request)
+    {
+        if ($request->file('shop_photo')) {
+            $validated = $request->validate(
+                [
+                    'shop_photo' => ['nullable', 'mimes:jpeg,png,jpg,webp,bmp'],
+                ]
+            );
+            $file = $validated['shop_photo'];
+//            $shop_photo['guessClientExtension'] = $file->guessClientExtension();
+            $format = (explode('.', $file->getClientOriginalName()));
+            $file_name_is = $format[0];
+            $file_format_is = end($format);
+            $name_in_store = date('Y-m-d-H_m_s', strtotime(Carbon::now())) . '_s_' . rand(10, 99) . '-' . $file_name_is . '.' . $file_format_is;
+            $shop_photo_path = $file
+                ->storeAs('shop_files', $name_in_store);
+            $shop_photo_url = 'shop/' . $shop_photo_path;
+
+            $data = [
+                'shop_image_url' => $shop_photo_url,
+                'shop_image_type' => $file->getClientMimeType(),
+                'shop_image_format' => $file->getClientOriginalExtension(),
+                'shop_image_size' => $file->getSize(),
+                'shop_image_resolution' => getimagesize($file)[0] . '*' . getimagesize($file)[1],
+                'shop_image_old_name' => $file->getClientOriginalName(),
+                'shop_image_new_name' => $name_in_store,
+                'shop_image_uploader_user_id' => auth()->id(),
+                'shop_image_accept_status' => null,
+                'shop_image_active_status' => true,
+                'shop_image_publish_status' => true,
+                'shop_image_thumbnail_url' => null,
+                'shop_image_thumbnail_name' => null,
+            ];
+
+            $image = ShopImages::create(
+                $data
+            );
+            return $image;
+        }
+        else {
+            return 'not valid';
+        }
     }
 
     /***************************/
@@ -1478,7 +1865,7 @@ class ShopController extends Controller {
      *
      */
     /**
-     * @param Request  $request
+     * @param Request $request
      * @param          $id
      * @return UltraTagShopStatusCollection|\Illuminate\Http\JsonResponse
      *
@@ -1492,16 +1879,13 @@ class ShopController extends Controller {
     public function tagsShopById(Request $request, $id)
     {
         $user = auth()->user();
-        if ($user == $user)
-//        if (($user->hasRole( 'admin', 'api' )) or ($user->hasRole( 'system', 'api' )))
+        if ($user == $user) // if (($user->hasRole( 'admin', 'api' )) or ($user->hasRole( 'system', 'api' )))
         {
 
-            if ($request->query('accept') == null)
-            {
+            if ($request->query('accept') == null) {
                 $when = false;
             }
-            else
-            {
+            else {
                 $when = true;
             }
             $acceptStatus = filter_var($request->query('accept'), FILTER_VALIDATE_BOOLEAN);
@@ -1510,7 +1894,7 @@ class ShopController extends Controller {
             $tags = Tag::whereHas('shops', function ($query) use ($id, $request, $acceptStatus, $when) {
                 $query->whereIn('shops_tags.shop_id', [$id]);
                 $query->when($when, function ($query) use ($acceptStatus) {
-                    $query->where('shops_tags.tag_accept_status', (int) $acceptStatus);
+                    $query->where('shops_tags.tag_accept_status', (int)$acceptStatus);
                 });
             })
                 ->with('shops:id')
@@ -1518,14 +1902,14 @@ class ShopController extends Controller {
 
             /**
              *
-             * @var integer      $item ->shop_id
+             * @var integer $item ->shop_id
              * @property integer $item ->shop_id
              * @type mixed   tag_accept_status_use
              */
             $val = $tags->map(function ($item) {
                 /**
                  * @property integer $item ->shop_id
-                 * @var mixed        $item ->shop_id
+                 * @var mixed $item ->shop_id
                  */
                 $item->shop_id = $item->shops[0]->id;
                 $item->tag_accept_status_use = $item->shops[0]->pivot->tag_accept_status;
@@ -1536,8 +1920,7 @@ class ShopController extends Controller {
 
             return new UltraTagShopStatusCollection($val);
         }
-        else
-        {
+        else {
             return response()->json(
                 [
                     'message' => 'Forbidden.',

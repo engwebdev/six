@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use App\Exceptions\MyException;
 use App\Http\Resources\CategoryCollection;
 use App\Http\Resources\CategoryResource;
+use App\Http\Resources\WorkCollection;
 use App\Models\Category;
 use App\Models\User;
+use App\Models\Work;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Response;
@@ -280,8 +283,15 @@ class CategoryController extends Controller
             })
             ->when($user->hasRole('shopkeeper', 'api'), function ($query) use ($user_id) {
                 return $query
-                    ->select('id', 'parent_id', 'shop_category_name', 'shop_category_accept_status', 'shop_category_publish_status', 'shop_category_show_status', 'shop_category_additional_user_id')
+                    ->select('id',
+                        'parent_id',
+                        'shop_category_name',
+                        'shop_category_accept_status',
+                        'shop_category_publish_status',
+                        'shop_category_show_status',
+                        'shop_category_additional_user_id')
                     ->Where('shop_category_accept_status', true)
+                    ->where('parent_id', '=', null)
                     ->orWhere(function ($subQuery) use ($user_id) {
                         $subQuery
                             ->where('shop_category_accept_status', false)
@@ -1226,6 +1236,39 @@ class CategoryController extends Controller
 //        return new CategoryResource( $category );
     }
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param Request $request
+     * @param         $id
+     * @return JsonResponse
+     */
+    public function findAllWorks(Request $request, $id)
+    {
+        $page = $request->query('page');
+        $limit = $request->query('limit');
+        if ($request->query('sort')) {
+            $sort = $request->query('sort');
+        } else {
+            $sort = 'id';
+        }
+        if ($request->query('order')) {
+            $order = $request->input('order');
+        } else {
+            $order = 'asc';
+        }
+
+        $works = Work::where("subcategory_id", "=", $id)
+            ->paginate($limit, '*', 'page', $page);
+
+        $WorkCollection = (new WorkCollection($works));
+
+        return response()->json(
+            [
+                $WorkCollection
+            ],
+            200);
+    }
 
     /**
      * @OA\Delete(

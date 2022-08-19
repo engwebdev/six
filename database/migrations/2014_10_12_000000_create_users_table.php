@@ -57,7 +57,7 @@ class CreateUsersTable extends Migration
                     'mobile_verified_code_expire_time' => null,
                     'password' => '$2y$10$8R8YMQpBOAnsjZmxq7uwb.hGFCWH0UXH17uUvQHyBb2JCSIvJhDHq',
                     'disable_by' => 1,
-                    'disable_at' => '2021-08-04 11:49:35',
+                    'disable_at' => null,
                     'created_at' => '2021-08-04 11:49:35',
                     'updated_at' => '2021-11-22 12:55:42'
                 ],
@@ -73,7 +73,7 @@ class CreateUsersTable extends Migration
                     'mobile_verified_code_expire_time' => null,
                     'password' => '$2y$10$8R8YMQpBOAnsjZmxq7uwb.hGFCWH0UXH17uUvQHyBb2JCSIvJhDHq',
                     'disable_by' => 1,
-                    'disable_at' => '2021-08-04 11:49:35',
+                    'disable_at' => null,
                     'created_at' => '2021-08-04 11:49:35',
                     'updated_at' => '2021-11-22 12:55:42'
                 ],
@@ -89,7 +89,7 @@ class CreateUsersTable extends Migration
                     'mobile_verified_code_expire_time' => null,
                     'password' => '$2y$10$8R8YMQpBOAnsjZmxq7uwb.hGFCWH0UXH17uUvQHyBb2JCSIvJhDHq',
                     'disable_by' => 1,
-                    'disable_at' => '2021-08-04 11:49:35',
+                    'disable_at' => null,
                     'created_at' => '2021-08-04 11:49:35',
                     'updated_at' => '2021-11-22 12:55:42'
                 ]

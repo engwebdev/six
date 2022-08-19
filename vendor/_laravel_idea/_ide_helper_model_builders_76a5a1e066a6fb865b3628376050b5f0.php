@@ -1,8 +1,9 @@
-<?php //5c04e2bd48849fa4dd18e2590ee467e5
+<?php //7c291f1e284e28ee74bdc44a7af97f8c
 /** @noinspection all */
 
 namespace LaravelIdea\Helper\App\Models {
 
+    use App\Models\AccessWork;
     use App\Models\Account;
     use App\Models\Attribute;
     use App\Models\AttributeValue;
@@ -19,6 +20,7 @@ namespace LaravelIdea\Helper\App\Models {
     use App\Models\ProductPriceHistory;
     use App\Models\ProductsImage;
     use App\Models\ProductTag;
+    use App\Models\RelationShop;
     use App\Models\RolesShopsUsers;
     use App\Models\Shop;
     use App\Models\ShopImages;
@@ -28,6 +30,7 @@ namespace LaravelIdea\Helper\App\Models {
     use App\Models\TeamInvitation;
     use App\Models\TopModel;
     use App\Models\User;
+    use App\Models\Work;
     use Illuminate\Contracts\Support\Arrayable;
     use Illuminate\Database\Query\Expression;
     use Illuminate\Pagination\LengthAwarePaginator;
@@ -37,6 +40,75 @@ namespace LaravelIdea\Helper\App\Models {
     use LaravelIdea\Helper\_BaseCollection;
     use Spatie\Permission\Contracts\Permission;
     use Spatie\Permission\Contracts\Role;
+    
+    /**
+     * @method AccessWork|$this shift(int $count = 1)
+     * @method AccessWork|$this pop(int $count = 1)
+     * @method AccessWork|null get($key, $default = null)
+     * @method AccessWork|null pull($key, $default = null)
+     * @method AccessWork|null first(callable $callback = null, $default = null)
+     * @method AccessWork|null firstWhere(string $key, $operator = null, $value = null)
+     * @method AccessWork|null find($key, $default = null)
+     * @method AccessWork[] all()
+     * @method AccessWork|null last(callable $callback = null, $default = null)
+     * @method AccessWork|$this random(int|null $number = null)
+     * @method AccessWork|null sole($key = null, $operator = null, $value = null)
+     */
+    class _IH_AccessWork_C extends _BaseCollection {
+        /**
+         * @param int $size
+         * @return AccessWork[][]
+         */
+        public function chunk($size)
+        {
+            return [];
+        }
+    }
+    
+    /**
+     * @method _IH_AccessWork_QB whereId($value)
+     * @method _IH_AccessWork_QB whereWorkId($value)
+     * @method _IH_AccessWork_QB whereWorkName($value)
+     * @method _IH_AccessWork_QB whereWorkTitle($value)
+     * @method _IH_AccessWork_QB whereAccessId($value)
+     * @method _IH_AccessWork_QB whereAccessTitle($value)
+     * @method _IH_AccessWork_QB whereAccessWorkAcceptStatus($value)
+     * @method _IH_AccessWork_QB whereAccessWorkPublishStatus($value)
+     * @method _IH_AccessWork_QB whereAccessWorkShowStatus($value)
+     * @method _IH_AccessWork_QB whereDeletedAt($value)
+     * @method _IH_AccessWork_QB whereCreatedAt($value)
+     * @method _IH_AccessWork_QB whereUpdatedAt($value)
+     * @method AccessWork baseSole(array|string $columns = ['*'])
+     * @method AccessWork create(array $attributes = [])
+     * @method _IH_AccessWork_C|AccessWork[] cursor()
+     * @method AccessWork|null|_IH_AccessWork_C|AccessWork[] find($id, array $columns = ['*'])
+     * @method _IH_AccessWork_C|AccessWork[] findMany(array|Arrayable $ids, array $columns = ['*'])
+     * @method AccessWork|_IH_AccessWork_C|AccessWork[] findOrFail($id, array $columns = ['*'])
+     * @method AccessWork|_IH_AccessWork_C|AccessWork[] findOrNew($id, array $columns = ['*'])
+     * @method AccessWork first(array|string $columns = ['*'])
+     * @method AccessWork firstOr(array|\Closure $columns = ['*'], \Closure $callback = null)
+     * @method AccessWork firstOrCreate(array $attributes = [], array $values = [])
+     * @method AccessWork firstOrFail(array $columns = ['*'])
+     * @method AccessWork firstOrNew(array $attributes = [], array $values = [])
+     * @method AccessWork firstWhere(array|\Closure|Expression|string $column, $operator = null, $value = null, string $boolean = 'and')
+     * @method AccessWork forceCreate(array $attributes)
+     * @method _IH_AccessWork_C|AccessWork[] fromQuery(string $query, array $bindings = [])
+     * @method _IH_AccessWork_C|AccessWork[] get(array|string $columns = ['*'])
+     * @method AccessWork getModel()
+     * @method AccessWork[] getModels(array|string $columns = ['*'])
+     * @method _IH_AccessWork_C|AccessWork[] hydrate(array $items)
+     * @method AccessWork make(array $attributes = [])
+     * @method AccessWork newModelInstance(array $attributes = [])
+     * @method LengthAwarePaginator|AccessWork[]|_IH_AccessWork_C paginate(int|null $perPage = null, array $columns = ['*'], string $pageName = 'page', int|null $page = null)
+     * @method Paginator|AccessWork[]|_IH_AccessWork_C simplePaginate(int|null $perPage = null, array $columns = ['*'], string $pageName = 'page', int|null $page = null)
+     * @method AccessWork sole(array|string $columns = ['*'])
+     * @method AccessWork updateOrCreate(array $attributes, array $values = [])
+     * @method _IH_AccessWork_QB withTrashed()
+     * @method _IH_AccessWork_QB onlyTrashed()
+     * @method _IH_AccessWork_QB withoutTrashed()
+     * @method _IH_AccessWork_QB restore()
+     */
+    class _IH_AccessWork_QB extends _BaseBuilder {}
     
     /**
      * @method Account|$this shift(int $count = 1)
@@ -1245,6 +1317,66 @@ namespace LaravelIdea\Helper\App\Models {
     class _IH_ProductsImage_QB extends _BaseBuilder {}
     
     /**
+     * @method RelationShop|$this shift(int $count = 1)
+     * @method RelationShop|$this pop(int $count = 1)
+     * @method RelationShop|null get($key, $default = null)
+     * @method RelationShop|null pull($key, $default = null)
+     * @method RelationShop|null first(callable $callback = null, $default = null)
+     * @method RelationShop|null firstWhere(string $key, $operator = null, $value = null)
+     * @method RelationShop|null find($key, $default = null)
+     * @method RelationShop[] all()
+     * @method RelationShop|null last(callable $callback = null, $default = null)
+     * @method RelationShop|$this random(int|null $number = null)
+     * @method RelationShop|null sole($key = null, $operator = null, $value = null)
+     */
+    class _IH_RelationShop_C extends _BaseCollection {
+        /**
+         * @param int $size
+         * @return RelationShop[][]
+         */
+        public function chunk($size)
+        {
+            return [];
+        }
+    }
+    
+    /**
+     * @method RelationShop baseSole(array|string $columns = ['*'])
+     * @method RelationShop create(array $attributes = [])
+     * @method _IH_RelationShop_C|RelationShop[] cursor()
+     * @method RelationShop|null|_IH_RelationShop_C|RelationShop[] find($id, array $columns = ['*'])
+     * @method _IH_RelationShop_C|RelationShop[] findMany(array|Arrayable $ids, array $columns = ['*'])
+     * @method RelationShop|_IH_RelationShop_C|RelationShop[] findOrFail($id, array $columns = ['*'])
+     * @method RelationShop|_IH_RelationShop_C|RelationShop[] findOrNew($id, array $columns = ['*'])
+     * @method RelationShop first(array|string $columns = ['*'])
+     * @method RelationShop firstOr(array|\Closure $columns = ['*'], \Closure $callback = null)
+     * @method RelationShop firstOrCreate(array $attributes = [], array $values = [])
+     * @method RelationShop firstOrFail(array $columns = ['*'])
+     * @method RelationShop firstOrNew(array $attributes = [], array $values = [])
+     * @method RelationShop firstWhere(array|\Closure|Expression|string $column, $operator = null, $value = null, string $boolean = 'and')
+     * @method RelationShop forceCreate(array $attributes)
+     * @method _IH_RelationShop_C|RelationShop[] fromQuery(string $query, array $bindings = [])
+     * @method _IH_RelationShop_C|RelationShop[] get(array|string $columns = ['*'])
+     * @method RelationShop getModel()
+     * @method RelationShop[] getModels(array|string $columns = ['*'])
+     * @method _IH_RelationShop_C|RelationShop[] hydrate(array $items)
+     * @method RelationShop make(array $attributes = [])
+     * @method RelationShop newModelInstance(array $attributes = [])
+     * @method LengthAwarePaginator|RelationShop[]|_IH_RelationShop_C paginate(int|null $perPage = null, array $columns = ['*'], string $pageName = 'page', int|null $page = null)
+     * @method Paginator|RelationShop[]|_IH_RelationShop_C simplePaginate(int|null $perPage = null, array $columns = ['*'], string $pageName = 'page', int|null $page = null)
+     * @method RelationShop sole(array|string $columns = ['*'])
+     * @method RelationShop updateOrCreate(array $attributes, array $values = [])
+     * @method _IH_RelationShop_QB withTrashed()
+     * @method _IH_RelationShop_QB onlyTrashed()
+     * @method _IH_RelationShop_QB withoutTrashed()
+     * @method _IH_RelationShop_QB restore()
+     * @method _IH_RelationShop_QB customFilter($filter)
+     * @method _IH_RelationShop_QB customOrder($sort)
+     * @method _IH_RelationShop_QB customPagination($pagination)
+     */
+    class _IH_RelationShop_QB extends _BaseBuilder {}
+    
+    /**
      * @method RolesShopsUsers|$this shift(int $count = 1)
      * @method RolesShopsUsers|$this pop(int $count = 1)
      * @method RolesShopsUsers|null get($key, $default = null)
@@ -1409,8 +1541,6 @@ namespace LaravelIdea\Helper\App\Models {
     
     /**
      * @method _IH_Shop_QB whereId($value)
-     * @method _IH_Shop_QB whereParentId($value)
-     * @method _IH_Shop_QB whereParentType($value)
      * @method _IH_Shop_QB whereName($value)
      * @method _IH_Shop_QB whereDescription($value)
      * @method _IH_Shop_QB whereShopAcceptStatus($value)
@@ -1873,4 +2003,78 @@ namespace LaravelIdea\Helper\App\Models {
      * @method _IH_User_QB role(array|Collection|Role|string $roles, string $guard = null)
      */
     class _IH_User_QB extends _BaseBuilder {}
+    
+    /**
+     * @method Work|$this shift(int $count = 1)
+     * @method Work|$this pop(int $count = 1)
+     * @method Work|null get($key, $default = null)
+     * @method Work|null pull($key, $default = null)
+     * @method Work|null first(callable $callback = null, $default = null)
+     * @method Work|null firstWhere(string $key, $operator = null, $value = null)
+     * @method Work|null find($key, $default = null)
+     * @method Work[] all()
+     * @method Work|null last(callable $callback = null, $default = null)
+     * @method Work|$this random(int|null $number = null)
+     * @method Work|null sole($key = null, $operator = null, $value = null)
+     */
+    class _IH_Work_C extends _BaseCollection {
+        /**
+         * @param int $size
+         * @return Work[][]
+         */
+        public function chunk($size)
+        {
+            return [];
+        }
+    }
+    
+    /**
+     * @method _IH_Work_QB whereId($value)
+     * @method _IH_Work_QB whereSubcategoryId($value)
+     * @method _IH_Work_QB whereSubcategoryName($value)
+     * @method _IH_Work_QB whereTitle($value)
+     * @method _IH_Work_QB whereWorkNature($value)
+     * @method _IH_Work_QB whereSubcategoryAcceptStatus($value)
+     * @method _IH_Work_QB whereSubcategoryPublishStatus($value)
+     * @method _IH_Work_QB whereSubcategoryShowStatus($value)
+     * @method _IH_Work_QB whereSubcategoryConfirmUserId($value)
+     * @method _IH_Work_QB whereSubcategoryConfirmCommentId($value)
+     * @method _IH_Work_QB whereSubcategoryConfirmCommentValue($value)
+     * @method _IH_Work_QB whereDeletedAt($value)
+     * @method _IH_Work_QB whereCreatedAt($value)
+     * @method _IH_Work_QB whereUpdatedAt($value)
+     * @method Work baseSole(array|string $columns = ['*'])
+     * @method Work create(array $attributes = [])
+     * @method _IH_Work_C|Work[] cursor()
+     * @method Work|null|_IH_Work_C|Work[] find($id, array $columns = ['*'])
+     * @method _IH_Work_C|Work[] findMany(array|Arrayable $ids, array $columns = ['*'])
+     * @method Work|_IH_Work_C|Work[] findOrFail($id, array $columns = ['*'])
+     * @method Work|_IH_Work_C|Work[] findOrNew($id, array $columns = ['*'])
+     * @method Work first(array|string $columns = ['*'])
+     * @method Work firstOr(array|\Closure $columns = ['*'], \Closure $callback = null)
+     * @method Work firstOrCreate(array $attributes = [], array $values = [])
+     * @method Work firstOrFail(array $columns = ['*'])
+     * @method Work firstOrNew(array $attributes = [], array $values = [])
+     * @method Work firstWhere(array|\Closure|Expression|string $column, $operator = null, $value = null, string $boolean = 'and')
+     * @method Work forceCreate(array $attributes)
+     * @method _IH_Work_C|Work[] fromQuery(string $query, array $bindings = [])
+     * @method _IH_Work_C|Work[] get(array|string $columns = ['*'])
+     * @method Work getModel()
+     * @method Work[] getModels(array|string $columns = ['*'])
+     * @method _IH_Work_C|Work[] hydrate(array $items)
+     * @method Work make(array $attributes = [])
+     * @method Work newModelInstance(array $attributes = [])
+     * @method LengthAwarePaginator|Work[]|_IH_Work_C paginate(int|null $perPage = null, array $columns = ['*'], string $pageName = 'page', int|null $page = null)
+     * @method Paginator|Work[]|_IH_Work_C simplePaginate(int|null $perPage = null, array $columns = ['*'], string $pageName = 'page', int|null $page = null)
+     * @method Work sole(array|string $columns = ['*'])
+     * @method Work updateOrCreate(array $attributes, array $values = [])
+     * @method _IH_Work_QB withTrashed()
+     * @method _IH_Work_QB onlyTrashed()
+     * @method _IH_Work_QB withoutTrashed()
+     * @method _IH_Work_QB restore()
+     * @method _IH_Work_QB customFilter($filter)
+     * @method _IH_Work_QB customOrder($sort)
+     * @method _IH_Work_QB customPagination($pagination)
+     */
+    class _IH_Work_QB extends _BaseBuilder {}
 }

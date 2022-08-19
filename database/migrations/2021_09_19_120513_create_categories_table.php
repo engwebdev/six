@@ -459,7 +459,7 @@ class CreateCategoriesTable extends Migration
             [
                 'id' => 28,
                 'parent_id' => 3,
-                'shop_category_name' => 'فروشگاه و نصاب برق',
+                'shop_category_name' => 'فروشگاه و نصاب لوله کشی',
                 'shop_category_image_url' => null,
                 'shop_category_accept_status' => true,
                 'shop_category_publish_status' => true,

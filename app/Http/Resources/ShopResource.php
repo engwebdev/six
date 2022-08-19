@@ -24,6 +24,8 @@ use Illuminate\Http\Resources\Json\JsonResource;
  * @property mixed shop_number
  * @property mixed shop_postal_code
  * @property mixed shop_main_phone_number
+ * @property mixed shop_parent_able_status
+ * @property mixed shop_parent_able_request
  *
  *
  *
@@ -62,6 +64,8 @@ class ShopResource extends JsonResource {
             'shop_number' => $this->shop_number,
             'shop_postal_code' => $this->shop_postal_code,
             'shop_main_phone_number' => $this->shop_main_phone_number,
+            'shop_parent_able_status' => $this->shop_parent_able_status,
+            'shop_parent_able_request' => $this->shop_parent_able_request,
         ];
 
         if ($this->relationLoaded('userOfRolesShopsUsers')) {

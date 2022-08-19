@@ -15,8 +15,8 @@ class CreateShopsTable extends Migration
     {
         Schema::create('shops', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('parent_id')->nullable();
-            $table->string('parent_type')->nullable();
+//            $table->unsignedBigInteger('parent_id')->nullable();
+//            $table->string('parent_type')->nullable();
 //            $table->unsignedBigInteger('shop_category_id')->nullable();
 //            $table->string('shop_category_name')->nullable();
 //            $table->enum('shop_category_type', ['shopping', 'freelancer', 'repair', 'presentation'])->nullable();
@@ -40,22 +40,26 @@ class CreateShopsTable extends Migration
             $table->string('shop_postal_code')->nullable();
             $table->string('shop_main_phone_number')->nullable();
 
+            $table->boolean('shop_parent_able_status')->nullable();
+            $table->boolean('shop_parent_able_request')->nullable();
+
             // need add new table comments or points // todo mehdi 22/01/01
             $table->integer('shop_number_points')->nullable()->comment('تعداد نظرات یا امتیازها رلیشن با جدول نظرات');
             $table->float('shop_total_points', 16, 5)->nullable()->comment('مجموع امتیازها');
             $table->float('shop_average_points', 7, 5)->nullable()->comment('متوسط امتیازها');
             $table->float('shop_last_point', 6, 5)->nullable()->comment('اخرین امتیاز');
-//            $table->float('shop_last_point', 6, 5)->nullable()->comment('اخرین امتیاز');
+            $table->unsignedBigInteger('additional_user_id')->nullable();
 
             // need add new table likes // todo mehdi 22/01/01
+            $table->integer('shop_number_likes')->nullable()->comment('تعداد لایک ها ارتباط با جدول کسانی ک لایک کردن');
             $table->integer('normal_product_number_likes')->nullable()->comment('تعداد لایک ها ارتباط با جدول کسانی ک لایک کردن');
 
             $table->softDeletes();
             $table->timestamps();
 
-            $table->foreign('parent_id')
+            $table->foreign('additional_user_id')
                 ->references('id')
-                ->on('shops')
+                ->on('users')
                 ->onDelete('no action')
                 ->onUpdate('cascade');
 
@@ -70,7 +74,7 @@ class CreateShopsTable extends Migration
         DB::table('shops')->insert(
             array(
                 [
-                    'parent_type' => null,
+//                    'parent_type' => null,
                     'name' => 'test',
                     'description' => 'test',
                     'shop_accept_status' => true,
@@ -79,7 +83,7 @@ class CreateShopsTable extends Migration
                     'type_location' => true,
                     'lat_location' => null,
                     'long_location' => null,
-                    'shop_country' => 'IR',
+                    'shop_country' => 'iran',
                     'shop_province' => 'tehran',
                     'shop_city' => 'tehran',
                     'shop_local' => 'tehran',
@@ -88,10 +92,16 @@ class CreateShopsTable extends Migration
                     'shop_number' => '25',
                     'shop_postal_code' => '1234567899',
                     'shop_main_phone_number' => '02120002000',
+
+                    'shop_parent_able_status' => null,
+                    'shop_parent_able_request' => null,
+
                     'shop_number_points' => 0,
                     'shop_total_points' => 0,
                     'shop_average_points' => 0,
                     'shop_last_point' => 0,
+                    'additional_user_id' => 1,
+                    'shop_number_likes' => 0,
                     'normal_product_number_likes' => 0,
                 ]
             )

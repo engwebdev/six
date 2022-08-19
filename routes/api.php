@@ -75,31 +75,36 @@ Route::prefix('v1')->middleware(['auth:api', 'SwaggerRequest'])->group(function 
     Route::put('accounts/{id}', [AccountController::class, 'update'])->name('accounts.update');
     Route::delete('accounts/{id}', [AccountController::class, 'destroy'])->name('accounts.destroy');
 
-
     Route::middleware(['AccountValidation', 'MerchantValidation'])->group(function () {
+
+        Route::prefix('shop')->group(function () {
+            Route::get('categories', [CategoryController::class, 'findAll'])->name('categories.index');
+            Route::post('categories', [CategoryController::class, 'create'])->name('categories.store');
+            Route::get('categories/{id}', [CategoryController::class, 'findById'])->name('categories.show');
+            Route::put('categories/{id}', [CategoryController::class, 'update'])->name('categories.update');
+            Route::delete('categories/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
+
+            Route::get('category/{id}/subcategories', [CategoryController::class, 'findAllSub'])->name('categories.indexSub');
+
+            Route::get('subcategory/{id}/works', [CategoryController::class, 'findAllWorks'])->name('categories.works');
+        });
+
+
         Route::get('shops', [ShopController::class, 'index'])->name('shops.index');
 
+        Route::post('shops', [ShopController::class, 'store'])->name('shops.store');
+        Route::get('shops/{id}', [ShopController::class, 'show'])->name('shops.show');
+        Route::put('shops/{id}', [ShopController::class, 'update'])->name('shops.update');
+        Route::delete('shops/{id}', [ShopController::class, 'destroy'])->name('shops.destroy');
+        Route::get('shops/self', [ShopController::class, 'getSelfShop'])->name('shops.getSelfShop');
     });
 
-    Route::post('shops', [ShopController::class, 'store'])->name('shops.store');
-    Route::get('shops/{id}', [ShopController::class, 'show'])->name('shops.show');
-    Route::put('shops/{id}', [ShopController::class, 'update'])->name('shops.update');
-    Route::delete('shops/{id}', [ShopController::class, 'destroy'])->name('shops.destroy');
-    Route::get('shops/self', [ShopController::class, 'getSelfShop'])->name('shops.getSelfShop');
+
+    Route::post('shops/file', [ShopController::class, 'shopFile'])->name('shops.shopFile');
 
 //    Route::get('shops/shopImage/{id}', [ShopController::class, 'shopImage'])->name('shop.shopImage');
     Route::get('tagsShop/{id}', [ShopController::class, 'tagsShopById'])->name('tagsShop.show');
 
-    Route::prefix('shop')->group(function () {
-        Route::get('categories', [CategoryController::class, 'findAll'])->name('categories.index');
-        Route::post('categories', [CategoryController::class, 'create'])->name('categories.store');
-        Route::get('categories/{id}', [CategoryController::class, 'findById'])->name('categories.show');
-        Route::put('categories/{id}', [CategoryController::class, 'update'])->name('categories.update');
-        Route::delete('categories/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
-
-        Route::get('category/{id}/subcategories', [CategoryController::class, 'findAllSub'])->name('categories.indexSub');
-
-    });
 
     Route::prefix('shop')->group(function () {
         Route::get('tags', [TagController::class, 'index'])->name('tags.index');

@@ -3,9 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 //use Illuminate\Database\Eloquent\Model;
 use App\Models\TopModel as Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Permission\Models\Role;
@@ -25,11 +27,12 @@ class Shop extends Model
      * @var array
      */
     protected $fillable = [
-        'parent_id',
-        'parent_type',
-        'shop_category_id',
-        'shop_category_name',
-        'shop_category_type',
+//        'parent_id',
+//        'parent_type',
+//        'shop_category_id',
+//        'shop_category_name',
+//        'shop_category_type',
+        'id',
         'name',
         'description',
         'shop_priority',
@@ -47,11 +50,19 @@ class Shop extends Model
         'shop_number',
         'shop_postal_code',
         'shop_main_phone_number',
+
+        'shop_parent_able_status',
+        'shop_parent_able_request',
+
         'shop_number_points',
         'shop_total_points',
         'shop_average_points',
         'shop_last_point',
+        'additional_user_id',
         'shop_number_likes',
+        'normal_product_number_likes',
+        'created_at',
+        'updated_at',
         'deleted_at',
     ];
 
@@ -67,11 +78,34 @@ class Shop extends Model
 
     /**
      * Get the Shop that owns the Shops.
-     * @return BelongsTo
+     * @return belongsToMany
      */
-    public function parent()
+    public function parents(): BelongsToMany
     {
-        return $this->belongsTo(Shop::class, 'shop_id', 'id');
+        return $this->belongsToMany(
+            shop::class,
+            'shops_owen_shops',
+            'bottom_shop_id',
+            'top_shop_id',
+            'id',
+            'id'
+        )->withPivotValue(['type_top_between_bottom', 'type_shop_top', 'type_shop_bottom']);
+    }
+
+    /**
+     * Get the Shop that owns the Shops.
+     * @return belongsToMany
+     */
+    public function children(): BelongsToMany
+    {
+        return $this->belongsToMany(
+            shop::class,
+            'shops_owen_shops',
+            'top_shop_id',
+            'bottom_shop_id',
+            'id',
+            'id'
+        )->withPivotValue(['type_top_between_bottom', 'type_shop_bottom', 'type_shop_top']);
     }
 
     /*****************************/
@@ -88,9 +122,71 @@ class Shop extends Model
     /******************************/
 
     /**
- * Get the Category that owns the Shops.
- * @return BelongsTo
- */
+     * @return belongsToMany
+     */
+    public function works(): BelongsToMany
+    {
+        return $this->belongsToMany(
+            work::class,
+            'shops_works',
+            'shop_id',
+            'work_id',
+            'id',
+            'id'
+        )
+            ->withPivot('id')
+            ->withPivot('shop_name')
+            ->withPivot('work_title')
+            ->withPivot('subcategory_id')
+            ->withPivot('subcategory_name')
+            ->withPivot('shops_works_accept_status')
+            ->withPivot('shops_works_publish_status')
+            ->withPivot('shops_works_show_status')
+            ->withPivot('shops_works_confirm_user_id')
+            ->withPivot('shops_works_confirm_comment_id')
+            ->withPivot('shops_works_confirm_comment_value')
+        ;
+    }
+
+
+    /**
+     * @return belongsToMany
+     */
+    public function access(): BelongsToMany
+    {
+        return $this->belongsToMany(
+            access::class, // todo todo *
+            'access_shop',
+            'shop_id',
+            'access_id',
+            'id',
+            'id'
+        )
+            ->withPivot('id')
+            ->withPivot('access_id')
+            ->withPivot('access_title')
+            ->withPivot('shop_id')
+            ->withPivot('shop_name')
+            ->withPivot('start_access_time')
+            ->withPivot('end_access_time')
+            ->withPivot('length_access_time')
+            ->withPivot('history_of_activated_number')
+            ->withPivot('access_shop_option_status')
+            ->withPivot('access_shop_accept_status')
+            ->withPivot('access_shop_publish_status')
+            ->withPivot('access_shop_show_status')
+            ->withPivot('access_shop_confirm_user_id')
+            ->withPivot('access_shop_confirm_comment_id')
+            ->withPivot('access_shop_confirm_comment_value')
+        ;
+    }
+
+    /******************************/
+
+    /**
+     * Get the Category that owns the Shops.
+     * @return BelongsTo
+     */
     public function categories()
     {
         return $this->belongsTo(Category::class, 'id', 'category_id');
@@ -139,7 +235,7 @@ class Shop extends Model
             'user_id',
             'id',
             'id'
-            );
+        );
     }
 
 
@@ -157,9 +253,7 @@ class Shop extends Model
     }
 
 
-
-
-/*************************/
+    /*************************/
 
     public function normalProducts()
     {
@@ -192,7 +286,7 @@ class Shop extends Model
 
 
 
-     /******************************/
+    /******************************/
     // todo role_shop_user
 
     public function user()
@@ -221,7 +315,7 @@ class Shop extends Model
 
     public function scopeShopRejected($query)
     {
-        return $query->where('shop_accept_status',  '=', 0);
+        return $query->where('shop_accept_status', '=', 0);
     }
 
     // query string scopes

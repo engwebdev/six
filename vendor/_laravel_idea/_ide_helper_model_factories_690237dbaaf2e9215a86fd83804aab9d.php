@@ -1,4 +1,4 @@
-<?php //4b84af7fe908e1efcec5fb27f9337ee7
+<?php //e84e44a2a01726bdb7f36021092707fc
 /** @noinspection all */
 
 namespace Database\Factories {
@@ -14,12 +14,13 @@ namespace Database\Factories {
      * @method $this hasAccount(int $count, $attributes)
      * @method $this forCategories($attributes)
      * @method $this hasChild(int $count, $attributes)
+     * @method $this hasChildren(int $count, $attributes)
      * @method $this hasCustomProducts(int $count, $attributes)
      * @method $this hasCustomServices(int $count, $attributes)
      * @method $this hasImages(int $count, $attributes)
      * @method $this hasNormalProducts(int $count, $attributes)
      * @method $this hasNormalServices(int $count, $attributes)
-     * @method $this forParent($attributes)
+     * @method $this hasParents(int $count, $attributes)
      * @method $this hasRole(int $count, $attributes)
      * @method $this hasRoleOfRolesShopsUsers(int $count, $attributes)
      * @method $this hasTags(int $count, $attributes)

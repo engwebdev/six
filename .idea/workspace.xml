@@ -7,67 +7,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d343e4e-b2a9-4dd0-8969-d76dec06ab9f" name="Default Changelist" comment="50-3">
-      <change afterPath="$PROJECT_DIR$/app/Http/Middleware/AccountValidation.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Middleware/MerchantValidation.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Resources/AccountCollection.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Resources/AccountResource.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/Account.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2022_08_03_123422_create_merchant_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2022_08_04_204431_create_work_nature_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2022_08_04_215338_create_accesses_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2022_08_04_222502_create_access_work_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_dispatches.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_facades.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_macro.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_macro_static.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_model_builders_12aac1fab1562a4f154b37332b9a4267.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_model_builders_6b417e4cd637ca91f27e0dc7e4059617.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_model_builders_76a5a1e066a6fb865b3628376050b5f0.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_model_builders_8161f1394f2cdfd0ffe6e4410b8439d2.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_model_builders_c92e48e297d1b927618a5b25e8e902fb.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_model_builders_de342d865611bd56675dc6d2f46abdd7.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_model_builders_fe6db5e13ae5cd6889d816d2a5f80cbb.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_model_factories_31b3300fd9a8ac57e2d70711a664ac0a.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_model_factories_690237dbaaf2e9215a86fd83804aab9d.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_models_14969027c5a3aaf41d23770a2a3dc05d.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_models_19aafbee7a84e2bae5699119b55c62ea.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_models_21cda72603cccf53a221ee11d8625f20.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_models_803cd2f4ce17ec5ee5ad8618c2370d5a.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_models_a5021b83d3779549c8acc7870134706d.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_models_fcbef240bab02b28bcdf663e7b60a935.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/blade.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/blade.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/laravel-idea-database.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/laravel-idea-database.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/laravel-idea.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/laravel-idea.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/six.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/six.iml" afterDir="false" />
+    <list default="true" id="4d343e4e-b2a9-4dd0-8969-d76dec06ab9f" name="Default Changelist" comment="55">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_ide_helper_models.php" beforeDir="false" afterPath="$PROJECT_DIR$/_ide_helper_models.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AccountController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AccountController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/AuthController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CategoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CategoryController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ShopController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ShopController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Kernel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/CategoryResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/CategoryResource.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Listeners/SaveSMSVerificationCode.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Listeners/SaveSMSVerificationCode.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Category.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Category.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/ShopResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/ShopResource.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Shop.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Shop.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/TopModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/TopModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/CategoryFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/CategoryFactory.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_08_07_081203_create_permission_tables.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_08_07_081203_create_permission_tables.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/migrations/2021_08_15_063613_create_shops_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_08_15_063613_create_shops_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/migrations/2021_09_19_120513_create_categories_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_09_19_120513_create_categories_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_09_25_091209_create_tags_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_09_25_091209_create_tags_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_12_28_075137_create_shop_accounts_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_12_28_075137_create_shop_accounts_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2022_08_04_204431_create_work_nature_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2022_08_04_204431_create_work_nature_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2022_08_04_222502_create_access_work_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2022_08_04_222502_create_access_work_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/api-docs/api-docs.json" beforeDir="false" afterPath="$PROJECT_DIR$/storage/api-docs/api-docs.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/logs/laravel.log" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/laravel.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/spatie/laravel-permission/src/Models/Role.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/spatie/laravel-permission/src/Models/Role.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_facades.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_facades.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_model_builders_76a5a1e066a6fb865b3628376050b5f0.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_model_builders_76a5a1e066a6fb865b3628376050b5f0.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_model_factories_690237dbaaf2e9215a86fd83804aab9d.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_model_factories_690237dbaaf2e9215a86fd83804aab9d.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_models_fcbef240bab02b28bcdf663e7b60a935.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_models_fcbef240bab02b28bcdf663e7b60a935.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -318,8 +275,8 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
-    <property name="settings.editor.splitter.proportion" value="0.25967413" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.PHP" />
+    <property name="settings.editor.splitter.proportion" value="0.2233787" />
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\PhpStorm 2019.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -762,14 +719,9 @@
       <workItem from="1658300613063" duration="1781000" />
       <workItem from="1658314938223" duration="6465000" />
       <workItem from="1658929929587" duration="18605000" />
-      <workItem from="1659432638536" duration="51848000" />
-    </task>
-    <task id="LOCAL-00008" summary="8">
-      <created>1631528620001</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1631528620001</updated>
+      <workItem from="1659432638536" duration="104861000" />
+      <workItem from="1660066418415" duration="13927000" />
+      <workItem from="1660812695014" duration="19765000" />
     </task>
     <task id="LOCAL-00009" summary="9">
       <created>1632028029185</created>
@@ -1107,7 +1059,14 @@
       <option name="project" value="LOCAL" />
       <updated>1650084791423</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="55">
+      <created>1659771231543</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1659771231543</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1136,7 +1095,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="29" />
     <MESSAGE value="30" />
     <MESSAGE value="31" />
     <MESSAGE value="32" />
@@ -1161,7 +1119,19 @@
     <MESSAGE value="50" />
     <MESSAGE value="50-2" />
     <MESSAGE value="50-3" />
-    <option name="LAST_COMMIT_MESSAGE" value="50-3" />
+    <MESSAGE value="55" />
+    <option name="LAST_COMMIT_MESSAGE" value="55" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/app/Http/Controllers/ShopController.php</url>
+          <line>1001</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
