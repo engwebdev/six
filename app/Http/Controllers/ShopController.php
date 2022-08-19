@@ -661,21 +661,6 @@ class ShopController extends Controller
             );
 
             if ($validated['registration_type'] == "store") {
-                /*                $validator_registration = Validator::make($validated, [
-                                    'parent_id' => ['required', 'integer', 'required_unless:registration_type,search'],
-                                ]);
-                //                return $validator_registration->attributes()['account_id'];
-                //                return $validator_registration->parent_id;
-                //                return $validator_registration['parent_id'];
-
-                                $parent_shop_id = $validator_registration->attributes()['parent_id'];
-                                $parent_account_id = $validator_registration->attributes()['account_id'];
-
-                                $child_account_id = $attributes['account_id'];
-                                $child_user_id = $attributes['user_id'];
-                                $child_role_id = $attributes['role_id'];
-                                $child_shop_id = $attributes['shop_id'];
-                */
                 // normal
 
                 $parent_shop_id = null; // todo remove
@@ -705,7 +690,6 @@ class ShopController extends Controller
                 }
 
                 $parent_shop_id = $validator_registration->attributes()['parent_id'];
-//                $parent_account_id = $validator_registration->attributes()['account_id'];
                 $parent_account_id = null; // todo remove
 
                 $child_account_id = $attributes['account_id'];
@@ -768,7 +752,8 @@ class ShopController extends Controller
                 // No values from array1 are in array 2
                 $shop_parent_able_request = false;
                 $shop_parent_able_status = false;
-            } else {
+            }
+            else {
                 // There is at least one value from array1 present in array2
                 $shop_parent_able_request = true;
                 $shop_parent_able_status = true;
@@ -798,7 +783,6 @@ class ShopController extends Controller
 //                        'size:0',
 //                        'array'
 //                    ],
-
                 ]);
 
                 if ($validator->fails()) {
@@ -889,13 +873,8 @@ class ShopController extends Controller
 //                return true;
 //            }
 
-//            if () {
-//                // if shop work_list have 66, 68, 70, 72, 79, 81, 83, 85
-//            }
-
             //////////////////////////////////////////////////
             ///
-
             /*            return [
                             'resulte' => [
                                 'child_account_id' => $child_account_id,
@@ -960,7 +939,7 @@ class ShopController extends Controller
             );
             // insert into shop_multi_categories tbl => shop_work
 //                $shop->works()->sync($res);
-            $shop->works()->attach($res_work);
+            $shop->works()->attach($res_work); // attach($res_work, ['' => ])
 
             $res_access = collect($access_list)->keyBy('access_id')->map(
                 function ($items) use ($shop) {
@@ -985,19 +964,21 @@ class ShopController extends Controller
             );
 //            return $res_access;
             // insert into shop access tbl => access_shop // 4 5 6
-            $shop->access()->attach($res_access);
+            $shop->access()->attach($res_access); // attach($res_access, ['' => ])
+
+            if (isset($validated['tag_ids'])) {
+                $tag_ids = $validated['tag_ids'];
+                $shop->tags()->attach($tag_ids, ['tag_accept_status' => null]);
+            }
 
             // after insert shop
             if ($validated['shop_photo_ids']) {
                 $files = ShopImages::whereIn('id', $validated['shop_photo_ids'])
-                    ->get();
+                    ->update(['shop_id' => $shop->id]);
                 // update ShopImages -> shop_id
                 // shop_photo_url in tbl shop select first $files->shop_image_url
-
-
-//                 return $files;
+                // $shop->images()->saveMany($files);
             }
-            $shop->images()->saveMany($files);
 
             return $shop;
             // after insert in shop tbl -> insert relation in relation tbl
@@ -1043,46 +1024,43 @@ class ShopController extends Controller
 
 //            model has role
             $success['id'] = $shop->id;
-            if ($request->input('shop_photo')) {
-                $file = $validated['shop_photo'];
-                $shop_photo_name = $request->file('shop_photo')->getClientOriginalName();
-                $format = (explode('.', $shop_photo_name));
-                $file_name_is = $format[0];
-                $file_format_is = end($format);
-                $name_in_store = $file_name_is . '-' . date('Y-m-d', strtotime(Carbon::now())) . '.' . $file_format_is;
+            /*            if ($request->input('shop_photo')) {
+                            $file = $validated['shop_photo'];
+                            $shop_photo_name = $request->file('shop_photo')->getClientOriginalName();
+                            $format = (explode('.', $shop_photo_name));
+                            $file_name_is = $format[0];
+                            $file_format_is = end($format);
+                            $name_in_store = $file_name_is . '-' . date('Y-m-d', strtotime(Carbon::now())) . '.' . $file_format_is;
 
-                $shop_photo_path = $request->file('shop_photo')
-                    ->storeAs('shop_id/' . $shop->id . '_shop_name_' . $shop->name, $name_in_store);
+                            $shop_photo_path = $request->file('shop_photo')
+                                ->storeAs('shop_id/' . $shop->id . '_shop_name_' . $shop->name, $name_in_store);
 
-                $shop->shop_photo_url = 'shop/' . $shop_photo_path;
-                $shop->save();
-                $resolution = getimagesize($file)[3];
+                            $shop->shop_photo_url = 'shop/' . $shop_photo_path;
+                            $shop->save();
+                            $resolution = getimagesize($file)[3];
 
-                $image = ShopImages::create(
-                    [
-                        'shop_id' => $shop->id,
-                        'shop_image_index_point' => 1,
-                        'shop_image_url' => 'shop/' . $shop_photo_path,
-                        'shop_image_type' => $file->getClientMimeType(),
-                        'shop_image_format' => $file->guessClientExtension(),
-                        'shop_image_size' => $file->getSize(),
-                        'shop_image_resolution' => $resolution,
-                        'shop_image_old_name' => $file->getClientOriginalName(),
-                        'shop_image_new_name' => $name_in_store,
-                        'shop_image_uploader_user_id' => $shopkeeper_id,
-                        'shop_image_accept_status' => 0,
-                        'shop_image_active_status' => 1,
-                        'shop_image_publish_status' => 1,
-                        'shop_image_thumbnail_url' => null,
-                        'shop_image_thumbnail_name' => null,
-                    ]
-                );
-            }
+                            $image = ShopImages::create(
+                                [
+                                    'shop_id' => $shop->id,
+                                    'shop_image_index_point' => 1,
+                                    'shop_image_url' => 'shop/' . $shop_photo_path,
+                                    'shop_image_type' => $file->getClientMimeType(),
+                                    'shop_image_format' => $file->guessClientExtension(),
+                                    'shop_image_size' => $file->getSize(),
+                                    'shop_image_resolution' => $resolution,
+                                    'shop_image_old_name' => $file->getClientOriginalName(),
+                                    'shop_image_new_name' => $name_in_store,
+                                    'shop_image_uploader_user_id' => $shopkeeper_id,
+                                    'shop_image_accept_status' => 0,
+                                    'shop_image_active_status' => 1,
+                                    'shop_image_publish_status' => 1,
+                                    'shop_image_thumbnail_url' => null,
+                                    'shop_image_thumbnail_name' => null,
+                                ]
+                            );
+                        }*/
             // todo $shop->id and $tag_ids insert to pivot table
-            if (isset($validated['tag_ids'])) {
-                $tag_ids = $validated['tag_ids'];
-                $shop->tags()->attach($tag_ids, ['tag_accept_status' => 0]);
-            }
+
 //            $shop->tags()->sync($tag_ids, ['tag_accept_status' => 0]);
 
             // user_id => ($shopkeeper_id), role_id => (shopkeeper), shop_id => ($shop->id), shop_type => (child)

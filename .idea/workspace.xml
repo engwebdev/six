@@ -7,24 +7,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d343e4e-b2a9-4dd0-8969-d76dec06ab9f" name="Default Changelist" comment="55">
+    <list default="true" id="4d343e4e-b2a9-4dd0-8969-d76dec06ab9f" name="Default Changelist" comment="56">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AccountController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AccountController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CategoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CategoryController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ShopController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ShopController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/ShopResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/ShopResource.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Shop.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Shop.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_08_15_063613_create_shops_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_08_15_063613_create_shops_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_09_19_120513_create_categories_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_09_19_120513_create_categories_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2022_08_04_204431_create_work_nature_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2022_08_04_204431_create_work_nature_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2022_08_04_222502_create_access_work_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2022_08_04_222502_create_access_work_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/logs/laravel.log" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/laravel.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_facades.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_facades.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_model_builders_76a5a1e066a6fb865b3628376050b5f0.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_model_builders_76a5a1e066a6fb865b3628376050b5f0.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_model_factories_690237dbaaf2e9215a86fd83804aab9d.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_model_factories_690237dbaaf2e9215a86fd83804aab9d.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_models_fcbef240bab02b28bcdf663e7b60a935.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/_laravel_idea/_ide_helper_models_fcbef240bab02b28bcdf663e7b60a935.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -275,7 +261,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.PHP" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.PHP" />
     <property name="settings.editor.splitter.proportion" value="0.2233787" />
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\PhpStorm 2019.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
     <property name="vue.rearranger.settings.migration" value="true" />
@@ -721,14 +707,7 @@
       <workItem from="1658929929587" duration="18605000" />
       <workItem from="1659432638536" duration="104861000" />
       <workItem from="1660066418415" duration="13927000" />
-      <workItem from="1660812695014" duration="19765000" />
-    </task>
-    <task id="LOCAL-00009" summary="9">
-      <created>1632028029185</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1632028029185</updated>
+      <workItem from="1660812695014" duration="22924000" />
     </task>
     <task id="LOCAL-00010" summary="10">
       <created>1632891020994</created>
@@ -1066,7 +1045,14 @@
       <option name="project" value="LOCAL" />
       <updated>1659771231543</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="56">
+      <created>1660895155835</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1660895155836</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1095,7 +1081,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="30" />
     <MESSAGE value="31" />
     <MESSAGE value="32" />
     <MESSAGE value="33" />
@@ -1120,14 +1105,15 @@
     <MESSAGE value="50-2" />
     <MESSAGE value="50-3" />
     <MESSAGE value="55" />
-    <option name="LAST_COMMIT_MESSAGE" value="55" />
+    <MESSAGE value="56" />
+    <option name="LAST_COMMIT_MESSAGE" value="56" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/app/Http/Controllers/ShopController.php</url>
-          <line>1001</line>
+          <line>982</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
