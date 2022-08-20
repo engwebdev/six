@@ -83,13 +83,19 @@ class Shop extends Model
     public function parents(): BelongsToMany
     {
         return $this->belongsToMany(
-            shop::class,
+            Shop::class,
             'shops_owen_shops',
             'bottom_shop_id',
             'top_shop_id',
             'id',
             'id'
-        )->withPivotValue(['type_top_between_bottom', 'type_shop_top', 'type_shop_bottom']);
+        )
+//            ->withPivotValue(['type_top_between_bottom', 'type_shop_top', 'type_shop_bottom'])
+            ->withPivot('id')
+            ->withPivot('type_top_between_bottom')
+            ->withPivot('type_shop_bottom')
+            ->withPivot('type_shop_top')
+            ;
     }
 
     /**
@@ -105,7 +111,13 @@ class Shop extends Model
             'bottom_shop_id',
             'id',
             'id'
-        )->withPivotValue(['type_top_between_bottom', 'type_shop_bottom', 'type_shop_top']);
+        )
+//            ->withPivotValue(['type_top_between_bottom', 'type_shop_bottom', 'type_shop_top'])
+            ->withPivot('id')
+            ->withPivot('type_top_between_bottom')
+            ->withPivot('type_shop_bottom')
+            ->withPivot('type_shop_top')
+            ;
     }
 
     /*****************************/

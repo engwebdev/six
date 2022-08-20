@@ -990,17 +990,13 @@ class ShopController extends Controller
             // after insert in shop tbl -> insert relation in relation tbl
             if ($validated['registration_type'] == 'search') {
                 // todo mehdi make new relation
-                $shop->parents()->create(
+                $shop->parents()->attach($parent_shop_id,
                     [
                         'type_shop_top' => 'owner',
                         'type_shop_bottom' => 'client',
                         'type_top_between_bottom' => 'test_platform', // get from parent shop
                     ]
                 );
-//                $parentShop = RelationShop::create(
-//                    [
-//                    ]
-//                );
                 // todo mehdi make update child account
                 $account = Account::findOrFail($child_account_id)->update(['shop_id' => $shop->id]);
 //                $account = Account::where(['id', '=', $child_account_id]
