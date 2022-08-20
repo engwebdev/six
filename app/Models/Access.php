@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class access extends Model
+class Access extends Model
 {
     use HasFactory;
     use SoftDeletes;
@@ -45,7 +45,7 @@ class access extends Model
     public function shops(): BelongsToMany
     {
         return $this->belongsToMany(
-            shop::class,
+            Shop::class,
             'access_shop',
             'access_id',
             'shop_id',

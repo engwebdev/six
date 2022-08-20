@@ -11,6 +11,8 @@ class RelationShop extends Model
     use HasFactory;
     use SoftDeletes;
 
+    protected $table = 'shops_owen_shops';
+
     protected $fillable = [
         'type_shop_top',
         'top_shop_id',

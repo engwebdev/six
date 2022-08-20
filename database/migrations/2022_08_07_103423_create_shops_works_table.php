@@ -32,7 +32,7 @@ class CreateShopsWorksTable extends Migration
 
             $table->foreign('shop_id')
                 ->references('id')
-                ->on('shopS')
+                ->on('shops')
                 ->onDelete('no action')
                 ->onUpdate('cascade');
 

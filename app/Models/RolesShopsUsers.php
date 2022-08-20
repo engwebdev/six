@@ -15,6 +15,8 @@ class RolesShopsUsers extends Model {
 //    use HasRoles;
     use SoftDeletes;
 
+    protected $table = ''; // this changed to account
+
     public $incrementing = false;
 
     /**

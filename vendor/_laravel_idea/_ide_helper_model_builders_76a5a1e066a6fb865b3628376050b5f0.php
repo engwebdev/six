@@ -1,8 +1,9 @@
-<?php //7c291f1e284e28ee74bdc44a7af97f8c
+<?php //0253ca6b4626ba7f249e4947fbd1da1d
 /** @noinspection all */
 
 namespace LaravelIdea\Helper\App\Models {
 
+    use App\Models\Access;
     use App\Models\AccessWork;
     use App\Models\Account;
     use App\Models\Attribute;
@@ -15,6 +16,7 @@ namespace LaravelIdea\Helper\App\Models {
     use App\Models\Membership;
     use App\Models\NormalProduct;
     use App\Models\NormalService;
+    use App\Models\ParentableTypeConditions;
     use App\Models\ProductCategory;
     use App\Models\ProductCustomerComments;
     use App\Models\ProductPriceHistory;
@@ -24,6 +26,9 @@ namespace LaravelIdea\Helper\App\Models {
     use App\Models\RolesShopsUsers;
     use App\Models\Shop;
     use App\Models\ShopImages;
+    use App\Models\ShopParentableType;
+    use App\Models\ShopsRelationParentableTypes;
+    use App\Models\ShopWork;
     use App\Models\Tag;
     use App\Models\Task;
     use App\Models\Team;
@@ -109,6 +114,80 @@ namespace LaravelIdea\Helper\App\Models {
      * @method _IH_AccessWork_QB restore()
      */
     class _IH_AccessWork_QB extends _BaseBuilder {}
+    
+    /**
+     * @method Access|$this shift(int $count = 1)
+     * @method Access|$this pop(int $count = 1)
+     * @method Access|null get($key, $default = null)
+     * @method Access|null pull($key, $default = null)
+     * @method Access|null first(callable $callback = null, $default = null)
+     * @method Access|null firstWhere(string $key, $operator = null, $value = null)
+     * @method Access|null find($key, $default = null)
+     * @method Access[] all()
+     * @method Access|null last(callable $callback = null, $default = null)
+     * @method Access|$this random(int|null $number = null)
+     * @method Access|null sole($key = null, $operator = null, $value = null)
+     */
+    class _IH_Access_C extends _BaseCollection {
+        /**
+         * @param int $size
+         * @return Access[][]
+         */
+        public function chunk($size)
+        {
+            return [];
+        }
+    }
+    
+    /**
+     * @method _IH_Access_QB whereId($value)
+     * @method _IH_Access_QB whereTitle($value)
+     * @method _IH_Access_QB whereFarsiName($value)
+     * @method _IH_Access_QB whereEnglishName($value)
+     * @method _IH_Access_QB whereAccessType($value)
+     * @method _IH_Access_QB whereAccessAcceptStatus($value)
+     * @method _IH_Access_QB whereAccessActivationStatus($value)
+     * @method _IH_Access_QB whereAccessActivatorAdminId($value)
+     * @method _IH_Access_QB whereAccessActivatorCommentId($value)
+     * @method _IH_Access_QB whereAccessActivatorCommentValue($value)
+     * @method _IH_Access_QB whereAccessOptionStatus($value)
+     * @method _IH_Access_QB whereDeletedAt($value)
+     * @method _IH_Access_QB whereCreatedAt($value)
+     * @method _IH_Access_QB whereUpdatedAt($value)
+     * @method Access baseSole(array|string $columns = ['*'])
+     * @method Access create(array $attributes = [])
+     * @method _IH_Access_C|Access[] cursor()
+     * @method Access|null|_IH_Access_C|Access[] find($id, array $columns = ['*'])
+     * @method _IH_Access_C|Access[] findMany(array|Arrayable $ids, array $columns = ['*'])
+     * @method Access|_IH_Access_C|Access[] findOrFail($id, array $columns = ['*'])
+     * @method Access|_IH_Access_C|Access[] findOrNew($id, array $columns = ['*'])
+     * @method Access first(array|string $columns = ['*'])
+     * @method Access firstOr(array|\Closure $columns = ['*'], \Closure $callback = null)
+     * @method Access firstOrCreate(array $attributes = [], array $values = [])
+     * @method Access firstOrFail(array $columns = ['*'])
+     * @method Access firstOrNew(array $attributes = [], array $values = [])
+     * @method Access firstWhere(array|\Closure|Expression|string $column, $operator = null, $value = null, string $boolean = 'and')
+     * @method Access forceCreate(array $attributes)
+     * @method _IH_Access_C|Access[] fromQuery(string $query, array $bindings = [])
+     * @method _IH_Access_C|Access[] get(array|string $columns = ['*'])
+     * @method Access getModel()
+     * @method Access[] getModels(array|string $columns = ['*'])
+     * @method _IH_Access_C|Access[] hydrate(array $items)
+     * @method Access make(array $attributes = [])
+     * @method Access newModelInstance(array $attributes = [])
+     * @method LengthAwarePaginator|Access[]|_IH_Access_C paginate(int|null $perPage = null, array $columns = ['*'], string $pageName = 'page', int|null $page = null)
+     * @method Paginator|Access[]|_IH_Access_C simplePaginate(int|null $perPage = null, array $columns = ['*'], string $pageName = 'page', int|null $page = null)
+     * @method Access sole(array|string $columns = ['*'])
+     * @method Access updateOrCreate(array $attributes, array $values = [])
+     * @method _IH_Access_QB withTrashed()
+     * @method _IH_Access_QB onlyTrashed()
+     * @method _IH_Access_QB withoutTrashed()
+     * @method _IH_Access_QB restore()
+     * @method _IH_Access_QB customFilter($filter)
+     * @method _IH_Access_QB customOrder($sort)
+     * @method _IH_Access_QB customPagination($pagination)
+     */
+    class _IH_Access_QB extends _BaseBuilder {}
     
     /**
      * @method Account|$this shift(int $count = 1)
@@ -960,6 +1039,79 @@ namespace LaravelIdea\Helper\App\Models {
     class _IH_NormalService_QB extends _BaseBuilder {}
     
     /**
+     * @method ParentableTypeConditions|$this shift(int $count = 1)
+     * @method ParentableTypeConditions|$this pop(int $count = 1)
+     * @method ParentableTypeConditions|null get($key, $default = null)
+     * @method ParentableTypeConditions|null pull($key, $default = null)
+     * @method ParentableTypeConditions|null first(callable $callback = null, $default = null)
+     * @method ParentableTypeConditions|null firstWhere(string $key, $operator = null, $value = null)
+     * @method ParentableTypeConditions|null find($key, $default = null)
+     * @method ParentableTypeConditions[] all()
+     * @method ParentableTypeConditions|null last(callable $callback = null, $default = null)
+     * @method ParentableTypeConditions|$this random(int|null $number = null)
+     * @method ParentableTypeConditions|null sole($key = null, $operator = null, $value = null)
+     */
+    class _IH_ParentableTypeConditions_C extends _BaseCollection {
+        /**
+         * @param int $size
+         * @return ParentableTypeConditions[][]
+         */
+        public function chunk($size)
+        {
+            return [];
+        }
+    }
+    
+    /**
+     * @method _IH_ParentableTypeConditions_QB whereId($value)
+     * @method _IH_ParentableTypeConditions_QB whereParentAbleTypeConditionTitle($value)
+     * @method _IH_ParentableTypeConditions_QB whereParentAbleTypeConditionName($value)
+     * @method _IH_ParentableTypeConditions_QB whereParentAbleTypeConditionValue($value)
+     * @method _IH_ParentableTypeConditions_QB whereParentAbleId($value)
+     * @method _IH_ParentableTypeConditions_QB whereShopParentAbleName($value)
+     * @method _IH_ParentableTypeConditions_QB whereParentAbleTypeConditionAcceptStatus($value)
+     * @method _IH_ParentableTypeConditions_QB whereParentAbleTypeConditionPublishStatus($value)
+     * @method _IH_ParentableTypeConditions_QB whereParentAbleTypeConditionShowStatus($value)
+     * @method _IH_ParentableTypeConditions_QB whereConditionAdditionalUserId($value)
+     * @method _IH_ParentableTypeConditions_QB whereConditionConfirmUserId($value)
+     * @method _IH_ParentableTypeConditions_QB whereConditionConfirmCommentId($value)
+     * @method _IH_ParentableTypeConditions_QB whereParentAbleTypeConditionAdditionalCommentValue($value)
+     * @method _IH_ParentableTypeConditions_QB whereDeletedAt($value)
+     * @method _IH_ParentableTypeConditions_QB whereCreatedAt($value)
+     * @method _IH_ParentableTypeConditions_QB whereUpdatedAt($value)
+     * @method ParentableTypeConditions baseSole(array|string $columns = ['*'])
+     * @method ParentableTypeConditions create(array $attributes = [])
+     * @method _IH_ParentableTypeConditions_C|ParentableTypeConditions[] cursor()
+     * @method ParentableTypeConditions|null|_IH_ParentableTypeConditions_C|ParentableTypeConditions[] find($id, array $columns = ['*'])
+     * @method _IH_ParentableTypeConditions_C|ParentableTypeConditions[] findMany(array|Arrayable $ids, array $columns = ['*'])
+     * @method ParentableTypeConditions|_IH_ParentableTypeConditions_C|ParentableTypeConditions[] findOrFail($id, array $columns = ['*'])
+     * @method ParentableTypeConditions|_IH_ParentableTypeConditions_C|ParentableTypeConditions[] findOrNew($id, array $columns = ['*'])
+     * @method ParentableTypeConditions first(array|string $columns = ['*'])
+     * @method ParentableTypeConditions firstOr(array|\Closure $columns = ['*'], \Closure $callback = null)
+     * @method ParentableTypeConditions firstOrCreate(array $attributes = [], array $values = [])
+     * @method ParentableTypeConditions firstOrFail(array $columns = ['*'])
+     * @method ParentableTypeConditions firstOrNew(array $attributes = [], array $values = [])
+     * @method ParentableTypeConditions firstWhere(array|\Closure|Expression|string $column, $operator = null, $value = null, string $boolean = 'and')
+     * @method ParentableTypeConditions forceCreate(array $attributes)
+     * @method _IH_ParentableTypeConditions_C|ParentableTypeConditions[] fromQuery(string $query, array $bindings = [])
+     * @method _IH_ParentableTypeConditions_C|ParentableTypeConditions[] get(array|string $columns = ['*'])
+     * @method ParentableTypeConditions getModel()
+     * @method ParentableTypeConditions[] getModels(array|string $columns = ['*'])
+     * @method _IH_ParentableTypeConditions_C|ParentableTypeConditions[] hydrate(array $items)
+     * @method ParentableTypeConditions make(array $attributes = [])
+     * @method ParentableTypeConditions newModelInstance(array $attributes = [])
+     * @method LengthAwarePaginator|ParentableTypeConditions[]|_IH_ParentableTypeConditions_C paginate(int|null $perPage = null, array $columns = ['*'], string $pageName = 'page', int|null $page = null)
+     * @method Paginator|ParentableTypeConditions[]|_IH_ParentableTypeConditions_C simplePaginate(int|null $perPage = null, array $columns = ['*'], string $pageName = 'page', int|null $page = null)
+     * @method ParentableTypeConditions sole(array|string $columns = ['*'])
+     * @method ParentableTypeConditions updateOrCreate(array $attributes, array $values = [])
+     * @method _IH_ParentableTypeConditions_QB withTrashed()
+     * @method _IH_ParentableTypeConditions_QB onlyTrashed()
+     * @method _IH_ParentableTypeConditions_QB withoutTrashed()
+     * @method _IH_ParentableTypeConditions_QB restore()
+     */
+    class _IH_ParentableTypeConditions_QB extends _BaseBuilder {}
+    
+    /**
      * @method ProductCategory|$this shift(int $count = 1)
      * @method ProductCategory|$this pop(int $count = 1)
      * @method ProductCategory|null get($key, $default = null)
@@ -1133,6 +1285,20 @@ namespace LaravelIdea\Helper\App\Models {
     }
     
     /**
+     * @method _IH_ProductPriceHistory_QB whereId($value)
+     * @method _IH_ProductPriceHistory_QB whereProductPriceHistoriableId($value)
+     * @method _IH_ProductPriceHistory_QB whereProductPriceHistoriableType($value)
+     * @method _IH_ProductPriceHistory_QB whereAttributeValueId($value)
+     * @method _IH_ProductPriceHistory_QB whereAttributeValueName($value)
+     * @method _IH_ProductPriceHistory_QB whereProductPrice($value)
+     * @method _IH_ProductPriceHistory_QB whereProductOldPrice($value)
+     * @method _IH_ProductPriceHistory_QB whereUpdatePriceDate($value)
+     * @method _IH_ProductPriceHistory_QB whereHaveDiscount($value)
+     * @method _IH_ProductPriceHistory_QB whereDiscountPercentageValue($value)
+     * @method _IH_ProductPriceHistory_QB whereDiscountType($value)
+     * @method _IH_ProductPriceHistory_QB whereDeletedAt($value)
+     * @method _IH_ProductPriceHistory_QB whereCreatedAt($value)
+     * @method _IH_ProductPriceHistory_QB whereUpdatedAt($value)
      * @method ProductPriceHistory baseSole(array|string $columns = ['*'])
      * @method ProductPriceHistory create(array $attributes = [])
      * @method _IH_ProductPriceHistory_C|ProductPriceHistory[] cursor()
@@ -1341,6 +1507,15 @@ namespace LaravelIdea\Helper\App\Models {
     }
     
     /**
+     * @method _IH_RelationShop_QB whereId($value)
+     * @method _IH_RelationShop_QB whereTypeShopTop($value)
+     * @method _IH_RelationShop_QB whereTopShopId($value)
+     * @method _IH_RelationShop_QB whereTypeShopBottom($value)
+     * @method _IH_RelationShop_QB whereBottomShopId($value)
+     * @method _IH_RelationShop_QB whereTypeTopBetweenBottom($value)
+     * @method _IH_RelationShop_QB whereDeletedAt($value)
+     * @method _IH_RelationShop_QB whereCreatedAt($value)
+     * @method _IH_RelationShop_QB whereUpdatedAt($value)
      * @method RelationShop baseSole(array|string $columns = ['*'])
      * @method RelationShop create(array $attributes = [])
      * @method _IH_RelationShop_C|RelationShop[] cursor()
@@ -1516,6 +1691,149 @@ namespace LaravelIdea\Helper\App\Models {
     class _IH_ShopImages_QB extends _BaseBuilder {}
     
     /**
+     * @method ShopParentableType|$this shift(int $count = 1)
+     * @method ShopParentableType|$this pop(int $count = 1)
+     * @method ShopParentableType|null get($key, $default = null)
+     * @method ShopParentableType|null pull($key, $default = null)
+     * @method ShopParentableType|null first(callable $callback = null, $default = null)
+     * @method ShopParentableType|null firstWhere(string $key, $operator = null, $value = null)
+     * @method ShopParentableType|null find($key, $default = null)
+     * @method ShopParentableType[] all()
+     * @method ShopParentableType|null last(callable $callback = null, $default = null)
+     * @method ShopParentableType|$this random(int|null $number = null)
+     * @method ShopParentableType|null sole($key = null, $operator = null, $value = null)
+     */
+    class _IH_ShopParentableType_C extends _BaseCollection {
+        /**
+         * @param int $size
+         * @return ShopParentableType[][]
+         */
+        public function chunk($size)
+        {
+            return [];
+        }
+    }
+    
+    /**
+     * @method _IH_ShopParentableType_QB whereId($value)
+     * @method _IH_ShopParentableType_QB whereShopParentAbleTitle($value)
+     * @method _IH_ShopParentableType_QB whereShopParentAbleFaName($value)
+     * @method _IH_ShopParentableType_QB whereShopParentAbleEnName($value)
+     * @method _IH_ShopParentableType_QB whereShopsParentAbleAcceptStatus($value)
+     * @method _IH_ShopParentableType_QB whereShopsParentAblePublishStatus($value)
+     * @method _IH_ShopParentableType_QB whereShopsParentAbleShowStatus($value)
+     * @method _IH_ShopParentableType_QB whereParentAbleAdditionalUserId($value)
+     * @method _IH_ShopParentableType_QB whereParentAbleAdditionalCommentId($value)
+     * @method _IH_ShopParentableType_QB whereShopsParentAbleAdditionalCommentValue($value)
+     * @method _IH_ShopParentableType_QB whereDeletedAt($value)
+     * @method _IH_ShopParentableType_QB whereCreatedAt($value)
+     * @method _IH_ShopParentableType_QB whereUpdatedAt($value)
+     * @method ShopParentableType baseSole(array|string $columns = ['*'])
+     * @method ShopParentableType create(array $attributes = [])
+     * @method _IH_ShopParentableType_C|ShopParentableType[] cursor()
+     * @method ShopParentableType|null|_IH_ShopParentableType_C|ShopParentableType[] find($id, array $columns = ['*'])
+     * @method _IH_ShopParentableType_C|ShopParentableType[] findMany(array|Arrayable $ids, array $columns = ['*'])
+     * @method ShopParentableType|_IH_ShopParentableType_C|ShopParentableType[] findOrFail($id, array $columns = ['*'])
+     * @method ShopParentableType|_IH_ShopParentableType_C|ShopParentableType[] findOrNew($id, array $columns = ['*'])
+     * @method ShopParentableType first(array|string $columns = ['*'])
+     * @method ShopParentableType firstOr(array|\Closure $columns = ['*'], \Closure $callback = null)
+     * @method ShopParentableType firstOrCreate(array $attributes = [], array $values = [])
+     * @method ShopParentableType firstOrFail(array $columns = ['*'])
+     * @method ShopParentableType firstOrNew(array $attributes = [], array $values = [])
+     * @method ShopParentableType firstWhere(array|\Closure|Expression|string $column, $operator = null, $value = null, string $boolean = 'and')
+     * @method ShopParentableType forceCreate(array $attributes)
+     * @method _IH_ShopParentableType_C|ShopParentableType[] fromQuery(string $query, array $bindings = [])
+     * @method _IH_ShopParentableType_C|ShopParentableType[] get(array|string $columns = ['*'])
+     * @method ShopParentableType getModel()
+     * @method ShopParentableType[] getModels(array|string $columns = ['*'])
+     * @method _IH_ShopParentableType_C|ShopParentableType[] hydrate(array $items)
+     * @method ShopParentableType make(array $attributes = [])
+     * @method ShopParentableType newModelInstance(array $attributes = [])
+     * @method LengthAwarePaginator|ShopParentableType[]|_IH_ShopParentableType_C paginate(int|null $perPage = null, array $columns = ['*'], string $pageName = 'page', int|null $page = null)
+     * @method Paginator|ShopParentableType[]|_IH_ShopParentableType_C simplePaginate(int|null $perPage = null, array $columns = ['*'], string $pageName = 'page', int|null $page = null)
+     * @method ShopParentableType sole(array|string $columns = ['*'])
+     * @method ShopParentableType updateOrCreate(array $attributes, array $values = [])
+     * @method _IH_ShopParentableType_QB withTrashed()
+     * @method _IH_ShopParentableType_QB onlyTrashed()
+     * @method _IH_ShopParentableType_QB withoutTrashed()
+     * @method _IH_ShopParentableType_QB restore()
+     */
+    class _IH_ShopParentableType_QB extends _BaseBuilder {}
+    
+    /**
+     * @method ShopWork|$this shift(int $count = 1)
+     * @method ShopWork|$this pop(int $count = 1)
+     * @method ShopWork|null get($key, $default = null)
+     * @method ShopWork|null pull($key, $default = null)
+     * @method ShopWork|null first(callable $callback = null, $default = null)
+     * @method ShopWork|null firstWhere(string $key, $operator = null, $value = null)
+     * @method ShopWork|null find($key, $default = null)
+     * @method ShopWork[] all()
+     * @method ShopWork|null last(callable $callback = null, $default = null)
+     * @method ShopWork|$this random(int|null $number = null)
+     * @method ShopWork|null sole($key = null, $operator = null, $value = null)
+     */
+    class _IH_ShopWork_C extends _BaseCollection {
+        /**
+         * @param int $size
+         * @return ShopWork[][]
+         */
+        public function chunk($size)
+        {
+            return [];
+        }
+    }
+    
+    /**
+     * @method _IH_ShopWork_QB whereId($value)
+     * @method _IH_ShopWork_QB whereShopId($value)
+     * @method _IH_ShopWork_QB whereShopName($value)
+     * @method _IH_ShopWork_QB whereWorkId($value)
+     * @method _IH_ShopWork_QB whereWorkTitle($value)
+     * @method _IH_ShopWork_QB whereSubcategoryId($value)
+     * @method _IH_ShopWork_QB whereSubcategoryName($value)
+     * @method _IH_ShopWork_QB whereShopsWorksAcceptStatus($value)
+     * @method _IH_ShopWork_QB whereShopsWorksPublishStatus($value)
+     * @method _IH_ShopWork_QB whereShopsWorksShowStatus($value)
+     * @method _IH_ShopWork_QB whereShopsWorksConfirmUserId($value)
+     * @method _IH_ShopWork_QB whereShopsWorksConfirmCommentId($value)
+     * @method _IH_ShopWork_QB whereShopsWorksConfirmCommentValue($value)
+     * @method _IH_ShopWork_QB whereDeletedAt($value)
+     * @method _IH_ShopWork_QB whereCreatedAt($value)
+     * @method _IH_ShopWork_QB whereUpdatedAt($value)
+     * @method ShopWork baseSole(array|string $columns = ['*'])
+     * @method ShopWork create(array $attributes = [])
+     * @method _IH_ShopWork_C|ShopWork[] cursor()
+     * @method ShopWork|null|_IH_ShopWork_C|ShopWork[] find($id, array $columns = ['*'])
+     * @method _IH_ShopWork_C|ShopWork[] findMany(array|Arrayable $ids, array $columns = ['*'])
+     * @method ShopWork|_IH_ShopWork_C|ShopWork[] findOrFail($id, array $columns = ['*'])
+     * @method ShopWork|_IH_ShopWork_C|ShopWork[] findOrNew($id, array $columns = ['*'])
+     * @method ShopWork first(array|string $columns = ['*'])
+     * @method ShopWork firstOr(array|\Closure $columns = ['*'], \Closure $callback = null)
+     * @method ShopWork firstOrCreate(array $attributes = [], array $values = [])
+     * @method ShopWork firstOrFail(array $columns = ['*'])
+     * @method ShopWork firstOrNew(array $attributes = [], array $values = [])
+     * @method ShopWork firstWhere(array|\Closure|Expression|string $column, $operator = null, $value = null, string $boolean = 'and')
+     * @method ShopWork forceCreate(array $attributes)
+     * @method _IH_ShopWork_C|ShopWork[] fromQuery(string $query, array $bindings = [])
+     * @method _IH_ShopWork_C|ShopWork[] get(array|string $columns = ['*'])
+     * @method ShopWork getModel()
+     * @method ShopWork[] getModels(array|string $columns = ['*'])
+     * @method _IH_ShopWork_C|ShopWork[] hydrate(array $items)
+     * @method ShopWork make(array $attributes = [])
+     * @method ShopWork newModelInstance(array $attributes = [])
+     * @method LengthAwarePaginator|ShopWork[]|_IH_ShopWork_C paginate(int|null $perPage = null, array $columns = ['*'], string $pageName = 'page', int|null $page = null)
+     * @method Paginator|ShopWork[]|_IH_ShopWork_C simplePaginate(int|null $perPage = null, array $columns = ['*'], string $pageName = 'page', int|null $page = null)
+     * @method ShopWork sole(array|string $columns = ['*'])
+     * @method ShopWork updateOrCreate(array $attributes, array $values = [])
+     * @method _IH_ShopWork_QB withTrashed()
+     * @method _IH_ShopWork_QB onlyTrashed()
+     * @method _IH_ShopWork_QB withoutTrashed()
+     * @method _IH_ShopWork_QB restore()
+     */
+    class _IH_ShopWork_QB extends _BaseBuilder {}
+    
+    /**
      * @method Shop|$this shift(int $count = 1)
      * @method Shop|$this pop(int $count = 1)
      * @method Shop|null get($key, $default = null)
@@ -1558,10 +1876,14 @@ namespace LaravelIdea\Helper\App\Models {
      * @method _IH_Shop_QB whereShopNumber($value)
      * @method _IH_Shop_QB whereShopPostalCode($value)
      * @method _IH_Shop_QB whereShopMainPhoneNumber($value)
+     * @method _IH_Shop_QB whereShopParentAbleStatus($value)
+     * @method _IH_Shop_QB whereShopParentAbleRequest($value)
      * @method _IH_Shop_QB whereShopNumberPoints($value)
      * @method _IH_Shop_QB whereShopTotalPoints($value)
      * @method _IH_Shop_QB whereShopAveragePoints($value)
      * @method _IH_Shop_QB whereShopLastPoint($value)
+     * @method _IH_Shop_QB whereAdditionalUserId($value)
+     * @method _IH_Shop_QB whereShopNumberLikes($value)
      * @method _IH_Shop_QB whereNormalProductNumberLikes($value)
      * @method _IH_Shop_QB whereDeletedAt($value)
      * @method _IH_Shop_QB whereCreatedAt($value)
@@ -1606,6 +1928,77 @@ namespace LaravelIdea\Helper\App\Models {
     class _IH_Shop_QB extends _BaseBuilder {}
     
     /**
+     * @method ShopsRelationParentableTypes|$this shift(int $count = 1)
+     * @method ShopsRelationParentableTypes|$this pop(int $count = 1)
+     * @method ShopsRelationParentableTypes|null get($key, $default = null)
+     * @method ShopsRelationParentableTypes|null pull($key, $default = null)
+     * @method ShopsRelationParentableTypes|null first(callable $callback = null, $default = null)
+     * @method ShopsRelationParentableTypes|null firstWhere(string $key, $operator = null, $value = null)
+     * @method ShopsRelationParentableTypes|null find($key, $default = null)
+     * @method ShopsRelationParentableTypes[] all()
+     * @method ShopsRelationParentableTypes|null last(callable $callback = null, $default = null)
+     * @method ShopsRelationParentableTypes|$this random(int|null $number = null)
+     * @method ShopsRelationParentableTypes|null sole($key = null, $operator = null, $value = null)
+     */
+    class _IH_ShopsRelationParentableTypes_C extends _BaseCollection {
+        /**
+         * @param int $size
+         * @return ShopsRelationParentableTypes[][]
+         */
+        public function chunk($size)
+        {
+            return [];
+        }
+    }
+    
+    /**
+     * @method _IH_ShopsRelationParentableTypes_QB whereId($value)
+     * @method _IH_ShopsRelationParentableTypes_QB whereShopId($value)
+     * @method _IH_ShopsRelationParentableTypes_QB whereParentAbleId($value)
+     * @method _IH_ShopsRelationParentableTypes_QB whereShopParentAbleTitle($value)
+     * @method _IH_ShopsRelationParentableTypes_QB whereShopsOwenParentAbleAcceptStatus($value)
+     * @method _IH_ShopsRelationParentableTypes_QB whereShopsOwenParentAblePublishStatus($value)
+     * @method _IH_ShopsRelationParentableTypes_QB whereShopsOwenParentAbleShowStatus($value)
+     * @method _IH_ShopsRelationParentableTypes_QB whereTypeAdditionalId($value)
+     * @method _IH_ShopsRelationParentableTypes_QB whereTypeConfirmUserId($value)
+     * @method _IH_ShopsRelationParentableTypes_QB whereTypeConfirmCommentId($value)
+     * @method _IH_ShopsRelationParentableTypes_QB whereShopsOwenParentAbleConfirmCommentValue($value)
+     * @method _IH_ShopsRelationParentableTypes_QB whereDeletedAt($value)
+     * @method _IH_ShopsRelationParentableTypes_QB whereCreatedAt($value)
+     * @method _IH_ShopsRelationParentableTypes_QB whereUpdatedAt($value)
+     * @method ShopsRelationParentableTypes baseSole(array|string $columns = ['*'])
+     * @method ShopsRelationParentableTypes create(array $attributes = [])
+     * @method _IH_ShopsRelationParentableTypes_C|ShopsRelationParentableTypes[] cursor()
+     * @method ShopsRelationParentableTypes|null|_IH_ShopsRelationParentableTypes_C|ShopsRelationParentableTypes[] find($id, array $columns = ['*'])
+     * @method _IH_ShopsRelationParentableTypes_C|ShopsRelationParentableTypes[] findMany(array|Arrayable $ids, array $columns = ['*'])
+     * @method ShopsRelationParentableTypes|_IH_ShopsRelationParentableTypes_C|ShopsRelationParentableTypes[] findOrFail($id, array $columns = ['*'])
+     * @method ShopsRelationParentableTypes|_IH_ShopsRelationParentableTypes_C|ShopsRelationParentableTypes[] findOrNew($id, array $columns = ['*'])
+     * @method ShopsRelationParentableTypes first(array|string $columns = ['*'])
+     * @method ShopsRelationParentableTypes firstOr(array|\Closure $columns = ['*'], \Closure $callback = null)
+     * @method ShopsRelationParentableTypes firstOrCreate(array $attributes = [], array $values = [])
+     * @method ShopsRelationParentableTypes firstOrFail(array $columns = ['*'])
+     * @method ShopsRelationParentableTypes firstOrNew(array $attributes = [], array $values = [])
+     * @method ShopsRelationParentableTypes firstWhere(array|\Closure|Expression|string $column, $operator = null, $value = null, string $boolean = 'and')
+     * @method ShopsRelationParentableTypes forceCreate(array $attributes)
+     * @method _IH_ShopsRelationParentableTypes_C|ShopsRelationParentableTypes[] fromQuery(string $query, array $bindings = [])
+     * @method _IH_ShopsRelationParentableTypes_C|ShopsRelationParentableTypes[] get(array|string $columns = ['*'])
+     * @method ShopsRelationParentableTypes getModel()
+     * @method ShopsRelationParentableTypes[] getModels(array|string $columns = ['*'])
+     * @method _IH_ShopsRelationParentableTypes_C|ShopsRelationParentableTypes[] hydrate(array $items)
+     * @method ShopsRelationParentableTypes make(array $attributes = [])
+     * @method ShopsRelationParentableTypes newModelInstance(array $attributes = [])
+     * @method LengthAwarePaginator|ShopsRelationParentableTypes[]|_IH_ShopsRelationParentableTypes_C paginate(int|null $perPage = null, array $columns = ['*'], string $pageName = 'page', int|null $page = null)
+     * @method Paginator|ShopsRelationParentableTypes[]|_IH_ShopsRelationParentableTypes_C simplePaginate(int|null $perPage = null, array $columns = ['*'], string $pageName = 'page', int|null $page = null)
+     * @method ShopsRelationParentableTypes sole(array|string $columns = ['*'])
+     * @method ShopsRelationParentableTypes updateOrCreate(array $attributes, array $values = [])
+     * @method _IH_ShopsRelationParentableTypes_QB withTrashed()
+     * @method _IH_ShopsRelationParentableTypes_QB onlyTrashed()
+     * @method _IH_ShopsRelationParentableTypes_QB withoutTrashed()
+     * @method _IH_ShopsRelationParentableTypes_QB restore()
+     */
+    class _IH_ShopsRelationParentableTypes_QB extends _BaseBuilder {}
+    
+    /**
      * @method Tag|$this shift(int $count = 1)
      * @method Tag|$this pop(int $count = 1)
      * @method Tag|null get($key, $default = null)
@@ -1630,6 +2023,15 @@ namespace LaravelIdea\Helper\App\Models {
     }
     
     /**
+     * @method _IH_Tag_QB whereId($value)
+     * @method _IH_Tag_QB whereShopTagName($value)
+     * @method _IH_Tag_QB whereShopTagImageUrl($value)
+     * @method _IH_Tag_QB whereShopTagAcceptStatus($value)
+     * @method _IH_Tag_QB whereShopTagPublishStatus($value)
+     * @method _IH_Tag_QB whereShopTagAdditionalUserId($value)
+     * @method _IH_Tag_QB whereDeletedAt($value)
+     * @method _IH_Tag_QB whereCreatedAt($value)
+     * @method _IH_Tag_QB whereUpdatedAt($value)
      * @method Tag baseSole(array|string $columns = ['*'])
      * @method Tag create(array $attributes = [])
      * @method _IH_Tag_C|Tag[] cursor()
@@ -2034,6 +2436,7 @@ namespace LaravelIdea\Helper\App\Models {
      * @method _IH_Work_QB whereSubcategoryName($value)
      * @method _IH_Work_QB whereTitle($value)
      * @method _IH_Work_QB whereWorkNature($value)
+     * @method _IH_Work_QB whereTypeLocation($value)
      * @method _IH_Work_QB whereSubcategoryAcceptStatus($value)
      * @method _IH_Work_QB whereSubcategoryPublishStatus($value)
      * @method _IH_Work_QB whereSubcategoryShowStatus($value)

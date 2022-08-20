@@ -12,6 +12,7 @@ class ProductPriceHistory extends Model
     use HasFactory;
     use SoftDeletes;
 
+    protected $table = 'product_price_history';
 
 
 

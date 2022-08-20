@@ -1,4 +1,4 @@
-<?php //8c7f678551fb6f9be420a1d3be44c316
+<?php //29fefd048d3daa1d9268ae3471256324
 /** @noinspection all */
 
 namespace App\Models {
@@ -21,6 +21,8 @@ namespace App\Models {
     use Laravel\Passport\Token;
     use LaravelIdea\Helper\App\Models\_IH_AccessWork_C;
     use LaravelIdea\Helper\App\Models\_IH_AccessWork_QB;
+    use LaravelIdea\Helper\App\Models\_IH_Access_C;
+    use LaravelIdea\Helper\App\Models\_IH_Access_QB;
     use LaravelIdea\Helper\App\Models\_IH_Account_C;
     use LaravelIdea\Helper\App\Models\_IH_Account_QB;
     use LaravelIdea\Helper\App\Models\_IH_AttributeValue_C;
@@ -43,6 +45,8 @@ namespace App\Models {
     use LaravelIdea\Helper\App\Models\_IH_NormalProduct_QB;
     use LaravelIdea\Helper\App\Models\_IH_NormalService_C;
     use LaravelIdea\Helper\App\Models\_IH_NormalService_QB;
+    use LaravelIdea\Helper\App\Models\_IH_ParentableTypeConditions_C;
+    use LaravelIdea\Helper\App\Models\_IH_ParentableTypeConditions_QB;
     use LaravelIdea\Helper\App\Models\_IH_ProductCategory_C;
     use LaravelIdea\Helper\App\Models\_IH_ProductCategory_QB;
     use LaravelIdea\Helper\App\Models\_IH_ProductCustomerComments_C;
@@ -59,6 +63,12 @@ namespace App\Models {
     use LaravelIdea\Helper\App\Models\_IH_RolesShopsUsers_QB;
     use LaravelIdea\Helper\App\Models\_IH_ShopImages_C;
     use LaravelIdea\Helper\App\Models\_IH_ShopImages_QB;
+    use LaravelIdea\Helper\App\Models\_IH_ShopParentableType_C;
+    use LaravelIdea\Helper\App\Models\_IH_ShopParentableType_QB;
+    use LaravelIdea\Helper\App\Models\_IH_ShopsRelationParentableTypes_C;
+    use LaravelIdea\Helper\App\Models\_IH_ShopsRelationParentableTypes_QB;
+    use LaravelIdea\Helper\App\Models\_IH_ShopWork_C;
+    use LaravelIdea\Helper\App\Models\_IH_ShopWork_QB;
     use LaravelIdea\Helper\App\Models\_IH_Shop_C;
     use LaravelIdea\Helper\App\Models\_IH_Shop_QB;
     use LaravelIdea\Helper\App\Models\_IH_Tag_C;
@@ -90,6 +100,39 @@ namespace App\Models {
     
     /**
      * @property int $id
+     * @property string|null $title
+     * @property string|null $farsi_name
+     * @property string|null $english_name
+     * @property string|null $access_type
+     * @property bool|null $access_accept_status
+     * @property bool|null $access_activation_status
+     * @property int|null $access_activator_admin_id
+     * @property int|null $access_activator_comment_id
+     * @property string|null $access_activator_comment_value
+     * @property bool|null $access_option_status
+     * @property Carbon|null $deleted_at
+     * @property Carbon|null $created_at
+     * @property Carbon|null $updated_at
+     * @property _IH_Shop_C|Shop[] $shops
+     * @property-read int $shops_count
+     * @method BelongsToMany|_IH_Shop_QB shops()
+     * @method static _IH_Access_QB onWriteConnection()
+     * @method _IH_Access_QB newQuery()
+     * @method static _IH_Access_QB on(null|string $connection = null)
+     * @method static _IH_Access_QB query()
+     * @method static _IH_Access_QB with(array|string $relations)
+     * @method _IH_Access_QB newModelQuery()
+     * @method false|int increment(string $column, float|int $amount = 1, array $extra = [])
+     * @method false|int decrement(string $column, float|int $amount = 1, array $extra = [])
+     * @method static _IH_Access_C|Access[] all()
+     * @ownLinks access_activator_admin_id,\App\Models\User,id
+     * @foreignLinks id,\App\Models\AccessWork,access_id
+     * @mixin _IH_Access_QB
+     */
+    class Access extends Model {}
+    
+    /**
+     * @property int $id
      * @property int|null $work_id
      * @property string|null $work_name
      * @property string|null $work_title
@@ -112,7 +155,7 @@ namespace App\Models {
      * @method false|int increment(string $column, float|int $amount = 1, array $extra = [])
      * @method false|int decrement(string $column, float|int $amount = 1, array $extra = [])
      * @method static _IH_AccessWork_C|AccessWork[] all()
-     * @ownLinks work_id,\App\Models\Work,id
+     * @ownLinks work_id,\App\Models\Work,id|access_id,\App\Models\Access,id
      * @mixin _IH_AccessWork_QB
      */
     class AccessWork extends Model {}
@@ -203,7 +246,7 @@ namespace App\Models {
      * @method false|int decrement(string $column, float|int $amount = 1, array $extra = [])
      * @method static _IH_AttributeValue_C|AttributeValue[] all()
      * @ownLinks attribute_id,\App\Models\Attribute,id|attribute_value_additional_user_id,\App\Models\User,id
-     * @foreignLinks id,\App\Models\Detail,product_attribute_value_id
+     * @foreignLinks id,\App\Models\Detail,product_attribute_value_id|id,\App\Models\ProductPriceHistory,attribute_value_id
      * @mixin _IH_AttributeValue_QB
      */
     class AttributeValue extends Model {}
@@ -236,7 +279,7 @@ namespace App\Models {
      * @method false|int decrement(string $column, float|int $amount = 1, array $extra = [])
      * @method static _IH_Category_C|Category[] all()
      * @ownLinks parent_id,\App\Models\Category,id|shop_category_additional_user_id,\App\Models\User,id|shop_category_confirm_user_id,\App\Models\User,id
-     * @foreignLinks id,\App\Models\Category,parent_id|id,\App\Models\Work,subcategory_id
+     * @foreignLinks id,\App\Models\Category,parent_id|id,\App\Models\Work,subcategory_id|id,\App\Models\ShopWork,subcategory_id
      * @mixin _IH_Category_QB
      * @method static CategoryFactory factory(...$parameters)
      */
@@ -270,7 +313,7 @@ namespace App\Models {
      * @method false|int decrement(string $column, float|int $amount = 1, array $extra = [])
      * @method static _IH_ConfirmComment_C|ConfirmComment[] all()
      * @ownLinks parent_id,\App\Models\ConfirmComment,id|system_user_id,\App\Models\User,id
-     * @foreignLinks id,\App\Models\ConfirmComment,parent_id
+     * @foreignLinks id,\App\Models\ConfirmComment,parent_id|id,\App\Models\ShopParentableType,parent_able_additional_comment_id|id,\App\Models\ShopsRelationParentableTypes,type_confirm_comment_id|id,\App\Models\ParentableTypeConditions,condition_confirm_comment_id
      * @mixin _IH_ConfirmComment_QB
      */
     class ConfirmComment extends Model {}
@@ -599,6 +642,37 @@ namespace App\Models {
     
     /**
      * @property int $id
+     * @property string|null $parent_able_type_condition_title
+     * @property string|null $parent_able_type_condition_name
+     * @property string|null $parent_able_type_condition_value
+     * @property int|null $parent_able_id
+     * @property string|null $shop_parent_able_name
+     * @property bool|null $parent_able_type_condition_accept_status
+     * @property bool|null $parent_able_type_condition_publish_status
+     * @property bool|null $parent_able_type_condition_show_status
+     * @property int|null $condition_additional_user_id
+     * @property int|null $condition_confirm_user_id
+     * @property int|null $condition_confirm_comment_id
+     * @property string|null $parent_able_type_condition_additional_comment_value
+     * @property Carbon|null $deleted_at
+     * @property Carbon|null $created_at
+     * @property Carbon|null $updated_at
+     * @method static _IH_ParentableTypeConditions_QB onWriteConnection()
+     * @method _IH_ParentableTypeConditions_QB newQuery()
+     * @method static _IH_ParentableTypeConditions_QB on(null|string $connection = null)
+     * @method static _IH_ParentableTypeConditions_QB query()
+     * @method static _IH_ParentableTypeConditions_QB with(array|string $relations)
+     * @method _IH_ParentableTypeConditions_QB newModelQuery()
+     * @method false|int increment(string $column, float|int $amount = 1, array $extra = [])
+     * @method false|int decrement(string $column, float|int $amount = 1, array $extra = [])
+     * @method static _IH_ParentableTypeConditions_C|ParentableTypeConditions[] all()
+     * @ownLinks parent_able_id,\App\Models\ShopParentableType,id|condition_additional_user_id,\App\Models\User,id|condition_confirm_user_id,\App\Models\User,id|condition_confirm_comment_id,\App\Models\ConfirmComment,id
+     * @mixin _IH_ParentableTypeConditions_QB
+     */
+    class ParentableTypeConditions extends Model {}
+    
+    /**
+     * @property int $id
      * @property int|null $parent_id
      * @property string|null $product_category_name
      * @property string|null $product_category_image_url
@@ -685,6 +759,20 @@ namespace App\Models {
     class ProductCustomerComments extends Model {}
     
     /**
+     * @property int $id
+     * @property int|null $product_price_historiable_id
+     * @property string|null $product_price_historiable_type
+     * @property int|null $attribute_value_id
+     * @property string|null $attribute_value_name
+     * @property float|null $product_price
+     * @property float|null $product_old_price
+     * @property string|null $update_price_date
+     * @property bool|null $have_discount
+     * @property float|null $discount_percentage_value
+     * @property string|null $discount_type
+     * @property Carbon|null $deleted_at
+     * @property Carbon|null $created_at
+     * @property Carbon|null $updated_at
      * @property Model $product_price_historiable
      * @method MorphTo product_price_historiable()
      * @method static _IH_ProductPriceHistory_QB onWriteConnection()
@@ -696,6 +784,7 @@ namespace App\Models {
      * @method false|int increment(string $column, float|int $amount = 1, array $extra = [])
      * @method false|int decrement(string $column, float|int $amount = 1, array $extra = [])
      * @method static _IH_ProductPriceHistory_C|ProductPriceHistory[] all()
+     * @ownLinks attribute_value_id,\App\Models\AttributeValue,id
      * @mixin _IH_ProductPriceHistory_QB
      */
     class ProductPriceHistory extends Model {}
@@ -778,6 +867,15 @@ namespace App\Models {
     class ProductsImage extends Model {}
     
     /**
+     * @property int $id
+     * @property string $type_shop_top
+     * @property int $top_shop_id
+     * @property string $type_shop_bottom
+     * @property int $bottom_shop_id
+     * @property string $type_top_between_bottom
+     * @property Carbon|null $deleted_at
+     * @property Carbon|null $created_at
+     * @property Carbon|null $updated_at
      * @method static _IH_RelationShop_QB onWriteConnection()
      * @method _IH_RelationShop_QB newQuery()
      * @method static _IH_RelationShop_QB on(null|string $connection = null)
@@ -787,6 +885,7 @@ namespace App\Models {
      * @method false|int increment(string $column, float|int $amount = 1, array $extra = [])
      * @method false|int decrement(string $column, float|int $amount = 1, array $extra = [])
      * @method static _IH_RelationShop_C|RelationShop[] all()
+     * @ownLinks top_shop_id,\App\Models\Shop,id|bottom_shop_id,\App\Models\Shop,id
      * @mixin _IH_RelationShop_QB
      */
     class RelationShop extends Model {}
@@ -832,14 +931,21 @@ namespace App\Models {
      * @property string|null $shop_number
      * @property string|null $shop_postal_code
      * @property string|null $shop_main_phone_number
+     * @property bool|null $shop_parent_able_status
+     * @property bool|null $shop_parent_able_request
      * @property int|null $shop_number_points
      * @property float|null $shop_total_points
      * @property float|null $shop_average_points
      * @property float|null $shop_last_point
+     * @property int|null $additional_user_id
+     * @property int|null $shop_number_likes
      * @property int|null $normal_product_number_likes
      * @property Carbon|null $deleted_at
      * @property Carbon|null $created_at
      * @property Carbon|null $updated_at
+     * @property _IH_Access_C|Access[] $access
+     * @property-read int $access_count
+     * @method BelongsToMany|_IH_Access_QB access()
      * @property _IH_Account_C|Account[] $account
      * @property-read int $account_count
      * @method HasMany|_IH_Account_QB account()
@@ -866,6 +972,9 @@ namespace App\Models {
      * @property _IH_NormalService_C|NormalService[] $normalServices
      * @property-read int $normal_services_count
      * @method HasMany|_IH_NormalService_QB normalServices()
+     * @property _IH_ShopParentableType_C|ShopParentableType[] $parentableType
+     * @property-read int $parentable_type_count
+     * @method BelongsToMany|_IH_ShopParentableType_QB parentableType()
      * @property _IH_Shop_C|Shop[] $parents
      * @property-read int $parents_count
      * @method BelongsToMany|_IH_Shop_QB parents()
@@ -887,6 +996,9 @@ namespace App\Models {
      * @property _IH_User_C|User[] $userOfRolesShopsUsers
      * @property-read int $user_of_roles_shops_users_count
      * @method BelongsToMany|_IH_User_QB userOfRolesShopsUsers()
+     * @property _IH_Work_C|Work[] $works
+     * @property-read int $works_count
+     * @method BelongsToMany|_IH_Work_QB works()
      * @method static _IH_Shop_QB onWriteConnection()
      * @method _IH_Shop_QB newQuery()
      * @method static _IH_Shop_QB on(null|string $connection = null)
@@ -896,7 +1008,8 @@ namespace App\Models {
      * @method false|int increment(string $column, float|int $amount = 1, array $extra = [])
      * @method false|int decrement(string $column, float|int $amount = 1, array $extra = [])
      * @method static _IH_Shop_C|Shop[] all()
-     * @foreignLinks id,\App\Models\NormalProduct,normal_product_shop_id|id,\App\Models\CustomProduct,custom_product_shop_id|id,\App\Models\NormalService,normal_service_shop_id|id,\App\Models\CustomService,custom_services_shop_id|id,\App\Models\Task,task_shop_id|id,\App\Models\ShopImages,shop_id|id,\App\Models\Account,shop_id
+     * @ownLinks additional_user_id,\App\Models\User,id
+     * @foreignLinks id,\App\Models\NormalProduct,normal_product_shop_id|id,\App\Models\CustomProduct,custom_product_shop_id|id,\App\Models\NormalService,normal_service_shop_id|id,\App\Models\CustomService,custom_services_shop_id|id,\App\Models\Task,task_shop_id|id,\App\Models\ShopImages,shop_id|id,\App\Models\RelationShop,top_shop_id|id,\App\Models\RelationShop,bottom_shop_id|id,\App\Models\Account,shop_id|id,\App\Models\ShopWork,shop_id|id,\App\Models\ShopsRelationParentableTypes,shop_id
      * @mixin _IH_Shop_QB
      * @method static ShopFactory factory(...$parameters)
      */
@@ -941,6 +1054,107 @@ namespace App\Models {
     class ShopImages extends Model {}
     
     /**
+     * @property int $id
+     * @property string|null $shop_parent_able_title
+     * @property string|null $shop_parent_able_fa_name
+     * @property string|null $shop_parent_able_en_name
+     * @property bool|null $shops_parent_able_accept_status
+     * @property bool|null $shops_parent_able_publish_status
+     * @property bool|null $shops_parent_able_show_status
+     * @property int|null $parent_able_additional_user_id
+     * @property int|null $parent_able_additional_comment_id
+     * @property string|null $shops_parent_able_additional_comment_value
+     * @property Carbon|null $deleted_at
+     * @property Carbon|null $created_at
+     * @property Carbon|null $updated_at
+     * @property _IH_Shop_C|Shop[] $shops
+     * @property-read int $shops_count
+     * @method BelongsToMany|_IH_Shop_QB shops()
+     * @method static _IH_ShopParentableType_QB onWriteConnection()
+     * @method _IH_ShopParentableType_QB newQuery()
+     * @method static _IH_ShopParentableType_QB on(null|string $connection = null)
+     * @method static _IH_ShopParentableType_QB query()
+     * @method static _IH_ShopParentableType_QB with(array|string $relations)
+     * @method _IH_ShopParentableType_QB newModelQuery()
+     * @method false|int increment(string $column, float|int $amount = 1, array $extra = [])
+     * @method false|int decrement(string $column, float|int $amount = 1, array $extra = [])
+     * @method static _IH_ShopParentableType_C|ShopParentableType[] all()
+     * @ownLinks parent_able_additional_user_id,\App\Models\User,id|parent_able_additional_comment_id,\App\Models\ConfirmComment,id
+     * @foreignLinks id,\App\Models\ShopsRelationParentableTypes,parent_able_id|id,\App\Models\ParentableTypeConditions,parent_able_id
+     * @mixin _IH_ShopParentableType_QB
+     */
+    class ShopParentableType extends Model {}
+    
+    /**
+     * @property int $id
+     * @property int|null $shop_id
+     * @property string|null $shop_name
+     * @property int|null $work_id
+     * @property string|null $work_title
+     * @property int|null $subcategory_id
+     * @property string|null $subcategory_name
+     * @property bool|null $shops_works_accept_status
+     * @property bool|null $shops_works_publish_status
+     * @property bool|null $shops_works_show_status
+     * @property int|null $shops_works_confirm_user_id
+     * @property int|null $shops_works_confirm_comment_id
+     * @property string|null $shops_works_confirm_comment_value
+     * @property Carbon|null $deleted_at
+     * @property Carbon|null $created_at
+     * @property Carbon|null $updated_at
+     * @method static _IH_ShopWork_QB onWriteConnection()
+     * @method _IH_ShopWork_QB newQuery()
+     * @method static _IH_ShopWork_QB on(null|string $connection = null)
+     * @method static _IH_ShopWork_QB query()
+     * @method static _IH_ShopWork_QB with(array|string $relations)
+     * @method _IH_ShopWork_QB newModelQuery()
+     * @method false|int increment(string $column, float|int $amount = 1, array $extra = [])
+     * @method false|int decrement(string $column, float|int $amount = 1, array $extra = [])
+     * @method static _IH_ShopWork_C|ShopWork[] all()
+     * @ownLinks shop_id,\App\Models\Shop,id|work_id,\App\Models\Work,id|subcategory_id,\App\Models\Category,id
+     * @mixin _IH_ShopWork_QB
+     */
+    class ShopWork extends Model {}
+    
+    /**
+     * @property int $id
+     * @property int|null $shop_id
+     * @property int|null $parent_able_id
+     * @property string|null $shop_parent_able_title
+     * @property bool|null $shops_owen_parent_able_accept_status
+     * @property bool|null $shops_owen_parent_able_publish_status
+     * @property bool|null $shops_owen_parent_able_show_status
+     * @property int|null $type_additional_id
+     * @property int|null $type_confirm_user_id
+     * @property int|null $type_confirm_comment_id
+     * @property string|null $shops_owen_parent_able_confirm_comment_value
+     * @property Carbon|null $deleted_at
+     * @property Carbon|null $created_at
+     * @property Carbon|null $updated_at
+     * @method static _IH_ShopsRelationParentableTypes_QB onWriteConnection()
+     * @method _IH_ShopsRelationParentableTypes_QB newQuery()
+     * @method static _IH_ShopsRelationParentableTypes_QB on(null|string $connection = null)
+     * @method static _IH_ShopsRelationParentableTypes_QB query()
+     * @method static _IH_ShopsRelationParentableTypes_QB with(array|string $relations)
+     * @method _IH_ShopsRelationParentableTypes_QB newModelQuery()
+     * @method false|int increment(string $column, float|int $amount = 1, array $extra = [])
+     * @method false|int decrement(string $column, float|int $amount = 1, array $extra = [])
+     * @method static _IH_ShopsRelationParentableTypes_C|ShopsRelationParentableTypes[] all()
+     * @ownLinks shop_id,\App\Models\Shop,id|parent_able_id,\App\Models\ShopParentableType,id|type_additional_id,\App\Models\User,id|type_confirm_user_id,\App\Models\User,id|type_confirm_comment_id,\App\Models\ConfirmComment,id
+     * @mixin _IH_ShopsRelationParentableTypes_QB
+     */
+    class ShopsRelationParentableTypes extends Model {}
+    
+    /**
+     * @property int $id
+     * @property string|null $shop_tag_name
+     * @property string|null $shop_tag_image_url
+     * @property bool|null $shop_tag_accept_status
+     * @property bool|null $shop_tag_publish_status
+     * @property int|null $shop_tag_additional_user_id
+     * @property Carbon|null $deleted_at
+     * @property Carbon|null $created_at
+     * @property Carbon|null $updated_at
      * @property _IH_Shop_C|Shop[] $shops
      * @property-read int $shops_count
      * @method BelongsToMany|_IH_Shop_QB shops()
@@ -956,6 +1170,8 @@ namespace App\Models {
      * @method false|int increment(string $column, float|int $amount = 1, array $extra = [])
      * @method false|int decrement(string $column, float|int $amount = 1, array $extra = [])
      * @method static _IH_Tag_C|Tag[] all()
+     * @ownLinks shop_tag_additional_user_id,\App\Models\User,id
+     * @foreignLinks 
      * @mixin _IH_Tag_QB
      * @method static TagFactory factory(...$parameters)
      */
@@ -1160,7 +1376,7 @@ namespace App\Models {
      * @method false|int decrement(string $column, float|int $amount = 1, array $extra = [])
      * @method static _IH_User_C|User[] all()
      * @ownLinks disable_by,\App\Models\User,id
-     * @foreignLinks id,\App\Models\User,disable_by|id,\App\Models\Category,shop_category_additional_user_id|id,\App\Models\Category,shop_category_confirm_user_id|id,\App\Models\NormalProduct,normal_product_status_confirm_user_id|id,\App\Models\NormalProduct,normal_product_registry_user_id|id,\App\Models\CustomProduct,custom_product_status_confirm_user_id|id,\App\Models\CustomProduct,custom_product_registry_user_id|id,\App\Models\NormalService,normal_service_registry_user_id|id,\App\Models\NormalService,normal_service_status_confirm_user_id|id,\App\Models\CustomService,custom_services_registry_user_id|id,\App\Models\CustomService,custom_services_status_confirm_user_id|id,\App\Models\Attribute,attribute_additional_user_id|id,\App\Models\AttributeValue,attribute_value_additional_user_id|id,\App\Models\ProductTag,product_tag_additional_user_id|id,\App\Models\Task,task_status_confirm_user_id|id,\App\Models\Task,task_registry_user_id|id,\App\Models\ConfirmComment,system_user_id|id,\App\Models\ProductCategory,product_category_additional_user_id|id,\App\Models\ShopImages,shop_image_uploader_user_id|id,\App\Models\Account,user_id|id,\App\Models\Account,account_confirm_user_id|id,\App\Models\Account,account_confirm_shopkeeper_id|id,\App\Models\Account,account_active_by_user_id|id,\App\Models\Work,subcategory_confirm_user_id|id,\App\Models\ProductCustomerComments,user_id
+     * @foreignLinks id,\App\Models\User,disable_by|id,\App\Models\Shop,additional_user_id|id,\App\Models\Category,shop_category_additional_user_id|id,\App\Models\Category,shop_category_confirm_user_id|id,\App\Models\Tag,shop_tag_additional_user_id|id,\App\Models\NormalProduct,normal_product_status_confirm_user_id|id,\App\Models\NormalProduct,normal_product_registry_user_id|id,\App\Models\CustomProduct,custom_product_status_confirm_user_id|id,\App\Models\CustomProduct,custom_product_registry_user_id|id,\App\Models\NormalService,normal_service_registry_user_id|id,\App\Models\NormalService,normal_service_status_confirm_user_id|id,\App\Models\CustomService,custom_services_registry_user_id|id,\App\Models\CustomService,custom_services_status_confirm_user_id|id,\App\Models\Attribute,attribute_additional_user_id|id,\App\Models\AttributeValue,attribute_value_additional_user_id|id,\App\Models\ProductTag,product_tag_additional_user_id|id,\App\Models\Task,task_status_confirm_user_id|id,\App\Models\Task,task_registry_user_id|id,\App\Models\ConfirmComment,system_user_id|id,\App\Models\ProductCategory,product_category_additional_user_id|id,\App\Models\ShopImages,shop_image_uploader_user_id|id,\App\Models\Account,user_id|id,\App\Models\Account,account_confirm_user_id|id,\App\Models\Account,account_confirm_shopkeeper_id|id,\App\Models\Account,account_active_by_user_id|id,\App\Models\Work,subcategory_confirm_user_id|id,\App\Models\Access,access_activator_admin_id|id,\App\Models\ShopParentableType,parent_able_additional_user_id|id,\App\Models\ShopsRelationParentableTypes,type_additional_id|id,\App\Models\ShopsRelationParentableTypes,type_confirm_user_id|id,\App\Models\ParentableTypeConditions,condition_additional_user_id|id,\App\Models\ParentableTypeConditions,condition_confirm_user_id|id,\App\Models\ProductCustomerComments,user_id
      * @mixin _IH_User_QB
      * @method static UserFactory factory(...$parameters)
      */
@@ -1172,6 +1388,7 @@ namespace App\Models {
      * @property string|null $subcategory_name
      * @property string|null $title
      * @property string|null $work_nature
+     * @property bool|null $type_location
      * @property bool|null $subcategory_accept_status
      * @property bool|null $subcategory_publish_status
      * @property bool|null $subcategory_show_status
@@ -1186,6 +1403,9 @@ namespace App\Models {
      * @method HasMany|_IH_AccessWork_QB accesses()
      * @property Category|null $categories
      * @method BelongsTo|_IH_Category_QB categories()
+     * @property _IH_Shop_C|Shop[] $shops
+     * @property-read int $shops_count
+     * @method BelongsToMany|_IH_Shop_QB shops()
      * @method static _IH_Work_QB onWriteConnection()
      * @method _IH_Work_QB newQuery()
      * @method static _IH_Work_QB on(null|string $connection = null)
@@ -1196,7 +1416,7 @@ namespace App\Models {
      * @method false|int decrement(string $column, float|int $amount = 1, array $extra = [])
      * @method static _IH_Work_C|Work[] all()
      * @ownLinks subcategory_id,\App\Models\Category,id|subcategory_confirm_user_id,\App\Models\User,id
-     * @foreignLinks id,\App\Models\AccessWork,work_id
+     * @foreignLinks id,\App\Models\AccessWork,work_id|id,\App\Models\ShopWork,work_id
      * @mixin _IH_Work_QB
      */
     class Work extends Model {}

@@ -12,6 +12,8 @@ class Tag extends Model
     use HasFactory;
     use SoftDeletes;
 
+    protected $table = 'shop_tags';
+
     protected $fillable = [
         'id',
         'tag_name',

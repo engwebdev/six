@@ -1,4 +1,4 @@
-<?php //e84e44a2a01726bdb7f36021092707fc
+<?php //25ccda332d571a995003b19acfb8a912
 /** @noinspection all */
 
 namespace Database\Factories {
@@ -11,6 +11,7 @@ namespace Database\Factories {
     class CategoryFactory extends Factory {}
     
     /**
+     * @method $this hasAccess(int $count, $attributes)
      * @method $this hasAccount(int $count, $attributes)
      * @method $this forCategories($attributes)
      * @method $this hasChild(int $count, $attributes)
@@ -20,6 +21,7 @@ namespace Database\Factories {
      * @method $this hasImages(int $count, $attributes)
      * @method $this hasNormalProducts(int $count, $attributes)
      * @method $this hasNormalServices(int $count, $attributes)
+     * @method $this hasParentableType(int $count, $attributes)
      * @method $this hasParents(int $count, $attributes)
      * @method $this hasRole(int $count, $attributes)
      * @method $this hasRoleOfRolesShopsUsers(int $count, $attributes)
@@ -27,6 +29,7 @@ namespace Database\Factories {
      * @method $this hasTagsByAccept(int $count, $attributes)
      * @method $this hasUser(int $count, $attributes)
      * @method $this hasUserOfRolesShopsUsers(int $count, $attributes)
+     * @method $this hasWorks(int $count, $attributes)
      */
     class ShopFactory extends Factory {}
     

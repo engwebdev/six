@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\MyException;
+use App\Http\Resources\AccountResource;
 use App\Http\Resources\ShopCollection;
 use App\Http\Resources\ShopResource;
 use App\Http\Resources\TagCollection;
 use App\Http\Resources\TagResource;
 use App\Http\Resources\UltraTagShopStatusCollection;
+use App\Models\Account;
 use App\Models\RelationShop;
 use App\Models\RolesShopsUsers;
 use App\Models\Shop;
@@ -134,7 +136,7 @@ class ShopController extends Controller
      * @param Request $request
      * @return JsonResponse
      */
-    public function index(Request $request)
+    public function index(Request $request): JsonResponse
     {
 //        return $request->attributes->all();
         // center => 35.7705959,51.1262078 // tehran
@@ -584,17 +586,9 @@ class ShopController extends Controller
      * @return JsonResponse
      *
      */
-    public function store(Request $request)
+    public function store(Request $request): JsonResponse
     {
-        /**
-         * @var array $attributes
-         * non-of-object
-         */
         $attributes = $request->attributes->all();
-//        return $request;
-//        return $attributes;
-//        return $attributes['account_id'];
-
 //  need add identify ID look like telegram nullable and generation uniq number for add to parent
         try {
             $shopkeeper_id = auth()->id();
@@ -635,6 +629,7 @@ class ShopController extends Controller
                     'tag_ids' => ['nullable'],
                     'shop_tag_ids.*' => ['nullable', 'integer', 'exists:tags,id'],
 
+                    'shop_work_ids' => ['required', 'array', 'min:1'],
                     'shop_work_ids.*' => ['required', 'integer', 'exists:shop_categories,id'],
 
                     'shop_photo_ids.*' => ['nullable', 'integer'],
@@ -704,7 +699,7 @@ class ShopController extends Controller
                         'required',
                         'integer',
                         'required_unless:registration_type,search',
-                        'exists:shops,id'
+                        'exists:shops,id',
                     ],
                     'account_id' => [
                         'required',
@@ -793,7 +788,7 @@ class ShopController extends Controller
                     ], 422);
                 }
             }
-            elseif ($validated['type_location'] == false) {
+            elseif ($validated['type_location'] == false) { //todo validation return true
                 $validator = Validator::make($validated, [
                     'locations' => [
                         'required',
@@ -864,6 +859,18 @@ class ShopController extends Controller
 //                        return true;
 //                    }
 //                }
+            }
+            else {
+                return response()->json([
+                    "message" => "shop_work_ids is not empty", // Forbidden
+                    "errors" => [
+                        "shop_work_ids" => [
+                            "shop_work_ids is not empty",
+                        ],
+                        'NotificationsEnServer' => "shop_work_ids is not empty",
+                        'NotificationsFaServer' => "حداقل یکی از دسته بندی ها باید انتخاب شود.",
+                    ],
+                ], 422);
             }
 
             // todo mehdi this business need to edit
@@ -938,7 +945,7 @@ class ShopController extends Controller
                 }
             );
             // insert into shop_multi_categories tbl => shop_work
-//                $shop->works()->sync($res);
+            //  $shop->works()->sync($res);
             $shop->works()->attach($res_work); // attach($res_work, ['' => ])
 
             $res_access = collect($access_list)->keyBy('access_id')->map(
@@ -962,7 +969,6 @@ class ShopController extends Controller
                     ];
                 }
             );
-//            return $res_access;
             // insert into shop access tbl => access_shop // 4 5 6
             $shop->access()->attach($res_access); // attach($res_access, ['' => ])
 
@@ -980,14 +986,31 @@ class ShopController extends Controller
                 // $shop->images()->saveMany($files);
             }
 
-            return $shop;
+//            return $shop;
             // after insert in shop tbl -> insert relation in relation tbl
-            if ($validated['parent_id']) {
-                $parentShop = RelationShop::create(
+            if ($validated['registration_type'] == 'search') {
+                // todo mehdi make new relation
+                $shop->parents()->create(
                     [
-
+                        'type_shop_top' => 'owner',
+                        'type_shop_bottom' => 'client',
+                        'type_top_between_bottom' => 'test_platform', // get from parent shop
                     ]
                 );
+//                $parentShop = RelationShop::create(
+//                    [
+//                    ]
+//                );
+                // todo mehdi make update child account
+                $account = Account::findOrFail($child_account_id)->update(['shop_id' => $shop->id]);
+//                $account = Account::where(['id', '=', $child_account_id]
+//                );
+
+                return response()->json([
+                    "message" => $shop,
+                ], 201);
+//                return new AccountResource($account);
+//                return $account;
             }
 
             /**
@@ -1141,7 +1164,7 @@ class ShopController extends Controller
      * @param ShopRepositories $shops
      * @return JsonResponse
      */
-    public function show($id, ShopRepositories $shops)
+    public function show(int $id, ShopRepositories $shops)
     {
 //        auth::guard('api');
         DB::enableQueryLog();
@@ -1644,9 +1667,9 @@ class ShopController extends Controller
      * Remove the specified resource from storage.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
-    public function destroy($id)
+    public function destroy(int $id): JsonResponse
     {
         // todo transaction delete all products, all services, all relationship
         // todo call other destroy function
@@ -1704,9 +1727,9 @@ class ShopController extends Controller
      *
      * @param Request $request
      * @param int $id
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
-    public function image(Request $request, $id)
+    public function image(Request $request, int $id): JsonResponse
     {
         // get shop image by id
         // validation id

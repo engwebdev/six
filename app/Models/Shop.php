@@ -127,7 +127,7 @@ class Shop extends Model
     public function works(): BelongsToMany
     {
         return $this->belongsToMany(
-            work::class,
+            Work::class,
             'shops_works',
             'shop_id',
             'work_id',
@@ -155,7 +155,7 @@ class Shop extends Model
     public function access(): BelongsToMany
     {
         return $this->belongsToMany(
-            access::class, // todo todo *
+            Access::class, // todo todo *
             'access_shop',
             'shop_id',
             'access_id',
@@ -180,6 +180,36 @@ class Shop extends Model
             ->withPivot('access_shop_confirm_comment_value')
         ;
     }
+    /******************************/
+
+    /**
+     * @return belongsToMany
+     */
+    public function parentableType(): BelongsToMany
+    {
+        return $this->belongsToMany(
+            ShopParentableType::class,
+            'shop_owen_shop_parent_able_type',
+            'shop_id',
+            'parent_able_id',
+            'id',
+            'id'
+        )
+            ->withPivot('id')
+            ->withPivot('shop_parent_able_title')
+            ->withPivot('shops_owen_parent_able_accept_status')
+            ->withPivot('shops_owen_parent_able_publish_status')
+            ->withPivot('shops_owen_parent_able_show_status')
+            ->withPivot('type_additional_id')
+            ->withPivot('type_confirm_user_id')
+            ->withPivot('type_confirm_comment_id')
+            ->withPivot('shops_owen_parent_able_confirm_comment_value')
+            ->withPivot('created_at')
+            ->withPivot('updated_at')
+            ->withPivot('deleted_at')
+            ;
+    }
+
 
     /******************************/
 

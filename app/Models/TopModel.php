@@ -11,6 +11,12 @@ class TopModel extends Model
     use HasFactory;
     use QueryStringParam;
 
+//    /**
+//     * The table associated with the model.
+//     *
+//     * @var string
+//     */
+//    protected $table;
 
     protected $perPage = 500;
 

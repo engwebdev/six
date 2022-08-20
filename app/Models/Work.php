@@ -65,7 +65,7 @@ class Work extends Model
     public function shops(): BelongsToMany
     {
         return $this->belongsToMany(
-            shop::class,
+            Shop::class,
             'shops_works',
             'work_id',
             'shop_id',
