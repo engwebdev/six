@@ -1,4 +1,4 @@
-<?php //25ccda332d571a995003b19acfb8a912
+<?php //0b62cb4caea94a6b06dd3ac075c5d99c
 /** @noinspection all */
 
 namespace Database\Factories {
@@ -16,6 +16,7 @@ namespace Database\Factories {
      * @method $this forCategories($attributes)
      * @method $this hasChild(int $count, $attributes)
      * @method $this hasChildren(int $count, $attributes)
+     * @method $this hasChildrenWithTrashed(int $count, $attributes)
      * @method $this hasCustomProducts(int $count, $attributes)
      * @method $this hasCustomServices(int $count, $attributes)
      * @method $this hasImages(int $count, $attributes)

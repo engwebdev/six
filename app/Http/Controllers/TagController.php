@@ -257,19 +257,19 @@ class TagController extends Controller {
         $tags = Tag::orderBy( $this->sort, $this->order )
             ->when( $user->hasRole( 'shopkeeper', 'api' ), function ($query) use ($user_id) {
                 return $query
-                    ->select( 'id', 'tag_name', 'tag_accept_status', 'tag_publish_status', 'tag_additional_user_id' )
-                    ->Where( 'tag_accept_status', true )
+                    ->select( 'id', 'shop_tag_name', 'shop_tag_accept_status', 'shop_tag_publish_status', 'shop_tag_additional_user_id' )
+                    ->Where( 'shop_tag_accept_status', true )
                     ->orWhere( function ($subQuery) use ($user_id) {
                         $subQuery
-                            ->where( 'tag_accept_status', false )
-                            ->Where( 'tag_additional_user_id', $user_id );
+                            ->where( 'shop_tag_accept_status', false )
+                            ->Where( 'shop_tag_additional_user_id', $user_id );
                     } );
             } )
             ->when( $user->hasRole( 'user', 'api' ), function ($query) use ($user_id) {
                 return $query
                     ->select( 'id', 'tag_name' )
-                    ->Where( 'tag_accept_status', true )
-                    ->where( 'tag_publish_status', true );
+                    ->Where( 'shop_tag_accept_status', true )
+                    ->where( 'shop_tag_publish_status', true );
             } )
             ->paginate( $this->limit, '*', 'page', $this->page );
 

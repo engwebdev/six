@@ -18,9 +18,10 @@ class CreateConfirmCommentTable extends Migration
             $table->unsignedBigInteger('parent_id')->nullable();
             $table->unsignedBigInteger('confirm_commentable_id')->nullable()->comment('ای دی محصول مورد تایی');
             $table->string('confirm_commentable_type')->nullable()->comment('نوع موجودیت محصول');
-            $table->unsignedBigInteger('system_user_id')->nullable();
-            $table->string('system_user_comment')->nullable();
-            $table->boolean('confirm_comment_value')->nullable()->comment('مقداری که در جدول محصول برای استاتوس رد و تایید وارد میشود');
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->string('user_comment')->nullable();
+            $table->boolean('confirm_comment_value')->nullable()
+                ->comment('مقداری که در جدول محصول برای استاتوس رد و تایید وارد میشود');
             $table->boolean('type_review')->nullable()->comment('مقدار برای انتشار شده / انتتشار نشده');
             $table->enum('type_status', ['open', 'close'])->nullable();
 
@@ -34,12 +35,28 @@ class CreateConfirmCommentTable extends Migration
                 ->onDelete('no action')
                 ->onUpdate('cascade');
 
-            $table->foreign('system_user_id')
+            $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
                 ->onDelete('no action')
                 ->onUpdate('cascade');
         });
+
+        DB::table('confirm_comment')->insert([
+            [
+                'id' => 1,
+                'parent_id' => null,
+                'confirm_commentable_id' => null,
+                'confirm_commentable_type' => null,
+                'user_id' => 1,
+                'user_comment' => 'تایید شده',
+                'confirm_comment_value' => true,
+                'type_review' => true,
+                'type_status' => 'close',
+                'created_at' => '2021-08-07 04:41:40',
+                'updated_at' => '2021-08-07 04:41:40'
+            ],
+        ]);
     }
 
     /**

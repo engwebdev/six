@@ -1,4 +1,4 @@
-<?php //29fefd048d3daa1d9268ae3471256324
+<?php //3923870fbcc6cb3bf1f2abb11b1d490b
 /** @noinspection all */
 
 namespace App\Models {
@@ -290,8 +290,8 @@ namespace App\Models {
      * @property int|null $parent_id
      * @property int|null $confirm_commentable_id
      * @property string|null $confirm_commentable_type
-     * @property int|null $system_user_id
-     * @property string|null $system_user_comment
+     * @property int|null $user_id
+     * @property string|null $user_comment
      * @property bool|null $confirm_comment_value
      * @property bool|null $type_review
      * @property string|null $type_status
@@ -312,7 +312,7 @@ namespace App\Models {
      * @method false|int increment(string $column, float|int $amount = 1, array $extra = [])
      * @method false|int decrement(string $column, float|int $amount = 1, array $extra = [])
      * @method static _IH_ConfirmComment_C|ConfirmComment[] all()
-     * @ownLinks parent_id,\App\Models\ConfirmComment,id|system_user_id,\App\Models\User,id
+     * @ownLinks parent_id,\App\Models\ConfirmComment,id|user_id,\App\Models\User,id
      * @foreignLinks id,\App\Models\ConfirmComment,parent_id|id,\App\Models\ShopParentableType,parent_able_additional_comment_id|id,\App\Models\ShopsRelationParentableTypes,type_confirm_comment_id|id,\App\Models\ParentableTypeConditions,condition_confirm_comment_id
      * @mixin _IH_ConfirmComment_QB
      */
@@ -957,6 +957,9 @@ namespace App\Models {
      * @property _IH_Shop_C|Shop[] $children
      * @property-read int $children_count
      * @method BelongsToMany|_IH_Shop_QB children()
+     * @property _IH_Shop_C|Shop[] $childrenWithTrashed
+     * @property-read int $children_with_trashed_count
+     * @method BelongsToMany|_IH_Shop_QB childrenWithTrashed()
      * @property _IH_CustomProduct_C|CustomProduct[] $customProducts
      * @property-read int $custom_products_count
      * @method HasMany|_IH_CustomProduct_QB customProducts()
@@ -1121,6 +1124,8 @@ namespace App\Models {
      * @property int|null $shop_id
      * @property int|null $parent_able_id
      * @property string|null $shop_parent_able_title
+     * @property int|null $work_id
+     * @property string|null $work_name
      * @property bool|null $shops_owen_parent_able_accept_status
      * @property bool|null $shops_owen_parent_able_publish_status
      * @property bool|null $shops_owen_parent_able_show_status
@@ -1376,7 +1381,7 @@ namespace App\Models {
      * @method false|int decrement(string $column, float|int $amount = 1, array $extra = [])
      * @method static _IH_User_C|User[] all()
      * @ownLinks disable_by,\App\Models\User,id
-     * @foreignLinks id,\App\Models\User,disable_by|id,\App\Models\Shop,additional_user_id|id,\App\Models\Category,shop_category_additional_user_id|id,\App\Models\Category,shop_category_confirm_user_id|id,\App\Models\Tag,shop_tag_additional_user_id|id,\App\Models\NormalProduct,normal_product_status_confirm_user_id|id,\App\Models\NormalProduct,normal_product_registry_user_id|id,\App\Models\CustomProduct,custom_product_status_confirm_user_id|id,\App\Models\CustomProduct,custom_product_registry_user_id|id,\App\Models\NormalService,normal_service_registry_user_id|id,\App\Models\NormalService,normal_service_status_confirm_user_id|id,\App\Models\CustomService,custom_services_registry_user_id|id,\App\Models\CustomService,custom_services_status_confirm_user_id|id,\App\Models\Attribute,attribute_additional_user_id|id,\App\Models\AttributeValue,attribute_value_additional_user_id|id,\App\Models\ProductTag,product_tag_additional_user_id|id,\App\Models\Task,task_status_confirm_user_id|id,\App\Models\Task,task_registry_user_id|id,\App\Models\ConfirmComment,system_user_id|id,\App\Models\ProductCategory,product_category_additional_user_id|id,\App\Models\ShopImages,shop_image_uploader_user_id|id,\App\Models\Account,user_id|id,\App\Models\Account,account_confirm_user_id|id,\App\Models\Account,account_confirm_shopkeeper_id|id,\App\Models\Account,account_active_by_user_id|id,\App\Models\Work,subcategory_confirm_user_id|id,\App\Models\Access,access_activator_admin_id|id,\App\Models\ShopParentableType,parent_able_additional_user_id|id,\App\Models\ShopsRelationParentableTypes,type_additional_id|id,\App\Models\ShopsRelationParentableTypes,type_confirm_user_id|id,\App\Models\ParentableTypeConditions,condition_additional_user_id|id,\App\Models\ParentableTypeConditions,condition_confirm_user_id|id,\App\Models\ProductCustomerComments,user_id
+     * @foreignLinks id,\App\Models\User,disable_by|id,\App\Models\Shop,additional_user_id|id,\App\Models\Category,shop_category_additional_user_id|id,\App\Models\Category,shop_category_confirm_user_id|id,\App\Models\Tag,shop_tag_additional_user_id|id,\App\Models\NormalProduct,normal_product_status_confirm_user_id|id,\App\Models\NormalProduct,normal_product_registry_user_id|id,\App\Models\CustomProduct,custom_product_status_confirm_user_id|id,\App\Models\CustomProduct,custom_product_registry_user_id|id,\App\Models\NormalService,normal_service_registry_user_id|id,\App\Models\NormalService,normal_service_status_confirm_user_id|id,\App\Models\CustomService,custom_services_registry_user_id|id,\App\Models\CustomService,custom_services_status_confirm_user_id|id,\App\Models\Attribute,attribute_additional_user_id|id,\App\Models\AttributeValue,attribute_value_additional_user_id|id,\App\Models\ProductTag,product_tag_additional_user_id|id,\App\Models\Task,task_status_confirm_user_id|id,\App\Models\Task,task_registry_user_id|id,\App\Models\ConfirmComment,user_id|id,\App\Models\ProductCategory,product_category_additional_user_id|id,\App\Models\ShopImages,shop_image_uploader_user_id|id,\App\Models\Account,user_id|id,\App\Models\Account,account_confirm_user_id|id,\App\Models\Account,account_confirm_shopkeeper_id|id,\App\Models\Account,account_active_by_user_id|id,\App\Models\Work,subcategory_confirm_user_id|id,\App\Models\Access,access_activator_admin_id|id,\App\Models\ShopParentableType,parent_able_additional_user_id|id,\App\Models\ShopsRelationParentableTypes,type_additional_id|id,\App\Models\ShopsRelationParentableTypes,type_confirm_user_id|id,\App\Models\ParentableTypeConditions,condition_additional_user_id|id,\App\Models\ParentableTypeConditions,condition_confirm_user_id|id,\App\Models\ProductCustomerComments,user_id
      * @mixin _IH_User_QB
      * @method static UserFactory factory(...$parameters)
      */

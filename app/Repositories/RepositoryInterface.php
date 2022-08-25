@@ -11,4 +11,7 @@ abstract class RepositoryInterface
     }
 
     abstract public function model();
+
+//    public function storeWithRepository();
+
 }

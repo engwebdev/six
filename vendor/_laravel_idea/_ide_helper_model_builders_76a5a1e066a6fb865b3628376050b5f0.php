@@ -1,4 +1,4 @@
-<?php //0253ca6b4626ba7f249e4947fbd1da1d
+<?php //06154a9453421ca055ff9e44ae1dc290
 /** @noinspection all */
 
 namespace LaravelIdea\Helper\App\Models {
@@ -507,8 +507,8 @@ namespace LaravelIdea\Helper\App\Models {
      * @method _IH_ConfirmComment_QB whereParentId($value)
      * @method _IH_ConfirmComment_QB whereConfirmCommentableId($value)
      * @method _IH_ConfirmComment_QB whereConfirmCommentableType($value)
-     * @method _IH_ConfirmComment_QB whereSystemUserId($value)
-     * @method _IH_ConfirmComment_QB whereSystemUserComment($value)
+     * @method _IH_ConfirmComment_QB whereUserId($value)
+     * @method _IH_ConfirmComment_QB whereUserComment($value)
      * @method _IH_ConfirmComment_QB whereConfirmCommentValue($value)
      * @method _IH_ConfirmComment_QB whereTypeReview($value)
      * @method _IH_ConfirmComment_QB whereTypeStatus($value)
@@ -1956,6 +1956,8 @@ namespace LaravelIdea\Helper\App\Models {
      * @method _IH_ShopsRelationParentableTypes_QB whereShopId($value)
      * @method _IH_ShopsRelationParentableTypes_QB whereParentAbleId($value)
      * @method _IH_ShopsRelationParentableTypes_QB whereShopParentAbleTitle($value)
+     * @method _IH_ShopsRelationParentableTypes_QB whereWorkId($value)
+     * @method _IH_ShopsRelationParentableTypes_QB whereWorkName($value)
      * @method _IH_ShopsRelationParentableTypes_QB whereShopsOwenParentAbleAcceptStatus($value)
      * @method _IH_ShopsRelationParentableTypes_QB whereShopsOwenParentAblePublishStatus($value)
      * @method _IH_ShopsRelationParentableTypes_QB whereShopsOwenParentAbleShowStatus($value)

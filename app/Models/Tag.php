@@ -16,12 +16,12 @@ class Tag extends Model
 
     protected $fillable = [
         'id',
-        'tag_name',
-        'tag_image_url',
-        'tag_publish_status',
-        'tag_accept_status',
-        'tag_additional_type',
-        'tag_additional_user_id',
+        'shop_tag_name',
+        'shop_tag_image_url',
+        'shop_tag_publish_status',
+        'shop_tag_accept_status',
+        'shop_tag_additional_type',
+        'shop_tag_additional_user_id',
         'deleted_at',
     ];
 
@@ -31,7 +31,7 @@ class Tag extends Model
     public function shops()
     {
 //        return $this->belongsToMany(shop::class, 'shops_tags', 'tag_id', 'id', null, null, null);
-        return $this->belongsToMany(Shop::class, 'shops_tags')->withPivot('tag_accept_status')->withTimestamps();
+        return $this->belongsToMany(Shop::class, 'shop_shop_tags')->withPivot('tag_accept_status')->withTimestamps();
     }
 
     /**

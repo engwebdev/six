@@ -95,6 +95,7 @@ class Shop extends Model
             ->withPivot('type_top_between_bottom')
             ->withPivot('type_shop_bottom')
             ->withPivot('type_shop_top')
+            ->withTimestamps()
             ;
     }
 
@@ -112,13 +113,41 @@ class Shop extends Model
             'id',
             'id'
         )
+            ->whereNull('deleted_at')
 //            ->withPivotValue(['type_top_between_bottom', 'type_shop_bottom', 'type_shop_top'])
             ->withPivot('id')
             ->withPivot('type_top_between_bottom')
             ->withPivot('type_shop_bottom')
             ->withPivot('type_shop_top')
+            ->withTimestamps()
+            ->withPivot(['deleted_at'])
             ;
     }
+
+    /**
+     * Get the Shop that owns the Shops.
+     * @return belongsToMany
+     */
+    public function childrenWithTrashed(): BelongsToMany
+    {
+        return $this->belongsToMany(
+            shop::class,
+            'shops_owen_shops',
+            'top_shop_id',
+            'bottom_shop_id',
+            'id',
+            'id'
+        )
+//            ->withPivotValue(['type_top_between_bottom', 'type_shop_bottom', 'type_shop_top'])
+            ->withPivot('id')
+            ->withPivot('type_top_between_bottom')
+            ->withPivot('type_shop_bottom')
+            ->withPivot('type_shop_top')
+            ->withTimestamps()
+            ->withPivot(['deleted_at'])
+            ;
+    }
+
 
     /*****************************/
     /**
@@ -241,7 +270,7 @@ class Shop extends Model
     {
 //        return $this->belongsToMany(tag::class, 'shops_tags', 'shop_id', 'id', null, null, null);
 //        return $this->belongsToMany(Tag::class, 'shops_tags')->as('contract')->withPivot('tag_accept_status')->withTimestamps();
-        return $this->belongsToMany(Tag::class, 'shops_tags')->withPivot('tag_accept_status')->withTimestamps();
+        return $this->belongsToMany(Tag::class, 'shop_shop_tags')->withPivot('tag_accept_status')->withTimestamps();
     }
 
     /**

@@ -10,6 +10,7 @@ use App\Http\Controllers\TagController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\NormalProductController;
+use App\Http\Controllers\LawController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -51,11 +52,15 @@ Route::group(['middleware' => ['auth:api']], function () {
         Route::post('/userAccount', [AuthController::class, 'userAccount'])->name('userAccount');
         Route::put('/userUpdate/{id}', [AuthController::class, 'update'])->name('userUpdate');
 
+        Route::get('/laws', [LawController::class, 'index'])->name('system.laws.all');
+        Route::get('/laws/{id}', [LawController::class, 'show'])->name('system.laws.show');
     });
 });
 
 Route::post('/customGrantToken', [CustomGrantController::class, 'customGrantToken'])->name('customGrantToken');
-Route::middleware(['auth:api', 'SwaggerRequest'])->post('/newTokenByRefreshToken', [CustomGrantController::class, 'newTokenByRefreshToken'])->name('newTokenByRefreshToken');
+Route::middleware(['auth:api', 'SwaggerRequest'])
+    ->post('/newTokenByRefreshToken', [CustomGrantController::class, 'newTokenByRefreshToken'])
+    ->name('newTokenByRefreshToken');
 //Route::post('/newTokenByRefreshToken', [CustomGrantController::class, 'newTokenByRefreshToken'])->name('newTokenByRefreshToken');
 //Route::middleware(['SwaggerRequest'])->post('/newTokenByRefreshToken',
 //        function (Request $request) {
@@ -84,7 +89,8 @@ Route::prefix('v1')->middleware(['auth:api', 'SwaggerRequest'])->group(function 
             Route::put('categories/{id}', [CategoryController::class, 'update'])->name('categories.update');
             Route::delete('categories/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
 
-            Route::get('category/{id}/subcategories', [CategoryController::class, 'findAllSub'])->name('categories.indexSub');
+            Route::get('category/{id}/subcategories', [CategoryController::class, 'findAllSub'])
+                ->name('categories.indexSub');
 
             Route::get('subcategory/{id}/works', [CategoryController::class, 'findAllWorks'])->name('categories.works');
         });
@@ -93,6 +99,7 @@ Route::prefix('v1')->middleware(['auth:api', 'SwaggerRequest'])->group(function 
         Route::get('shops', [ShopController::class, 'index'])->name('shops.index');
 
         Route::post('shops', [ShopController::class, 'store'])->name('shops.store');
+        Route::post('shopNew', [ShopController::class, 'storeWithRepository'])->name('shops.store');
         Route::get('shops/{id}', [ShopController::class, 'show'])->name('shops.show');
         Route::put('shops/{id}', [ShopController::class, 'update'])->name('shops.update');
         Route::delete('shops/{id}', [ShopController::class, 'destroy'])->name('shops.destroy');
@@ -124,7 +131,8 @@ Route::prefix('v1')->middleware(['auth:api', 'SwaggerRequest'])->group(function 
     Route::post('product-category', [ProductCategoryController::class, 'store'])->name('product-category.store');
     Route::get('product-category/{id}', [ProductCategoryController::class, 'show'])->name('product-category.show');
     Route::put('product-category/{id}', [ProductCategoryController::class, 'update'])->name('product-category.update');
-    Route::delete('product-category/{id}', [ProductCategoryController::class, 'destroy'])->name('product-category.destroy');
+    Route::delete('product-category/{id}', [ProductCategoryController::class, 'destroy'])
+        ->name('product-category.destroy');
 
 });
 
@@ -138,12 +146,10 @@ Route::get('/v1/current', function (Request $request) {
 });
 
 Route::get('/v1/exception', function (Request $request) {
-    try
-    {
+    try {
         throw new MyExceptionAlias(' MY Exception; ');
     }
-    catch (MyExceptionAlias $ex)
-    {
+    catch (MyExceptionAlias $ex) {
         report($ex);
     }
     return 'get';
@@ -151,11 +157,11 @@ Route::get('/v1/exception', function (Request $request) {
 
 Route::middleware(['auth:api', 'activeUser'])->get('/v1/user/{id}', function (Request $request, $id) {
 
-    $twice = function($HOF, $var) {
+    $twice = function ($HOF, $var) {
         return $HOF($HOF($var));
     };
 
-    $HOF = function($var) {
+    $HOF = function ($var) {
         return $var + 3;
     };
 

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\MyException;
 use App\Http\Resources\AccountResource;
+use App\Http\Resources\ParentableCollection;
+use App\Http\Resources\ParentableResource;
 use App\Http\Resources\ShopCollection;
 use App\Http\Resources\ShopResource;
 use App\Http\Resources\TagCollection;
@@ -44,7 +46,7 @@ class ShopController extends Controller
 
     // todo one to many polymorphic between -confirm_comment- -history_price- -image- -category- -tag- -customer_comment- -- -- -- -- -- --
     // todo -shop_confirm_comment- -shop_comment- --
-    private $shops;
+    private ShopRepositories $shops;
 
     public function __construct(ShopRepositories $shops)
     {
@@ -583,10 +585,11 @@ class ShopController extends Controller
      * Store a newly created resource in storage.
      *
      * @param Request $request
-     * @return JsonResponse
+     * //     * @return JsonResponse
+     * @return ParentableCollection
      *
      */
-    public function store(Request $request): JsonResponse
+    public function store(Request $request) // : JsonResponse
     {
         $attributes = $request->attributes->all();
 //  need add identify ID look like telegram nullable and generation uniq number for add to parent
@@ -972,6 +975,7 @@ class ShopController extends Controller
             // insert into shop access tbl => access_shop // 4 5 6
             $shop->access()->attach($res_access); // attach($res_access, ['' => ])
 
+            // after insert shop
             if (isset($validated['tag_ids'])) {
                 $tag_ids = $validated['tag_ids'];
                 $shop->tags()->attach($tag_ids, ['tag_accept_status' => null]);
@@ -989,21 +993,48 @@ class ShopController extends Controller
 //            return $shop;
             // after insert in shop tbl -> insert relation in relation tbl
             if ($validated['registration_type'] == 'search') {
+                // get parent type from parentable of shop by categories
+                // $parentableType = $shop->findOrFail($parent_shop_id)->with('parentableType')->get();
+//                $parentableType = $shop->findOrFail($parent_shop_id)->parentableType()->paginate();
+                $parentableType = $shop->findOrFail($parent_shop_id)->parentableType()->get();
+
+//                return new ParentableCollection($parentableType);
+//                return new ParentableCollection($parentableType);
                 // todo mehdi make new relation
                 $shop->parents()->attach($parent_shop_id,
                     [
                         'type_shop_top' => 'owner',
                         'type_shop_bottom' => 'client',
-                        'type_top_between_bottom' => 'test_platform', // get from parent shop
+//                        'type_parent_able_id' => 1, // get from parent shop
+                        'type_top_between_bottom' => 'visit', // get from parent shop
                     ]
                 );
                 // todo mehdi make update child account
-                $account = Account::findOrFail($child_account_id)->update(['shop_id' => $shop->id]);
-//                $account = Account::where(['id', '=', $child_account_id]
-//                );
+                Account::findOrFail($child_account_id)->update(
+                    [
+                        'shop_id' => $shop->id,
+                        'shop_account_size' => 'branch',
+                        'shop_account_type' => 'visiting',
+                        'account_type' => 'servants',
+                    ]
+                );
+//                $account = Account::where(['id', '=', $child_account_id]);
 
                 return response()->json([
-                    "message" => $shop,
+                    "parentableType" => new ParentableCollection($parentableType),
+                    "message" => Shop::
+//                    with('account')
+//                        ->with('access')
+//                        ->with('works')
+//                        ->with('parents')
+//                        ->with('children')
+//                        ->with('images')
+//                        ->with('categories')
+//                        ->with('tags')
+//                        ->
+                    find($shop->id, 'id'),
+                    "entity" => $shop,
+                    "id" => $shop->id,
                 ], 201);
 //                return new AccountResource($account);
 //                return $account;
@@ -1117,6 +1148,17 @@ class ShopController extends Controller
 
 
         }
+    }
+
+    /**
+     * @param Request $request
+//     * @return JsonResponse
+//     * @return ParentableCollection
+     *
+     */
+    public function storeWithRepository(Request $request)
+    {
+        return $this->shops->storeWithStrategy($request);
     }
 
     /**
