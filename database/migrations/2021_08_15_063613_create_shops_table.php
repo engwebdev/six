@@ -93,8 +93,8 @@ class CreateShopsTable extends Migration
                     'shop_postal_code' => '1234567899',
                     'shop_main_phone_number' => '02120002000',
 
-                    'shop_parent_able_status' => null,
-                    'shop_parent_able_request' => null,
+                    'shop_parent_able_status' => true,
+                    'shop_parent_able_request' => true,
 
                     'shop_number_points' => 0,
                     'shop_total_points' => 0,

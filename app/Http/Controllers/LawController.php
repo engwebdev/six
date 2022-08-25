@@ -78,6 +78,38 @@ class LawController extends Controller
     }
 
     /**
+     * Display the specified resource.
+     *
+//     * @param int $id
+     * @param Request $request
+     * @return JsonResponse
+     *
+     */
+    public function mainLaw(Request $request):JsonResponse
+    {
+        $law = Law::find(1);
+        if ($law) {
+            $Resource = new LawResource($law);
+            $Resource->toJson();
+            $Response = $Resource->toResponse($request);
+            $Response->setStatusCode(200);
+
+            return $Response;
+        }
+        else
+        {
+            return response()->json(
+                [
+                    'errors' => [
+                        'law' => "law Not Found!",
+                    ],
+                ],
+                404
+            );
+        }
+    }
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id

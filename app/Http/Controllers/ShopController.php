@@ -8,6 +8,7 @@ use App\Http\Resources\ParentableCollection;
 use App\Http\Resources\ParentableResource;
 use App\Http\Resources\ShopCollection;
 use App\Http\Resources\ShopResource;
+use App\Http\Resources\ShopSearchCollection;
 use App\Http\Resources\TagCollection;
 use App\Http\Resources\TagResource;
 use App\Http\Resources\UltraTagShopStatusCollection;
@@ -316,9 +317,8 @@ class ShopController extends Controller
                 ->paginate($this->limit, '*', 'page', $this->page);
 
             return response()->json(
-                new ShopCollection
-                ($shops)
-                , 200);
+                new ShopCollection ($shops), 200
+            );
         }
 //        ShopResource::collection( $shops );
 ////        $collection = new ShopCollection($shops);
@@ -1152,8 +1152,8 @@ class ShopController extends Controller
 
     /**
      * @param Request $request
-//     * @return JsonResponse
-//     * @return ParentableCollection
+     * //     * @return JsonResponse
+     * //     * @return ParentableCollection
      *
      */
     public function storeWithRepository(Request $request)
@@ -1725,6 +1725,25 @@ class ShopController extends Controller
             ->get();
     }
 
+    /**
+     * @param Request $request
+     * @return ShopSearchCollection
+     */
+    public function searchShops(Request $request): ShopSearchCollection
+    {
+        $user = auth()->user();
+        $user_id = $user->id;
+        $validated = $request->validate(
+            [
+                'search' => ['required', 'string', 'min:2'],
+            ]
+        );
+        $searchShop = Shop::where('name', 'like', '%' . $validated['search'] . '%')
+            ->where('shop_parent_able_status', '=', true)
+            ->where('shop_parent_able_request', '=', true)
+            ->get();
+        return new ShopSearchCollection($searchShop);
+    }
     /**************************/
     /**
      * @OA\Get(
@@ -1767,12 +1786,13 @@ class ShopController extends Controller
      * @param int $id
      * @return JsonResponse
      */
-    public function image(Request $request, int $id): JsonResponse
+    public function image(Request $request, int $id)//: JsonResponse
     {
         // get shop image by id
         // validation id
-        $shop = Shop::findOrFail($id);
-        $filePath = public_path() . '/' . $shop->shop_photo_url;
+        $image = ShopImages::findOrFail($id);
+
+        $filePath = public_path() . '/' . $image->shop_image_url;
 
         /*        $content = file_get_contents( $filePath );
                 $file_url = env('APP_URL')."/shop/" . $shop->shop_photo_url;
@@ -1783,15 +1803,75 @@ class ShopController extends Controller
                     ->headers->set(
                         'Access-Control-Allow-Headers', 'Content-Type, Accept, Authorization, X-Requested-With, Application'
                     );*/
+//        return Storage::url($image->shop_image_url);
+//        return $filePath;
 
         if (file_exists($filePath)) {
             $type = File::mimeType($filePath);
-            $content = file_get_contents($filePath);
+            $content = file_get_contents($filePath, true);
             $response = response($content, 200, [
                 'Content-Type' => $type,
-                'Content-Disposition' => 'attachment; filename="' . $shop->name . '.jpeg"',
+                'Content-Disposition' => 'attachment; filename="' . $image->shop_image_old_name . '.jpeg"',
             ]);
             return $response;
+        }
+        else {
+            return response()->json([
+                "message" => "Unknown server problem",
+                "errors" => [
+                    "problem" => [
+                        "Unknown server problem",
+                    ],
+                ],
+            ], 503);
+        }
+
+    }
+
+    /**
+     *
+     * DELETE /tags/{tag}
+     * Remove the specified resource from storage.
+     *
+     * @param Request $request
+     * @param int $id
+     * @return JsonResponse
+     */
+    public function imageUrl(Request $request, int $id): JsonResponse
+    {
+        // get shop image by id
+        // validation id
+        $image = ShopImages::findOrFail($id);
+
+        $filePath = public_path() . '/' . $image->shop_image_url;
+
+        /*        $content = file_get_contents( $filePath );
+                $file_url = env('APP_URL')."/shop/" . $shop->shop_photo_url;
+                $content = base64_encode($content);
+                return response( $file_url , 201, [
+                    'Content-Type' => 'application/json',
+                ]);
+                    ->headers->set(
+                        'Access-Control-Allow-Headers', 'Content-Type, Accept, Authorization, X-Requested-With, Application'
+                    );*/
+//        return Storage::url($image->shop_image_url);
+//        return $filePath;
+
+        if (file_exists($filePath)) {
+            $type = File::mimeType($filePath);
+//            $content = file_get_contents($filePath, true);
+//            $response = response($content, 200, [
+//                'Content-Type' => $type,
+//                'Content-Disposition' => 'attachment; filename="' . $image->shop_image_old_name . '.jpeg"',
+//            ]);
+//            $url = Storage::url($image->shop_image_url);
+            $url = app()->make('url')->to('/') . '/' . $image->shop_image_url;
+//            $link = Storage:: ($image->shop_image_url);
+            return response()->json([
+                "url" => $url,
+//                "link" => app(),
+                "ShopImages" => $image,
+            ], 200);
         }
         else {
             return response()->json([
@@ -1849,7 +1929,14 @@ class ShopController extends Controller
             return $image;
         }
         else {
-            return 'not valid';
+            return response()->json([
+                "message" => "file not valid",
+                "errors" => [
+                    "shop_photo" => [
+                        "shop_photo can not empty!!",
+                    ],
+                ],
+            ], 404);
         }
     }
 

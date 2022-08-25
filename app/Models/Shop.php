@@ -37,7 +37,7 @@ class Shop extends Model
         'description',
         'shop_priority',
         'shop_accept_status',
-        'shop_photo_url',
+        'shop_image_url',
         'type_location',
         'lat_location',
         'long_location',

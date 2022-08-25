@@ -462,11 +462,11 @@ class TagController extends Controller {
 
             $tag = Tag::create(
                 [
-                    'tag_name' => $validated['tag_name'],
-                    'tag_publish_status' => $tag_publish_status,
-                    'tag_accept_status' => $tag_accept_status,
-                    'tag_additional_type' => $additional_user_type,
-                    'tag_additional_user_id' => $user->id,
+                    'shop_tag_name' => $validated['tag_name'],
+                    'shop_tag_publish_status' => $tag_publish_status,
+                    'shop_tag_accept_status' => $tag_accept_status,
+//                    'shop_tag_additional_type' => $additional_user_type,
+                    'shop_tag_additional_user_id' => $user->id,
                 ]
             );
 

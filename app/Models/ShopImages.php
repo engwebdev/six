@@ -13,6 +13,7 @@ class ShopImages extends Model
     use SoftDeletes;
 
     protected $fillable = [
+        'id',
         'shop_id',
         'shop_image_index_point',
         'shop_image_url',
